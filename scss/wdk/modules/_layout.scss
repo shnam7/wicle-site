@@ -1,0 +1,66 @@
+//=========================================================
+//
+//  @package Wicle
+//  @module modules/layout
+//
+//=========================================================
+
+@import "../variables/base";
+@import "../functions/conf";
+
+//-----------------------------------------------
+//  data
+//-----------------------------------------------
+$w-conf-layout:                      () !default;
+
+//--- site
+$w-conf-layout:scv($w-conf-layout, 'site/max-width', 1220px, true);
+$w-conf-layout:scv($w-conf-layout, 'site/page-width', 960px, true);
+$w-conf-layout:scv($w-conf-layout, 'site/page-width', 960px, true);
+$w-conf-layout:scv($w-conf-layout, 'site/z-index', $w-z-index + 100, true);
+$w-conf-layout:scv($w-conf-layout, 'site/breakpoint', 'medium', true);
+
+//--- header
+$w-conf-layout:scv($w-conf-layout, 'header/height', 4rem, true);
+$w-conf-layout:scv($w-conf-layout, 'header/padding', (1rem), true);
+
+//--- header-trailer
+$w-conf-layout:scv($w-conf-layout, 'header-trailer/padding', (1rem), true);
+
+//--- sidebar
+$w-conf-layout:scv($w-conf-layout, 'sidebar/width', 18rem, true);
+$w-conf-layout:scv($w-conf-layout, 'sidebar/padding', (1rem 0.5rem), true);
+
+//--- contents
+$w-conf-layout:scv($w-conf-layout, 'content/width', calc(100% - #{gcv($w-conf-layout, 'sidebar/width')}), true);
+$w-conf-layout:scv($w-conf-layout, 'content/padding', (0.5rem 0.5rem), true);
+
+//--- footer
+$w-conf-layout:scv($w-conf-layout, 'footer/margin', (1rem auto), true);
+$w-conf-layout:scv($w-conf-layout, 'footer/padding', (2rem 1rem), true);
+$w-conf-layout:scv($w-conf-layout, 'footer/divider', (1px solid gray(70%, 0.5)), true);
+
+//--- offcanvas
+$w-conf-layout:scv($w-conf-layout, 'offcanvas/z-index', gcv($w-conf-layout, 'site/z-index') + 100, true);
+
+//--- z-index
+$w-conf-layout:scv($w-conf-layout, 'z-index', (1px solid gray(70%, 0.5)), true);
+
+
+//=== data interface
+@mixin scv-layout($path, $value, $default:false) {
+  $w-conf-layout: scv($w-conf-layout, $value) !global;
+}
+
+@function gcv-layout($path) {
+  @return gcv($w-conf-layout, $path);
+}
+
+
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-layout-init($conf:()) {
+  $w-conf-layout: map-merge($w-conf-layout, $conf) !global;
+}

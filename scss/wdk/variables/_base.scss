@@ -1,0 +1,31 @@
+//=========================================================
+//
+//  @package Wicle
+//  @module variables/base
+//
+//=========================================================
+
+//--- wicle options
+$w-wicle-mode:                  'css' !default;   // generates css classes
+$w-wicle-postcss:               false !default;
+
+//--- layout
+$w-z-index:                     1000 !default;
+$w-site-max-width:              1220px !default;
+$w-site-page-width:             960px !default;
+
+//--- grid
+$w-grid-max-count:              16 !default;
+$w-grid-gutter-width:           1rem !default;  // 20px
+
+//--- typography
+$w-font-size:                   14px !default;
+$w-font-size-mobile:            15px !default;
+$w-font-sans:                   'Malgun Gothic',Arial,Helvetica,Verdana,sans-serif;
+$w-font-serif:                  'Malgun Gothic',Georgia,Times,Times New Roman,serif;
+$w-font-mono:                   'Courier New',Courier,mono;
+
+$w-line-height:                 1.5rem !default;
+
+//--- borders
+$w-border-radius:               4px !default;

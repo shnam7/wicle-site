@@ -1,0 +1,36 @@
+//=========================================================
+//
+//  @package Wicle
+//  @module base/grid
+//
+//=========================================================
+
+@import "../wdk/wdk";
+
+$mq-list: w-mq-list() !default;
+
+.show { display: block; }
+.hide { display: none; }
+.visible { visibility: visible; }
+.invisible { visibility: hidden; }
+
+@for $i from 1 through length($mq-list) {
+  $mq-name: nth($mq-list, $i);
+
+  .show\@#{$mq-name} {
+    display: none;
+    @include w-mq($mq-name) { display: block; }
+  }
+  .hide\@#{$mq-name} {
+    display: block;
+    @include w-mq($mq-name) { display: none; }
+  }
+  .visible\@#{$mq-name} {
+    visibility: hidden;
+    @include w-mq($mq-name) { visibility: visible; }
+  }
+  .invisible\@#{$mq-name} {
+    visibility: hidden;
+    @include w-mq($mq-name) { visibility: visible; }
+  }
+}

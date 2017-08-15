@@ -1,0 +1,55 @@
+//=========================================================
+//
+//  @package Wicle
+//  @module base/reset
+//
+//=========================================================
+
+@import "../../wdk/wdk";
+
+html {
+  font-size: $w-font-size;
+  line-height: $w-line-height;
+}
+
+body {
+  //line-height: $w-line-height;
+  word-wrap: break-word;
+}
+
+// link
+a {
+  color: $w-color-link;
+  background-color: transparent;
+  text-decoration: none;
+
+  &:hover, &:focus {
+    color: smart-scale(invert($w-color-link), 25%);
+    text-decoration: none;  // underline;
+    outline: 0;
+  }
+}
+
+//--- headers/titles
+h1,h2,h3,h4,h5,h6 {
+  color: $w-color-fg;
+  font-family: $w-font-sans;
+  font-weight: 600;
+}
+
+body,select,input,textarea {
+  color: $w-color-text-black;
+  font-family: $w-font-sans;  // set base font here, to apply evenly
+}
+
+//-- code block
+code,pre {
+  display: block;
+  font-family: $w-font-mono;
+  font-size: 0.85rem;
+  line-height:1.45;
+}
+
+pre {
+  margin: 1em 0;
+}

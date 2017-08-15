@@ -1,0 +1,163 @@
+//=========================================================
+//
+//  @package Wicle
+//  @module functions/string
+//
+//=========================================================
+
+//
+//  get a character at '$index' in '$string'
+//    @param {String} $string - target string
+//    @param {Number} $index - position counted from 1
+//    @return {String} - character at position $index
+//
+@function char-at($string, $index) {
+  @return str-slice($string, $index, $index);
+}
+
+//
+//  Replace `$search` with `$replace` in `$string`
+//  https://css-tricks.com/snippets/sass/str-replace-function/
+//    @param {String} $string - Initial string
+//    @param {String} $search - Substring to replace
+//    @param {String} $replace ('') - New value
+//    @return {String} - Updated string
+//
+@function str-replace($string, $search, $replace:'') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+//
+// do str-replace() for all the items in $replace-map
+//
+@function str-replace-batch($string, $replace-map) {
+  @each $token-item in $replace-map {
+    $key: nth($token-item, 1);
+    $value: nth($token-item, 2);
+    $string: str-replace($string, $key, $value);
+    //@debug kkk key=$key value=$value str=$string;
+  }
+  @return $string;
+}
+
+//
+//  Converts string to list with characters in '$separators' as delimiters
+//    @param {String} $string - target string
+//    @param {String} $separators - list of separator characters: ex) ':,;'
+//    @param {String} $new-separator - string to replace each separator chars
+//    @param {Number} $max-count: maximum count of replacement. zero or negative value means limitless
+//    @return {List} - List of splitted string
+//
+//  Examples:
+//    str-split('li.myclass:hover', ':') --> ('li.myclass', ':hover')
+//    str-split('li.myclass:hover', ':', '') --> ('li.myclass', 'hover')
+//    str-split('li.myclass:hover', '.:') --> ('li', '.myclass', ':hover')
+//    str-split('li.myclass:hover', '.:', '', 1) --> ('li', 'myclass:hover')
+//
+@function str-split($string, $separators:'', $new-separator:null, $max-count:0) {
+  $result:();
+  $slen: str-length($string);
+  $max-count: if($max-count<=0, $slen, min($max-count, $slen));
+
+  // str-slice has bug if string length is 1. this block fixes the problem from that bug
+  @if $slen==1 { @return $string; }
+
+  $start: 1;
+  $count: 0;  // # of splits
+  @for $index from 1 through $slen {
+    @if $count < $max-count {
+      @if str-length($separators) == 0 {
+        // if no separator is set, then split each characters
+        $token: char-at($string, $index);
+        $result: append($result, if($count==0, $token, if($new-separator==null, $token, $new-separator+$token)));
+        $count: $count + 1;
+        $start: $index + 1;
+      }
+      @else if str-index($separators, char-at($string, $index)) /*and $index>$start*/ {
+        $token: if($start==$index, '', str-slice($string, $start, $index - 1));
+        $start: if($new-separator==null, $index, $index + 1);
+        $result: append($result, if($count==0, $token, if($new-separator==null, $token, $new-separator+$token)));
+        $count: $count + 1;
+      }
+    }
+  }
+  @if $start<=$slen {   // $max-count was hit
+    $token: str-slice($string, $start);
+    $result: append($result, if($count==0, $token, if($new-separator==null, $token, $new-separator+$token)));
+    //@debug last-token, $token, $count;
+  }
+  @return $result;
+}
+
+//
+//  trim requested characters
+//  Examples:
+//    trim(' a bc ') --> 'abc'
+//    trim(' a bc ', left) --> 'a bc '
+//    trim(' a bc ', right) --> ' a bc'
+//    trim(' a bc ', both) --> 'a bc'
+//    trim(' a bc ', all) --> 'abc'
+//
+@function str-trim($string, $opt:all, $chars:' ') {
+  $slen: str-length($string);
+  @if $slen==0 { @return $string; }
+  @if $opt==all { @return str-replace($string, $chars, ''); }
+  @if $opt==left or $opt==both {
+    @while str-length($string)>0 and str-index($chars, char-at($string, 1)) {
+      $string: str-slice($string, 2);
+    }
+  }
+  @if $opt==right or $opt==both {
+    @while str-length($string)>0 and str-index($chars, char-at($string, -1)) {
+      $string: str-slice($string, 0, -2);
+    }
+  }
+  @return $string;
+}
+
+//
+//  split strings to tokens, which start with $open and end with $close characters
+//  if $open or $close is empty, it works the same as str-split()
+//
+//  Example:
+//    str-tokenize('{Var1}{Var2}Content{Var3}') --> "A" "{Var1}" "{Var2}Content{Var3}"
+//
+@function str-tokenize($string, $open:'', $close:' ,', $trim-delimiters:false, $max-count:0) {
+  $result: ();
+  $list: str-split($string, $open+$close, null, $max-count);
+  //@debug str-split=$list;
+  @if $open=='' or $close=='' { @return $list; }
+
+  $prev: '';
+  $count: 0;
+  @for $i from 1 through length($list) {
+    $item: nth($list, $i);
+    @if str-index($open, char-at($item, 1)) { // item with opening delimiter
+      $prev: if($trim-delimiters, str-slice($item, 2), $item);
+    }
+    @else if str-index($close, char-at($item, 1)) { // item with closing delimiter
+      @if $prev=='' {
+        @error 'str-tokenizer: opening delimiter is not found: ' $prev;
+      }
+      @if not $trim-delimiters { $prev: $prev + char-at($item, 1); }
+      $result: append($result, $prev );
+      @if str-length($item) >= 2 {
+        $result: append($result, str-slice($item, 2));
+      }
+      $prev:'';
+    }
+    @else { // normal element (outside of open-close pair)
+      @if $prev != '' {
+        @error 'str-tokenizer: closing delimiter is not found: ' + $prev;
+      }
+      $result: append($result, $item);
+    }
+    //@debug count=$i item=$item prev=$prev result=$result;
+  }
+  @if $prev != '' { $result: append($result, $prev); }
+  @return $result;
+}

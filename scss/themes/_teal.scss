@@ -1,0 +1,16 @@
+//=========================================================
+//
+//  @package Wicle
+//  @module Theme definition - teal
+//
+//=========================================================
+
+@import "wdk/wdk";
+
+// set theme colors
+@include w-theme-color($w-color-teal);
+
+//--- set layout options
+$layout: ();
+$layout: scv($layout, 'header/background', $w-color-teal);
+@include w-layout-init($layout);

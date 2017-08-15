@@ -1,0 +1,41 @@
+{
+  "name": "wicle",
+  "version": "0.0.1",
+  "description": "Component library for Web front development.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shnam7/wicle.git"
+  },
+  "keywords": [
+    "scss",
+    "postcss"
+  ],
+  "author": "Robin Soo-hyuk Nam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shnam7/wicle/issues"
+  },
+  "homepage": "https://github.com/shnam7/wicle#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jquery": "^3.2.11",
+    "gulp": "gulpjs/gulp#4.0",
+    "gulp-build-manager": "^2.0.0-alpha.4",
+    "gulp-changed": "^3.1.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-filter": "^5.0.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-postcss": "^7.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-typescript": "^3.2.1",
+    "gulp-uglify": "^3.0.0",
+    "lost": "^8.2.0",
+    "typescript": "^2.4.2"
+  }
+}

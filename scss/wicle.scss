@@ -1,0 +1,15 @@
+//=========================================================
+//
+//  @package Wicle
+//  @module Main package, Theme: default
+//
+//=========================================================
+
+//--- base
+@import "wicle/base/reset";
+@import "wicle/visibility";
+@import "wicle/base/typography";
+
+//-- ui
+@import "wicle/ui/layouts/default";
+@import "wicle/ui/components/button";

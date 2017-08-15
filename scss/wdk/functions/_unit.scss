@@ -1,0 +1,72 @@
+//=========================================================
+//
+//  @package Wicle
+//  @module mixins/unit
+//
+//=========================================================
+
+$w-font-size: 16px !default;
+
+//
+//  Remove the unit
+//    @param $num: Number to remove unit from
+//    @return $num: Unitless number
+//
+@function strip-unit($num) {
+  @if type-of($num) == 'number' and not unitless($num) {
+    @return $num / ($num * 0 + 1);
+  }
+  @return $num;
+}
+
+@function _px2rem($value, $base: $w-font-size) {
+  @if unit($value) != 'rem' {
+    $value: strip-unit($value) / strip-unit($base) * 1rem;
+  }
+  @if $value == 0rem { $value: 0; }
+  @return $value;
+}
+
+@function _rem2px($value, $base: $w-font-size) {
+  @if unit($value) != 'px' {
+    $value: strip-unit($value) * strip-unit($base) * 1px;
+  }
+  @if $value == 0px { $value: 0; }
+  @return $value;
+}
+
+// convert px's to rem's
+@function rem($values, $base: $w-font-size) {
+  $rem-values: ();
+  $count: length($values);
+
+  @if unit($base) == '%' {
+    $base: ($base / 100%) * $w-font-size;
+  }
+  @if $count == 1 {
+    @return _px2rem($values, $base);
+  }
+  @for $i from 1 through $count {
+    $rem-values: append($rem-values, _px2rem(nth($values, $i), $base));
+  }
+  @return $rem-values;
+}
+
+//
+// convert rem's to px's
+//
+@function px($values, $base: $w-font-size) {
+  $px-values: ();
+  $count: length($values);
+
+  @if unit($base) == '%' {
+    $base: ($base / 100%) * $w-font-size;
+  }
+  @if $count == 1 {
+    @return _rem2px($values, $base);
+  }
+  @for $i from 1 through $count {
+    $rem-values: append($px-values, _rem2px(nth($values, $i), $base));
+  }
+  @return $px-values;
+}

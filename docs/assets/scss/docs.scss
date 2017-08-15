@@ -1,0 +1,28 @@
+//
+//  Wicle Docs
+//
+@import "wdk/wdk";
+@import "wicle";
+
+@lost gutter 1rem;
+
+.color-items {
+  lost-center: $w-site-page-width;
+  lost-utility: clearfix;
+  div {
+    @include w-mq(small) {
+      lost-column: 1/2;
+    }
+    @include w-mq(medium) {
+      lost-column: 1/3;
+    }
+    .color-item {
+      margin: 0.5rem 0.5rem;
+      box-sizing: border-box;
+      padding: 1rem;
+      min-height: 3rem;
+      font-weight: normal;
+      border-radius: 4px;
+    }
+  }
+}
