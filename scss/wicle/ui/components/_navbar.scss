@@ -1,0 +1,183 @@
+//=========================================================================
+//  @package      Wicle
+//  @module       ui/components/navbar
+//  @description  Navigation bar
+//
+//  @classes
+//    .w-navbar:          navbar
+//    .w-navbar-item:     navbar item inside navbar
+//    .w-navbar-brand:    brnad item inside navbar
+//    .w-navbar-nav:      navigation item inside navbar
+//    .w-navbar-toggle:   main navigation toggle (toggles show/hide .w-navbar-trailer)
+//    .w-navbar-spacer:   items that comes next will be right aligned
+//    .w-navbar-trailer:  space to show accordion box. toggled by ,w-nav-toggle
+//
+//  @usage
+//    <nav class="w-navbar">
+//      <div class="w-navbar-brand>Logo</dev>
+//      <div class="w-navbar-nav>navigation menu</dev>
+//      <div class="w-navbar-item>generic items:ex)searchbox</dev>
+//      <div class="w-navbar-toggle>menu toggle button</dev>
+//    </nav>
+//
+//=========================================================================
+
+@import "wdk/wdk";
+
+//-----------------------------------------------
+//  data
+//-----------------------------------------------
+$w-navbar-generate-classes:     true !default;   // enable class generation
+$w-conf-navbar: ();
+
+//--- core
+$w-conf-navbar: scv($w-conf-navbar, 'max-width', $w-site-max-width, true);
+$w-conf-navbar: scv($w-conf-navbar, 'height', 3.5rem, true);
+$w-conf-navbar: scv($w-conf-navbar, 'padding', 0 1.5rem, true);
+$w-conf-navbar: scv($w-conf-navbar, 'fg', null, true);
+$w-conf-navbar: scv($w-conf-navbar, 'bg', null, true);
+$w-conf-navbar: scv($w-conf-navbar, 'gradient', (level:20%, direction:top));
+$w-conf-navbar: scv($w-conf-navbar, 'radius', $w-border-radius, true);
+$w-conf-navbar: scv($w-conf-navbar, 'item-spacing', 0.25rem);
+$w-conf-navbar: scv($w-conf-navbar, 'breakpoint', medium);
+
+//--- brand
+$w-conf-navbar: scv($w-conf-navbar, 'brand/font-family', $w-font-sans, true);
+$w-conf-navbar: scv($w-conf-navbar, 'brand/font-size', 1.25rem, true);
+$w-conf-navbar: scv($w-conf-navbar, 'brand/font-weight', 600, true);
+$w-conf-navbar: scv($w-conf-navbar, 'brand/fg', null, true);
+$w-conf-navbar: scv($w-conf-navbar, 'brand/hover/fg', #fff, true);
+
+//--- toggle
+$w-conf-navbar: scv($w-conf-navbar, 'toggle/fg', gray(80%), true);
+$w-conf-navbar: scv($w-conf-navbar, 'toggle/hover/fg', white, true);
+
+
+//--- optional dropdown trailer
+$w-conf-navbar: scv($w-conf-navbar, 'trailer/padding', 0.5rem 1rem, true);
+$w-conf-navbar: scv($w-conf-navbar, 'trailer/separator', 1px solid gray(70%));
+
+
+//=== data interface
+@mixin scv-navbar($path, $value, $default:false) {
+  $w-conf-navbar: scv($w-conf-navbar, $path, $value, $default) !global;
+}
+
+@function gcv-navbar($path) {
+  @return gcv($w-conf-navbar, $path);
+}
+
+
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-navbar-core {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: 0 auto;
+  border: none;
+  color: inherit;
+  background: inherit;
+
+  max-width: gcv-navbar(max-width);
+  height: gcv-navbar(height);
+  padding: gcv-navbar(padding);
+  border-radius: gcv-navbar(radius);
+
+  // set item spacing
+  & > :nth-child(n+2) {
+    margin-left: gcv-navbar(item-spacing);
+  }
+
+  // navbar items
+  .wz-item, .wz-brand, .wz-toggle {
+    color: inherit;
+    flex: 0 0 auto;
+    a { color: inherit; }
+    //border: 1px solid red;
+  }
+
+  // brand
+  .wz-brand {
+    font-family: gcv-navbar(brand/font-family);
+    font-size: gcv-navbar(brand/font-size);
+    font-weight: gcv-navbar(brand/font-weight);
+
+    $fg: gcv-navbar(brand/fg);
+    $hover: gcv-navbar('brand/hover/fg');
+    @if ($fg) { color: $fg; }
+
+    &:hover,
+    &:focus {
+      color: if($hover, $hover, if($fg, smart-scale($fg, 15%), null));
+    }
+  }
+
+  // item spacer
+  .wz-spacer {
+    flex: 1 1 0;   // grow shrink basis
+  }
+
+  .wz-nav {
+    display: none;
+    @include w-mq(gcv-navbar(breakpoint)) {
+      display: inline-block;
+    }
+  }
+
+  .wz-toggle {
+    @include w-mq(gcv-navbar(breakpoint)) {
+      display: none;
+    }
+    @include w-hamburger(gcv-navbar('toggle/fg'), gcv-navbar('toggle/hover/fg'));
+    margin: 0.5rem;
+  }
+}
+
+@mixin w-navbar-styles() {
+  $fg: gcv-navbar(fg);
+  $bg: gcv-navbar(bg);
+  $gr: gcv-navbar(gradient);
+  color: if($fg, $fg, if($bg, yiq-color($bg), false));
+  @if $bg {
+    background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
+  }
+}
+
+
+@mixin w-navbar-brand($brand:null) {
+  $brand: map-extend((), gcv($w-conf-navbar, 'brand'), $brand);
+  $font: to-string(map-values(gcv($brand, 'font')), ' ');
+  $color-fg: gcv($brand, 'color/fg');
+}
+
+@mixin w-navbar-trailer-core {
+  position: relative;
+  z-index: 0;
+  margin: 0 auto;
+  display: none;
+
+  padding: gcv-navbar(trailer/padding);
+  border-top: gcv-navbar(trailer/separator);;
+}
+
+
+
+//-----------------------------------------------
+//  class generation
+//-----------------------------------------------
+@if $w-wicle-mode != 'scss' and $w-navbar-generate-classes {
+  .w-navbar {
+    @include w-navbar-core;
+    @include w-navbar-styles;
+
+    &+.w-navbar-trailer {
+      @include w-navbar-trailer-core;
+    }
+  }
+}
+
+@if mixin-exists(w-hook-navbar) { @include w-hook-navbar(); }
+@if mixin-exists(w-hook-navbar-trailer) { @include w-hook-navbar-trailer(); }

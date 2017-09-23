@@ -1,0 +1,38 @@
+//=========================================================
+//
+//  @package Wicle
+//  @module functions/svg
+//
+//  @ref https://codepen.io/jakob-e/pen/doMoML
+//
+//=========================================================
+
+@import "string";
+
+@function svg-url($svg, $new-fill:null, $fill-to-replace:#000000) {
+
+  // replace fill color if new-fill is specified
+  @if $new-fill {
+    $svg: str-replace($svg, to-string($fill-to-replace), to-string($new-fill));
+  }
+
+  // Chunk up string in order to avoid "stack level too deep" error
+  $encoded:'';
+  $slice: 2000;
+  $index: 0;
+  $loops: ceil(str-length($svg)/$slice);
+  @for $i from 1 through $loops {
+    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    //
+    //   Encode (may need a few extra replacements)
+    //
+    $chunk: str-replace($chunk,'"','\'');
+    $chunk: str-replace($chunk,'<','%3C');
+    $chunk: str-replace($chunk,'>','%3E');
+    $chunk: str-replace($chunk,'&','%26');
+    $chunk: str-replace($chunk,'#','%23');
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+  @return url("data:image/svg+xml;charset=utf8,#{$encoded}");
+}

@@ -10,3 +10,6 @@
 //--- variables
 @import "variables/base";
 @import "variables/color";
+@import "variables/timing-functions";
+
+@if mixin-exists(wdk-hook-variables) { @include wdk-hook-variables(); }

@@ -5,7 +5,10 @@
 //
 //=========================================================
 
-$w-font-size: 16px !default;
+@if not variable_exists('w-font-size') {
+  @warn "[unit.scss]:$w-font-size is not defined. Maybe 'variables.scss' is not included. Using 16px as default";
+  $w-font-size:           16px !default !global;
+}
 
 //
 //  Remove the unit
@@ -19,7 +22,7 @@ $w-font-size: 16px !default;
   @return $num;
 }
 
-@function _px2rem($value, $base: $w-font-size) {
+@function _px2rem($value, $base) {
   @if unit($value) != 'rem' {
     $value: strip-unit($value) / strip-unit($base) * 1rem;
   }
@@ -27,7 +30,7 @@ $w-font-size: 16px !default;
   @return $value;
 }
 
-@function _rem2px($value, $base: $w-font-size) {
+@function _rem2px($value, $base) {
   @if unit($value) != 'px' {
     $value: strip-unit($value) * strip-unit($base) * 1px;
   }
@@ -35,7 +38,10 @@ $w-font-size: 16px !default;
   @return $value;
 }
 
+
+//
 // convert px's to rem's
+//
 @function rem($values, $base: $w-font-size) {
   $rem-values: ();
   $count: length($values);

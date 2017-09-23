@@ -7,9 +7,19 @@
 
 //--- base
 @import "wicle/base/reset";
-@import "wicle/visibility";
 @import "wicle/base/typography";
 
-//-- ui
+//--- utilities
+@import "wicle/utilities/visibility";
+
+//--- ui layouts
 @import "wicle/ui/layouts/default";
+
+//--- ui components
+@import "wicle/ui/components/navbar";
+@import "wicle/ui/components/nav";
 @import "wicle/ui/components/button";
+@import "wicle/ui/components/divider";
+@import "wicle/ui/components/panel";
+@import "wicle/ui/components/search";
+@import "wicle/ui/components/image";

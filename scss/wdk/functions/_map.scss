@@ -115,7 +115,7 @@
           // If value is a nested map and same key from object is a nested map as well
           @if type-of($value) == "map" and type-of(map-get($object, $key)) == "map" {
             // Recursive extend
-            $value: extend(map-get($object, $key), $value, true);
+            $value: map-extend(map-get($object, $key), $value, true);
           }
           // Merge current tuple with object
           $object: map-merge($object, ($key: $value));

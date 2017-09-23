@@ -1,0 +1,24 @@
+//
+//  Wicle Theme for Wicle Docs
+//
+
+//--- wdk hooks: this should come before importing wdk
+@mixin wdk-hook-variables() {
+  //$w-color-theme:       $w-color-sherpa-blue !global;
+}
+
+//--- wicle hooks
+@mixin w-hook-reset() {
+}
+
+@mixin w-hook-typography() {
+}
+
+@mixin w-hook-layout-default() {
+}
+
+@mixin w-hook-button() {
+}
+
+@mixin w-hook-navbar() {
+}

@@ -18,15 +18,15 @@
 @import "functions/math";
 @import "functions/color";
 @import "functions/unit";
-@import "functions/timing-functions";
 @import "functions/conf";
+@import "functions/svg";
 
 //--- mixins
 @import "mixins/util";
 @import "mixins/align";
 
 //--- modules
-@import "modules/typography";
+@import "modules/reset";
 @import "modules/mq";
+@import "modules/typography";
 @import "modules/layout";
-@import "modules/theme";

@@ -1,6 +1,7 @@
 //
 //  Wicle Docs
-//
+
+@import "wicle.config";
 @import "wdk/wdk";
 @import "wicle";
 
@@ -16,6 +17,8 @@
     @include w-mq(medium) {
       lost-column: 1/3;
     }
+
+    // Style for color item entry. This is set by javascript
     .color-item {
       margin: 0.5rem 0.5rem;
       box-sizing: border-box;
@@ -25,4 +28,30 @@
       border-radius: 4px;
     }
   }
+}
+
+#custom-menu {
+  $conf:    ();
+  $conf:    scv($conf, 'bg', $w-color-text-black);
+  $conf:    scv($conf, 'item-wrapper/bg', $w-color-text-black);
+  $conf:    scv($conf, 'item-wrapper/fg', $w-color-text-white);
+  @include w-nav-styles($conf);
+}
+
+.demo-divider-panel {
+  font-family: $w-font-sans;
+
+  padding: 0.5rem 1rem;
+  border: 1px solid gray(80%);
+  border-radius: $w-border-radius;
+  &.dark {
+    color: $w-color-text-white;
+    background: gray(25%);
+    .w-divider-text {
+      color: $w-color-text-black;
+    }
+  }
+}
+
+.demo-image-box {
 }

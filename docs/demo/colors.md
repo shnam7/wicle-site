@@ -5,7 +5,7 @@ title: Colors
 
 <script src="{{site.baseurl}}/js/colors.min.js"></script>
 
-# Color Selections
+# Color collections
 
 ## color scheme
 <div class="color-items" markdown='1'>
@@ -105,6 +105,7 @@ title: Colors
 ##### $w-color-light-slate-blue:      #A291FB !default;
 ##### $w-color-helio-trope:           #DC73FF !default;
 ##### $w-color-pale-magenta:          #FF8EDF !default;
+##### $w-color-pale-pink:             #FADADD !default;
 ##### $w-color-ochre:                 #D67C1C !default;
 ##### $w-color-light-gray:            #D4D4D4 !default;   // ==lighten(#000, 83%)
 ##### $w-color-falu-red:              #790D0D !default;

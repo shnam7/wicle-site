@@ -5,13 +5,11 @@
 //
 //=========================================================
 
-@import "../variables/base";
-@import "../functions/conf";
 
 //-----------------------------------------------
 //  data
 //-----------------------------------------------
-$w-conf-layout:                      () !default;
+$w-conf-layout:                     () !default;
 
 //--- site
 $w-conf-layout:scv($w-conf-layout, 'site/max-width', 1220px, true);
@@ -21,8 +19,11 @@ $w-conf-layout:scv($w-conf-layout, 'site/z-index', $w-z-index + 100, true);
 $w-conf-layout:scv($w-conf-layout, 'site/breakpoint', 'medium', true);
 
 //--- header
-$w-conf-layout:scv($w-conf-layout, 'header/height', 4rem, true);
-$w-conf-layout:scv($w-conf-layout, 'header/padding', (1rem), true);
+$w-conf-layout:scv($w-conf-layout, 'header/fg', null, true);
+$w-conf-layout:scv($w-conf-layout, 'header/bg', $w-color-theme, true);
+$w-conf-layout:scv($w-conf-layout, 'header/gradient', (level:20%, direction:top));
+//$w-conf-layout:scv($w-conf-layout, 'header/height', 4rem, true);
+//$w-conf-layout:scv($w-conf-layout, 'header/padding', 1rem 0.5rem, true);
 
 //--- header-trailer
 $w-conf-layout:scv($w-conf-layout, 'header-trailer/padding', (1rem), true);
@@ -49,7 +50,7 @@ $w-conf-layout:scv($w-conf-layout, 'z-index', (1px solid gray(70%, 0.5)), true);
 
 //=== data interface
 @mixin scv-layout($path, $value, $default:false) {
-  $w-conf-layout: scv($w-conf-layout, $value) !global;
+  $w-conf-layout: scv($w-conf-layout, $path, $value, $default) !global;
 }
 
 @function gcv-layout($path) {
@@ -59,8 +60,100 @@ $w-conf-layout:scv($w-conf-layout, 'z-index', (1px solid gray(70%, 0.5)), true);
 
 
 //-----------------------------------------------
-//  mixin's
+//  mixins's
 //-----------------------------------------------
-@mixin w-layout-init($conf:()) {
-  $w-conf-layout: map-merge($w-conf-layout, $conf) !global;
+@mixin w-layout-core() {
+  [id^='l-'] { box-sizing: border-box; }
+
+  #l-site-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  #l-header {
+    $z-index: gcv-layout('site/z-index');
+
+    position: relative;
+    //height: gcv-layout('header/height');    // height this should be set in applications
+    margin: 0 auto;
+    z-index: $z-index; // header should appear above other layout objects
+    @include w-clearfix();
+    & + .l-header-trailer {
+      position: absolute;
+      z-index: gcv-layout('site/z-index') - 1;
+      width: 100%;
+      padding: gcv-layout('header-trailer/padding');
+      display: none;
+    }
+  }
+
+  #l-content-wrapper {
+    max-width: gcv-layout('site/max-width');
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+
+    @include w-clearfix();
+  }
+
+  #l-content {
+    width: 100%;
+    padding: gcv-layout('content/padding');
+
+    @include w-mq(gcv-layout('site/breakpoint')) {
+      float: right;
+      width: gcv-layout('content/width');
+      //padding: $l-content-padding-medium;
+    }
+    &.single {
+      width: 100%;
+      max-width: gcv-layout('site/page-width');
+      @include w-center;
+    }
+  }
+
+  #l-sidebar {
+    width: 100%;
+    padding: gcv-layout('sidebar/padding');
+
+    @include w-mq(gcv-layout('site/breakpoint')) {
+      float: left;
+      width: gcv-layout('sidebar/width');
+      //padding: $l-sidebar-padding-medium;
+    }
+  }
+
+  #l-content.single + #l-sidebar {
+    width: 100%;
+    max-width: gcv-layout('site/page-width');
+  }
+
+  #l-footer {
+    width: 100%;
+    margin: gcv-layout('footer/margin');
+    padding: gcv-layout('footer/padding');
+
+    text-align: center;
+    border-top: gcv-layout('footer/divider');
+  }
+
+  #l-offcanvas {
+    z-index: gcv-layout('footer/z-index');
+  }
+}
+
+@mixin w-layout-styles() {
+  #l-header {
+    $fg: gcv-layout(header/fg);
+    $bg: gcv-layout(header/bg);
+    $gr: gcv-layout(header/gradient);
+    color: if($fg, $fg, if($bg, yiq-color($bg), false));
+    @if $bg {
+      background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
+    }
+  }
+}
+
+@mixin w-layout() {
+  @include w-layout-core;
+  @include w-layout-styles;
 }

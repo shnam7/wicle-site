@@ -5,27 +5,20 @@
 //
 //=========================================================
 
-@import "../../wdk/variables/base";
-@import "../../wdk/modules/typography";
+@import "wdk/modules/typography";
 
-//--- headers/titles
+//-----------------------------------------------
+//  data
+//-----------------------------------------------
+$w-typography-generate-classes:       true !default;   // enable class generation
 
-h1,h2,h3,h4,h5,h6 {
-  font-family: $w-font-sans;
-  font-weight: 600;
+
+//-----------------------------------------------
+//  class generation
+//-----------------------------------------------
+@if $w-wicle-mode != 'scss' and $w-typography-generate-classes {
+  @include w-typography-core;
+  @include w-typography-styles;
 }
 
-@for $i from 1 through 6 {
-  h#{$i} {
-    font-size: gcv($w-conf-typography, 'header/h#{$i}/font-size');
-    margin: gcv($w-conf-typography, 'header/h#{$i}/margin');
-  }
-}
-
-.w-bold {
-  font-weight: bold;
-}
-
-.w-normal {
-  font-weight: normal;
-}
+@if mixin-exists(w-hook-typography) { @include w-hook-typography(); }

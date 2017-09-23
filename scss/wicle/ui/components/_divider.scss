@@ -1,0 +1,124 @@
+//=========================================================================
+//
+//  @package  Wicle
+//  @module   ui/components/Divider
+//  @description Horizontal dividers
+//
+//  @usage
+//    <div class="w-divider wo-thin"></div>
+//
+//=========================================================================
+
+
+@import "wdk/wdk";
+
+//-----------------------------------------------
+//  data
+//-----------------------------------------------
+$w-divider-generate-classes:     true !default;   // enable class generation
+$w-conf-divider: ();
+
+//--- core
+$w-conf-divider: scv($w-conf-divider, 'style', 1px solid gray(80%), true);
+$w-conf-divider: scv($w-conf-divider, 'spacing', 1.5rem, true);
+
+//--- text
+$w-conf-divider: scv($w-conf-divider, 'text/fg', inherit, true);
+$w-conf-divider: scv($w-conf-divider, 'text/bg', white, true);
+
+//--- options
+$w-conf-divider: scv($w-conf-divider, 'skinny/spacing', 0.25rem, true);
+$w-conf-divider: scv($w-conf-divider, 'slim/spacing', 0.5rem, true);
+$w-conf-divider: scv($w-conf-divider, 'thin/spacing', 1rem, true);
+$w-conf-divider: scv($w-conf-divider, 'thick/spacing', 2rem, true);
+$w-conf-divider: scv($w-conf-divider, 'fat/spacing', 3rem, true);
+
+
+//=== data interface
+@mixin scv-divider($path, $value, $default:false) {
+  $w-conf-divider: scv($w-conf-divider, $path, $value, $default) !global;
+}
+
+@function gcv-divider($path) {
+  @return gcv($w-conf-divider, $path);
+}
+
+
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-divider-core {
+  //display: inline-block;  // required to remove margin collapsing
+  padding: 1px 0 0 0;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  z-index: 0;
+  margin: gcv-divider(spacing) 0;
+  &:before {
+    content:'';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    width: 100%;
+    border-top: gcv-divider(style);
+  }
+
+  // text on divider
+  position: relative;
+  text-align: center;
+  &>span, .w-divider-text {
+    display: inline;
+    padding: 0.2rem 1rem;
+    border-radius: $w-border-radius;
+  }
+}
+
+@mixin w-divider-styles {
+  &>span, .w-divider-text {
+    color: gcv-divider(text/fg);
+    background: gcv-divider(text/bg);
+  }
+}
+
+@mixin w-divider-options {
+  &.wo-fit {
+    margin: 0 0;
+  }
+  &.wo-skinny {
+    margin: gcv-divider(skinny/spacing) 0;
+  }
+  &.wo-slim {
+    margin: gcv-divider(slim/spacing) 0;
+  }
+  &.wo-thin {
+    margin: gcv-divider(thin/spacing) 0;
+  }
+  &.wo-thick {
+    margin: gcv-divider(thick/spacing) 0;
+  }
+  &.wo-fat {
+    margin: gcv-divider(fat/spacing) 0;
+  }
+  &.wo-transparent {
+    &:before {
+      display: none;
+    }
+  }
+}
+
+
+
+//-----------------------------------------------
+// mixin's for classes generations
+//-----------------------------------------------
+@if $w-wicle-mode != 'scss' and $w-divider-generate-classes {
+  .w-divider {
+    @include w-divider-core;
+    @include w-divider-styles;
+    @include w-divider-options;
+  }
+}
+@if mixin-exists(w-hook-divider) { @include w-hook-divider(); }

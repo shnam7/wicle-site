@@ -82,6 +82,7 @@ $w-color-maya-blue:             #54C8FF !default;
 $w-color-light-slate-blue:      #A291FB !default;
 $w-color-helio-trope:           #DC73FF !default;
 $w-color-pale-magenta:          #FF8EDF !default;
+$w-color-pale-pink:             #FADADD !default;
 $w-color-ochre:                 #D67C1C !default;
 $w-color-light-gray:            #D4D4D4 !default;   // ==lighten(#000, 83%)
 $w-color-falu-red:              #790D0D !default;
@@ -122,12 +123,17 @@ $w-color-scheme:                ( primary: $w-color-primary,
                                   danger: $w-color-danger
                                 ) !default;
 
-//--- default colors
-$w-color-fg:                    $w-color-text-black !default;
-$w-color-bg:                    transparentize($w-color-fg, 0.95) !default;
-$w-color-line:                  transparentize($w-color-fg, 0.8) !default;
+//--- theme color
+$w-color-theme:                 $w-color-bahama-blue !default;
 
-// link colors
-$w-color-link:                  $w-color-claret !default;
-$w-color-link-hover:            darken($w-color-link, 8%) !default;
-$w-color-highlight:             $w-color-french-rose !default;
+////--- default colors
+//$w-color-fg:                    $w-color-text-black !default;
+//$w-color-bg:                    $w-color-text-white !default;
+//$w-color-text-bg:               $w-color-text-white !default;
+//$w-color-bg:                    transparentize($w-color-fg, 0.95) !default;
+//$w-color-line:                  transparentize($w-color-fg, 0.8) !default;
+//
+//// link colors
+//$w-color-link:                  $w-color-claret !default;
+//$w-color-link-hover:            darken($w-color-link, 8%) !default;
+//$w-color-highlight:             $w-color-french-rose !default;

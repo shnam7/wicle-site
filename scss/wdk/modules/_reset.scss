@@ -1,0 +1,90 @@
+//=========================================================
+//
+//  @package Wicle
+//  @module base/reset
+//
+//=========================================================
+
+@import "../variables/base";
+@import "../variables/color";
+@import "../functions/conf";
+
+//-----------------------------------------------
+//  data
+//-----------------------------------------------
+$w-reset-generate-classes:      true !default;   // enable class generation
+$w-conf-reset:                  () !default;
+
+$w-conf-reset: scv($w-conf-reset, fg, $w-color-theme, true);
+$w-conf-reset: scv($w-conf-reset, link/fg, $w-color-french-rose, true);
+
+
+//=== data interface
+@mixin scv-reset($path, $value, $default:false) {
+  $w-conf-reset: scv($w-conf-reset, $path, $value, $default) !global;
+}
+
+@function gcv-reset($path) {
+  @return gcv($w-conf-reset, $path);
+}
+
+
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-reset-core {
+  html {
+    font-size: $w-font-size;
+    line-height: $w-line-height;
+  }
+
+  body {
+    word-wrap: break-word;
+  }
+
+  // link
+  a {
+    background-color: transparent;
+    text-decoration: none;
+
+    &:hover, &:focus {
+      //color: smart-scale(invert($w-color-link), 25%);
+      text-decoration: none; // underline;
+      outline: 0;
+    }
+  }
+
+  //--- headers/titles
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $w-font-sans;
+    font-weight: 600;
+  }
+
+  body, select, input, textarea {
+    color: $w-color-text-black;
+    font-family: $w-font-sans; // set base font here, to apply evenly
+  }
+
+  //-- code block
+  code, pre {
+    display: block;
+    font-family: $w-font-mono;
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+
+  pre {
+    margin: 1em 0;
+  }
+}
+
+@mixin w-reset-styles {
+  a {
+    color: gcv-reset(link/fg);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: gcv-reset(fg);
+  }
+}

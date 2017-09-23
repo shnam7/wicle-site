@@ -1,19 +1,32 @@
 {
   "name": "wicle",
-  "version": "0.0.1",
-  "description": "Component library for Web front development.",
+  "version": "1.0.0-alpah.1",
+  "description": "Component library for Web development.",
+  "files": [
+    "dist",
+    "script",
+    "scss"
+  ],
   "main": "index.js",
-  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp",
+    "build-core": "gulp wicle-core",
+    "build-watch": "npm run build && npm run watch",
+    "watch": "gulp @watch",
+    "clean": "rimraf dist",
+    "clean-docs": "rimraf _gh_pages docs/.jekyll-metadata",
+    "clean-all": "npm run clean && npm run clean-docs",
+    "prepublish": "npm run build-core"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shnam7/wicle.git"
+    "url": "https://github.com/shnam7/wicle"
   },
   "keywords": [
     "scss",
-    "postcss"
+    "utility",
+    "web",
+    "ui"
   ],
   "author": "Robin Soo-hyuk Nam",
   "license": "MIT",
@@ -21,21 +34,19 @@
     "url": "https://github.com/shnam7/wicle/issues"
   },
   "homepage": "https://github.com/shnam7/wicle#readme",
-  "dependencies": {},
   "devDependencies": {
-    "@types/jquery": "^3.2.11",
+    "@types/jquery": "^3.2.12",
     "gulp": "gulpjs/gulp#4.0",
-    "gulp-build-manager": "^2.0.0-alpha.4",
-    "gulp-changed": "^3.1.0",
+    "gulp-build-manager": "^2.0.0-alpha.8",
     "gulp-cssnano": "^2.1.2",
     "gulp-filter": "^5.0.1",
     "gulp-livereload": "^3.8.1",
     "gulp-postcss": "^7.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-typescript": "^3.2.1",
+    "gulp-typescript": "^3.2.2",
     "gulp-uglify": "^3.0.0",
     "lost": "^8.2.0",
-    "typescript": "^2.4.2"
+    "typescript": "^2.5.2"
   }
 }

@@ -5,95 +5,21 @@
 //
 //=========================================================
 
-@import 'wdk/wdk';
+@import "wdk/wdk";
 
 //-----------------------------------------------
 //  data
 //-----------------------------------------------
-$w-layout-generate-classes:     true !default;   // enable w-button class generation
-
+$w-layout-default-generate-classes:   true !default;   // enable class generation
 
 
 //-----------------------------------------------
 //  class generation
 //-----------------------------------------------
-@if $w-wicle-mode != 'scss' and $w-layout-generate-classes {
+@if $w-wicle-mode != 'scss' and $w-layout-default-generate-classes {
   .w-layout {
-    [id^='l-'] {
-      box-sizing: border-box;
-    }
-
-    #l-site-container {
-      margin: 0;
-      padding: 0;
-    }
-
-    #l-header {
-      $z-index: gcv-layout('site/z-index');
-
-      position: relative;
-      height: gcv-layout('header/height');
-      margin: 0 auto;
-      z-index: $z-index; // header should appear above other layout objects
-      @include w-clearfix();
-      & + .l-header-trailer {
-        position: absolute;
-        z-index: gcv-layout('site/z-index') - 1;
-        width: 100%;
-        padding: gcv-layout('header-trailer/padding');
-        display: none;
-      }
-    }
-
-    #l-content-wrapper {
-      max-width: gcv-layout('site/max-width');
-      margin: 0 auto;
-      @include w-clearfix();
-    }
-
-    #l-content {
-      width: 100%;
-      padding: gcv-layout('content/padding');
-
-      @include w-mq(gcv-layout('site/breakpoint')) {
-        float: right;
-        width: gcv-layout('content/width');
-        //padding: $l-content-padding-medium;
-      }
-      &.single {
-        width: 100%;
-        max-width: gcv-layout('site/page-width');
-        @include w-center;
-      }
-    }
-
-    #l-sidebar {
-      width: 100%;
-      padding: gcv-layout('sidebar/padding');
-
-      @include w-mq(gcv-layout('site/breakpoint')) {
-        float: left;
-        width: gcv-layout('sidebar/width');
-        //padding: $l-sidebar-padding-medium;
-      }
-    }
-
-    #l-content.single + #l-sidebar {
-      width: 100%;
-      max-width: gcv-layout('site/page-width');
-    }
-
-    #l-footer {
-      width: 100%;
-      margin: gcv-layout('footer/margin');
-      padding: gcv-layout('footer/padding');
-
-      text-align: center;
-      border-top: gcv-layout('footer/divider');
-    }
-
-    #l-offcanvas {
-      z-index: gcv-layout('footer/z-index');
-    }
+    @include w-layout;
   }
 }
+
+@if mixin-exists(w-hook-layout-default) { @include w-hook-layout-default(); }

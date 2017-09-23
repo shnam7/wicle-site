@@ -1,0 +1,19 @@
+.w-left { float: left; }
+
+.w-right { float: right; }
+
+.w-center { margin-left: auto; margin-right: auto; }
+
+.w-table-left { display: table; margin-left: 0; }
+
+.w-table-right { display: table; margin-right: 0; }
+
+.w-table-center { display: table; margin: 0 auto; }
+
+p.w-center, a.w-center, h1.w-center, h2.w-center, h3.w-center, h4.w-center, h5.w-center, h6.w-center, img.w-center { text-align: center; }
+
+p.w-left, a.w-left, h1.w-left, h2.w-left, h3.w-left, h4.w-left, h5.w-left, h6.w-left, img.w-left { text-align: left; }
+
+p.w-right, a.w-right, h1.w-right, h2.w-right, h3.w-right, h4.w-right, h5.w-right, h6.w-right, img.w-right { text-align: right; }
+
+/*# sourceMappingURL=align.css.map */

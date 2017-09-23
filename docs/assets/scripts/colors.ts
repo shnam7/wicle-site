@@ -15,7 +15,7 @@ $(()=>{
     let yiq = ((r*299)+(g*587)+(b*114))/1000;
     let fg = (yiq >= 256*0.6) ? 'black' : 'white';
 
-    $el = $el.wrap("<div/>")
+    $el.wrap("<div/>")
       .addClass('color-item');
     $el.css('color', fg);
     $el.css('background', bg);

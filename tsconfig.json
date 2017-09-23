@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "none",
+    "noEmitOnError": true,
+    "declaration": true,
+    "lib" : ["DOM", "ES6", "DOM.Iterable", "ScriptHost"]
+  },
+}

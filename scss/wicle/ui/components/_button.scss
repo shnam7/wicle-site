@@ -1,7 +1,7 @@
 //=========================================================
 //
-//  @package Wicle
-//  @module ui/components/button
+//  @package  Wicle
+//  @module   ui/components/button
 //
 //=========================================================
 
@@ -10,14 +10,14 @@
 //-----------------------------------------------
 //  data
 //-----------------------------------------------
-$w-button-generate-classes:     true !default;   // enable w-button class generation
+$w-button-generate-classes:     true !default;   // enable class generation
 $w-conf-button: ();
 
 // core
 $w-conf-button: scv($w-conf-button, 'margin', 0, true);
-$w-conf-button: scv($w-conf-button, 'padding', 0.5rem 1.25rem, true);
+$w-conf-button: scv($w-conf-button, 'padding', 0.25rem 1rem, true);
 $w-conf-button: scv($w-conf-button, 'line-height', 1.5, true);
-$w-conf-button: scv($w-conf-button, 'border', (1px solid $w-color-fg), true);
+$w-conf-button: scv($w-conf-button, 'border', (1px solid $w-color-theme), true);
 $w-conf-button: scv($w-conf-button, 'radius', $w-border-radius, true);
 $w-conf-button: scv($w-conf-button, 'transition', all 0.15s ease-in-out, true);
 
@@ -26,15 +26,10 @@ $w-conf-button: scv($w-conf-button, 'compact/font-size', 90%, true);
 $w-conf-button: scv($w-conf-button, 'compact/line-height', 1.75rem, true);
 $w-conf-button: scv($w-conf-button, 'compact/padding', 0 0.75rem, true);
 
-//--- data interface
-@mixin scv-button($path, $value, $default) {
-  $w-conf-button: scv($w-conf-button, $path, $value, $default) !global;
-}
-
 
 //=== data interface
 @mixin scv-button($path, $value, $default:false) {
-  $w-conf-button: scv($w-conf-button, $value) !global;
+  $w-conf-button: scv($w-conf-button, $path, $value, $default) !global;
 }
 
 @function gcv-button($path) {
@@ -66,7 +61,13 @@ $w-conf-button: scv($w-conf-button, 'compact/padding', 0 0.75rem, true);
   &:hover { text-decoration: none; }
 }
 
-@mixin w-button-color($color, $alpha:false) {
+@mixin w-button-opt-compact {
+  font-size: gcv-button('compact/font-size');
+  padding: gcv-button('compact/padding');
+  line-height: gcv-button('compact/line-height');
+}
+
+@mixin w-button-styles($color, $alpha:false) {
   $fg: yiq-color($color);
   $bg: $color;
   $line: transparentize($color, 0.7);
@@ -83,20 +84,31 @@ $w-conf-button: scv($w-conf-button, 'compact/padding', 0 0.75rem, true);
     background: $bg;
     border-color: $line;
     &:hover {
-      background: $hover;;
+      background: $hover;
     }
   }
 }
 
-@mixin w-button($color:$w-color-text-white) {
-  @include w-button-core();
-  @include w-button-color($color);
-}
+@mixin w-button-options {
+  &.wo-compact {
+    @include w-button-opt-compact;
+  }
+  &.wo-alpha {
+    @include w-button-styles($w-color-text-black, true)
+  }
 
-@mixin w-button-compact {
-  font-size: gcv-button('compact/font-size');
-  padding: gcv-button('compact/padding');
-  line-height: gcv-button('compact/line-height');
+  // color scheme
+  @each $scheme in $w-color-scheme {
+    $name: nth($scheme, 1);
+    $color: nth($scheme, 2);
+    &.wo-#{$name} {
+      @include w-button-styles($color);
+    }
+    // alpha mode (semi transparent)
+    &.wo-#{$name}.wo-alpha {
+      @include w-button-styles($color, true);
+    }
+  }
 }
 
 
@@ -107,25 +119,10 @@ $w-conf-button: scv($w-conf-button, 'compact/padding', 0 0.75rem, true);
 @if $w-wicle-mode != 'scss' and $w-button-generate-classes {
   .w-button,
   a.w-button {
-    @include w-button($w-color-text-white);
-    &.wo-alpha {
-      @include w-button-color($w-color-text-black, true)
-    }
-
-    // color scheme
-    @each $scheme in $w-color-scheme {
-      $name: nth($scheme, 1);
-      $color: nth($scheme, 2);
-      &.wo-#{$name} {
-        @include w-button-color($color);
-      }
-      // alpha mode (semi transparent)
-      &.wo-#{$name}.wo-alpha {
-        @include w-button-color($color, true);
-      }
-    }
-    &.wo-compact {
-      @include w-button-compact;
-    }
+    @include w-button-core;
+    @include w-button-options;
+    @include w-button-styles($w-color-text-white);
   }
 }
+
+@if mixin-exists(w-hook-button) { @include w-hook-button(); }

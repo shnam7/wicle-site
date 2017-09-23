@@ -4,12 +4,14 @@
 //
 //=========================================================================
 
+@import "../variables/base";
 @import "../functions/conf";
 
 //-----------------------------------------------
 //  data
 //-----------------------------------------------
-$w-conf-typography: () !default;
+$w-typography-generate-classes:     true !default;   // enable class generation
+$w-conf-typography:                 () !default;
 
 //--- headers
 //  html5 default size in rem (not em)
@@ -28,13 +30,40 @@ $w-conf-typography: scv($w-conf-typography, 'header/h5', (font-size:0.83rem, mar
 $w-conf-typography: scv($w-conf-typography, 'header/h6', (font-size:0.67rem, margin:1rem 0 1rem), true);   // 2.33rem
 
 
-//-----------------------------------------------
-//  functions
-//-----------------------------------------------
-@function scv-typo($path, $value, $default:false) {
-  $w-conf-typography: scv($w-conf-typography, $value) !global;
+//=== data interface
+@function scv-typography($path, $value, $default:false) {
+  $w-conf-typography: scv($w-conf-typography, $value, $default) !global;
 }
 
-@function gcv-typo($path) {
+@function gcv-typography($path) {
   @return gcv($w-conf-typography);
 }
+
+
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-typography-core {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $w-font-sans;
+    font-weight: 600;
+  }
+
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-size: gcv($w-conf-typography, 'header/h#{$i}/font-size');
+      margin: gcv($w-conf-typography, 'header/h#{$i}/margin');
+    }
+  }
+
+  .w-bold {
+    font-weight: bold;
+  }
+
+  .w-normal {
+    font-weight: normal;
+  }
+}
+
+@mixin w-typography-styles {}
