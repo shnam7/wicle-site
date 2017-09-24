@@ -5,7 +5,7 @@
 //
 //=========================================================
 
-@import "wdk/wdk";
+@import "../wdk/wdk";
 
 //--- set layout options
 @include scv-layout(header/bg, $w-color-teal);

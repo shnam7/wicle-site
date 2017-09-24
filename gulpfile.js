@@ -23,7 +23,7 @@ const scss = {
   },
   moduleOptions: {
     sass: {
-      includePaths: ['scss'],
+      // includePaths: ['scss'],
     }
   },
   clean: [destRoot],
