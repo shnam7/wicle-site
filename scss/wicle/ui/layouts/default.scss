@@ -7,17 +7,180 @@
 
 @import "../../../wdk/wdk";
 
+// shortcut function: valid only in this file
+@function cv($path:null) {  @return gsv('w-layout-default', $path);  }
+
 //-----------------------------------------------
 //  data
 //-----------------------------------------------
+@if mixin-exists(w-hook-layout-default-init) { @include w-hook-layout-default-init(); }
+
 $w-layout-default-generate-classes:   true !default;   // enable class generation
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-layout-default-init {
+  @if mixin-exists(w-hook-layout-default-init) { @include w-hook-layout-default-init(); }
+
+  //--- globals variables
+  $w-layout-default-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-layout-default';
+  
+  //--- site
+  @include ssv($key, 'site/max-width', 1220px, true);
+  @include ssv($key, 'site/page-width', 960px, true);
+  @include ssv($key, 'site/page-width', 960px, true);
+  @include ssv($key, 'site/z-index', $w-z-index + 100, true);
+  @include ssv($key, 'site/breakpoint', 'medium', true);
+
+  //--- header
+  @include ssv($key, 'header/fg', null, true);
+  @include ssv($key, 'header/bg', $w-color-theme, true);
+  @include ssv($key, 'header/gradient', (level:20%, direction:top));
+  //@include ssv($key, 'header/height', 4rem, true);
+  //@include ssv($key, 'header/padding', 1rem 0.5rem, true);
+
+  //--- header-trailer
+  @include ssv($key, 'header-trailer/padding', (1rem), true);
+
+  //--- sidebar
+  @include ssv($key, 'sidebar/width', 18rem, true);
+  @include ssv($key, 'sidebar/padding', (1rem 0.5rem), true);
+
+  //--- contents
+  @include ssv($key, 'content/width', calc(100% - #{cv('sidebar/width')}), true);
+  @include ssv($key, 'content/padding', (0.5rem 0.5rem), true);
+
+  //--- footer
+  @include ssv($key, 'footer/margin', (1rem auto), true);
+  @include ssv($key, 'footer/padding', (2rem 1rem), true);
+  @include ssv($key, 'footer/divider', (1px solid gray(70%, 0.5)), true);
+
+  //--- offcanvas
+  @include ssv($key, 'offcanvas/z-index', cv('site/z-index') + 100, true);
+
+  //--- z-index
+  @include ssv($key, 'z-index', (1px solid gray(70%, 0.5)), true);
+
+  @if mixin-exists(w-hook-layout-default-override) { @include w-hook-layout-default-override(); }
+}
+
+
+//-----------------------------------------------
+//  mixins's
+//-----------------------------------------------
+@mixin w-layout-core() {
+  [id^='l-'] { box-sizing: border-box; }
+
+  #l-site-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  #l-header {
+    $z-index: cv('site/z-index');
+
+    position: relative;
+    //height: cv('header/height');    // height this should be set in applications
+    margin: 0 auto;
+    z-index: $z-index; // header should appear above other layout objects
+    @include w-clearfix();
+    & + .l-header-trailer {
+      position: absolute;
+      z-index: cv('site/z-index') - 1;
+      width: 100%;
+      padding: cv('header-trailer/padding');
+      display: none;
+    }
+  }
+
+  #l-content-wrapper {
+    max-width: cv('site/max-width');
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+
+    @include w-clearfix();
+  }
+
+  #l-content {
+    width: 100%;
+    padding: cv('content/padding');
+
+    @include w-mq(cv('site/breakpoint')) {
+      float: left;
+      width: cv('content/width');
+      //padding: $l-content-padding-medium;
+    }
+    &.single {
+      width: 100%;
+      max-width: cv('site/page-width');
+      @include w-center;
+    }
+  }
+
+  #l-sidebar {
+    width: 100%;
+    padding: cv('sidebar/padding');
+
+    @include w-mq(cv('site/breakpoint')) {
+      float: right;
+      width: cv('sidebar/width');
+      //padding: $l-sidebar-padding-medium;
+    }
+  }
+
+  #l-content.single + #l-sidebar {
+    width: 100%;
+    max-width: cv('site/page-width');
+  }
+
+  #l-footer {
+    width: 100%;
+    margin: cv('footer/margin');
+    padding: cv('footer/padding');
+
+    text-align: center;
+    border-top: cv('footer/divider');
+  }
+
+  #l-offcanvas {
+    z-index: cv('footer/z-index');
+  }
+}
+
+@mixin w-layout-styles() {
+  #l-header {
+    $fg: cv(header/fg);
+    $bg: cv(header/bg);
+    $gr: cv(header/gradient);
+    color: if($fg, $fg, if($bg, yiq-color($bg), false));
+    @if $bg {
+      background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
+    }
+  }
+}
+
+@mixin w-layout() {
+  @include w-layout-core;
+  @include w-layout-styles;
+}
+
+
+
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-layout-default-init;
 
 
 //-----------------------------------------------
 //  class generation
 //-----------------------------------------------
-@if $w-wicle-mode != 'scss' and $w-layout-default-generate-classes {
-  .w-layout {
+@if $w-wicle-mode == 'css' and $w-layout-default-generate-classes {
+  .w-layout-default {
     @include w-layout;
   }
 }

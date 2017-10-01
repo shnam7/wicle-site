@@ -14,7 +14,9 @@ code, pre { display: block; font-family: "Courier New", Courier, mono; font-size
 
 pre { margin: 1em 0; }
 
-a { color: #EA4C88; }
+a { color: #285880; }
+
+a:hover, a:focus { color: #7F1734; }
 
 h1, h2, h3, h4, h5, h6 { color: #285880; }
 

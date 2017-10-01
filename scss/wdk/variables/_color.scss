@@ -98,15 +98,18 @@ $w-color-fern-green:            #4F7942 !default;
 $w-color-royal-purple:          #6B15A1 !default;
 $w-color-blue-diamond:          #4D1B7B !default;
 $w-color-french-rose:           #EA4C88 !default;
+$w-color-slate-gray:            #708090 !default;
 $w-color-light-slate-gray:      #868E96 !default;
 $w-color-chateau-green:         #28A745 !default;
+$w-color-orange:                #FFA500 !default;
+$w-color-dark-red:              #A30000 !default;
 
 // text colors
 $w-color-text-white:            $w-color-whisper !default;
 $w-color-text-black:            $w-color-charcoal !default; // recommended for text reading. better than black.
 $w-color-text-blue:             $w-color-lochmara !default;
 $w-color-text-red:              $w-color-medium-carmine !default;
-$w-color-text-orange:           $w-color-persimmon !default;
+$w-color-text-orange:           $w-color-orange !default;
 
 //--- color scheme
 $w-color-primary:               $w-color-lochmara !default;
@@ -122,18 +125,3 @@ $w-color-scheme:                ( primary: $w-color-primary,
                                   warning: $w-color-warning,
                                   danger: $w-color-danger
                                 ) !default;
-
-//--- theme color
-$w-color-theme:                 $w-color-bahama-blue !default;
-
-////--- default colors
-//$w-color-fg:                    $w-color-text-black !default;
-//$w-color-bg:                    $w-color-text-white !default;
-//$w-color-text-bg:               $w-color-text-white !default;
-//$w-color-bg:                    transparentize($w-color-fg, 0.95) !default;
-//$w-color-line:                  transparentize($w-color-fg, 0.8) !default;
-//
-//// link colors
-//$w-color-link:                  $w-color-claret !default;
-//$w-color-link-hover:            darken($w-color-link, 8%) !default;
-//$w-color-highlight:             $w-color-french-rose !default;

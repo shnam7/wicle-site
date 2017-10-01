@@ -8,16 +8,31 @@
 @import "../../wdk/wdk";
 
 //-----------------------------------------------
-//  data
+//  mixin's
 //-----------------------------------------------
-$w-visibility-generate-classes:     true !default;   // enable class generation
+@mixin w-visibility-init {
+  @if mixin-exists(w-hook-visibility-init) { @include w-hook-visibility-init(); }
 
+  //--- globals variables
+  $w-visibility-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-visibility';
+
+  @if mixin-exists(w-hook-visibility-override) { @include w-hook-visibility-override(); }
+}
+
+
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-visibility-init;
 
 
 //-----------------------------------------------
 //  class generation
 //-----------------------------------------------
-@if $w-wicle-mode != 'scss' and $w-visibility-generate-classes {
+@if $w-wicle-mode == 'css' and $w-visibility-generate-classes {
   $mq-list: w-mq-list() !default;
 
   .show { display: block; }

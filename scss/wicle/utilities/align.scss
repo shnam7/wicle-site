@@ -8,15 +8,31 @@
 @import "../../wdk/wdk";
 
 //-----------------------------------------------
-//  data
+//  mixin's
 //-----------------------------------------------
-$w-align-generate-classes:     true !default;   // enable class generation
+@mixin w-align-init {
+  @if mixin-exists(w-hook-align-init) { @include w-hook-align-init(); }
+
+  //--- globals variables
+  $w-align-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-align';
+
+  @if mixin-exists(w-hook-align-override) { @include w-hook-align-override(); }
+}
+
+
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-align-init;
 
 
 //-----------------------------------------------
 // mixin's for classes generations
 //-----------------------------------------------
-@if $w-wicle-mode != 'scss' and $w-align-generate-classes {
+@if $w-wicle-mode == 'css' and $w-align-generate-classes {
   .w-left {
     @include w-left;
   }
@@ -49,4 +65,5 @@ $w-align-generate-classes:     true !default;   // enable class generation
     }
   }
 }
+
 @if mixin-exists(w-hook-align) { @include w-hook-align(); }

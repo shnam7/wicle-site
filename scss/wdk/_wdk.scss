@@ -26,7 +26,5 @@
 @import "mixins/align";
 
 //--- modules
-@import "modules/reset";
 @import "modules/mq";
-@import "modules/typography";
-@import "modules/layout";
+@import "modules/sys.conf";

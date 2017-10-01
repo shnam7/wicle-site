@@ -37,7 +37,6 @@ const scripts = {
     '!' + upath.join(srcRoot, 'scripts/utility/wicle.string.ts'),
   ],
   dest: upath.join(destRoot, 'js'),
-  // outFile: 'wicle.js',
   buildOptions: {
     minify:true,
     // printConfig: true,
@@ -77,10 +76,6 @@ const jekyllScss = {
     }
   },
   clean: [upath.join(jkSrc, 'css')],
-  watch: {
-    watchedPlus: [upath.join(srcRoot, 'scss/**/*.scss')], // include changes in wicle source files
-    livereload: true
-  }
 };
 
 const jekyllScripts = {
@@ -105,10 +100,6 @@ const jekyllScripts = {
     ])
   ],
   clean: [upath.join(jkSrc, 'js')],
-  watch: {
-    watchedPlus: [upath.join(srcRoot, 'scripts/**/*.ts')],  // include changes in wicle source files
-    livereload:true
-  }
 };
 
 
@@ -132,7 +123,8 @@ const jekyll = {
   watch: {
     watched: [
       upath.join(jkSrc, '**/*'),
-      '!' + upath.join(jkSrc, 'assets/**/*'),
+      upath.join(srcRoot, '{scripts,scss}/**/*'),
+      // '!' + upath.join(jkSrc, 'assets/**/*'),
       '!' + upath.join(jkSrc, '.jekyll-metadata'),
       '!' + upath.join(jkSrc, '{css,js}/**/*'),
       '!' + upath.join(jkSrc, 'gulpfile.*'),

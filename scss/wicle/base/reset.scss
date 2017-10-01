@@ -5,18 +5,105 @@
 //
 //=========================================================
 
-@import "../../wdk/modules/reset";
+@import "../../wdk/wdk";
+
+// shortcut function: valid only in this file
+@function cv($path:null) {  @return gsv('w-reset', $path);  }
+
 
 //-----------------------------------------------
-//  data
+//  mixin's
 //-----------------------------------------------
-$w-reset-generate-classes:      true !default;   // enable class generation
+@mixin w-reset-init {
+  @if mixin-exists(w-hook-reset-init) { @include w-hook-reset-init(); }
+
+  //--- globals variables
+  $w-reset-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-reset';
+
+  @include ssv($key, fg, $w-color-theme, true);
+  @include ssv($key, 'link/fg', $w-color-theme-link, true);
+  @include ssv($key, 'link/hover/fg', $w-color-theme-link-hover, true);
+
+  @if mixin-exists(w-hook-reset-override) { @include w-hook-reset-override(); }
+}
+
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-reset-core {
+  html {
+    font-size: $w-font-size;
+    line-height: $w-line-height;
+  }
+
+  body {
+    word-wrap: break-word;
+  }
+
+  // link
+  a {
+    background-color: transparent;
+    text-decoration: none;
+
+    &:hover, &:focus {
+      text-decoration: none; // underline;
+      outline: 0;
+    }
+  }
+
+  //--- headers/titles
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $w-font-sans;
+    font-weight: 600;
+  }
+
+  body, select, input, textarea {
+    color: $w-color-text-black;
+    font-family: $w-font-sans; // set base font here, to apply evenly
+  }
+
+  //-- code block
+  code, pre {
+    display: block;
+    font-family: $w-font-mono;
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+
+  pre {
+    margin: 1em 0;
+  }
+}
+
+@mixin w-reset-styles {
+  a {
+    color: cv(link/fg);
+    &:hover, &:focus {
+      color: cv('link/hover/fg');
+      //color: smart-scale(invert($fg), 25%);
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: cv(fg);
+  }
+}
+
+
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-reset-init;
 
 
 //-----------------------------------------------
 //  class generation
 //-----------------------------------------------
-@if $w-wicle-mode != 'scss' and $w-reset-generate-classes {
+@if $w-wicle-mode == 'css' and $w-reset-generate-classes {
   @include w-reset-core;
   @include w-reset-styles;
 }

@@ -1,0 +1,76 @@
+//=========================================================
+//
+//  @package WCL
+//  @module Components/image
+//
+//=========================================================
+
+@import "../../../wdk/wdk";
+
+// shortcut function: valid only in this file
+@function cv($path:null) {  @return gsv('w-image', $path);  }
+
+
+//-----------------------------------------------
+// mixin's
+//-----------------------------------------------
+@mixin w-image-init {
+  @if mixin-exists(w-hook-image-init) { @include w-hook-image-init(); }
+
+  //--- globals variables
+  $w-image-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-image';
+
+  //--- core
+  @include ssv($key, 'radius', $w-border-radius, true);
+
+  //--- frame
+  @include ssv($key, 'frame/fg', transparentize($w-color-text-black, 0.5), true);
+  @include ssv($key, 'frame/padding', 0.15rem, true);
+
+  @if mixin-exists(w-hook-image-override) { @include w-hook-image-override(); }
+}
+
+@mixin w-image-core($circular:false) {
+  // responsive image
+  max-width: 100%;
+  height: auto;
+}
+
+@mixin w-image-styles {
+}
+
+@mixin w-image-options {
+  &.wo-frame, &.wo-thumbnail {
+    padding: cv(frame/padding);
+    border: 1px solid cv(frame/fg);
+  }
+  &.wo-round, &.wo-thumbnail {
+    border-radius: cv(radius);
+  }
+  &.wo-circle {
+    border-radius: 50%;
+  }
+}
+
+
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-image-init;
+
+
+//-----------------------------------------------
+// mixin's for classes generations
+//-----------------------------------------------
+@if $w-wicle-mode == 'css' and $w-image-generate-classes {
+  .w-image {
+    @include w-image-core;
+    @include w-image-styles;
+    @include w-image-options;
+  }
+}
+
+@if mixin-exists(w-hook-image) { @include w-hook-image(); }

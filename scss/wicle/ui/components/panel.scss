@@ -7,49 +7,43 @@
 
 @import "../../../wdk/wdk";
 
-//-----------------------------------------------
-//  data
-//-----------------------------------------------
-$w-panel-generate-classes:     true !default;   // enable class generation
-$w-conf-panel: ();
-
-//--- core
-$w-conf-panel: scv($w-conf-panel, 'padding', 0.75rem 1rem, true);
-$w-conf-panel: scv($w-conf-panel, 'border', 1px solid gray(85%), true);
-$w-conf-panel: scv($w-conf-panel, 'radius', $w-border-radius, true);
-
-//--- styles
-$w-conf-panel: scv($w-conf-panel, 'bg', white, true);
-
-
-//=== data interface
-@mixin scv-panel($path, $value, $default:false) {
-  $w-conf-panel: scv($w-conf-panel, $path, $value, $default) !global;
-}
-
-@mixin scv-panel-merge($conf) {
-  $w-conf-panel: map-merge($w-conf-panel, $conf) !global;
-}
-
-@function gcv-panel($path) {
-  @return gcv($w-conf-panel, $path);
-}
-
+// shortcut function: valid only in this file
+@function cv($path:null) {  @return gsv('w-panel', $path);  }
 
 
 //-----------------------------------------------
 // mixin's
 //-----------------------------------------------
+@mixin w-panel-init {
+  @if mixin-exists(w-hook-panel-init) { @include w-hook-panel-init(); }
+
+  //--- globals variables
+  $w-panel-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-panel';
+
+  //--- core
+  @include ssv($key, 'padding', 0.75rem 1rem, true);
+  @include ssv($key, 'border', 1px solid gray(85%), true);
+  @include ssv($key, 'radius', $w-border-radius, true);
+
+  //--- styles
+  @include ssv($key, 'bg', white, true);
+
+  @if mixin-exists(w-hook-panel-override) { @include w-hook-panel-override(); }
+}
+
 @mixin w-panel-core {
   display: block;
   position: relative;
-  padding: gcv-panel(padding);
-  border-radius: gcv-panel(radius);
-  border: gcv-panel(border);
+  padding: cv(padding);
+  border-radius: cv(radius);
+  border: cv(border);
 }
 
 
-@mixin w-panel-styles($bg:gcv-panel(bg), $alpha:false) {
+@mixin w-panel-styles($bg:cv(bg), $alpha:false) {
   $fg: yiq-color($bg);
   //@debug $color --- yiq-color($color);
   $line: smart-scale($bg, 20%);
@@ -83,15 +77,21 @@ $w-conf-panel: scv($w-conf-panel, 'bg', white, true);
 }
 
 
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-panel-init;
+
 
 //-----------------------------------------------
 //  class generation
 //-----------------------------------------------
-@if $w-wicle-mode != 'scss' and $w-panel-generate-classes {
+@if $w-wicle-mode == 'css' and $w-panel-generate-classes {
   .w-panel {
     @include w-panel-core;
     @include w-panel-styles;
     @include w-panel-options;
   }
 }
+
 @if mixin-exists(w-hook-panel) { @include w-hook-panel(); }

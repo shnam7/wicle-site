@@ -24,54 +24,51 @@
 
 @import "../../../wdk/wdk";
 
-//-----------------------------------------------
-//  data
-//-----------------------------------------------
-$w-navbar-generate-classes:     true !default;   // enable class generation
-$w-conf-navbar: ();
-
-//--- core
-$w-conf-navbar: scv($w-conf-navbar, 'max-width', $w-site-max-width, true);
-$w-conf-navbar: scv($w-conf-navbar, 'height', 3.5rem, true);
-$w-conf-navbar: scv($w-conf-navbar, 'padding', 0 1.5rem, true);
-$w-conf-navbar: scv($w-conf-navbar, 'fg', null, true);
-$w-conf-navbar: scv($w-conf-navbar, 'bg', null, true);
-$w-conf-navbar: scv($w-conf-navbar, 'gradient', (level:20%, direction:top));
-$w-conf-navbar: scv($w-conf-navbar, 'radius', $w-border-radius, true);
-$w-conf-navbar: scv($w-conf-navbar, 'item-spacing', 0.25rem);
-$w-conf-navbar: scv($w-conf-navbar, 'breakpoint', medium);
-
-//--- brand
-$w-conf-navbar: scv($w-conf-navbar, 'brand/font-family', $w-font-sans, true);
-$w-conf-navbar: scv($w-conf-navbar, 'brand/font-size', 1.25rem, true);
-$w-conf-navbar: scv($w-conf-navbar, 'brand/font-weight', 600, true);
-$w-conf-navbar: scv($w-conf-navbar, 'brand/fg', null, true);
-$w-conf-navbar: scv($w-conf-navbar, 'brand/hover/fg', #fff, true);
-
-//--- toggle
-$w-conf-navbar: scv($w-conf-navbar, 'toggle/fg', gray(80%), true);
-$w-conf-navbar: scv($w-conf-navbar, 'toggle/hover/fg', white, true);
-
-
-//--- optional dropdown trailer
-$w-conf-navbar: scv($w-conf-navbar, 'trailer/padding', 0.5rem 1rem, true);
-$w-conf-navbar: scv($w-conf-navbar, 'trailer/separator', 1px solid gray(70%));
-
-
-//=== data interface
-@mixin scv-navbar($path, $value, $default:false) {
-  $w-conf-navbar: scv($w-conf-navbar, $path, $value, $default) !global;
-}
-
-@function gcv-navbar($path) {
-  @return gcv($w-conf-navbar, $path);
-}
-
+// shortcut function: valid only in this file
+@function cv($path:null) {  @return gsv('w-navbar', $path);  }
 
 
 //-----------------------------------------------
 //  mixin's
 //-----------------------------------------------
+@mixin w-navbar-init {
+  @if mixin-exists(w-hook-navbar-init) { @include w-hook-navbar-init(); }
+
+  //--- globals variables
+  $w-navbar-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-navbar';
+
+  //--- core
+  @include ssv($key, 'max-width', $w-site-max-width, true);
+  @include ssv($key, 'height', 3.5rem, true);
+  @include ssv($key, 'padding', 0 1.5rem, true);
+  @include ssv($key, 'fg', null, true);
+  @include ssv($key, 'bg', null, true);
+  @include ssv($key, 'gradient', (level:20%, direction:top));
+  @include ssv($key, 'radius', $w-border-radius, true);
+  @include ssv($key, 'item-spacing', 0.25rem);
+  @include ssv($key, 'breakpoint', medium);
+
+  //--- brand
+  @include ssv($key, 'brand/font-family', $w-font-sans, true);
+  @include ssv($key, 'brand/font-size', 1.25rem, true);
+  @include ssv($key, 'brand/font-weight', 600, true);
+  @include ssv($key, 'brand/fg', null, true);
+  @include ssv($key, 'brand/hover/fg', #fff, true);
+
+  //--- toggle
+  @include ssv($key, 'toggle/fg', gray(80%), true);
+  @include ssv($key, 'toggle/hover/fg', white, true);
+
+  //--- optional dropdown trailer
+  @include ssv($key, 'trailer/padding', 0.5rem 1rem, true);
+  @include ssv($key, 'trailer/separator', 1px solid gray(70%));
+
+  @if mixin-exists(w-hook-navbar-override) { @include w-hook-navbar-override(); }
+}
+
 @mixin w-navbar-core {
   display: flex;
   flex-flow: row nowrap;
@@ -81,14 +78,14 @@ $w-conf-navbar: scv($w-conf-navbar, 'trailer/separator', 1px solid gray(70%));
   color: inherit;
   background: inherit;
 
-  max-width: gcv-navbar(max-width);
-  height: gcv-navbar(height);
-  padding: gcv-navbar(padding);
-  border-radius: gcv-navbar(radius);
+  max-width: cv(max-width);
+  height: cv(height);
+  padding: cv(padding);
+  border-radius: cv(radius);
 
   // set item spacing
   & > :nth-child(n+2) {
-    margin-left: gcv-navbar(item-spacing);
+    margin-left: cv(item-spacing);
   }
 
   // navbar items
@@ -101,12 +98,12 @@ $w-conf-navbar: scv($w-conf-navbar, 'trailer/separator', 1px solid gray(70%));
 
   // brand
   .wz-brand {
-    font-family: gcv-navbar(brand/font-family);
-    font-size: gcv-navbar(brand/font-size);
-    font-weight: gcv-navbar(brand/font-weight);
+    font-family: cv(brand/font-family);
+    font-size: cv(brand/font-size);
+    font-weight: cv(brand/font-weight);
 
-    $fg: gcv-navbar(brand/fg);
-    $hover: gcv-navbar('brand/hover/fg');
+    $fg: cv(brand/fg);
+    $hover: cv('brand/hover/fg');
     @if ($fg) { color: $fg; }
 
     &:hover,
@@ -122,24 +119,24 @@ $w-conf-navbar: scv($w-conf-navbar, 'trailer/separator', 1px solid gray(70%));
 
   .wz-nav {
     display: none;
-    @include w-mq(gcv-navbar(breakpoint)) {
+    @include w-mq(cv(breakpoint)) {
       display: inline-block;
     }
   }
 
   .wz-toggle {
-    @include w-mq(gcv-navbar(breakpoint)) {
+    @include w-mq(cv(breakpoint)) {
       display: none;
     }
-    @include w-hamburger(gcv-navbar('toggle/fg'), gcv-navbar('toggle/hover/fg'));
+    @include w-hamburger(cv('toggle/fg'), cv('toggle/hover/fg'));
     margin: 0.5rem;
   }
 }
 
 @mixin w-navbar-styles() {
-  $fg: gcv-navbar(fg);
-  $bg: gcv-navbar(bg);
-  $gr: gcv-navbar(gradient);
+  $fg: cv(fg);
+  $bg: cv(bg);
+  $gr: cv(gradient);
   color: if($fg, $fg, if($bg, yiq-color($bg), false));
   @if $bg {
     background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
@@ -159,16 +156,21 @@ $w-conf-navbar: scv($w-conf-navbar, 'trailer/separator', 1px solid gray(70%));
   margin: 0 auto;
   display: none;
 
-  padding: gcv-navbar(trailer/padding);
-  border-top: gcv-navbar(trailer/separator);;
+  padding: cv(trailer/padding);
+  border-top: cv(trailer/separator);;
 }
 
+
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-navbar-init;
 
 
 //-----------------------------------------------
 //  class generation
 //-----------------------------------------------
-@if $w-wicle-mode != 'scss' and $w-navbar-generate-classes {
+@if $w-wicle-mode == 'css' and $w-navbar-generate-classes {
   .w-navbar {
     @include w-navbar-core;
     @include w-navbar-styles;
@@ -180,4 +182,3 @@ $w-conf-navbar: scv($w-conf-navbar, 'trailer/separator', 1px solid gray(70%));
 }
 
 @if mixin-exists(w-hook-navbar) { @include w-hook-navbar(); }
-@if mixin-exists(w-hook-navbar-trailer) { @include w-hook-navbar-trailer(); }

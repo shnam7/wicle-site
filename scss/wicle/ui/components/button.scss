@@ -7,40 +7,38 @@
 
 @import "../../../wdk/wdk";
 
-//-----------------------------------------------
-//  data
-//-----------------------------------------------
-$w-button-generate-classes:     true !default;   // enable class generation
-$w-conf-button: ();
-
-// core
-$w-conf-button: scv($w-conf-button, 'margin', 0, true);
-$w-conf-button: scv($w-conf-button, 'padding', 0.25rem 1rem, true);
-$w-conf-button: scv($w-conf-button, 'line-height', 1.5, true);
-$w-conf-button: scv($w-conf-button, 'border', (1px solid $w-color-theme), true);
-$w-conf-button: scv($w-conf-button, 'radius', $w-border-radius, true);
-$w-conf-button: scv($w-conf-button, 'transition', all 0.15s ease-in-out, true);
-
-// compact
-$w-conf-button: scv($w-conf-button, 'compact/font-size', 90%, true);
-$w-conf-button: scv($w-conf-button, 'compact/line-height', 1.75rem, true);
-$w-conf-button: scv($w-conf-button, 'compact/padding', 0 0.75rem, true);
-
-
-//=== data interface
-@mixin scv-button($path, $value, $default:false) {
-  $w-conf-button: scv($w-conf-button, $path, $value, $default) !global;
-}
-
-@function gcv-button($path) {
-  @return gcv($w-conf-button, $path);
-}
-
+// shortcut function: valid only in this file
+@function cv($path:null) {  @return gsv('w-button', $path);  }
 
 
 //-----------------------------------------------
 //  mixin's
 //-----------------------------------------------
+@mixin w-button-init {
+  @if mixin-exists(w-hook-button-init) { @include w-hook-button-init(); }
+
+  //--- globals variables
+  $w-button-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-button';
+
+  // core
+  @include ssv($key, 'margin', 0, true);
+  @include ssv($key, 'padding', 0.25rem 1rem, true);
+  @include ssv($key, 'line-height', 1.5, true);
+  @include ssv($key, 'border', (1px solid $w-color-theme), true);
+  @include ssv($key, 'radius', $w-border-radius, true);
+  @include ssv($key, 'transition', all 0.15s ease-in-out, true);
+
+  // compact
+  @include ssv($key, 'compact/font-size', 90%, true);
+  @include ssv($key, 'compact/line-height', 1.75rem, true);
+  @include ssv($key, 'compact/padding', 0 0.75rem, true);
+
+  @if mixin-exists(w-hook-button-override) { @include w-hook-button-override(); }
+}
+
 @mixin w-button-core() {
   display: inline-block;    // this is required to vertical margin overlapping
   box-sizing: border-box;
@@ -50,21 +48,21 @@ $w-conf-button: scv($w-conf-button, 'compact/padding', 0 0.75rem, true);
   text-align: center;       // align the text for the cases width is set
   text-decoration: none;
 
-  margin: gcv-button(margin);
-  padding: gcv-button(padding);
-  line-height: gcv-button(line-height);
-  border: gcv-button(border);
-  border-radius: gcv-button(radius);
-  transition: gcv-button(transition);
+  margin: cv(margin);
+  padding: cv(padding);
+  line-height: cv(line-height);
+  border: cv(border);
+  border-radius: cv(radius);
+  transition: cv(transition);
 
   &:not(:disabled) { cursor: pointer; }
   &:hover { text-decoration: none; }
 }
 
 @mixin w-button-opt-compact {
-  font-size: gcv-button('compact/font-size');
-  padding: gcv-button('compact/padding');
-  line-height: gcv-button('compact/line-height');
+  font-size: cv('compact/font-size');
+  padding: cv('compact/padding');
+  line-height: cv('compact/line-height');
 }
 
 @mixin w-button-styles($color, $alpha:false) {
@@ -112,11 +110,16 @@ $w-conf-button: scv($w-conf-button, 'compact/padding', 0 0.75rem, true);
 }
 
 
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-button-init;
+
 
 //-----------------------------------------------
 //  class generation
 //-----------------------------------------------
-@if $w-wicle-mode != 'scss' and $w-button-generate-classes {
+@if $w-wicle-mode == 'css' and $w-button-generate-classes {
   .w-button,
   a.w-button {
     @include w-button-core;

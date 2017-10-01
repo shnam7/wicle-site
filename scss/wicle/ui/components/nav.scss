@@ -21,77 +21,71 @@
 
 @import "../../../wdk/wdk";
 
-//-----------------------------------------------
-//  data
-//-----------------------------------------------
-$w-nav-generate-classes:     true !default;   // enable class generation
-$w-conf-nav: ();
-
-//--- nav (ul: top level)
-$w-conf-nav: scv($w-conf-nav, 'z-index', $w-z-index, true);
-$w-conf-nav: scv($w-conf-nav, 'font-family', Arial, true);
-$w-conf-nav: scv($w-conf-nav, 'font-weight', normal, true);
-$w-conf-nav: scv($w-conf-nav, 'font-size', 1rem, true);
-$w-conf-nav: scv($w-conf-nav, 'padding', 0, true);
-$w-conf-nav: scv($w-conf-nav, 'border', null, true);
-$w-conf-nav: scv($w-conf-nav, 'radius', $w-border-radius, true);
-$w-conf-nav: scv($w-conf-nav, 'bg', $w-color-text-white, true);
-
-//--- item (li)
-$w-conf-nav: scv($w-conf-nav, 'item/padding', 0, true);
-
-//--- text (li > a)
-//$w-conf-nav: scv($w-conf-nav, 'text/margin', 0, true);
-$w-conf-nav: scv($w-conf-nav, 'item-wrapper/margin', 0, true);
-$w-conf-nav: scv($w-conf-nav, 'item-wrapper/padding', 0.25rem 0.5rem, true);
-$w-conf-nav: scv($w-conf-nav, 'item-wrapper/line-height', 1.5rem, true);
-$w-conf-nav: scv($w-conf-nav, 'item-wrapper/fg', $w-color-text-black, true);
-$w-conf-nav: scv($w-conf-nav, 'item-wrapper/bg', $w-color-text-white, true);
-$w-conf-nav: scv($w-conf-nav, 'item-wrapper/hover/fg', $w-color-text-white, true);
-$w-conf-nav: scv($w-conf-nav, 'item-wrapper/hover/bg', $w-color-lochmara, true);
-
-//--- nav icon options
-$w-conf-nav: scv($w-conf-nav, 'icon/font-size', 1.25rem, true);
-$w-conf-nav: scv($w-conf-nav, 'icon/font-weight', null, true);
-$w-conf-nav: scv($w-conf-nav, 'icon/padding', 0.1rem, true);
-
-//--- separator for top level horizontal menu
-$w-conf-nav: scv($w-conf-nav, 'separator/height', 1.2rem, true);
-$w-conf-nav: scv($w-conf-nav, 'separator/spacing', 3px, true);
-$w-conf-nav: scv($w-conf-nav, 'separator/style', 1px solid transparentize($w-color-text-black, 0.65), true);
-
-//--- divider for dropdown
-$w-conf-nav: scv($w-conf-nav, 'divider/spacing', 5px, true);
-$w-conf-nav: scv($w-conf-nav, 'divider/style', 1px solid gray(80%), true);  // color #ddd = gray(86.5%)
-
-//--- dropdown
-$w-conf-nav: scv($w-conf-nav, 'dropdown/min-width', 12rem, true);
-$w-conf-nav: scv($w-conf-nav, 'dropdown/border', 1px solid transparentize($w-color-text-black, 0.65), true);
-
-//--- accordion
-$w-conf-nav: scv($w-conf-nav, 'accordion/padding', 0 0 0 1rem, true);
-$w-conf-nav: scv($w-conf-nav, 'accordion/header/padding', 0.25rem 0.5rem, true);
-$w-conf-nav: scv($w-conf-nav, 'accordion/click-area-size', 2.5rem, true);
-
-
-//=== data interface
-@mixin scv-nav($path, $value, $default:false) {
-  $w-conf-nav: scv($w-conf-nav, $path, $value, $default) !global;
-}
-
-@mixin scv-nav-merge($conf) {
-  $w-conf-nav: map-merge($w-conf-nav, $conf) !global;
-}
-
-@function gcv-nav($path) {
-  @return gcv($w-conf-nav, $path);
-}
-
+// shortcut function: valid only in this file
+@function cv($path:null) {  @return gsv('w-nav', $path);  }
 
 
 //-----------------------------------------------
 // mixin's
 //-----------------------------------------------
+@mixin w-nav-init {
+  @if mixin-exists(w-hook-nav-init) { @include w-hook-nav-init(); }
+
+  //--- globals variables
+  $w-nav-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-nav';
+
+  //--- nav (ul: top level)
+  @include ssv($key, 'z-index', $w-z-index, true);
+  @include ssv($key, 'font-family', Arial, true);
+  @include ssv($key, 'font-weight', normal, true);
+  @include ssv($key, 'font-size', 1rem, true);
+  @include ssv($key, 'padding', 0, true);
+  @include ssv($key, 'border', null, true);
+  @include ssv($key, 'radius', $w-border-radius, true);
+  @include ssv($key, 'bg', $w-color-text-white, true);
+
+  //--- item (li)
+  @include ssv($key, 'item/padding', 0, true);
+
+  //--- text (li > a)
+  //@include ssv($key, 'text/margin', 0, true);
+  @include ssv($key, 'item-wrapper/margin', 0, true);
+  @include ssv($key, 'item-wrapper/padding', 0.25rem 0.5rem, true);
+  @include ssv($key, 'item-wrapper/line-height', 1.5rem, true);
+  @include ssv($key, 'item-wrapper/fg', $w-color-text-black, true);
+  @include ssv($key, 'item-wrapper/bg', $w-color-text-white, true);
+  @include ssv($key, 'item-wrapper/hover/fg', $w-color-text-white, true);
+  @include ssv($key, 'item-wrapper/hover/bg', $w-color-lochmara, true);
+
+  //--- nav icon options
+  @include ssv($key, 'icon/font-size', 1.25rem, true);
+  @include ssv($key, 'icon/font-weight', null, true);
+  @include ssv($key, 'icon/padding', 0.1rem, true);
+
+  //--- separator for top level horizontal menu
+  @include ssv($key, 'separator/height', 1.2rem, true);
+  @include ssv($key, 'separator/spacing', 3px, true);
+  @include ssv($key, 'separator/style', 1px solid transparentize($w-color-text-black, 0.65), true);
+
+  //--- divider for dropdown
+  @include ssv($key, 'divider/spacing', 5px, true);
+  @include ssv($key, 'divider/style', 1px solid gray(80%), true);  // color #ddd = gray(86.5%)
+
+  //--- dropdown
+  @include ssv($key, 'dropdown/min-width', 12rem, true);
+  @include ssv($key, 'dropdown/border', 1px solid transparentize($w-color-text-black, 0.65), true);
+
+  //--- accordion
+  @include ssv($key, 'accordion/padding', 0 0 0 1rem, true);
+  @include ssv($key, 'accordion/header/padding', 0.25rem 0.5rem, true);
+  @include ssv($key, 'accordion/click-area-size', 2.5rem, true);
+
+  @if mixin-exists(w-hook-nav-override) { @include w-hook-nav-override(); }
+}
+
 @mixin w-nav-core {
   display: inline-block;
   position:relative;
@@ -100,11 +94,11 @@ $w-conf-nav: scv($w-conf-nav, 'accordion/click-area-size', 2.5rem, true);
   margin: 0;
   outline: 0;
 
-  z-index: gcv-nav(z-index);
-  font-family: gcv-nav(font-family), $w-font-serif;
-  font-size: gcv-nav(font-size);
-  font-weight: gcv-nav(font-weight);
-  padding: gcv-nav(padding);
+  z-index: cv(z-index);
+  font-family: cv(font-family), $w-font-serif;
+  font-size: cv(font-size);
+  font-weight: cv(font-weight);
+  padding: cv(padding);
 
   li {
     margin: 0;
@@ -118,15 +112,15 @@ $w-conf-nav: scv($w-conf-nav, 'accordion/click-area-size', 2.5rem, true);
     display: block;
     outline: none;
     color: inherit;
-    margin: gcv($w-conf-nav, 'item-wrapper/margin');
+    margin: cv('item-wrapper/margin');
     text-decoration:none;
-    padding: gcv-nav(item-wrapper/padding);
-    line-height: gcv-nav(item-wrapper/line-height);
+    padding: cv(item-wrapper/padding);
+    line-height: cv(item-wrapper/line-height);
   }
   ul { display: none; }
 
   //--- border radius
-  $radius: gcv-nav(radius);
+  $radius: cv(radius);
   &, li, a {
     border-radius: $radius;
   }
@@ -155,7 +149,7 @@ $w-conf-nav: scv($w-conf-nav, 'accordion/click-area-size', 2.5rem, true);
 
   ul {
     display: block;
-    z-index: gcv-nav(z-index) + 1000;
+    z-index: cv(z-index) + 1000;
     position: absolute;
     transform: scaleY(0);  // hide submenu
     opacity: 0;
@@ -181,11 +175,11 @@ $w-conf-nav: scv($w-conf-nav, 'accordion/click-area-size', 2.5rem, true);
     list-style: none;
     &>li {
       clear: both;
-      min-width: gcv-nav(dropdown/min-width);
+      min-width: cv(dropdown/min-width);
     }
-    background: gcv-nav(bg);
-    border: gcv-nav(dropdown/border);
-    border-radius: gcv-nav(radius);
+    background: cv(bg);
+    border: cv(dropdown/border);
+    border-radius: cv(radius);
   }
 
   li:hover>ul {
@@ -219,11 +213,11 @@ $w-conf-nav: scv($w-conf-nav, 'accordion/click-area-size', 2.5rem, true);
   }
 
   .w-nav-divider {
-    margin: gcv-nav(divider/spacing) 0;
+    margin: cv(divider/spacing) 0;
     height: 0;
     font-size: 0;
     line-height: 0;
-    border: gcv-nav(divider/style);
+    border: cv(divider/style);
     border-width: 1px 0 0 0;
   }
 }
@@ -239,7 +233,7 @@ $w-conf-nav: scv($w-conf-nav, 'accordion/click-area-size', 2.5rem, true);
   display: block;
   ul {
     list-style: none;
-    padding: gcv-nav('accordion/padding');
+    padding: cv('accordion/padding');
   }
 
   .w-nav-accordion-click-area {
@@ -247,7 +241,7 @@ $w-conf-nav: scv($w-conf-nav, 'accordion/click-area-size', 2.5rem, true);
     top:0;
     right:0;
     height: 100%;
-    width: gcv-nav(accordion/click-area-size);
+    width: cv(accordion/click-area-size);
     cursor: pointer;
   }
 }
@@ -263,9 +257,9 @@ $w-conf-nav: scv($w-conf-nav, 'accordion/click-area-size', 2.5rem, true);
 
     // separators
     &.wo-separators {
-      $height: gcv-nav(separator/height);
-      $spacing: gcv-nav(separator/spacing);
-      $style: gcv-nav(separator/style);
+      $height: cv(separator/height);
+      $spacing: cv(separator/spacing);
+      $style: cv(separator/style);
 
       & {
         li:before {
@@ -293,9 +287,9 @@ $w-conf-nav: scv($w-conf-nav, 'accordion/click-area-size', 2.5rem, true);
   // icon menu
   &.wo-icon > li {
     & > a {
-      font-size: gcv-nav(icon/font-size);
-      font-weight: gcv-nav(icon/font-weight);
-      padding: gcv-nav(icon/padding);
+      font-size: cv(icon/font-size);
+      font-weight: cv(icon/font-weight);
+      padding: cv(icon/padding);
     }
   }
 
@@ -304,7 +298,7 @@ $w-conf-nav: scv($w-conf-nav, 'accordion/click-area-size', 2.5rem, true);
 }
 
 @mixin w-nav-styles($conf:()) {
-  $conf:            map-extend((), $w-conf-nav, $conf, true);
+  $conf:            map-extend((), gsv('w-nav'), $conf, true);
   $bg:              gcv($conf, bg);
   $text-fg:         gcv($conf, item-wrapper/fg);
   $text-bg:         gcv($conf, item-wrapper/bg);
@@ -326,14 +320,22 @@ $w-conf-nav: scv($w-conf-nav, 'accordion/click-area-size', 2.5rem, true);
   }
 }
 
+
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-nav-init;
+
+
 //-----------------------------------------------
 //  class generation
 //-----------------------------------------------
-@if $w-wicle-mode != 'scss' and $w-nav-generate-classes {
+@if $w-wicle-mode == 'css' and $w-nav-generate-classes {
   .w-nav {
     @include w-nav-core;
     @include w-nav-options;
     @include w-nav-styles;
   }
 }
+
 @if mixin-exists(w-hook-nav) { @include w-hook-nav(); }

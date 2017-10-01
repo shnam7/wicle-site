@@ -8,8 +8,11 @@
 //=========================================================
 
 //--- variables
+@if mixin-exists(wdk-hook-variables-init) { @include wdk-hook-variables-init(); }
+
 @import "variables/base";
 @import "variables/color";
 @import "variables/timing-functions";
+@import "variables/theme";
 
 @if mixin-exists(wdk-hook-variables) { @include wdk-hook-variables(); }

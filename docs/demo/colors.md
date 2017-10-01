@@ -123,7 +123,10 @@ title: Colors
 ##### $w-color-royal-purple:          #6B15A1 !default;
 ##### $w-color-blue-diamond:          #4D1B7B !default;
 ##### $w-color-french-rose:           #EA4C88 !default;
+##### $w-color-slate-gray:            #708090 !default;
 ##### $w-color-light-slate-gray:      #868E96 !default;
 ##### $w-color-chateau-green:         #28A745 !default;
 ##### $w-color-pelorous:              #17A2B8 !default;
+##### $w-color-orange:                #FFA500 !default;
+##### $w-color-dark-red:              #A30000 !default;
 </div>
