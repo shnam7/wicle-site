@@ -4,6 +4,10 @@
 @import "wicle.config";
 @import "region/banner";
 
+#l-content .w-nav {
+  background: $w-color-bahama-blue;
+}
+
 @lost gutter 1rem;
 
 .color-items {

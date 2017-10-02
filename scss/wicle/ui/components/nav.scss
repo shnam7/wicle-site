@@ -45,7 +45,7 @@
   @include ssv($key, 'padding', 0, true);
   @include ssv($key, 'border', null, true);
   @include ssv($key, 'radius', $w-border-radius, true);
-  @include ssv($key, 'bg', $w-color-text-white, true);
+  @include ssv($key, 'bg', null, true);
 
   //--- item (li)
   @include ssv($key, 'item/padding', 0, true);
@@ -53,10 +53,10 @@
   //--- text (li > a)
   //@include ssv($key, 'text/margin', 0, true);
   @include ssv($key, 'item-wrapper/margin', 0, true);
-  @include ssv($key, 'item-wrapper/padding', 0.25rem 0.5rem, true);
+  @include ssv($key, 'item-wrapper/padding', 0.25rem 0.35rem, true);
   @include ssv($key, 'item-wrapper/line-height', 1.5rem, true);
-  @include ssv($key, 'item-wrapper/fg', $w-color-text-black, true);
-  @include ssv($key, 'item-wrapper/bg', $w-color-text-white, true);
+  @include ssv($key, 'item-wrapper/fg', $w-color-text-white, true);
+  @include ssv($key, 'item-wrapper/bg', null, true);
   @include ssv($key, 'item-wrapper/hover/fg', $w-color-text-white, true);
   @include ssv($key, 'item-wrapper/hover/bg', $w-color-lochmara, true);
 
@@ -68,7 +68,7 @@
   //--- separator for top level horizontal menu
   @include ssv($key, 'separator/height', 1.2rem, true);
   @include ssv($key, 'separator/spacing', 3px, true);
-  @include ssv($key, 'separator/style', 1px solid transparentize($w-color-text-black, 0.65), true);
+  @include ssv($key, 'separator/style', 1px solid transparentize($w-color-text-white, 0.65), true);
 
   //--- divider for dropdown
   @include ssv($key, 'divider/spacing', 5px, true);

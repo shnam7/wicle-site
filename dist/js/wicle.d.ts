@@ -1,4 +1,13 @@
 /**
+ *  Wicle scripts
+ *
+ *  @module Nav
+ *
+ */
+declare namespace Wicle {
+    function nav(selector: string, options?: object): void;
+}
+/**
  *  Wicle
  *
  *  @module Javascript String extension
@@ -14,13 +23,4 @@ interface String {
     parseOptions(separator?: string): {
         [prop: string]: any;
     };
-}
-/**
- *  Wicle scripts
- *
- *  @module Nav
- *
- */
-declare namespace Wicle {
-    function nav(selector: string, options?: object): void;
 }

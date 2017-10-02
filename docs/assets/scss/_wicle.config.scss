@@ -4,28 +4,34 @@
 
 @import "../../../scss/wdk/variables/color";
 
-//--- wdk hooks: this should come before importing wdk
+//-----------------------------------------------------------------------------
+//  Config wdk
+//-----------------------------------------------------------------------------
 @mixin wdk-hook-variables-init() {
   //$w-color-theme:       $w-color-french-rose !global;
 }
 
+// wdk should be imported at the end
 @import "../../../scss/wdk/wdk";
 
 
-//--- wickle data init hooks (called before module data initialization)
+
+//-----------------------------------------------------------------------------
+//  Config Wicle
+//-----------------------------------------------------------------------------
+//--- Wicle init hooks: called before default variables are set
 @mixin w-hook-navbar-init() {
   //$w-navbar-generate-classes: false !global;
 }
 
 
-//--- wickle data override hooks (called after module data initialization)
+//---  Wickle override hooks: called after default variables are set
 @mixin w-hook-nav-override() {
 
 }
 
 
-//--- wicle customize hooks (called after module class generation)
-
+//--- Wickle customize hooks: called after module class generation
 @mixin w-hook-reset() {
 }
 

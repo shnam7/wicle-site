@@ -348,7 +348,7 @@ h6 { font-size: 0.67rem; margin: 1rem 0 1rem; }
 
 .w-nav.wo-horizontal.wo-separators li:not(:first-child) { margin-top: 0; margin-left: 6px; }
 
-.w-nav.wo-horizontal.wo-separators li:not(:first-child):before { margin: 0 1px; border-left: 1px solid rgba(68, 68, 68, 0.35); }
+.w-nav.wo-horizontal.wo-separators li:not(:first-child):before { margin: 0 1px; border-left: 1px solid rgba(238, 238, 238, 0.35); }
 
 .w-nav.wo-icon > li > a { font-size: 1.25rem; padding: 0.1rem; }
 
@@ -358,7 +358,7 @@ h6 { font-size: 0.67rem; margin: 1rem 0 1rem; }
 
 .w-nav.wo-dropdown li:hover > .w-nav-item-wrapper > .w-nav-parent-marker { transform: rotate(-90deg); }
 
-.w-nav.wo-dropdown ul { display: block; z-index: 2000; position: absolute; transform: scaleY(0); opacity: 0; transform-origin: 50% 0; transition: opacity 0.25s, transform 0.25s ease-in; transition-delay: 0.25s; top: 0; left: 100%; margin: 0; padding: 0; list-style: none; background: #EEEEEE; border: 1px solid rgba(68, 68, 68, 0.35); border-radius: 4px; }
+.w-nav.wo-dropdown ul { display: block; z-index: 2000; position: absolute; transform: scaleY(0); opacity: 0; transform-origin: 50% 0; transition: opacity 0.25s, transform 0.25s ease-in; transition-delay: 0.25s; top: 0; left: 100%; margin: 0; padding: 0; list-style: none; border: 1px solid rgba(68, 68, 68, 0.35); border-radius: 4px; }
 
 .w-nav.wo-dropdown ul[aria-flip*=x] { left: auto; right: 100%; }
 
@@ -390,9 +390,7 @@ h6 { font-size: 0.67rem; margin: 1rem 0 1rem; }
 
 .w-nav.wo-accordion .w-nav-accordion-click-area { position: absolute; top: 0; right: 0; height: 100%; width: 2.5rem; cursor: pointer; }
 
-.w-nav { background-color: #EEEEEE; }
-
-.w-nav li a { color: #444444; background: #EEEEEE; }
+.w-nav li a { color: #EEEEEE; }
 
 .w-nav li:hover > a { color: #EEEEEE; background: #227CAD; }
 
