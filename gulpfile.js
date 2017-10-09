@@ -47,8 +47,12 @@ const scripts = {
   watch: {livereload:true}
 };
 
-const scriptsAll = Object.assign({}, scripts,
-  {buildName:'scriptsAll', outFile:'wicle.js', flushStream:true});
+const scriptsConcated = Object.assign({}, scripts, {
+  buildName:'scriptsConcated',
+  order: ['wicle.mq.ts','wicle.core.ts'],
+  outFile: 'wicle.js',
+  flushStream:true
+});
 
 
 const jekyllScss = {
@@ -137,7 +141,7 @@ const jekyll = {
 
 const wicle = {
   buildName: 'wicle-core',
-  dependencies: gbm.parallel(scss, scripts, scriptsAll)
+  dependencies: gbm.parallel(scss, scripts, scriptsConcated)
 };
 
 

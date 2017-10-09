@@ -6,41 +6,117 @@
  */
 
 namespace Wicle {
-  export function nav(selector:string, options:object={}) {
-    let defaultOptions = {
+  export class Nav {
+    static defaultOptions = {
       speed: 200,
       showDelay: 0,
       hideDelay: 0,
       parentLink: false,
       singleOpen: true,
     };
-    let opts = $.extend({}, defaultOptions, options);
 
-    let $nav = $(selector);
+    protected static dynamicClasses = 'w-nav,w-nav-item,w-nav-item-wrapper'
+      + 'w-nav-parent,w-nav-child,w-nav-divider'
+      + 'aria-flip, aria-state-active';
 
-    // set basic classes
-    $nav.addClass('w-nav')
-      .find('li').addClass('w-nav-item')
-      .children('a,div').addClass('w-nav-item-wrapper');
+    protected static dynamicElements = 'w-nav-parent-marker,w-nav-accordion-click-area';
 
-    // set parent/child settings for multi-level menus
-    $nav.filter('.wo-dropdown,.wo-accordion')
-      .find('ul').addClass('w-nav-child') // set parent/child classes, add parent marker
-      .parent().addClass('w-nav-parent')
-      .children('.w-nav-item-wrapper').append('<span class="w-nav-parent-marker">');
+    protected static mqStateChangedEventName = 'mqstatechanged';
+
+    protected options: Options;
+    protected element: Element;
+    protected classes: string;
+
+    // reset out-of-viewport status on window resize
+    protected flipHandler = function (e) {
+      $('.w-nav').find('[aria-flip]').removeAttr('aria-flip');
+    };
+
+    // detect and respond to media query changes
+    protected mqChangeHandler = function(e) {
+      let state = e.detail.state;
+      let prevState = e.detail.prevState;
+      console.log(e.detail, this);
+
+      if (state=='large' && prevState=='xlarge') {
+        // $('.w-nav.wo-accordion').removeClass('wo-accordion')
+        //   .addClass('wo-horizontal,wo-dropdown');
+      }
+      if (state=='xlarge' && prevState=='large') {
+        // $('.w-nav.wo-horizontal').removeClass('wo-horizontal,wo-dropdown')
+        //   .addClass('wo-accordion');
+      }
+    };
+
+    // accordion click event handler
+    protected accordionClickEventHandler = (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+
+      let opts = this.options;
+      let $target = $(e.target);
+      let href = $target.attr('href');
+
+      // set target to w-nav-parent
+      $target = $target.parent();
+
+      let $sub = $target.children('.w-nav-child');
+      let $subAll = $target.find('.w-nav-child');
+      if ($sub.length > 0) {
+        if ($sub.css("display") === "none") {
+          $sub.slideDown(opts.speed).siblings("a").addClass('aria-state-active');
+          if (opts.singleOpen) {
+            $target.siblings().find('.w-nav-child').slideUp(opts.speed)
+              .end().find("a").removeClass('aria-state-active');
+          }
+        }
+        else {
+          $subAll.delay(opts.hideDelay).slideUp(opts.speed)
+            .siblings('a').removeClass('aria-state-active');
+        }
+      }
+      if (opts.parentLink && href) window.location.href = href;
+    };
 
 
-    //--- dropdown settings
-    let $dropdown = $nav.filter('.wo-dropdown');
+    constructor(el:Element, options:Options={}) {
+      this.element = el;
+      this.options = $.extend(true,{}, Nav.defaultOptions, options);
+      this.create();
+    }
 
-    // check divider items
-    $dropdown.find('.w-nav-item').each(function (index, el) {
+    public create() {
+      let $nav = $(this.element);
+      this.classes = $nav.attr('class');
+      $.data(this.element, 'w-nav', this);
+
+      // set basic classes
+      $nav.addClass('w-nav')
+        .find('li').addClass('w-nav-item')
+        .children('a,div').addClass('w-nav-item-wrapper');
+
+      // set parent/child settings for multi-level menus
+      $nav.filter('.wo-dropdown,.wo-default,.wo-accordion')
+        .find('ul').addClass('w-nav-child') // set parent/child classes, add parent marker
+        .parent().addClass('w-nav-parent')
+        .children('.w-nav-item-wrapper').each(function(idx, el) {
+        let $el = $(el);
+        if ($el.children('.w-nav-parent-marker').length === 0)
+          $el.append('<span class="w-nav-parent-marker">');
+      });
+
+      //--- dropdown settings
+      let $dropdown = $nav.filter('.wo-dropdown, .wo-default');
+
+      // check divider items: item text only with '-' or unicode dashes or spaces
+      $dropdown.find('.w-nav-item').each(function (index, el) {
         let $el = $(el);
         if (!/[^\-\u2014\u2013\s]/.test($el.text())) $el.addClass('w-nav-divider');
-      })
+      });
 
-    // check out-of-viewport status
-    $dropdown.find('.w-nav-parent').mouseenter(function () {
+      // check out-of-viewport status
+      $dropdown.find('.w-nav-parent')
+        .off('mouseenter').on('mouseenter', function () {
         let $sub = $(this).children('.w-nav-child');
         // check element position if it exceeds viewport
         // ref: http://stackoverflow.com/questions/8897289/how-to-check-if-an-element-is-off-screen
@@ -54,43 +130,47 @@ namespace Wicle {
         if (flip) $sub.attr('aria-flip', flip);
       });
 
+      // accordion settings
+      let $accordion = $nav.filter('.wo-accordion');
+      // add accordion click area to avoid link activation
+      $accordion.find('.w-nav-item-wrapper').each(function (idx, el) {
+        let $el = $(el);
+        if ($el.children('.w-nav-accordion-click-area').length === 0)
+          $el.after($('<span class="w-nav-accordion-click-area"></span>'));
+      });
 
-    //-- accordion settings
-    let $accordion = $nav.filter('.wo-accordion');
-    // add accordion click area to avoid link activation
-    $accordion.find('.w-nav-item-wrapper').after($('<span class="w-nav-accordion-click-area"></span>'));
+      // check manually activated items
+      $nav.find('.w-state-active').addClass('aria-state-active');
 
-    // set click handler
-    $accordion.find('.w-nav-parent,.w-nav-accordion-click-area').click(function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      let href = $(this).children('a').attr('href');
+      // set event handlers
+      $accordion.find('.w-nav-item-wrapper,.w-nav-accordion-click-area')
+        .on('click', this.accordionClickEventHandler);
+      $(window).on('resize', this.flipHandler);
+      window.addEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
+    }
 
-      // set $this to be w-nav-item(li) regardless of clicked element
-      let $this = $(this);
-      if ($this.is('.w-nav-accordion-click-area')) $this = $(this).parent();
+    public destroy() {
+      let $nav = $(this.element);
 
-      let $sub = $this.children('.w-nav-child');
-      let $subAll = $this.find('.w-nav-child');
-      if ($sub.length > 0) {
-        if ($sub.css("display") === "none") {
-          $sub.slideDown(opts.speed).siblings("a").addClass('w-state-active');
-          if (opts.singleOpen) {
-            $this.siblings().find('.w-nav-child').slideUp(opts.speed)
-              .end().find("a").removeClass('w-state-active');
-          }
-        }
-        else {
-          $subAll.delay(opts.hideDelay).slideUp(opts.speed)
-            .siblings('a').removeClass('w-state-active');
-        }
-      }
-      if (opts.parentLink && href) window.location.href = href;
-    });
+      // remove event handlers
+      $(window).off('resize', this.flipHandler);
+      window.removeEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
+      $nav.filter('.wo-accordion').find('.w-nav-parent,.w-nav-accordion-click-area').off('click');
 
-    // reset out-of-viewport stats on resize
-    $(window).resize((e) => {
-      $nav.find('[aria-flip]').removeAttr('aria-flip');
+      // remove dynamic elements
+      $nav.find(Nav.dynamicElements).remove();
+
+      // remove dynamic classes
+      $nav.find(Nav.dynamicClasses).removeClass(Nav.dynamicClasses);
+
+      // remove nav object
+      $.removeData(this.element, 'w-nav');
+    }
+  }
+
+  export function nav(selector:string, options:Options={}) {
+    $(selector).each(function (idx, el) {
+      new Nav(el, options);
     });
   }
 }

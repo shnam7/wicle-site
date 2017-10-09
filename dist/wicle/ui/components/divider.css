@@ -2,9 +2,9 @@
 
 .w-divider:before { content: ''; display: block; position: absolute; z-index: -1; top: 50%; width: 100%; border-top: 1px solid #cccccc; }
 
-.w-divider > span, .w-divider .w-divider-text { display: inline; padding: 0.2rem 1rem; border-radius: 4px; }
+.w-divider > span, .w-divider .w-divider-text { display: inline; padding: 0.2rem 1rem; border-radius: 3px; }
 
-.w-divider > span, .w-divider .w-divider-text { color: inherit; background: white; }
+.w-divider > span, .w-divider .w-divider-text { background: white; }
 
 .w-divider.wo-fit { margin: 0 0; }
 

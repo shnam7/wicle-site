@@ -1,14 +1,9 @@
 <div class="w-navbar">
   <a class="wz-brand" href="{{site.url}}">Wicle</a>
   <div class="wz-spacer"></div>
-  <ul class="wz-nav w-nav wo-horizontal wo-separators">
-    <li><a href="#">Menu1</a></li>
-    <li><a href="#">Menu2</a></li>
-    <li><a href="#">Menu3</a></li>
-    <li><a href="#">Menu3</a></li>
-    <li><a href="#">Menu3</a></li>
-    <li><a href="#">Menu3</a></li>
-  </ul>
+  {% assign cls='wz-nav w-nav wo-horizontal wo-separators wo-dropdown wo-pointers wo-invert' %}
+  {% include demo/nav-ex2.html cls=cls %}
+
   <ul class="w-nav wo-horizontal wo-icon">
     <li><a class="item" title="search" href="#"><i class="fa fa-search fa-fw"></i></a></li>
     <li><a class="item" title="github" href="{{site.repo}}" target="_blank"><i class="fa fa-github fa-fw"></i></a></li>

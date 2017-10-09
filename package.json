@@ -37,16 +37,19 @@
   "devDependencies": {
     "@types/jquery": "^3.2.12",
     "gulp": "gulpjs/gulp#4.0",
-    "gulp-build-manager": "^2.0.0-alpha.8",
+    "gulp-build-manager": "^2.0.0-alpha.9",
+    "gulp-clone": "^1.0.0",
     "gulp-cssnano": "^2.1.2",
+    "gulp-debug": "^3.1.0",
     "gulp-filter": "^5.0.1",
     "gulp-livereload": "^3.8.1",
+    "gulp-order": "^1.1.1",
     "gulp-postcss": "^7.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-typescript": "^3.2.2",
     "gulp-uglify": "^3.0.0",
     "lost": "^8.2.0",
-    "typescript": "^2.5.2"
+    "typescript": "^2.5.3"
   }
 }

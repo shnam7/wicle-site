@@ -33,7 +33,7 @@
   @include ssv($key, 'spacing', 1.5rem, true);
 
   //--- text
-  @include ssv($key, 'text/fg', inherit, true);
+  @include ssv($key, 'text/fg', null, true);
   @include ssv($key, 'text/bg', white, true);
 
   //--- options

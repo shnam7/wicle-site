@@ -182,6 +182,7 @@ $w-layout-default-generate-classes:   true !default;   // enable class generatio
 @if $w-wicle-mode == 'css' and $w-layout-default-generate-classes {
   .w-layout-default {
     @include w-layout;
+    @include w-layout-styles;
   }
 }
 

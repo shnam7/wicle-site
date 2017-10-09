@@ -1,4 +1,4 @@
-.w-button, a.w-button { display: inline-block; box-sizing: border-box; white-space: nowrap; text-transform: none; vertical-align: middle; text-align: center; text-decoration: none; margin: 0; padding: 0.25rem 1rem; line-height: 1.5; border: 1px solid #285880; border-radius: 4px; transition: all 0.15s ease-in-out; }
+.w-button, a.w-button { display: inline-block; box-sizing: border-box; white-space: nowrap; text-transform: none; vertical-align: middle; text-align: center; text-decoration: none; margin: 0; padding: 0.25rem 1rem; line-height: 1.5; border: 1px solid #285880; border-radius: 3px; transition: all 0.15s ease-in-out; }
 
 .w-button:not(:disabled), a.w-button:not(:disabled) { cursor: pointer; }
 

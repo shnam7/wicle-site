@@ -53,8 +53,21 @@ title: Nav
 {% include demo/nav-ex2.html cls=cls %}
 {:/}
 
-{% assign cls='w-nav wo-horizontal wo-dropdown' %}
+{% assign cls='w-nav wo-horizontal wo-dropdown wo-pointers wo-separators' %}
 ### Horizontal dropdown menu, class:{{cls}}
 {::nomarkdown}
 {% include demo/nav-ex2.html cls=cls %}
 {:/}
+
+{% assign cls='w-nav wo-horizontal wo-dropdown wo-pointers wo-separators wo-invert' %}
+### Horizontal dropdown menu, class:{{cls}}
+{::nomarkdown}
+{% include demo/nav-ex2.html cls=cls %}
+{:/}
+
+{% assign cls='w-nav wo-default' %}
+### menu defaul, class:{{cls}} (wo-horizontal wo-dropdown wo-pointers)
+{::nomarkdown}
+{% include demo/nav-ex2.html cls=cls %}
+{:/}
+

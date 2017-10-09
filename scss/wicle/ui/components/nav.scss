@@ -39,26 +39,26 @@
 
   //--- nav (ul: top level)
   @include ssv($key, 'z-index', $w-z-index, true);
-  @include ssv($key, 'font-family', Arial, true);
+  @include ssv($key, 'font-family', $w-font-sans, true);
   @include ssv($key, 'font-weight', normal, true);
   @include ssv($key, 'font-size', 1rem, true);
   @include ssv($key, 'padding', 0, true);
   @include ssv($key, 'border', null, true);
   @include ssv($key, 'radius', $w-border-radius, true);
-  @include ssv($key, 'bg', $w-color-text-white, true);
+  @include ssv($key, 'fg', $w-color-text-black, true);
+  @include ssv($key, 'bg', tint($w-color-theme, 98%), true);
 
   //--- item (li)
   @include ssv($key, 'item/padding', 0, true);
 
   //--- text (li > a)
-  //@include ssv($key, 'text/margin', 0, true);
   @include ssv($key, 'item-wrapper/margin', 0, true);
-  @include ssv($key, 'item-wrapper/padding', 0.25rem 0.35rem, true);
+  @include ssv($key, 'item-wrapper/padding', 0.35rem 0.5rem, true);
   @include ssv($key, 'item-wrapper/line-height', 1.5rem, true);
-  @include ssv($key, 'item-wrapper/fg', $w-color-text-black, true);
-  @include ssv($key, 'item-wrapper/bg', $w-color-text-white, true);
-  @include ssv($key, 'item-wrapper/hover/fg', $w-color-text-white, true);
-  @include ssv($key, 'item-wrapper/hover/bg', $w-color-lochmara, true);
+  @include ssv($key, 'item-wrapper/fg', cv(fg), true);
+  @include ssv($key, 'item-wrapper/bg', null, true);
+  @include ssv($key, 'item-wrapper/hover/fg', white, true);
+  @include ssv($key, 'item-wrapper/hover/bg', rgba($w-color-theme, 0.90), true);
 
   //--- nav icon options
   @include ssv($key, 'icon/font-size', 1.25rem, true);
@@ -68,20 +68,32 @@
   //--- separator for top level horizontal menu
   @include ssv($key, 'separator/height', 1.2rem, true);
   @include ssv($key, 'separator/spacing', 3px, true);
-  @include ssv($key, 'separator/style', 1px solid transparentize($w-color-text-black, 0.65), true);
+  @include ssv($key, 'separator/style', 1px solid rgba($w-color-text-black, 0.5), true);
 
   //--- divider for dropdown
   @include ssv($key, 'divider/spacing', 5px, true);
-  @include ssv($key, 'divider/style', 1px solid gray(80%), true);  // color #ddd = gray(86.5%)
+  @include ssv($key, 'divider/style', 1px solid $w-color-theme-line, true);  // color #ddd = gray(86.5%)
 
   //--- dropdown
+  @include ssv($key, 'dropdown/padding', 0.5rem 0, true);
   @include ssv($key, 'dropdown/min-width', 12rem, true);
-  @include ssv($key, 'dropdown/border', 1px solid transparentize($w-color-text-black, 0.65), true);
+  @include ssv($key, 'dropdown/border', 1px solid $w-color-theme-line, true);
+
+  @include ssv($key, 'dropdown/top-level/offset', 0.5rem, true);
+  @include ssv($key, 'dropdown/top-level/fg', $w-color-text-white, true);
 
   //--- accordion
   @include ssv($key, 'accordion/padding', 0 0 0 1rem, true);
   @include ssv($key, 'accordion/header/padding', 0.25rem 0.5rem, true);
   @include ssv($key, 'accordion/click-area-size', 2.5rem, true);
+
+  //--- options
+  @include ssv($key, 'opt/invert/fg', gray(85%), true);
+  @include ssv($key, 'opt/invert/hover/fg', white, true);
+  @include ssv($key, 'opt/invert/separator/style', 1px solid rgba($w-color-text-white, 0.35), true);
+
+  @include ssv($key, 'opt/flip/x-offset', 3px, true);
+
 
   @if mixin-exists(w-hook-nav-override) { @include w-hook-nav-override(); }
 }
@@ -103,7 +115,6 @@
   li {
     margin: 0;
     cursor: pointer;
-    color: inherit;
     width: auto;
     position: relative; // important: required to make submenu(ul) to position relative to parent li
   }
@@ -111,7 +122,6 @@
   a {
     display: block;
     outline: none;
-    color: inherit;
     margin: cv('item-wrapper/margin');
     text-decoration:none;
     padding: cv(item-wrapper/padding);
@@ -159,7 +169,7 @@
     // set submenu out-of-viewport position
     &[aria-flip*=x] {
       left: auto;
-      right: 100%;
+      right: calc(100% - #{cv('opt/flip/x-offset')});
     }
     &[aria-flip*=y] {
       top: auto;
@@ -171,7 +181,7 @@
     top: 0;
     left: 100%;
     margin: 0;
-    padding:0;
+    padding: cv('dropdown/padding');
     list-style: none;
     &>li {
       clear: both;
@@ -191,10 +201,11 @@
   }
 
   // fix submenu position for horizontal menu
+  &.wo-default,
   &.wo-horizontal {
     &>li {
       & > ul {
-        top: 100%;
+        top: calc(100% + #{cv('dropdown/top-level/offset')});
         left: 0;
         // set submenu out-of-viewport position
         &[aria-flip*=x] {
@@ -226,7 +237,8 @@
   @include w-nav-parent-marker {
     transform: rotate(90deg);
   };
-  .w-state-active .w-nav-parent-marker {
+  .aria-state-active,
+  .w-nav-parent-marker {
     transform: rotate(0deg);
   }
 
@@ -248,21 +260,22 @@
 
 @mixin w-nav-options {
   // horizontal menu
+  &.wo-default,
   &.wo-horizontal {
     & > li { float: left; }
     // disable marker animation for top level horizontal menu
-    & > li > .w-state-active .w-nav-parent-marker {
+    & > li > .aria-state-active .w-nav-parent-marker {
       transform: rotate(0deg);
     }
 
-    // separators
+    // top-level menu-item separators
     &.wo-separators {
       $height: cv(separator/height);
       $spacing: cv(separator/spacing);
       $style: cv(separator/style);
 
-      & {
-        li:before {
+      &>li {
+        &:before {
           content: "";
           display: inline-block;
           position: absolute;
@@ -273,7 +286,7 @@
           left: -1px - px($spacing);
           transform: translateY(-50%);
         }
-        li:not(:first-child) {
+        &:not(:first-child) {
           margin-top: 0;
           margin-left: px($spacing) * 2;
           &:before {
@@ -283,7 +296,34 @@
         }
       }
     }
+
+    // top-level submenu panel pointer
+    &.wo-default,
+    &.wo-pointers {
+      &>li.w-nav-parent {
+        &:after {
+          border-style: solid;
+          border-color: transparent transparent cv(bg);
+          border-width: 0 6px 6px;
+          content: "";
+          opacity: 0;
+          height: 0;
+          position: absolute;
+          left: 1.5rem;
+          bottom: -1px - px(cv('dropdown/top-level/offset'));
+          width: 0;
+          z-index: 100000;
+          transition: opacity 0.25s, transform 0.25s ease-in;
+          transition-delay: 0.25s;
+        }
+        &:hover:after {
+          opacity: 1;
+          transition: opacity 0.25s linear;
+        }
+      }
+    }
   }
+
   // icon menu
   &.wo-icon > li {
     & > a {
@@ -293,8 +333,14 @@
     }
   }
 
-  &.wo-dropdown { @include w-nav-dropdown-core; }
-  &.wo-accordion { @include w-nav-accordion-core; }
+  &.wo-default,
+  &.wo-dropdown {
+    @include w-nav-dropdown-core;
+  }
+
+  &.wo-accordion {
+    @include w-nav-accordion-core;
+  }
 }
 
 @mixin w-nav-styles($conf:()) {
@@ -307,6 +353,7 @@
 
   background-color: $bg;
   li {
+    color: cv(fg);    // default text color for menu items
     a {
       color: $text-fg;
       background: $text-bg;
@@ -317,6 +364,7 @@
     }
   }
 
+  &.wo-default,
   &.wo-horizontal {
     background: transparent;
     &>li, &>li>a {
@@ -325,7 +373,23 @@
     &>li:hover {
       background: transparent;
       &>.w-nav-item-wrapper {
-        color: $w-color-claret;
+        color: cv('item-wrapper/hover/fg');
+      }
+    }
+  }
+  &.wo-invert {
+    &>li {
+      &>a {
+        color: cv('opt/invert/fg');
+      }
+      &:hover>a {
+        color: cv('opt/invert/hover/fg');
+      }
+    }
+
+    &.wo-separators {
+      &>li:not(:first-child):before {
+        border-left: cv('opt/invert/separator/style');
       }
     }
   }

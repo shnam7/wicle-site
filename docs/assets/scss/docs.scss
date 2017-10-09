@@ -4,15 +4,6 @@
 @import "wicle.config";
 @import "region/banner";
 
-.w-navbar .w-nav.wo-horizontal {
-  &>li>a {
-    color: $w-color-text-white;
-  }
-  &>li:hover>a {
-    color: $w-color-orange;
-  }
-}
-
 @lost gutter 1rem;
 
 .color-items {

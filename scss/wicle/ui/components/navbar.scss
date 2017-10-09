@@ -55,8 +55,8 @@
   @include ssv($key, 'brand/font-family', $w-font-sans, true);
   @include ssv($key, 'brand/font-size', 1.25rem, true);
   @include ssv($key, 'brand/font-weight', 600, true);
-  @include ssv($key, 'brand/fg', null, true);
-  @include ssv($key, 'brand/hover/fg', #fff, true);
+  @include ssv($key, 'brand/fg', gray(90%), true);
+  @include ssv($key, 'brand/hover/fg', white, true);
 
   //--- toggle
   @include ssv($key, 'toggle/fg', gray(80%), true);
@@ -75,8 +75,6 @@
   align-items: center;
   margin: 0 auto;
   border: none;
-  color: inherit;
-  background: inherit;
 
   max-width: cv(max-width);
   height: cv(height);
@@ -90,9 +88,7 @@
 
   // navbar items
   .wz-item, .wz-brand, .wz-toggle {
-    color: inherit;
     flex: 0 0 auto;
-    a { color: inherit; }
     //border: 1px solid red;
   }
 
@@ -104,12 +100,13 @@
 
     $fg: cv(brand/fg);
     $hover: cv('brand/hover/fg');
-    @if ($fg) { color: $fg; }
+    color: $fg;
 
     &:hover,
     &:focus {
       color: if($hover, $hover, if($fg, smart-scale($fg, 15%), null));
     }
+    transition: color 0.2s;
   }
 
   // item spacer
