@@ -24,7 +24,7 @@
   $key: 'w-image';
 
   //--- core
-  @include ssv($key, 'radius', $w-border-radius, true);
+  @include ssv($key, 'radius', 2px, true);
 
   //--- frame
   @include ssv($key, 'frame/fg', transparentize($w-color-text-black, 0.5), true);

@@ -4,7 +4,7 @@
 
 .w-button:hover, a.w-button:hover { text-decoration: none; }
 
-.w-button.wo-compact, a.w-button.wo-compact { font-size: 90%; padding: 0 0.75rem; line-height: 1.75rem; }
+.w-button.wo-compact, a.w-button.wo-compact { font-size: 90%; padding: 0 0.75rem; line-height: 1.75; }
 
 .w-button.wo-alpha, .w-button.wo-alpha:link, a.w-button.wo-alpha, a.w-button.wo-alpha:link { color: #444444; background: rgba(68, 68, 68, 0.05); border-color: rgba(68, 68, 68, 0.3); }
 

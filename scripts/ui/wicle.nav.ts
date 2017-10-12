@@ -5,6 +5,8 @@
  *
  */
 
+///<reference path="../core/wicle.core.ts"/>
+
 namespace Wicle {
   export class Nav {
     static defaultOptions = {
@@ -105,10 +107,11 @@ namespace Wicle {
       // set parent/child settings for multi-level menus
       $nav.filter('.wo-dropdown,.wo-default,.wo-accordion')
         .find('ul').addClass('w-nav-child') // set parent/child classes, add parent marker
-        .parent().addClass('w-nav-parent')
-        .children('.w-nav-item-wrapper').each(function(idx, el) {
+        .parent().addClass('w-nav-parent');
+
+      $nav.filter(':not(.wo-icon)').find('.w-nav-parent')
+        .children('.w-nav-item-wrapper').each((idx, el) => {
         let $el = $(el);
-        if ($el.closest('.wo-icon')) return;    // do not add parent marker for icon menu
         if ($el.children('.w-nav-parent-marker').length === 0)
           $el.append('<span class="w-nav-parent-marker">');
       });

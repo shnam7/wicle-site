@@ -1,6 +1,6 @@
-html { font-size: 14px; line-height: 1.5rem; }
+html { font-size: 14px; line-height: 1.5; }
 
-body { word-wrap: break-word; }
+body { word-wrap: break-word; color: #444444; }
 
 a { background-color: transparent; text-decoration: none; }
 
@@ -10,14 +10,20 @@ h1, h2, h3, h4, h5, h6 { font-family: Arial, Helvetica, Verdana, sans-serif; fon
 
 body, select, input, textarea { color: #444444; font-family: Arial, Helvetica, Verdana, sans-serif; }
 
-code, pre { display: block; font-family: "Courier New", Courier, mono; font-size: 0.85rem; line-height: 1.45; }
+code, pre { display: block; font-family: "Courier New", Courier, mono; font-size: 0.85em; line-height: 1.45; max-width: 100%; overflow: auto; padding: 1rem; border-radius: 2px; }
 
 pre { margin: 1em 0; }
 
-a { color: #285880; }
+ul, ol { list-style-position: inside; padding: 0; }
 
-a:hover, a:focus { color: #7F1734; }
+li > ul, li > ol { margin-bottom: 0; margin-left: 1rem; }
 
-h1, h2, h3, h4, h5, h6 { color: #285880; }
+dt { font-weight: 700; }
+
+dd { margin: 0 1.5em 1.5em; }
+
+a { color: #444444; }
+
+a:hover, a:focus { color: #BA3925; }
 
 /*# sourceMappingURL=reset.css.map */

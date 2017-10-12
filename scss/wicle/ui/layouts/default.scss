@@ -28,13 +28,11 @@ $w-layout-default-generate-classes:   true !default;   // enable class generatio
 
   //-- local variables
   $key: 'w-layout-default';
-  
+
   //--- site
-  @include ssv($key, 'site/max-width', 1220px, true);
-  @include ssv($key, 'site/page-width', 960px, true);
-  @include ssv($key, 'site/page-width', 960px, true);
+  @include ssv($key, 'site/max-width', $w-site-max-width, true);
   @include ssv($key, 'site/z-index', $w-z-index + 100, true);
-  @include ssv($key, 'site/breakpoint', 'medium', true);
+  @include ssv($key, 'site/breakpoint', 'large', true);
 
   //--- header
   @include ssv($key, 'header/fg', null, true);
@@ -46,13 +44,18 @@ $w-layout-default-generate-classes:   true !default;   // enable class generatio
   //--- header-trailer
   @include ssv($key, 'header-trailer/padding', (1rem), true);
 
-  //--- sidebar
-  @include ssv($key, 'sidebar/width', 18rem, true);
-  @include ssv($key, 'sidebar/padding', (1rem 0.5rem), true);
+  //--- page
+  @include ssv($key, 'page/width', $w-site-page-width, true);
+  @include ssv($key, 'page/padding', 1rem, true);
+
+  //--- sidebar: sidebar size defined first and then content size determined
+  @include ssv($key, 'sidebar/width', 20rem, true);
+  @include ssv($key, 'sidebar/spacing', 3rem, true);
+  @include ssv($key, 'sidebar/padding', 0 0 0 cv('sidebar/spacing')/2, true);
 
   //--- contents
   @include ssv($key, 'content/width', calc(100% - #{cv('sidebar/width')}), true);
-  @include ssv($key, 'content/padding', (0.5rem 0.5rem), true);
+  @include ssv($key, 'content/padding', 0 cv('sidebar/spacing')/2 0 0, true);
 
   //--- footer
   @include ssv($key, 'footer/margin', (1rem auto), true);
@@ -61,12 +64,15 @@ $w-layout-default-generate-classes:   true !default;   // enable class generatio
 
   //--- offcanvas
   @include ssv($key, 'offcanvas/z-index', cv('site/z-index') + 100, true);
+  @include ssv($key, 'offcanvas/fg', $w-color-text-white, true);
+  @include ssv($key, 'offcanvas/bg', $w-color-text-black, true);
 
   //--- z-index
   @include ssv($key, 'z-index', (1px solid gray(70%, 0.5)), true);
 
   @if mixin-exists(w-hook-layout-default-override) { @include w-hook-layout-default-override(); }
 }
+
 
 
 //-----------------------------------------------
@@ -97,44 +103,41 @@ $w-layout-default-generate-classes:   true !default;   // enable class generatio
     }
   }
 
-  #l-content-wrapper {
-    max-width: cv('site/max-width');
+  #l-page {
+    max-width: cv('page/width');
     margin: 0 auto;
-    padding: 0.5rem 1rem;
-
+    padding: cv('page/padding');
+    //&.wo-single {
+    //  width: 100%;
+    //  @include w-center;
+    //  #l-content,
+    //  #l-sidebar {
+    //    width: 100%;
+    //  }
+    //}
     @include w-clearfix();
   }
 
   #l-content {
     width: 100%;
-    padding: cv('content/padding');
+    padding: 0;
 
     @include w-mq(cv('site/breakpoint')) {
       float: left;
       width: cv('content/width');
-      //padding: $l-content-padding-medium;
-    }
-    &.single {
-      width: 100%;
-      max-width: cv('site/page-width');
-      @include w-center;
+      padding: cv('content/padding');
     }
   }
 
   #l-sidebar {
     width: 100%;
-    padding: cv('sidebar/padding');
+    padding: 0;
 
     @include w-mq(cv('site/breakpoint')) {
       float: right;
       width: cv('sidebar/width');
-      //padding: $l-sidebar-padding-medium;
+      padding: cv('sidebar/padding');
     }
-  }
-
-  #l-content.single + #l-sidebar {
-    width: 100%;
-    max-width: cv('site/page-width');
   }
 
   #l-footer {
@@ -147,7 +150,9 @@ $w-layout-default-generate-classes:   true !default;   // enable class generatio
   }
 
   #l-offcanvas {
-    z-index: cv('footer/z-index');
+    z-index: cv('offcanvas/z-index');
+    color: cv('offcanvas/fg');
+    background: cv('offcanvas/bg');
   }
 }
 
@@ -180,10 +185,8 @@ $w-layout-default-generate-classes:   true !default;   // enable class generatio
 //  class generation
 //-----------------------------------------------
 @if $w-wicle-mode == 'css' and $w-layout-default-generate-classes {
-  .w-layout-default {
-    @include w-layout;
-    @include w-layout-styles;
-  }
+  @include w-layout;
+  @include w-layout-styles;
 }
 
 @if mixin-exists(w-hook-layout-default) { @include w-hook-layout-default(); }

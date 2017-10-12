@@ -51,7 +51,12 @@ const scriptsConcated = Object.assign({}, scripts, {
   buildName:'scriptsConcated',
   order: ['wicle.mq.ts','wicle.core.ts'],
   outFile: 'wicle.js',
-  flushStream:true
+  flushStream:true,
+  moduleOptions: {
+    typescript: {
+      declaration: true
+    }
+  }
 });
 
 

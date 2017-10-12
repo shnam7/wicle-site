@@ -54,7 +54,7 @@
   //--- text (li > a)
   @include ssv($key, 'item-wrapper/margin', 0, true);
   @include ssv($key, 'item-wrapper/padding', 0.35rem 0.5rem, true);
-  @include ssv($key, 'item-wrapper/line-height', 1.5rem, true);
+  @include ssv($key, 'item-wrapper/line-height', 1.5, true);
   @include ssv($key, 'item-wrapper/fg', cv(fg), true);
   @include ssv($key, 'item-wrapper/bg', null, true);
   @include ssv($key, 'item-wrapper/hover/fg', white, true);
@@ -92,7 +92,10 @@
   @include ssv($key, 'opt/invert/hover/fg', white, true);
   @include ssv($key, 'opt/invert/separator/style', 1px solid rgba($w-color-text-white, 0.35), true);
 
-  @include ssv($key, 'opt/flip/x-offset', 3px, true);
+  @include ssv($key, 'opt/flip/x-offset', 1rem, true);      // x offset for 1st level popup
+  @include ssv($key, 'opt/flip/y-offset', 0, true);         // y offset for 1st level popup
+  @include ssv($key, 'opt/flip/sub/x-offset', 3px, true);   // x offset for 2nd+ level popup
+  @include ssv($key, 'opt/flip/sub/y-offset', 0, true);     // y offset for 2nd+ level popup
 
 
   @if mixin-exists(w-hook-nav-override) { @include w-hook-nav-override(); }
@@ -142,9 +145,9 @@
     float: right;
     font-family: $w-font-sans;
     margin-left: 0.5rem; // $parent-marker-margin;
-    font-size: 70%;
     transition: transform 0.5s ease-in-out;
     &:before {
+      font-size: 70%;
       content: '\25BC'; // unicode down triangle character
     }
     @content;
@@ -169,11 +172,11 @@
     // set submenu out-of-viewport position
     &[aria-flip*=x] {
       left: auto;
-      right: calc(100% - #{cv('opt/flip/x-offset')});
+      right: calc(100% - #{cv('opt/flip/sub/x-offset')});
     }
     &[aria-flip*=y] {
       top: auto;
-      bottom: 0;
+      bottom: - cv('opt/flip/sub/y-offset');
     }
 
     // delay for hover-off to prevent submenu from disappearing too soon when mouse is out from li
@@ -210,11 +213,11 @@
         // set submenu out-of-viewport position
         &[aria-flip*=x] {
           left: auto;
-          right: 0;
+          right: - cv('opt/flip/x-offset');
         }
         &[aria-flip*=y] {
           top: auto;
-          bottom: 100%;
+          bottom: calc(100% + #{cv('opt/flip/y-offset')});
         }
       }
       &:hover > .w-nav-item-wrapper > .w-nav-parent-marker {
@@ -299,7 +302,7 @@
 
     // top-level submenu panel pointer
     &.wo-default,
-    &.wo-pointers {
+    &.wo-pointer {
       &>li.w-nav-parent {
         &:after {
           border-style: solid;
@@ -325,11 +328,18 @@
   }
 
   // icon menu
-  &.wo-icon > li {
-    & > a {
+  &.wo-icon {
+    &.wo-pointer {
+      &>li.w-nav-parent {
+        &:after {
+          left: 0.5rem;
+        }
+      }
+    }
+    & > li > a {
       font-size: cv(icon/font-size);
       font-weight: cv(icon/font-weight);
-      padding: cv(icon/padding);
+      padding: cv(icon/padding) auto;   // vertical padding must be preserved to sync dropdown popup position
     }
   }
 

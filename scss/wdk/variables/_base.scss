@@ -12,7 +12,7 @@ $w-wicle-postcss:               false !default;
 //--- layout
 $w-z-index:                     1000 !default;
 $w-site-max-width:              1220px !default;
-$w-site-page-width:             960px !default;
+$w-site-page-width:             $w-site-max-width !default;  // 960px !default;
 
 //--- grid
 $w-grid-max-count:              16 !default;
@@ -21,11 +21,11 @@ $w-grid-gutter-width:           1rem !default;  // 20px
 //--- typography
 $w-font-size:                   14px !default;
 $w-font-size-mobile:            15px !default;
-$w-font-sans:                   Arial,Helvetica,Verdana,sans-serif;
-$w-font-serif:                  Georgia,Times,Times New Roman,serif;
+$w-font-sans:                   Arial,Helvetica,Verdana,sans-serif !default;
+$w-font-serif:                  Georgia,Times,Times New Roman,serif !default;
 $w-font-mono:                   'Courier New',Courier,mono;
 
-$w-line-height:                 1.5rem !default;
+$w-line-height:                 1.5 !default;
 
 //--- borders
 $w-border-radius:               3px !default;

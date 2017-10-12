@@ -23,9 +23,11 @@
   //-- local variables
   $key: 'w-reset';
 
-  @include ssv($key, fg, $w-color-theme, true);
+  @include ssv($key, fg, $w-color-text-black, true);
   @include ssv($key, 'link/fg', $w-color-theme-link, true);
   @include ssv($key, 'link/hover/fg', $w-color-theme-link-hover, true);
+
+  @include ssv($key, 'list/margin-left', 1rem, true);
 
   @if mixin-exists(w-hook-reset-override) { @include w-hook-reset-override(); }
 }
@@ -42,9 +44,10 @@
 
   body {
     word-wrap: break-word;
+    color: cv(fg);
   }
 
-  // link
+  //--- link
   a {
     background-color: transparent;
     text-decoration: none;
@@ -70,12 +73,39 @@
   code, pre {
     display: block;
     font-family: $w-font-mono;
-    font-size: 0.85rem;
+    font-size: 0.85em;
     line-height: 1.45;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1rem;
+    border-radius: 2px;
   }
 
   pre {
     margin: 1em 0;
+  }
+
+  //--- lists
+  ul, ol {
+    list-style-position: inside;
+    padding: 0;
+    //& > :not(:first-child) {
+    //  margin: 0 0 0 cv('list/margin-left');
+    //}
+  }
+
+  li > ul,
+  li > ol {
+    margin-bottom: 0;
+    margin-left: cv('list/margin-left');
+  }
+
+  dt {
+    font-weight: 700;
+  }
+
+  dd {
+    margin: 0 1.5em 1.5em;
   }
 }
 
@@ -89,7 +119,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    color: cv(fg);
+    //color: cv(fg);
   }
 }
 

@@ -3,7 +3,7 @@
     "target": "es5",
     "module": "none",
     "noEmitOnError": true,
-    "declaration": true,
+    "declaration": false,
     "lib" : ["dom", "es6", "dom.iterable", "scripthost"]
   },
 

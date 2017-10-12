@@ -33,7 +33,7 @@
 
   // compact
   @include ssv($key, 'compact/font-size', 90%, true);
-  @include ssv($key, 'compact/line-height', 1.75rem, true);
+  @include ssv($key, 'compact/line-height', 1.75, true);
   @include ssv($key, 'compact/padding', 0 0.75rem, true);
 
   @if mixin-exists(w-hook-button-override) { @include w-hook-button-override(); }

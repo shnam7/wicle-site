@@ -49,7 +49,7 @@
   @include ssv($key, 'gradient', (level:20%, direction:top), true);
   @include ssv($key, 'radius', $w-border-radius, true);
   @include ssv($key, 'item-spacing', 0.25rem, true);
-  @include ssv($key, 'breakpoint', medium, true);
+  @include ssv($key, 'breakpoint', 'large', true);
   @include ssv($key, 'link/fg', gray(85%), true);
   @include ssv($key, 'link/bg', null, true);
   @include ssv($key, 'link/hover/fg', white, true);
@@ -117,6 +117,12 @@
   .wz-spacer {
     flex: 1 1 0;   // grow shrink basis
   }
+  .wz-nav.wo-responsive {
+    display: none;
+    @include w-mq(cv(breakpoint)) {
+      display: inline-block;
+    }
+  }
 
   .wz-toggle {
     &.wo-responsive {
@@ -130,24 +136,6 @@
 }
 
 @mixin w-navbar-options {
-  &.wo-responsive {
-    .wz-nav {
-      //display: none;
-      position: absolute;
-      top: cv(height);
-
-      @include w-mq(cv(breakpoint)) {
-        display: inline-block;
-        position: relative;
-        top: auto;
-      }
-    }
-    .wz-toggle {
-      @include w-mq(cv(breakpoint)) {
-        display: none;
-      }
-    }
-  }
 }
 
 @mixin w-navbar-styles() {

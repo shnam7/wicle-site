@@ -41,3 +41,9 @@
 @mixin w-center {
   @include w-align(center);
 }
+
+@mixin w-center-vertical {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

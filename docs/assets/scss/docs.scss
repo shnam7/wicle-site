@@ -10,10 +10,8 @@
   lost-center: $w-site-page-width;
   lost-utility: clearfix;
   div {
-    @include w-mq(small) {
-      lost-column: 1/2;
-    }
-    @include w-mq(medium) {
+    lost-column: 1/2;
+    @include w-mq(large) {
       lost-column: 1/3;
     }
 

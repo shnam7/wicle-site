@@ -1,0 +1,18 @@
+---
+layout: default
+title: Parallax
+body_class: demo-parallax
+---
+<link rel="stylesheet" href="{{site.baseurl}}/css/demo-parallax.min.css">
+
+<h1>Parallax example</h1>
+
+{% for i in (1..5) %}
+<div id="surface{{i}}" class="surface">
+  {% for j in (1..5) %}
+  <div id="box{{i}}-{{j}}" class="box"></div>
+  {% endfor %}
+</div>
+{% endfor %}
+
+<script src="{{site.baseurl}}/js/demo-parallax.min.js"></script>

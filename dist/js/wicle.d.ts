@@ -114,6 +114,34 @@ declare namespace Wicle {
     }
     function nav(selector: string, options?: Options): void;
 }
+declare namespace Wicle {
+    namespace Parallax {
+        class Container {
+            private content;
+            private surface;
+            private perspective;
+            private lastPerspective;
+            /**
+             *   Creates a Container for a Parallax
+             *
+             *   @param {HTMLElement} scrollableContent The container that will be parallaxed
+             *   @param {perspective} perspective The ratio of how much back content should be scrolled
+             *          relative to forward content. For example, if this value is 0.5, and there are 2 surfaces,
+             *          the front-most surface would be scrolled normally, and the surface behind it would be scrolled
+             *          half as much.
+             */
+            constructor(scrollableContent: HTMLElement, perspective: number);
+            private onContainerScroll(e);
+            addSurface(surface: Surface): void;
+        }
+        class Surface {
+            perspective: number;
+            private content;
+            constructor(surfaceContents: HTMLElement, perspective?: number);
+            scroll(scrollPos: number): void;
+        }
+    }
+}
 /**
  *  Wicle
  *

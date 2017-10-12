@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/shnam7/wicle#readme",
   "devDependencies": {
-    "@types/jquery": "^3.2.12",
+    "@types/jquery": "^3.2.17",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-build-manager": "^2.0.0-alpha.9",
     "gulp-clone": "^1.0.0",
@@ -47,9 +47,9 @@
     "gulp-postcss": "^7.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-typescript": "^3.2.2",
+    "gulp-typescript": "^3.2.3",
     "gulp-uglify": "^3.0.0",
     "lost": "^8.2.0",
-    "typescript": "^2.5.3"
+    "typescript": "^2.6.2"
   }
 }

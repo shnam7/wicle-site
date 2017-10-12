@@ -48,7 +48,7 @@
   @include ssv($key, 'fg', gray(60%), true);
   @include ssv($key, 'bg', white, true);
   @include ssv($key, 'font', normal 1rem $w-font-sans, true);
-  @include ssv($key, 'line-height', 2em, true);
+  @include ssv($key, 'line-height', 2, true);
   @include ssv($key, 'max-width', 12em, true);
   @include ssv($key, 'radius', $w-border-radius, true);
 
@@ -149,7 +149,7 @@
   }
   &.wo-compact {
     &>input[type=search] {
-      line-height: 1.5rem;
+      line-height: 1.5;
       padding-left: 1.5rem;
     }
   }

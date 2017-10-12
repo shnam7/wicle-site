@@ -54,7 +54,7 @@
   }
   color: $fg;
   background: $bg;
-  border-color: $line;
+  border-color: transparentize($line, 0.7);
 }
 
 @mixin w-panel-options {
