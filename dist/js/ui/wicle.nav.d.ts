@@ -12,6 +12,9 @@ declare namespace Wicle {
             hideDelay: number;
             parentLink: boolean;
             singleOpen: boolean;
+            breakPoint: number;
+            mqChangeToMobile: any;
+            mqChangeToNormal: any;
         };
         protected static dynamicClasses: string;
         protected static dynamicElements: string;

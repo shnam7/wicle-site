@@ -7,13 +7,10 @@ declare namespace Wicle {
     };
     let options: Options;
     function init(options?: Options): void;
-    /**
-     *  utilities
-     *
-     */
-    function debug(...rest: any[]): void;
-    function warn(...rest: any[]): void;
-    function log(prefix?: string, ...rest: any[]): void;
+    function getViewporSize(): {
+        width: any;
+        height: any;
+    };
 }
 /**
  *  Wicle MediaQuery
@@ -70,6 +67,7 @@ declare namespace Wicle {
         protected breakPoints: MQBreakPoints;
         protected options: Options;
         protected prevState: MQState;
+        protected prevWidth: number;
         constructor(breakPoints?: MQBreakPoints, options?: Options);
         init(breakPoints: MQBreakPoints, options?: Options): void;
         protected startMediaChangeDetection(): void;
@@ -79,7 +77,7 @@ declare namespace Wicle {
          *  @returns {MQState}
          */
         protected mqStateOf(width: number): MQState;
-        protected getMQState(): MQState;
+        protected getMQState(width?: any): MQState;
     }
     let mediaQuery: MediaQuery;
 }
@@ -97,6 +95,9 @@ declare namespace Wicle {
             hideDelay: number;
             parentLink: boolean;
             singleOpen: boolean;
+            breakPoint: number;
+            mqChangeToMobile: any;
+            mqChangeToNormal: any;
         };
         protected static dynamicClasses: string;
         protected static dynamicElements: string;

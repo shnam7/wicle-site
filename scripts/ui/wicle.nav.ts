@@ -12,7 +12,10 @@ namespace Wicle {
       showDelay: 0,
       hideDelay: 0,
       parentLink: false,
-      singleOpen: true,
+      singleOpen: false,
+      breakPoint: 640,
+      mqChangeToMobile: null,   // function(this:Nav, e:any):void;
+      mqChangeToNormal: null,   // function(this:Nav, e:any):void;
     };
 
     protected static dynamicClasses = 'w-nav,w-nav-item,w-nav-item-wrapper'
@@ -33,18 +36,22 @@ namespace Wicle {
     };
 
     // detect and respond to media query changes
-    protected mqChangeHandler = function(e) {
-      let state = e.detail.state;
-      let prevState = e.detail.prevState;
-      console.log(e.detail, this);
+    protected mqChangeHandler = (e) => {
+      let width = e.detail.width;
+      let prevWidth = e.detail.prevWidth;
+      let breakPoint = this.options.breakPoint;
+      if (this.classes.indexOf('wo-responsive') < 0) return;
+      console.debug('mqChanged:', e.detail);
 
-      if (state=='large' && prevState=='xlarge') {
-        // $('.w-nav.wo-accordion').removeClass('wo-accordion')
-        //   .addClass('wo-horizontal,wo-dropdown');
+      if (width>=breakPoint && prevWidth<breakPoint) {
+        console.log('state=', e.state, 'chanjge to normal');
+        if (this.options.mqChangeToNormal) this.options.mqChangeToNormal(this, e);
+        // $(this.element).attr('class', this.classes);
       }
-      if (state=='xlarge' && prevState=='large') {
-        // $('.w-nav.wo-horizontal').removeClass('wo-horizontal,wo-dropdown')
-        //   .addClass('wo-accordion');
+      if (width<breakPoint && prevWidth>=breakPoint) {
+        console.log('state=', e.state, 'change to mobile');
+        if (this.options.mqChangeToMobile) this.options.mqChangeToMobile(this, e);
+        // $(this.element).attr('class', 'wz-nav w-nav wo-accordion').show();
       }
     };
 
@@ -87,8 +94,8 @@ namespace Wicle {
 
     public create() {
       let $nav = $(this.element);
-      this.classes = $nav.attr('class');
       $.data(this.element, 'w-nav', this);
+      this.classes = $nav.attr('class');
 
       // set basic classes
       $nav.addClass('w-nav')
@@ -101,6 +108,7 @@ namespace Wicle {
         .parent().addClass('w-nav-parent')
         .children('.w-nav-item-wrapper').each(function(idx, el) {
         let $el = $(el);
+        if ($el.closest('.wo-icon')) return;    // do not add parent marker for icon menu
         if ($el.children('.w-nav-parent-marker').length === 0)
           $el.append('<span class="w-nav-parent-marker">');
       });
@@ -111,7 +119,9 @@ namespace Wicle {
       // check divider items: item text only with '-' or unicode dashes or spaces
       $dropdown.find('.w-nav-item').each(function (index, el) {
         let $el = $(el);
-        if (!/[^\-\u2014\u2013\s]/.test($el.text())) $el.addClass('w-nav-divider');
+        // if (!/[^\-\u2014\u2013\s]/.test($el.text())) $el.addClass('w-nav-divider');
+        // text should starts with one or more dashes
+        if (/^[\-\u2014\u2013]+/.test($el.text())) $el.addClass('w-nav-divider');
       });
 
       // check out-of-viewport status
@@ -144,24 +154,30 @@ namespace Wicle {
 
       // set event handlers
       $accordion.find('.w-nav-item-wrapper,.w-nav-accordion-click-area')
+        .off('click', this.accordionClickEventHandler)
         .on('click', this.accordionClickEventHandler);
-      $(window).on('resize', this.flipHandler);
-      window.addEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
+
+      $(window).off('resize', this.flipHandler).on('resize', this.flipHandler);
+
+      if (this.options.mqChangeToNormal || this.options.mqChangeToMobile) {
+        window.removeEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
+        window.addEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
+      }
     }
 
     public destroy() {
       let $nav = $(this.element);
-
-      // remove event handlers
-      $(window).off('resize', this.flipHandler);
-      window.removeEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
-      $nav.filter('.wo-accordion').find('.w-nav-parent,.w-nav-accordion-click-area').off('click');
 
       // remove dynamic elements
       $nav.find(Nav.dynamicElements).remove();
 
       // remove dynamic classes
       $nav.find(Nav.dynamicClasses).removeClass(Nav.dynamicClasses);
+
+      // remove event handlers
+      $(window).off('resize', this.flipHandler);
+      window.removeEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
+      $nav.filter('.wo-accordion').find('.w-nav-parent,.w-nav-accordion-click-area').off('click');
 
       // remove nav object
       $.removeData(this.element, 'w-nav');

@@ -16,16 +16,23 @@ var Wicle;
             };
             // detect and respond to media query changes
             this.mqChangeHandler = function (e) {
-                var state = e.detail.state;
-                var prevState = e.detail.prevState;
-                console.log(e.detail, this);
-                if (state == 'large' && prevState == 'xlarge') {
-                    // $('.w-nav.wo-accordion').removeClass('wo-accordion')
-                    //   .addClass('wo-horizontal,wo-dropdown');
+                var width = e.detail.width;
+                var prevWidth = e.detail.prevWidth;
+                var breakPoint = _this.options.breakPoint;
+                if (_this.classes.indexOf('wo-responsive') < 0)
+                    return;
+                console.debug('mqChanged:', e.detail);
+                if (width >= breakPoint && prevWidth < breakPoint) {
+                    console.log('state=', e.state, 'chanjge to normal');
+                    if (_this.options.mqChangeToNormal)
+                        _this.options.mqChangeToNormal(_this, e);
+                    // $(this.element).attr('class', this.classes);
                 }
-                if (state == 'xlarge' && prevState == 'large') {
-                    // $('.w-nav.wo-horizontal').removeClass('wo-horizontal,wo-dropdown')
-                    //   .addClass('wo-accordion');
+                if (width < breakPoint && prevWidth >= breakPoint) {
+                    console.log('state=', e.state, 'change to mobile');
+                    if (_this.options.mqChangeToMobile)
+                        _this.options.mqChangeToMobile(_this, e);
+                    // $(this.element).attr('class', 'wz-nav w-nav wo-accordion').show();
                 }
             };
             // accordion click event handler
@@ -61,8 +68,8 @@ var Wicle;
         }
         Nav.prototype.create = function () {
             var $nav = $(this.element);
-            this.classes = $nav.attr('class');
             $.data(this.element, 'w-nav', this);
+            this.classes = $nav.attr('class');
             // set basic classes
             $nav.addClass('w-nav')
                 .find('li').addClass('w-nav-item')
@@ -73,6 +80,8 @@ var Wicle;
                 .parent().addClass('w-nav-parent')
                 .children('.w-nav-item-wrapper').each(function (idx, el) {
                 var $el = $(el);
+                if ($el.closest('.wo-icon'))
+                    return; // do not add parent marker for icon menu
                 if ($el.children('.w-nav-parent-marker').length === 0)
                     $el.append('<span class="w-nav-parent-marker">');
             });
@@ -81,7 +90,9 @@ var Wicle;
             // check divider items: item text only with '-' or unicode dashes or spaces
             $dropdown.find('.w-nav-item').each(function (index, el) {
                 var $el = $(el);
-                if (!/[^\-\u2014\u2013\s]/.test($el.text()))
+                // if (!/[^\-\u2014\u2013\s]/.test($el.text())) $el.addClass('w-nav-divider');
+                // text should starts with one or more dashes
+                if (/^[\-\u2014\u2013]+/.test($el.text()))
                     $el.addClass('w-nav-divider');
             });
             // check out-of-viewport status
@@ -114,20 +125,24 @@ var Wicle;
             $nav.find('.w-state-active').addClass('aria-state-active');
             // set event handlers
             $accordion.find('.w-nav-item-wrapper,.w-nav-accordion-click-area')
+                .off('click', this.accordionClickEventHandler)
                 .on('click', this.accordionClickEventHandler);
-            $(window).on('resize', this.flipHandler);
-            window.addEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
+            $(window).off('resize', this.flipHandler).on('resize', this.flipHandler);
+            if (this.options.mqChangeToNormal || this.options.mqChangeToMobile) {
+                window.removeEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
+                window.addEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
+            }
         };
         Nav.prototype.destroy = function () {
             var $nav = $(this.element);
-            // remove event handlers
-            $(window).off('resize', this.flipHandler);
-            window.removeEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
-            $nav.filter('.wo-accordion').find('.w-nav-parent,.w-nav-accordion-click-area').off('click');
             // remove dynamic elements
             $nav.find(Nav.dynamicElements).remove();
             // remove dynamic classes
             $nav.find(Nav.dynamicClasses).removeClass(Nav.dynamicClasses);
+            // remove event handlers
+            $(window).off('resize', this.flipHandler);
+            window.removeEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
+            $nav.filter('.wo-accordion').find('.w-nav-parent,.w-nav-accordion-click-area').off('click');
             // remove nav object
             $.removeData(this.element, 'w-nav');
         };
@@ -136,7 +151,10 @@ var Wicle;
             showDelay: 0,
             hideDelay: 0,
             parentLink: false,
-            singleOpen: true,
+            singleOpen: false,
+            breakPoint: 640,
+            mqChangeToMobile: null,
+            mqChangeToNormal: null,
         };
         Nav.dynamicClasses = 'w-nav,w-nav-item,w-nav-item-wrapper'
             + 'w-nav-parent,w-nav-child,w-nav-divider'

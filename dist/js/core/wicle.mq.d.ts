@@ -53,6 +53,7 @@ declare namespace Wicle {
         protected breakPoints: MQBreakPoints;
         protected options: Options;
         protected prevState: MQState;
+        protected prevWidth: number;
         constructor(breakPoints?: MQBreakPoints, options?: Options);
         init(breakPoints: MQBreakPoints, options?: Options): void;
         protected startMediaChangeDetection(): void;
@@ -62,7 +63,7 @@ declare namespace Wicle {
          *  @returns {MQState}
          */
         protected mqStateOf(width: number): MQState;
-        protected getMQState(): MQState;
+        protected getMQState(width?: any): MQState;
     }
     let mediaQuery: MediaQuery;
 }

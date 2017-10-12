@@ -46,10 +46,14 @@
   @include ssv($key, 'padding', 0 1.5rem, true);
   @include ssv($key, 'fg', null, true);
   @include ssv($key, 'bg', null, true);
-  @include ssv($key, 'gradient', (level:20%, direction:top));
+  @include ssv($key, 'gradient', (level:20%, direction:top), true);
   @include ssv($key, 'radius', $w-border-radius, true);
-  @include ssv($key, 'item-spacing', 0.25rem);
-  @include ssv($key, 'breakpoint', medium);
+  @include ssv($key, 'item-spacing', 0.25rem, true);
+  @include ssv($key, 'breakpoint', medium, true);
+  @include ssv($key, 'link/fg', gray(85%), true);
+  @include ssv($key, 'link/bg', null, true);
+  @include ssv($key, 'link/hover/fg', white, true);
+  @include ssv($key, 'link/hover/bg', null, true);
 
   //--- brand
   @include ssv($key, 'brand/font-family', $w-font-sans, true);
@@ -64,7 +68,7 @@
 
   //--- optional dropdown trailer
   @include ssv($key, 'trailer/padding', 0.5rem 1rem, true);
-  @include ssv($key, 'trailer/separator', 1px solid gray(70%));
+  @include ssv($key, 'trailer/separator', 1px solid gray(70%), true);
 
   @if mixin-exists(w-hook-navbar-override) { @include w-hook-navbar-override(); }
 }
@@ -114,19 +118,35 @@
     flex: 1 1 0;   // grow shrink basis
   }
 
-  .wz-nav {
-    display: none;
-    @include w-mq(cv(breakpoint)) {
-      display: inline-block;
-    }
-  }
-
   .wz-toggle {
-    @include w-mq(cv(breakpoint)) {
-      display: none;
+    &.wo-responsive {
+      @include w-mq(cv(breakpoint)) {
+        display: none;
+      }
     }
     @include w-hamburger(cv('toggle/fg'), cv('toggle/hover/fg'));
     margin: 0.5rem;
+  }
+}
+
+@mixin w-navbar-options {
+  &.wo-responsive {
+    .wz-nav {
+      //display: none;
+      position: absolute;
+      top: cv(height);
+
+      @include w-mq(cv(breakpoint)) {
+        display: inline-block;
+        position: relative;
+        top: auto;
+      }
+    }
+    .wz-toggle {
+      @include w-mq(cv(breakpoint)) {
+        display: none;
+      }
+    }
   }
 }
 
@@ -137,6 +157,15 @@
   color: if($fg, $fg, if($bg, yiq-color($bg), false));
   @if $bg {
     background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
+  }
+
+  a {
+    color: cv('link/fg');
+    background: cv('link/bg');
+    &:hover {
+      color: cv('link/hover/fg');
+      background: cv('link/hover/bg');
+    }
   }
 }
 
@@ -170,6 +199,7 @@
 @if $w-wicle-mode == 'css' and $w-navbar-generate-classes {
   .w-navbar {
     @include w-navbar-core;
+    @include w-navbar-options;
     @include w-navbar-styles;
 
     &+.w-navbar-trailer {

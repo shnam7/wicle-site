@@ -14,7 +14,8 @@ var Wicle;
             if (options === void 0) { options = {}; }
             this.breakPoints = $.extend({}, breakPoints);
             this.options = $.extend(true, {}, MediaQuery.defaultOptions, options);
-            this.prevState = this.getMQState();
+            this.prevWidth = Wicle.getViewporSize().width;
+            this.prevState = this.getMQState(this.prevWidth);
         };
         // check window resize is crossing media query breakpoints
         MediaQuery.prototype.startMediaChangeDetection = function () {
@@ -24,11 +25,19 @@ var Wicle;
                 if (timer)
                     clearTimeout(timer);
                 timer = setTimeout(function () {
-                    var width = $(window).width();
+                    var width = Wicle.getViewporSize().width;
                     var state = _this.mqStateOf(width);
                     if (state != _this.prevState) {
-                        Wicle.debug("MQ:width=" + width + ", state=" + state + ", prevState=" + _this.prevState);
-                        window.dispatchEvent(new CustomEvent(MediaQuery.mqStateChangedEventName, { 'detail': { state: state, prevState: _this.prevState } }));
+                        console.debug('resize:', "MQ:width=" + width + ", state=" + state + ", prevState=" + _this.prevState);
+                        window.dispatchEvent(new CustomEvent(MediaQuery.mqStateChangedEventName, { 'detail': {
+                                state: state,
+                                prevState: _this.prevState,
+                                breakPoints: _this.breakPoints,
+                                width: width,
+                                prevWidth: _this.prevWidth,
+                                direction: width > _this.prevWidth ? 'up' : 'down'
+                            } }));
+                        _this.prevWidth = width;
                         _this.prevState = state;
                     }
                 });
@@ -36,6 +45,7 @@ var Wicle;
             };
             $(window).off('resize', resizeHandler).on('resize', resizeHandler);
         };
+        ;
         /**
          *  Convert width to Media Query name
          *  @param width
@@ -51,8 +61,11 @@ var Wicle;
             }
             return key;
         };
-        MediaQuery.prototype.getMQState = function () {
-            return this.mqStateOf($(window).width());
+        MediaQuery.prototype.getMQState = function (width) {
+            if (width === void 0) { width = null; }
+            if (!width)
+                width = Wicle.getViewporSize().width;
+            return this.mqStateOf(width);
         };
         MediaQuery.defaultOptions = {
             //   breakPoints: {mini: 480, small: 768, medium: 960, large: 1220},

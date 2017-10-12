@@ -69,6 +69,7 @@ namespace Wicle {
     protected breakPoints: MQBreakPoints;
     protected options: Options;
     protected prevState: MQState;
+    protected prevWidth: number;
 
     constructor(breakPoints:MQBreakPoints=MediaQuery.BreakPoints.Foundation,
                 options:Options = {}) {
@@ -79,7 +80,8 @@ namespace Wicle {
     init(breakPoints:MQBreakPoints, options:Options = {}) {
       this.breakPoints = $.extend({}, breakPoints);
       this.options = $.extend(true, {}, MediaQuery.defaultOptions, options);
-      this.prevState = this.getMQState();
+      this.prevWidth = getViewporSize().width;
+      this.prevState = this.getMQState(this.prevWidth);
     }
 
     // check window resize is crossing media query breakpoints
@@ -88,19 +90,27 @@ namespace Wicle {
       let resizeHandler = (e) => {
         if (timer) clearTimeout(timer);
         timer = setTimeout(() => {
-          let width = $(window).width();
+          let width = getViewporSize().width;
           let state = this.mqStateOf(width);
           if (state != this.prevState) {
-            debug(`MQ:width=${width}, state=${state}, prevState=${this.prevState}`);
+            console.debug('resize:', `MQ:width=${width}, state=${state}, prevState=${this.prevState}`);
             window.dispatchEvent(new CustomEvent(MediaQuery.mqStateChangedEventName,
-              {'detail':{state: state, prevState:this.prevState}}));
+              {'detail':{
+                state: state,
+                prevState:this.prevState,
+                breakPoints: this.breakPoints,
+                width: width,
+                prevWidth: this.prevWidth,
+                direction: width>this.prevWidth ? 'up' : 'down'
+              }}));
+            this.prevWidth = width;
             this.prevState = state;
           }
         });
         e.stopPropagation();
       };
       $(window).off('resize',resizeHandler).on('resize', resizeHandler);
-    }
+    };
 
     /**
      *  Convert width to Media Query name
@@ -117,8 +127,9 @@ namespace Wicle {
       return key;
     }
 
-    protected getMQState(): MQState {
-      return this.mqStateOf($(window).width());
+    protected getMQState(width=null): MQState {
+      if (!width) width = getViewporSize().width;
+      return this.mqStateOf(width);
     }
   }
 

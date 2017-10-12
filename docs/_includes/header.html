@@ -1,13 +1,21 @@
-<div class="w-navbar">
+<div class="w-navbar wo-responsive">
   <a class="wz-brand" href="{{site.url}}">Wicle</a>
   <div class="wz-spacer"></div>
-  {% assign cls='wz-nav w-nav wo-horizontal wo-separators wo-dropdown wo-pointers wo-invert' %}
+  {% assign cls='wz-nav w-nav wo-horizontal wo-separators wo-dropdown wo-pointers wo-invert wo-responsive' %}
   {% include demo/nav-ex2.html cls=cls %}
 
-  <ul class="w-nav wo-horizontal wo-icon">
+  <ul class="w-nav wo-horizontal wo-dropdown wo-icon">
     <li><a class="item" title="search" href="#"><i class="fa fa-search fa-fw"></i></a></li>
     <li><a class="item" title="github" href="{{site.repo}}" target="_blank"><i class="fa fa-github fa-fw"></i></a></li>
-    <li><a class="item" title="github" href="{{site.repo}}" target="_blank"><i class="fa fa-github fa-fw"></i></a></li>
+    <li>
+      <a class="item" title="github" href="{{site.repo}}" target="_blank"><i class="fa fa-github fa-fw"></i></a>
+      <ul>
+        <li><a href="#">AAAA</a></li>
+        <li><a href="#">AAAA</a></li>
+        <li><a href="#">AAAA</a></li>
+        <li><a href="#">AAAA</a></li>
+      </ul>
+    </li>
   </ul>
   <div class="wz-item">
     <a class="item" title="search"><i class="fa fa-search fa-fw"></i></a>

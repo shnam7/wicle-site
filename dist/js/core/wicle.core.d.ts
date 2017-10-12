@@ -7,11 +7,8 @@ declare namespace Wicle {
     };
     let options: Options;
     function init(options?: Options): void;
-    /**
-     *  utilities
-     *
-     */
-    function debug(...rest: any[]): void;
-    function warn(...rest: any[]): void;
-    function log(prefix?: string, ...rest: any[]): void;
+    function getViewporSize(): {
+        width: any;
+        height: any;
+    };
 }
