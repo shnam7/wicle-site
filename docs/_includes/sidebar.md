@@ -15,3 +15,4 @@
   - [Search]({{site.baseurl}}/demo/search)
   - [Image]({{site.baseurl}}/demo/image)
   - [Parallax]({{site.baseurl}}/demo/parallax)
+  - [Pagination]({{site.baseurl}}/demo/pagination)

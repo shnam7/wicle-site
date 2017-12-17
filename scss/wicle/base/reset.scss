@@ -84,29 +84,6 @@
   pre {
     margin: 1em 0;
   }
-
-  //--- lists
-  ul, ol {
-    list-style-position: inside;
-    padding: 0;
-    //& > :not(:first-child) {
-    //  margin: 0 0 0 cv('list/margin-left');
-    //}
-  }
-
-  li > ul,
-  li > ol {
-    margin-bottom: 0;
-    margin-left: cv('list/margin-left');
-  }
-
-  dt {
-    font-weight: 700;
-  }
-
-  dd {
-    margin: 0 1.5em 1.5em;
-  }
 }
 
 @mixin w-reset-styles {

@@ -49,7 +49,7 @@
 //-----------------------------------------------
 @mixin w-typography-core {
   h1, h2, h3, h4, h5, h6 {
-    font-family: $w-font-sans;
+    //font-family: $w-font-sans;    // removed because this is overlapping the rules in base/_reset.scss
     font-weight: 600;
   }
 
@@ -58,6 +58,10 @@
       font-size: cv('header/h#{$i}/font-size');
       margin: cv('header/h#{$i}/margin');
     }
+  }
+
+  ul, ol {
+    padding-left: 1rem;
   }
 
   .w-bold {

@@ -14,14 +14,6 @@ code, pre { display: block; font-family: "Courier New", Courier, mono; font-size
 
 pre { margin: 1em 0; }
 
-ul, ol { list-style-position: inside; padding: 0; }
-
-li > ul, li > ol { margin-bottom: 0; margin-left: 1rem; }
-
-dt { font-weight: 700; }
-
-dd { margin: 0 1.5em 1.5em; }
-
 a { color: #444444; }
 
 a:hover, a:focus { color: #BA3925; }
