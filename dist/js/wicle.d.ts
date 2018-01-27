@@ -1,7 +1,9 @@
+/// <reference types="jquery" />
 /**
  *  Wicle Core
  */
 declare namespace Wicle {
+    const $: JQueryStatic<HTMLElement>;
     type Options = {
         [optionName: string]: any;
     };

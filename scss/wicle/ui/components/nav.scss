@@ -387,8 +387,23 @@
       }
     }
   }
-  &.wo-invert {
-    &>li {
+
+  &.wo-default,
+  &.wo-dropdown {
+    &.wo-invert {   // invert top-level only for dropdown
+      &>li {
+        &>a {
+          color: cv('opt/invert/fg');
+        }
+        &:hover>a {
+          color: cv('opt/invert/hover/fg');
+        }
+      }
+    }
+  }
+  &.wo-accordion.wo-invert {    // invert all levels for accordion
+    li {
+      color: cv('opt/invert/fg');
       &>a {
         color: cv('opt/invert/fg');
       }
@@ -396,11 +411,11 @@
         color: cv('opt/invert/hover/fg');
       }
     }
+  }
 
-    &.wo-separators {
-      &>li:not(:first-child):before {
-        border-left: cv('opt/invert/separator/style');
-      }
+  &.wo-separators {
+    &>li:not(:first-child):before {
+      border-left: cv('opt/invert/separator/style');
     }
   }
 }

@@ -3,11 +3,12 @@
  */
 var Wicle;
 (function (Wicle) {
+    Wicle.$ = jQuery;
     var defaultOptions = {};
     Wicle.options = defaultOptions;
     function init(options) {
         if (options === void 0) { options = {}; }
-        Wicle.options = $.extend(true, {}, defaultOptions, options);
+        Wicle.options = Wicle.$.extend(true, {}, defaultOptions, options);
     }
     Wicle.init = init;
     // ref: https://andylangton.co.uk/blog/development/get-viewportwindow-size-width-and-height-javascript

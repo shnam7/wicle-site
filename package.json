@@ -1,10 +1,10 @@
 {
   "name": "wicle",
-  "version": "1.0.0-alpah.2",
+  "version": "1.0.0-alpah.3",
   "description": "Component library for Web development.",
   "files": [
     "dist",
-    "script",
+    "scripts",
     "scss"
   ],
   "main": "index.js",
@@ -16,7 +16,7 @@
     "clean": "rimraf dist",
     "clean-docs": "rimraf _gh_pages docs/.jekyll-metadata",
     "clean-all": "npm run clean && npm run clean-docs",
-    "prepublish": "npm run build-core"
+    "prepare": "npm run build-core"
   },
   "repository": {
     "type": "git",
@@ -35,10 +35,10 @@
   },
   "homepage": "https://github.com/shnam7/wicle#readme",
   "devDependencies": {
-    "@types/jquery": "^3.2.17",
-    "gulp": "gulpjs/gulp#4.0",
-    "gulp-build-manager": "^2.0.0",
-    "gulp-clone": "^1.1.1",
+    "@types/jquery": "^3.3.0",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-build-manager": "^2.0.1",
+    "gulp-clone": "^2.0.1",
     "gulp-cssnano": "^2.1.2",
     "gulp-filter": "^5.1.0",
     "gulp-livereload": "^3.8.1",
@@ -46,7 +46,8 @@
     "gulp-postcss": "^7.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-typescript": "^3.2.3",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-typescript": "^4.0.0-alpha.1",
     "gulp-uglify": "^3.0.0",
     "lost": "^8.2.0",
     "typescript": "^2.6.2"

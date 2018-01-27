@@ -3,11 +3,10 @@
  */
 
 namespace Wicle {
+  export const $ = jQuery;
+
   export type Options = { [optionName: string]: any; }
-
-  const defaultOptions:Options = {
-  };
-
+  const defaultOptions:Options = {};
   export let options:Options = defaultOptions;
 
   export function init(options:Options={}) {

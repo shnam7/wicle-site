@@ -80,10 +80,16 @@
 
 .w-nav.wo-default > li:hover > .w-nav-item-wrapper, .w-nav.wo-horizontal > li:hover > .w-nav-item-wrapper { color: white; }
 
-.w-nav.wo-invert > li > a { color: #d9d9d9; }
+.w-nav.wo-default.wo-invert > li > a, .w-nav.wo-dropdown.wo-invert > li > a { color: #d9d9d9; }
 
-.w-nav.wo-invert > li:hover > a { color: white; }
+.w-nav.wo-default.wo-invert > li:hover > a, .w-nav.wo-dropdown.wo-invert > li:hover > a { color: white; }
 
-.w-nav.wo-invert.wo-separators > li:not(:first-child):before { border-left: 1px solid rgba(238, 238, 238, 0.35); }
+.w-nav.wo-accordion.wo-invert li { color: #d9d9d9; }
+
+.w-nav.wo-accordion.wo-invert li > a { color: #d9d9d9; }
+
+.w-nav.wo-accordion.wo-invert li:hover > a { color: white; }
+
+.w-nav.wo-separators > li:not(:first-child):before { border-left: 1px solid rgba(238, 238, 238, 0.35); }
 
 /*# sourceMappingURL=nav.css.map */

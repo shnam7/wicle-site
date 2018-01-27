@@ -19,12 +19,12 @@ var Wicle;
                 this.surface = [];
                 this.perspective = perspective;
                 this.lastPerspective = 1; // perspective of lowest surface
-                $(scrollableContent).scroll(function (event) {
+                Wicle.$(scrollableContent).scroll(function (event) {
                     _this.onContainerScroll(event);
                 });
             }
             Container.prototype.onContainerScroll = function (e) {
-                var currentScrollPos = $(this.content).scrollTop();
+                var currentScrollPos = Wicle.$(this.content).scrollTop();
                 for (var _i = 0, _a = this.surface; _i < _a.length; _i++) {
                     var surface = _a[_i];
                     surface.scroll(-currentScrollPos);
@@ -52,13 +52,13 @@ var Wicle;
                 if (perspective === void 0) { perspective = 0; }
                 this.perspective = perspective;
                 this.content = surfaceContents;
-                $(surfaceContents).css({
+                Wicle.$(surfaceContents).css({
                     position: 'fixed',
                     transform: 'translate3d(0, 0, 0)'
                 });
             }
             Surface.prototype.scroll = function (scrollPos) {
-                $(this.content).css({
+                Wicle.$(this.content).css({
                     transform: "translate3d(0, " + scrollPos * this.perspective + "px, 0)"
                 });
             };

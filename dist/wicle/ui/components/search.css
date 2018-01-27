@@ -36,4 +36,8 @@
 
 .w-search.wo-xxlarge > input[type=search] { font-size: 3rem; padding-left: 5.5rem; }
 
+.w-search.wo-expand { width: 100%; }
+
+.w-search.wo-expand > input[type=search] { width: 100%; }
+
 /*# sourceMappingURL=search.css.map */

@@ -42,7 +42,7 @@ $w-layout-default-generate-classes:   true !default;   // enable class generatio
   //@include ssv($key, 'header/padding', 1rem 0.5rem, true);
 
   //--- header-trailer
-  @include ssv($key, 'header-trailer/padding', (1rem), true);
+  //@include ssv($key, 'header-trailer/padding', (1rem), true);
 
   //--- page
   @include ssv($key, 'page/width', $w-site-page-width, true);
@@ -58,7 +58,7 @@ $w-layout-default-generate-classes:   true !default;   // enable class generatio
   @include ssv($key, 'content/padding', 0 cv('sidebar/spacing')/2 0 0, true);
 
   //--- footer
-  @include ssv($key, 'footer/margin', (1rem auto), true);
+  @include ssv($key, 'footer/margin', (0rem auto), true);
   @include ssv($key, 'footer/padding', (2rem 1rem), true);
   @include ssv($key, 'footer/divider', (1px solid gray(70%, 0.5)), true);
 
@@ -94,50 +94,42 @@ $w-layout-default-generate-classes:   true !default;   // enable class generatio
     margin: 0 auto;
     z-index: $z-index; // header should appear above other layout objects
     @include w-clearfix();
-    & + .l-header-trailer {
-      position: absolute;
-      z-index: cv('site/z-index') - 1;
-      width: 100%;
-      padding: cv('header-trailer/padding');
-      display: none;
-    }
+    //& + #l-header-trailer {
+    //  position: absolute;
+    //  z-index: cv('site/z-index') - 1;
+    //  width: 100%;
+    //  padding: cv('header-trailer/padding');
+    //  display: none;
+    //}
   }
 
   #l-page {
     max-width: cv('page/width');
     margin: 0 auto;
     padding: cv('page/padding');
-    //&.wo-single {
-    //  width: 100%;
-    //  @include w-center;
-    //  #l-content,
-    //  #l-sidebar {
-    //    width: 100%;
-    //  }
-    //}
+    #l-content {
+      width: 100%;
+      padding: 0;
+    }
+    #l-sidebar {
+      width: 100%;
+      padding: 0;
+    }
+    &:not(.wo-single) {
+      @include w-mq(cv('site/breakpoint')) {
+        #l-content {
+          float: left;
+          width: cv('content/width');
+          padding: cv('content/padding');
+        }
+        #l-sidebar {
+          float: right;
+          width: cv('sidebar/width');
+          padding: cv('sidebar/padding');
+        }
+      }
+    }
     @include w-clearfix();
-  }
-
-  #l-content {
-    width: 100%;
-    padding: 0;
-
-    @include w-mq(cv('site/breakpoint')) {
-      float: left;
-      width: cv('content/width');
-      padding: cv('content/padding');
-    }
-  }
-
-  #l-sidebar {
-    width: 100%;
-    padding: 0;
-
-    @include w-mq(cv('site/breakpoint')) {
-      float: right;
-      width: cv('sidebar/width');
-      padding: cv('sidebar/padding');
-    }
   }
 
   #l-footer {

@@ -8,7 +8,7 @@ repo:             "https://github.com/shnam7/wicle"
 # source and destination is set by gulpfile.js
 source:           .
 destination:      _gh_pages
-version:          1.0.0-alpha.2
+version:          1.0.0-alpha.3
 encoding:         utf-8
 exclude:          [assets, 'Gemfile*']
 markdown:         kramdown

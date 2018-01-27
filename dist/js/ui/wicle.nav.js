@@ -13,7 +13,7 @@ var Wicle;
             var _this = this;
             // reset out-of-viewport status on window resize
             this.flipHandler = function (e) {
-                $('.w-nav').find('[aria-flip]').removeAttr('aria-flip');
+                Wicle.$('.w-nav').find('[aria-flip]').removeAttr('aria-flip');
             };
             // detect and respond to media query changes
             this.mqChangeHandler = function (e) {
@@ -41,7 +41,7 @@ var Wicle;
                 e.stopPropagation();
                 e.preventDefault();
                 var opts = _this.options;
-                var $target = $(e.target);
+                var $target = Wicle.$(e.target);
                 var href = $target.attr('href');
                 // set target to w-nav-parent
                 $target = $target.parent();
@@ -64,12 +64,12 @@ var Wicle;
                     window.location.href = href;
             };
             this.element = el;
-            this.options = $.extend(true, {}, Nav.defaultOptions, options);
+            this.options = Wicle.$.extend(true, {}, Nav.defaultOptions, options);
             this.create();
         }
         Nav.prototype.create = function () {
-            var $nav = $(this.element);
-            $.data(this.element, 'w-nav', this);
+            var $nav = Wicle.$(this.element);
+            Wicle.$.data(this.element, 'w-nav', this);
             this.classes = $nav.attr('class');
             // set basic classes
             $nav.addClass('w-nav')
@@ -81,7 +81,7 @@ var Wicle;
                 .parent().addClass('w-nav-parent');
             $nav.filter(':not(.wo-icon)').find('.w-nav-parent')
                 .children('.w-nav-item-wrapper').each(function (idx, el) {
-                var $el = $(el);
+                var $el = Wicle.$(el);
                 if ($el.children('.w-nav-parent-marker').length === 0)
                     $el.append('<span class="w-nav-parent-marker">');
             });
@@ -89,7 +89,7 @@ var Wicle;
             var $dropdown = $nav.filter('.wo-dropdown, .wo-default');
             // check divider items: item text only with '-' or unicode dashes or spaces
             $dropdown.find('.w-nav-item').each(function (index, el) {
-                var $el = $(el);
+                var $el = Wicle.$(el);
                 // if (!/[^\-\u2014\u2013\s]/.test($el.text())) $el.addClass('w-nav-divider');
                 // text should starts with one or more dashes
                 if (/^[\-\u2014\u2013]+/.test($el.text()))
@@ -98,7 +98,7 @@ var Wicle;
             // check out-of-viewport status
             $dropdown.find('.w-nav-parent')
                 .off('mouseenter').on('mouseenter', function () {
-                var $sub = $(this).children('.w-nav-child');
+                var $sub = Wicle.$(this).children('.w-nav-child');
                 // check element position if it exceeds viewport
                 // ref: http://stackoverflow.com/questions/8897289/how-to-check-if-an-element-is-off-screen
                 // ref: http://stackoverflow.com/questions/1567327/using-jquery-to-get-elements-position-relative-to-viewport
@@ -117,9 +117,9 @@ var Wicle;
             var $accordion = $nav.filter('.wo-accordion');
             // add accordion click area to avoid link activation
             $accordion.find('.w-nav-item-wrapper').each(function (idx, el) {
-                var $el = $(el);
+                var $el = Wicle.$(el);
                 if ($el.children('.w-nav-accordion-click-area').length === 0)
-                    $el.after($('<span class="w-nav-accordion-click-area"></span>'));
+                    $el.after(Wicle.$('<span class="w-nav-accordion-click-area"></span>'));
             });
             // check manually activated items
             $nav.find('.w-state-active').addClass('aria-state-active');
@@ -127,24 +127,24 @@ var Wicle;
             $accordion.find('.w-nav-item-wrapper,.w-nav-accordion-click-area')
                 .off('click', this.accordionClickEventHandler)
                 .on('click', this.accordionClickEventHandler);
-            $(window).off('resize', this.flipHandler).on('resize', this.flipHandler);
+            Wicle.$(window).off('resize', this.flipHandler).on('resize', this.flipHandler);
             if (this.options.mqChangeToNormal || this.options.mqChangeToMobile) {
                 window.removeEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
                 window.addEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
             }
         };
         Nav.prototype.destroy = function () {
-            var $nav = $(this.element);
+            var $nav = Wicle.$(this.element);
             // remove dynamic elements
             $nav.find(Nav.dynamicElements).remove();
             // remove dynamic classes
             $nav.find(Nav.dynamicClasses).removeClass(Nav.dynamicClasses);
             // remove event handlers
-            $(window).off('resize', this.flipHandler);
+            Wicle.$(window).off('resize', this.flipHandler);
             window.removeEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
             $nav.filter('.wo-accordion').find('.w-nav-parent,.w-nav-accordion-click-area').off('click');
             // remove nav object
-            $.removeData(this.element, 'w-nav');
+            Wicle.$.removeData(this.element, 'w-nav');
         };
         Nav.defaultOptions = {
             speed: 200,
@@ -166,7 +166,7 @@ var Wicle;
     Wicle.Nav = Nav;
     function nav(selector, options) {
         if (options === void 0) { options = {}; }
-        $(selector).each(function (idx, el) {
+        Wicle.$(selector).each(function (idx, el) {
             new Nav(el, options);
         });
     }

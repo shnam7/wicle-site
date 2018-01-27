@@ -12,8 +12,8 @@ var Wicle;
         }
         MediaQuery.prototype.init = function (breakPoints, options) {
             if (options === void 0) { options = {}; }
-            this.breakPoints = $.extend({}, breakPoints);
-            this.options = $.extend(true, {}, MediaQuery.defaultOptions, options);
+            this.breakPoints = Wicle.$.extend({}, breakPoints);
+            this.options = Wicle.$.extend(true, {}, MediaQuery.defaultOptions, options);
             this.prevWidth = Wicle.getViewporSize().width;
             this.prevState = this.getMQState(this.prevWidth);
         };
@@ -43,7 +43,7 @@ var Wicle;
                 });
                 e.stopPropagation();
             };
-            $(window).off('resize', resizeHandler).on('resize', resizeHandler);
+            Wicle.$(window).off('resize', resizeHandler).on('resize', resizeHandler);
         };
         ;
         /**

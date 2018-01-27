@@ -52,3 +52,9 @@ title: Search
 {::nomarkdown}
 {% include demo/search.html cls=cls %}
 {:/}
+
+{% assign cls='w-search wo-expand' %}
+### class="{{cls}}"
+{::nomarkdown}
+{% include demo/search.html cls=cls %}
+{:/}
