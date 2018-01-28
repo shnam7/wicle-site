@@ -277,7 +277,7 @@ ul, ol { padding-left: 1rem; }
 
 .w-navbar a:hover { color: white; }
 
-.w-navbar + .w-navbar-trailer { position: relative; z-index: 0; margin: 0 auto; display: none; padding: 0.5rem 1rem; border-top: 1px solid #b3b3b3; }
+.w-navbar + .w-navbar-trailer { position: absolute; width: 100%; z-index: 0; margin: 0 auto; display: none; padding: 0.5rem 1rem; border-top: 1px solid #b3b3b3; }
 
 .w-nav { display: inline-block; position: relative; box-sizing: border-box; list-style: none; margin: 0; outline: 0; z-index: 1000; font-family: Arial, Helvetica, Verdana, sans-serif, Georgia, Times, Times New Roman, serif; font-size: 1rem; font-weight: normal; padding: 0; background-color: #fbfcfc; }
 
