@@ -39,4 +39,4 @@ var Wicle;
 //         width:$element.outerWidth(), height:$element.outerHeight() };
 //     if (tmpCSS) $element.css(tmpCSS); // reset element
 //     return ret;
-// } 
+// }

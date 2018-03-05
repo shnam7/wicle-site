@@ -37,7 +37,7 @@
   "devDependencies": {
     "@types/jquery": "^3.3.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-build-manager": "github:shnam7/gulp-build-manager",
+    "gulp-build-manager": "github:shnam7/gulp-build-manager#v2.1-dev",
     "gulp-clone": "^2.0.1",
     "gulp-cssnano": "^2.1.2",
     "gulp-filter": "^5.1.0",

@@ -95,4 +95,4 @@ String.prototype.parseOptions = function (separator) {
 //     return new Promise<void>(function (resolve) {
 //         setTimeout(resolve, msec);
 //     });
-// } 
+// }
