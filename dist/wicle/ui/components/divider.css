@@ -1,23 +1,39 @@
-.w-divider { padding: 1px 0 0 0; width: 100%; height: auto; user-select: none; z-index: 0; margin: 1.5rem 0; position: relative; text-align: center; }
-
-.w-divider:before { content: ''; display: block; position: absolute; z-index: -1; top: 50%; width: 100%; border-top: 1px solid #cccccc; }
-
-.w-divider > span, .w-divider .w-divider-text { display: inline; padding: 0.2rem 1rem; border-radius: 3px; }
-
-.w-divider > span, .w-divider .w-divider-text { background: white; }
-
-.w-divider.wo-fit { margin: 0 0; }
-
-.w-divider.wo-skinny { margin: 0.25rem 0; }
-
-.w-divider.wo-slim { margin: 0.5rem 0; }
-
-.w-divider.wo-thin { margin: 1rem 0; }
-
-.w-divider.wo-thick { margin: 2rem 0; }
-
-.w-divider.wo-fat { margin: 3rem 0; }
-
-.w-divider.wo-transparent:before { display: none; }
+.w-divider {
+  padding: 1px 0 0 0;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  z-index: 0;
+  margin: 1.5rem 0;
+  position: relative;
+  text-align: center; }
+  .w-divider:before {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    width: 100%;
+    border-top: 1px solid #cccccc; }
+  .w-divider > span, .w-divider .w-divider-text {
+    display: inline;
+    padding: 0.2rem 1rem;
+    border-radius: 3px; }
+  .w-divider > span, .w-divider .w-divider-text {
+    background: white; }
+  .w-divider.wo-fit {
+    margin: 0 0; }
+  .w-divider.wo-skinny {
+    margin: 0.25rem 0; }
+  .w-divider.wo-slim {
+    margin: 0.5rem 0; }
+  .w-divider.wo-thin {
+    margin: 1rem 0; }
+  .w-divider.wo-thick {
+    margin: 2rem 0; }
+  .w-divider.wo-fat {
+    margin: 3rem 0; }
+  .w-divider.wo-transparent:before {
+    display: none; }
 
 /*# sourceMappingURL=divider.css.map */

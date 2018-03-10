@@ -44,7 +44,7 @@ const scripts = {
   },
 
   clean: [upath.join(destRoot, 'js')],
-  watch: {livereload:true}
+  watch: {browserSync:true}
 };
 
 const scriptsConcated = Object.assign({}, scripts, {
@@ -139,7 +139,7 @@ const jekyll = {
       '!' + upath.join(jkSrc, 'gulpfile.*'),
       // upath.join(srcRoot, 'scss/**/*'),
     ],
-    livereload:true
+    browserSync:true
   },
   clean: [jkDest, '.jekyll-metadata'],
 };
@@ -154,6 +154,6 @@ gbm({
   systemBuilds: {
     build: [wicle, jekyll],
     default: ['@clean', '@build'],
-    watch: { livereload: {start:true}}
+    watch: { browserSync: {server: './_gh_pages'}}
   },
 });

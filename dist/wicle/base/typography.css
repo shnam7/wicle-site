@@ -1,21 +1,37 @@
-h1, h2, h3, h4, h5, h6 { font-weight: 600; }
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600; }
 
-h1 { font-size: 2rem; margin: 0.67rem 0 1rem; }
+h1 {
+  font-size: 2rem;
+  margin: 0.67rem 0 1rem; }
 
-h2 { font-size: 1.5rem; margin: 0.83rem 0 1rem; }
+h2 {
+  font-size: 1.5rem;
+  margin: 0.83rem 0 1rem; }
 
-h3 { font-size: 1.17rem; margin: 1rem 0 1rem; }
+h3 {
+  font-size: 1.17rem;
+  margin: 1rem 0 1rem; }
 
-h4 { font-size: 1rem; margin: 1rem 0 1rem; }
+h4 {
+  font-size: 1rem;
+  margin: 1rem 0 1rem; }
 
-h5 { font-size: 0.83rem; margin: 1rem 0 1rem; }
+h5 {
+  font-size: 0.83rem;
+  margin: 1rem 0 1rem; }
 
-h6 { font-size: 0.67rem; margin: 1rem 0 1rem; }
+h6 {
+  font-size: 0.67rem;
+  margin: 1rem 0 1rem; }
 
-ul, ol { padding-left: 1rem; }
+ul, ol {
+  padding-left: 1rem; }
 
-.w-bold { font-weight: bold; }
+.w-bold {
+  font-weight: bold; }
 
-.w-normal { font-weight: normal; }
+.w-normal {
+  font-weight: normal; }
 
 /*# sourceMappingURL=typography.css.map */

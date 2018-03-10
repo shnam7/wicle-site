@@ -1,9 +1,12 @@
-.w-image { max-width: 100%; height: auto; }
-
-.w-image.wo-frame, .w-image.wo-thumbnail { padding: 0.15rem; border: 1px solid rgba(68, 68, 68, 0.5); }
-
-.w-image.wo-round, .w-image.wo-thumbnail { border-radius: 2px; }
-
-.w-image.wo-circle { border-radius: 50%; }
+.w-image {
+  max-width: 100%;
+  height: auto; }
+  .w-image.wo-frame, .w-image.wo-thumbnail {
+    padding: 0.15rem;
+    border: 1px solid rgba(68, 68, 68, 0.5); }
+  .w-image.wo-round, .w-image.wo-thumbnail {
+    border-radius: 2px; }
+  .w-image.wo-circle {
+    border-radius: 50%; }
 
 /*# sourceMappingURL=image.css.map */
