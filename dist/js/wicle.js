@@ -372,7 +372,7 @@ var Wicle;
                 }
             };
             Container.prototype.addSurface = function (surface) {
-                if (this.surface.length == 0) {
+                if (this.surface.length == 0) { // if first surface
                     if (surface.perspective <= 0)
                         surface.perspective = 1;
                 }
