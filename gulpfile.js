@@ -74,7 +74,7 @@ const docs = {
     buildName: 'docs:scss',
     builder: 'GCSSBuilder',
     src: upath.join(docsRoot, 'assets/scss/**/*.scss'),
-    dest: upath.join(docsDest, 'css'),
+    dest: upath.join(docsRoot, 'css'),
     flushStream: true,
     buildOptions: {
       minifyOnly:true,

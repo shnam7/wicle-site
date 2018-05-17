@@ -1,6 +1,6 @@
 {
   "name": "wicle",
-  "version": "1.0.0-alpah.3",
+  "version": "1.0.0",
   "description": "Component library for Web development.",
   "files": [
     "dist",
@@ -31,14 +31,13 @@
     "web",
     "ui"
   ],
-  "author": "Robin Soo-hyuk Nam",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/shnam7/wicle/issues"
   },
   "homepage": "https://github.com/shnam7/wicle#readme",
   "devDependencies": {
-    "@types/jquery": "latest",
+    "@types/jquery": "^3.3.2",
     "browser-sync": "^2.24.4",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-build-manager": "^3.0.3",
@@ -47,7 +46,7 @@
     "gulp-filter": "latest",
     "gulp-order": "latest",
     "gulp-postcss": "latest",
-    "gulp-rename": "latest",
+    "gulp-rename": "^1.2.3",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "latest",
     "gulp-typescript": "^4.0.2",
