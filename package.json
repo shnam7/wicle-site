@@ -18,7 +18,8 @@
     "clean": "rimraf dist",
     "clean-docs": "rimraf _gh_pages docs/.jekyll-metadata",
     "clean-all": "npm run clean && npm run clean-docs",
-    "prepare": "npm run clean && npm run build-wicle",
+    "prepare": "gulp wicle",
+    "prepare-to-pubish": "npm run clean && npm run prepare",
     "prepare-to-commit": "npm run clean && npm run build"
   },
   "repository": {
