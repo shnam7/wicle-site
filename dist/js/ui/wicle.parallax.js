@@ -19,7 +19,7 @@ var Wicle;
                 this.surface = [];
                 this.perspective = perspective;
                 this.lastPerspective = 1; // perspective of lowest surface
-                Wicle.$(scrollableContent).scroll(function (event) {
+                Wicle.$(scrollableContent).on('scroll', function (event) {
                     _this.onContainerScroll(event);
                 });
             }

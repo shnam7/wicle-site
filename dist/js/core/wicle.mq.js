@@ -45,7 +45,6 @@ var Wicle;
             };
             Wicle.$(window).off('resize', resizeHandler).on('resize', resizeHandler);
         };
-        ;
         /**
          *  Convert width to Media Query name
          *  @param width

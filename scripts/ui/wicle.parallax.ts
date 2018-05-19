@@ -23,7 +23,7 @@ namespace Wicle {
         this.perspective = perspective;
         this.lastPerspective = 1;   // perspective of lowest surface
 
-        $(scrollableContent).scroll((event: JQuery.Event) => {
+        $(scrollableContent).on('scroll',(event: JQuery.Event) => {
           this.onContainerScroll(event);
         });
       }

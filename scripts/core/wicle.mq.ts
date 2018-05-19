@@ -110,7 +110,7 @@ namespace Wicle {
         e.stopPropagation();
       };
       $(window).off('resize',resizeHandler).on('resize', resizeHandler);
-    };
+    }
 
     /**
      *  Convert width to Media Query name

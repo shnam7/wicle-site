@@ -87,7 +87,6 @@ var Wicle;
             };
             Wicle.$(window).off('resize', resizeHandler).on('resize', resizeHandler);
         };
-        ;
         /**
          *  Convert width to Media Query name
          *  @param width
@@ -360,7 +359,7 @@ var Wicle;
                 this.surface = [];
                 this.perspective = perspective;
                 this.lastPerspective = 1; // perspective of lowest surface
-                Wicle.$(scrollableContent).scroll(function (event) {
+                Wicle.$(scrollableContent).on('scroll', function (event) {
                     _this.onContainerScroll(event);
                 });
             }
