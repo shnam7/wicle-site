@@ -1,0 +1,196 @@
+//=========================================================
+//
+//  @package Wicle Collection
+//  @module layouts/two-column
+//
+//=========================================================
+@import "../../../wdk";
+
+// shortcut function: valid only in this file
+@function cv($path:null) {
+  @return gsv('w-layout-default', $path);
+}
+
+
+$w-layout-default-generate-classes: true !default; // enable class generation
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-layout-default-init {
+  @if mixin-exists(w-hook-layout-default-init) {
+    @include w-hook-layout-default-init();
+  }
+
+  //--- globals variables
+  $w-layout-default-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-layout-default';
+
+  //--- site
+  @include ssv($key, 'site/max-width', $w-site-max-width, true);
+  @include ssv($key, 'site/z-index', $w-z-index + 100, true);
+  @include ssv($key, 'site/breakpoint', 'large', true);
+
+  //--- header
+  @include ssv($key, 'header/fg', null, true);
+  @include ssv($key, 'header/bg', $w-color-theme, true);
+  @include ssv($key, 'header/gradient', (level:20%, direction:top));
+  //@include ssv($key, 'header/height', 4rem, true);
+  //@include ssv($key, 'header/padding', 1rem 0.5rem, true);
+
+  //--- header-trailer
+  //@include ssv($key, 'header-trailer/padding', (1rem), true);
+
+  //--- page
+  @include ssv($key, 'page/width', $w-site-page-width, true);
+  @include ssv($key, 'page/padding', 1rem, true);
+  @include ssv($key, 'page/font-family', null, true);
+  @include ssv($key, 'page/font-size', 1.15rem, true);
+
+  //--- sidebar: sidebar size defined first and then content size determined
+  @include ssv($key, 'sidebar/width', 20rem, true);
+  @include ssv($key, 'sidebar/spacing', 3rem, true);
+  @include ssv($key, 'sidebar/padding', 0 0 0 cv('sidebar/spacing')/2, true);
+
+  //--- contents
+  @include ssv($key, 'content/width', calc(100% - #{cv('sidebar/width')}), true);
+  @include ssv($key, 'content/padding', 0 cv('sidebar/spacing')/2 0 0, true);
+
+  //--- footer
+  @include ssv($key, 'footer/margin', (0rem auto), true);
+  @include ssv($key, 'footer/padding', (2rem 1rem), true);
+  @include ssv($key, 'footer/divider', (1px solid gray(70%, 0.5)), true);
+  @include ssv($key, 'footer/fg', $w-color-text-white, true);
+  @include ssv($key, 'footer/bg', rgba(#000, 0.85), true);
+
+  //--- offcanvas
+  @include ssv($key, 'offcanvas/z-index', cv('site/z-index') + 100, true);
+  @include ssv($key, 'offcanvas/fg', $w-color-text-white, true);
+  @include ssv($key, 'offcanvas/bg', $w-color-text-black, true);
+
+  //--- z-index
+  @include ssv($key, 'z-index', (1px solid gray(70%, 0.5)), true);
+
+  @if mixin-exists(w-hook-layout-default-override) {
+    @include w-hook-layout-default-override();
+  }
+}
+
+//-----------------------------------------------
+//  mixins's
+//-----------------------------------------------
+@mixin w-layout-default-core() {
+  [id^='l-'] {
+    box-sizing: border-box;
+  }
+
+  #l-site-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  #l-header {
+    $z-index: cv('site/z-index');
+
+    position: relative;
+    //height: cv('header/height');    // height this should be set in applications
+    margin: 0 auto;
+    z-index: $z-index; // header should appear above other layout objects
+    @include w-clearfix();
+    //& + #l-header-trailer {
+    //  position: absolute;
+    //  z-index: cv('site/z-index') - 1;
+    //  width: 100%;
+    //  padding: cv('header-trailer/padding');
+    //  display: none;
+    //}
+  }
+
+  #l-banner {
+  }
+
+  #l-page {
+    font-size: cv(page/font-size);
+    font-family: cv(page/font-family);
+    max-width: cv('page/width');
+    margin: 0 auto;
+    padding: cv('page/padding');
+    .content {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0;
+    }
+    .sidebar {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0;
+    }
+    &:not(.wo-single) {
+      @include w-mq(cv('site/breakpoint')) {
+        .content {
+          float: left;
+          width: cv('content/width');
+          padding: cv('content/padding');
+          &[position=left] {
+            float: left;
+          }
+        }
+        .sidebar {
+          float: left;
+          width: cv('sidebar/width');
+          padding: cv('sidebar/padding');
+        }
+      }
+    }
+    pre, code {
+      font-family: $w-font-mono;
+      font-size: 14px;
+    }
+    @include w-clearfix();
+  }
+
+  #l-footer {
+    width: 100%;
+    margin: cv('footer/margin');
+    padding: cv('footer/padding');
+
+    text-align: center;
+    border-top: cv('footer/divider');
+  }
+
+  #l-offcanvas {
+    z-index: cv('offcanvas/z-index');
+    color: cv('offcanvas/fg');
+    background: cv('offcanvas/bg');
+  }
+}
+
+@mixin w-layout-default-styles() {
+  #l-header {
+    $fg: cv(header/fg);
+    $bg: cv(header/bg);
+    $gr: cv(header/gradient);
+    color: if($fg, $fg, if($bg, yiq-color($bg), false));
+    @if $bg {
+      background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
+    }
+  }
+  #l-footer {
+    color: cv(footer/fg);
+    background-color: cv(footer/bg);
+    border-top: cv(footer/divider);
+  }
+}
+
+@mixin w-layout-default-classes {
+  @include w-layout-default-core;
+  @include w-layout-default-styles;
+}
+
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-layout-default-init;
+@include w-layout-default-classes;

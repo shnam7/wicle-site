@@ -1,2 +1,11 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.21.4/system-production.js"></script>
 <script src="{{site.baseurl}}/js/wicle.min.js"></script>
 <script src="{{site.baseurl}}/js/docs.min.js"></script>
+<script>SystemJS.import("docs")</script>
+
+{% if page.script %}
+<script src="{{site.baseurl}}/js/{{ page.script }}.min.js"></script>
+{% endif %}
+{% if page.jsloader %}
+<script>SystemJS.import("{{page.jsloader}}")</script>
+{% endif %}

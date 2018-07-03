@@ -7,6 +7,6 @@ Component library for Web front development
 Wicle is open but documentation and support can be limited, as of now.
 
 <br>
-<p align="center">
+<div align="center">
   <p align=center>Copyright &copy; 2017, under <a href="./LICENSE">MIT</a></p>
 </div>

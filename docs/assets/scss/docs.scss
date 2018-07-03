@@ -1,54 +1,62 @@
 //
 //  Wicle Docs
+//
 
+//@import "themes/friench-rose";
 @import "wicle.config";
-@import "region/banner";
+@import "wicle";
+@import "collections/vendor/pygments/pygments-manni";
 
-@lost gutter 1rem;
+#l-banner {
+  margin:0;
+  border-top: 1px solid $w-color-text-white;
+  padding: 2rem 1rem;
+  color: gray(90%);
+  text-align: center;
+  background-color: shade($w-color-theme, 25%); // smart-scale($w-color-theme, -5%);
 
-.color-items {
-  lost-center: $w-site-page-width;
-  lost-utility: clearfix;
-  div {
-    lost-column: 1/2;
-    @include w-mq(large) {
-      lost-column: 1/3;
+  .title {
+    font-size: 2rem;
+    color: $w-color-orange;
+  }
+  .description {
+    font-size: 1.2rem;
+    font-weight: normal;
+    padding:0;
+    margin-bottom:0.5rem;
+  }
+  .version {
+    margin-bottom:0.5rem;
+    padding:0.5rem;
+  }
+  .btn, .btn:visited {
+    color: #000;
+  }
+  .btn {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    background-color: rgba($w-color-orange, 0.9);
+    border-radius: 2px; // 0.3rem;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    &:hover {
+      color: $w-color-dark-red;
     }
-
-    // Style for color item entry. This is set by javascript
-    .color-item {
-      margin: 0.5rem 0.5rem;
-      box-sizing: border-box;
-      padding: 1rem;
-      min-height: 3rem;
-      font-weight: normal;
-      border-radius: 4px;
+    &:visited {
+      text-decoration: none;
     }
   }
 }
 
-#custom-menu {
-  $conf:    ();
-  $conf:    scv($conf, 'bg', $w-color-text-black);
-  $conf:    scv($conf, 'item-wrapper/bg', $w-color-text-black);
-  $conf:    scv($conf, 'item-wrapper/fg', $w-color-text-white);
-  @include w-nav-styles($conf);
-}
-
-.demo-divider-panel {
-  font-family: $w-font-sans;
-
-  padding: 0.5rem 1rem;
-  border: 1px solid gray(80%);
-  border-radius: $w-border-radius;
-  &.dark {
-    color: $w-color-text-white;
-    background: gray(25%);
-    .w-divider-text {
-      color: $w-color-text-black;
-    }
+#l-footer {
+  //background-color: darken($w-color-theme, 25%);
+  background-color: rgba(#000, 0.85);
+  .logo-text {
+    color: rgba(yellow, 0.75);
   }
-}
-
-.demo-image-box {
+  a {
+    color: rgba(lightgreen, 0.75);
+  }
 }

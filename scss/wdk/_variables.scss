@@ -1,0 +1,17 @@
+//=========================================================
+//
+//  @package Wicle utilities
+//
+//  @author Robin Soo-hyuk Nam, (http://windron.com)
+//  @date Aug 15, 2016
+//
+//=========================================================
+
+//--- variables
+@if mixin-exists(wdk-hook-variables-init) { @include wdk-hook-variables-init(); }
+
+@import "variables/base";
+@import "variables/color";
+@import "variables/fonts";
+@import "variables/timing-functions";
+@import "variables/theme";

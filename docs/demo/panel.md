@@ -1,15 +1,11 @@
 ---
 layout: default
 title: Panel
+script: demo/panel
 ---
 
 # Panel
 <button id='w-panel-demo-color-toggle' class='w-button wo-primary' style="float:right">Alpha Toggle</button>
-<script>
-  $('#w-panel-demo-color-toggle').click(function () {
-    $('.demo-panel').toggleClass('wo-alpha');
-  });
-</script>
 
 {% assign cls='w-panel' %}
 ### class="{{cls}}"

@@ -1,0 +1,195 @@
+//=========================================================================
+//  @package      Wicle Collection
+//  @module       ui/components/navbar
+//  @description  Navigation bar
+//
+//  @classes
+//    .w-navbar:          navbar
+//    .w-navbar-item:     navbar item inside navbar
+//    .w-navbar-brand:    brnad item inside navbar
+//    .w-navbar-nav:      navigation item inside navbar
+//    .w-navbar-toggle:   main navigation toggle (toggles show/hide .w-navbar-trailer)
+//    .w-navbar-spacer:   items that comes next will be right aligned
+//    .w-navbar-trailer:  space to show accordion box. toggled by ,w-nav-toggle
+//
+//  @usage
+//    <nav class="w-navbar">
+//      <div class="w-navbar-brand>Logo</dev>
+//      <div class="w-navbar-nav>navigation menu</dev>
+//      <div class="w-navbar-item>generic items:ex)searchbox</dev>
+//      <div class="w-navbar-toggle>menu toggle button</dev>
+//    </nav>
+//
+//=========================================================================
+
+@import "../../../wdk";
+
+// shortcut function: valid only in this file
+@function cv($path:null) {  @return gsv('w-navbar', $path);  }
+
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-navbar-init {
+  @if mixin-exists(w-hook-navbar-init) { @include w-hook-navbar-init(); }
+
+  //--- globals variables
+  $w-navbar-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-navbar';
+
+  //--- core
+  @include ssv($key, 'max-width', $w-site-max-width, true);
+  @include ssv($key, 'height', 3.5rem, true);
+  @include ssv($key, 'padding', 0 1.5rem, true);
+  @include ssv($key, 'fg', null, true);
+  @include ssv($key, 'bg', null, true);
+  @include ssv($key, 'gradient', (level:20%, direction:top), true);
+  @include ssv($key, 'radius', $w-border-radius, true);
+  @include ssv($key, 'item-spacing', 0.25rem, true);
+  @include ssv($key, 'breakpoint', 'large', true);
+  @include ssv($key, 'link/fg', gray(85%), true);
+  @include ssv($key, 'link/bg', null, true);
+  @include ssv($key, 'link/hover/fg', white, true);
+  @include ssv($key, 'link/hover/bg', null, true);
+
+  //--- brand
+  @include ssv($key, 'brand/font-family', $w-font-sans, true);
+  @include ssv($key, 'brand/font-size', 1.25rem, true);
+  @include ssv($key, 'brand/font-weight', 600, true);
+  @include ssv($key, 'brand/fg', gray(90%), true);
+  @include ssv($key, 'brand/hover/fg', white, true);
+
+  //--- toggle
+  @include ssv($key, 'toggle/fg', gray(80%), true);
+  @include ssv($key, 'toggle/hover/fg', white, true);
+
+  //--- optional dropdown trailer
+  @include ssv($key, 'trailer/padding', 0.5rem 1rem, true);
+  @include ssv($key, 'trailer/separator', 1px solid gray(70%), true);
+
+  @if mixin-exists(w-hook-navbar-override) { @include w-hook-navbar-override(); }
+}
+
+@mixin w-navbar-core {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: 0 auto;
+  border: none;
+
+  max-width: cv(max-width);
+  height: cv(height);
+  padding: cv(padding);
+  border-radius: cv(radius);
+
+  // set item spacing
+  & > :nth-child(n+2) {
+    margin-left: cv(item-spacing);
+  }
+
+  // navbar items
+  .wz-item, .wz-brand, .wz-toggle {
+    flex: 0 0 auto;
+    //border: 1px solid red;
+  }
+
+  // brand
+  .wz-brand {
+    font-family: cv(brand/font-family);
+    font-size: cv(brand/font-size);
+    font-weight: cv(brand/font-weight);
+
+    $fg: cv(brand/fg);
+    $hover: cv('brand/hover/fg');
+    color: $fg;
+
+    &:hover,
+    &:focus {
+      color: if($hover, $hover, if($fg, smart-scale($fg, 15%), null));
+    }
+    transition: color 0.2s;
+  }
+
+  // item spacer
+  .wz-spacer {
+    flex: 1 1 0;   // grow shrink basis
+  }
+  .wz-nav.wo-responsive {
+    display: none;
+    @include w-mq(cv(breakpoint)) {
+      display: inline-block;
+    }
+  }
+
+  .wz-toggle {
+    &.wo-responsive {
+      @include w-mq(cv(breakpoint)) {
+        display: none;
+      }
+    }
+    @include w-hamburger(cv('toggle/fg'), cv('toggle/hover/fg'));
+    margin: 0.5rem;
+  }
+}
+
+@mixin w-navbar-options {
+}
+
+@mixin w-navbar-styles() {
+  $fg: cv(fg);
+  $bg: cv(bg);
+  $gr: cv(gradient);
+  color: if($fg, $fg, if($bg, yiq-color($bg), false));
+  @if $bg {
+    background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
+  }
+
+  a {
+    color: cv('link/fg');
+    background: cv('link/bg');
+    &:hover {
+      color: cv('link/hover/fg');
+      background: cv('link/hover/bg');
+    }
+  }
+}
+
+
+@mixin w-navbar-brand($brand:null) {
+  $brand: map-extend((), gcv($w-conf-navbar, 'brand'), $brand);
+  $font: to-string(map-values(gcv($brand, 'font')), ' ');
+  $color-fg: gcv($brand, 'color/fg');
+}
+
+@mixin w-navbar-trailer-core {
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+  margin: 0 auto;
+  display: none;
+
+  padding: cv(trailer/padding);
+  border-top: cv(trailer/separator);;
+}
+
+@mixin w-navbar-classes {
+  .w-navbar {
+    @include w-navbar-core;
+    @include w-navbar-options;
+    @include w-navbar-styles;
+
+    &+.w-navbar-trailer {
+      @include w-navbar-trailer-core;
+    }
+  }
+}
+
+
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-navbar-init;
+@include w-navbar-classes;

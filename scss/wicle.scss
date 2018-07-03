@@ -5,22 +5,29 @@
 //
 //=========================================================
 
-//--- base
-@import "wicle/base/reset";
-@import "wicle/base/typography";
+@import "wdk";
 
-//--- utilities
-@import "wicle/utilities/visibility";
+//--- base
+@import "collections/base/reset";
+@import "collections/base/typography";
+
+//--- utils
+@import "collections/utils/align";
+@import "collections/utils/visibility";
 
 //--- ui layouts
-@import "wicle/ui/layouts/default";
+@import "collections/ui/layouts/layout-default";
 
 //--- ui components
-@import "wicle/ui/components/navbar";
-@import "wicle/ui/components/nav";
-@import "wicle/ui/components/button";
-@import "wicle/ui/components/divider";
-@import "wicle/ui/components/panel";
-@import "wicle/ui/components/search";
-@import "wicle/ui/components/image";
-@import "wicle/ui/components/pagination";
+@import "collections/ui/components/navbar";
+@import "collections/ui/components/nav";
+@import "collections/ui/components/button";
+@import "collections/ui/components/divider";
+@import "collections/ui/components/panel";
+@import "collections/ui/components/search";
+@import "collections/ui/components/image";
+@import "collections/ui/components/pagination";
+
+//-- vendor (optional: not included by default)
+//@import "collections/vendor/prettyprint/prettyprint-github-v2";
+//@import "collections/vendor/pygments/pygments-manni";

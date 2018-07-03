@@ -1,0 +1,34 @@
+@import "wdk";
+
+$surface-count:     5;
+$box-height:        150px;
+$surface-spacing:   $box-height * 0.5;
+$box-per-surface:   10;
+
+#l-page {
+  min-height: 2000px;
+}
+.surface {
+  //position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.box {
+  border-radius: 50%;
+}
+
+@for $i from 1 through $surface-count {
+  #surface#{$i} {
+    margin-top: $surface-spacing * $i;
+    z-index: -$i;
+    .box {
+      width: 100%;
+      height: $box-height;
+      &:not(:first-child) {
+        margin-top: $box-height / 2;
+      }
+      background: gray(100% - (100 * $i / $surface-count) * 0.5 * 1%);
+    }
+  }
+}

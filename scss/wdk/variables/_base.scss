@@ -6,7 +6,7 @@
 //=========================================================
 
 //--- wicle options
-$w-wicle-mode:                  'css' !default;   // generates css classes
+$w-wicle-mode:                  'scss' !default;
 $w-wicle-postcss:               false !default;
 
 //--- layout
@@ -23,7 +23,7 @@ $w-font-size:                   14px !default;
 $w-font-size-mobile:            15px !default;
 $w-font-sans:                   Arial,Helvetica,Verdana,sans-serif !default;
 $w-font-serif:                  Georgia,Times,Times New Roman,serif !default;
-$w-font-mono:                   'Courier New',Courier,mono;
+$w-font-mono:                   Consolas,Courier,monospace;
 
 $w-line-height:                 1.5 !default;
 

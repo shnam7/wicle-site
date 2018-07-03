@@ -1,0 +1,25 @@
+- title: Docs1
+  url: '#'
+- title: Examples
+  url: '#'
+  sub:
+    - title: Colors
+      url: 'demo/colors'
+    - title: Buttons
+      url: 'demo/buttons'
+    - title: Nav
+      url: 'demo/nav'
+    - title: Divider
+      url: 'demo/divider'
+    - title: Panel
+      url: 'demo/panel'
+    - title: Search
+      url: 'demo/search'
+    - title: Image
+      url: 'demo/image'
+    - title: Parallax
+      url: 'demo/parallax'
+    - title: Pagination
+      url: 'demo/pagination'
+- title: About
+  url: '#'

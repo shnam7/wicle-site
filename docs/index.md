@@ -1,150 +1,47 @@
 ---
 layout: default
-title: Wicle
+title: Home
 frontpage: true
 ---
-# Introduction
 
-<p>Demo abcedsdsaklfkdsgfa</p> {:.w-button }
-<input type="text" name="date" id="date">
+Wicle is a modular component library for web development. It has rich collection of scss mixin's and functions, and some typescript library for web front-end developers.
 
-<ul class="w-nav wo-horizontal">
-  <li><a href="#">Home</a></li>
-  <li>
-    <a href="#">Components</a>
-    <ul>
-      <li>
-        <a href=" p-nav.html">navbar/nav</a>
-      </li>
-      <li class="w-nav-divider "></li>
-      <li><a href="#">Cancellations</a></li>
-    </ul>
-  </li>
-  <li>
-    <a href="#">Mixins</a>
-    <ul>
-      <li><a>a</a></li>
-    </ul>
-  </li>
-  <li><a href="#">Functions</a>
-  </li>
-  <li><a href="panini/index.html">Panini</a>
-  </li>
-  <li><a href="panini/gridle.html">Gridle</a>
-  </li>
-  <li><a href="#">About</a>
-    <ul>
-      <li><a href="#">Download</a></li>
-      <li><a href="#">Support</a>
-        <ul>
-          <li><a href="#">Premium support</a></li>
-          <li><a href="#">Forums</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Docs</a></li>
-      <li><a href="#">Sub test</a>
-        <ul>
-          <li><a href="#">Dummy item</a></li>
-          <li><a href="#">Dummy item</a></li>
-          <li><a href="#">more...</a>
-            <ul>
-              <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">more...</a>
-                <ul>
-                  <li><a href="#">Dummy item</a></li>
-                  <li><a href="#">Dummy item</a></li>
-                  <li><a href="#">more...</a>
-                    <ul>
-                      <li><a href="#">subMenusMinWidth</a></li>
-                      <li><a href="#">10em</a></li>
-                      <li><a href="#">forced.</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#">Dummy item</a></li>
-                  <li><a href="#">Dummy item</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">A pretty long text to test the default subMenusMaxWidth:20em setting for the sub menus</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-              <li><a href="#">Dummy item</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><a href="#">Mega menu</a>
-        <ul>
-          <li>
-            <!-- The mega drop down contents -->
-            <div style="width:400px;max-width:100%;">
-              <div style="padding:5px 24px;">
-                <p>This is a mega drop down test. Just set the "mega-menu" class to the parent UL element to inform the SmartMenus script. It can contain <strong>any HTML</strong>.</p>
-                <p>Just style the contents as you like (you may need to reset some SmartMenus inherited styles - e.g. for lists, links, etc.)</p>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
+# Installation
+
+```sh
+npm i wicle --save-dev
+```
+
+```js
+const gbm = require('gulp-build-manager');
+
+const javaScript = {
+  buildName: 'javaScript',
+  builder: 'GJavaScriptBuilder',
+  src: ['assets/scripts/js/**/*.js'],
+  dest: '_build/js',
+  outFile: 'sample.js',
+  buildOptions: {
+    minify: true,
+    sourceMap: true
+  },
+};
+
+gbm({
+  systemBuilds: {
+    build: javaScript,
+    clean: ['_build'],
+    default: ['@clean', '@build'],
+  }
+});
+```
+
+
+## Wicle Development Kit (WDK)
+wdk is scss utility library to help scss programming.
+```scss
+@import "wdk/wdk";
+```
+
+## Wicle - Wicle
+Web front-end components

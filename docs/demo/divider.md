@@ -1,15 +1,12 @@
 ---
 layout: default
 title: Divider
+style: demo/divider
+script: demo/divider
 ---
 
 # Divider
 <button id='w-divider-demo-color-toggle' class='w-button wo-primary' style="float:right">Color Toggle</button>
-<script>
-  $('#w-divider-demo-color-toggle').click(function () {
-    $('.demo-divider-panel').toggleClass('dark');
-  });
-</script>
 
 {% assign cls='w-divider' %}
 ### class="{{cls}}

@@ -1,10 +1,9 @@
 ---
 layout: default
 title: Colors
+style: demo/colors
+script: demo/colors
 ---
-
-<script src="{{site.baseurl}}/js/colors.min.js"></script>
-
 # Color collections
 
 ## color scheme

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
 <head>
   {% include head.html %}
 </head>
@@ -6,9 +6,9 @@
 <div id="l-site-container">
   <div id="l-header">{% include header.html %}</div>
   {% if page.frontpage %}<div id="l-banner">{% include banner.html %}</div>{% endif %}
-  <div id="l-page">
-    <div id="l-sidebar">{% capture toc %}{% include sidebar.md %}{% endcapture %}{{ toc | markdownify }}</div>
-    <div id="l-content" class="{{page.classes}}">{{ content }}</div>
+  <div id="l-page" class="{{page.classes}}">
+    <div class="content">{{ content }}</div>
+    <div class="sidebar">{% capture toc %}{% include sidebar.md %}{% endcapture %}{{ toc | markdownify }}</div>
   </div>
   <div id="l-footer">{% include footer.html %}</div>
 </div>

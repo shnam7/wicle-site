@@ -1,23 +1,25 @@
 # Site settings
 title:            Wicle
-description:      Compoment library for web development.
+description:      Compoment library for web front-end development.
 url:              "https://shnam7.github.io/wicle"
 repo:             "https://github.com/shnam7/wicle"
 
 # Project settings
 # source and destination is set by gulpfile.js
-source:           .
-destination:      _gh_pages
-version:          1.0.0
+#source:           .
+#destination:      _site
+version:          1.1.0
 encoding:         utf-8
-exclude:          [assets, 'Gemfile*']
 markdown:         kramdown
 highlighter:      rouge
 permalink:        pretty
-
-# Custom variable
+exclude:          ['assets', 'Gemfile*', 'gbmconfig.js', 'gulpfile.js', 'tsconfig.json', 'webpack.config.js']
 
 # Module settings
 kramdown:
   input: GFM
   auto_ids: false
+
+#keep_files:       [css, js]
+
+# Custom variable

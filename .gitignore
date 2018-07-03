@@ -2,5 +2,8 @@
 .code
 node_modules
 /_*
-.jekyll-metadata
 *.map
+/docs/_site/
+/docs/.*-triggered
+/docs/.jekyll-metadata
+/dist/

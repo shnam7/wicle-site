@@ -1,0 +1,16 @@
+@import "wdk";
+
+.demo-divider-panel {
+  font-family: $w-font-sans;
+
+  padding: 0.5rem 1rem;
+  border: 1px solid gray(80%);
+  border-radius: $w-border-radius;
+  &.dark {
+    color: $w-color-text-white;
+    background: gray(25%);
+    .w-divider-text {
+      color: $w-color-text-black;
+    }
+  }
+}

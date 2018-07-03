@@ -1,0 +1,88 @@
+//=========================================================
+//
+//  @package Wicle Collection
+//  @module base/typography
+//
+//  html5 default size in rem (not em)
+//  ref: https://www.w3.org/TR/html-markup/h1.html
+//    h1 { font-size: 2em; margin: .67rem 0 }
+//    h2 { font-size: 1.5rem; margin: .83rem 0 }
+//    h3 { font-size: 1.17rem; margin: 1rem 0 }
+//    h4 { font-size: 1rem; margin: 1.33rem 0 }
+//    h5 { font-size: .83rem; margin: 1.67rem 0 }
+//    h6 { font-size: .67rem; margin: 2.33rem 0 }
+
+//=========================================================
+
+@import "../../wdk";
+
+// shortcut function: valid only in this file
+@function cv($path:null) {  @return gsv('w-typography', $path);  }
+
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-typography-init {
+  @if mixin-exists(w-hook-typography-init) { @include w-hook-typography-init(); }
+
+  //--- globals variables
+  $w-typography-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-typography';
+
+  @include ssv($key, 'header/h1', (font-size:2em, margin:0.67em 0 1em), true);
+  @include ssv($key, 'header/h2', (font-size:1.5em, margin:0.83em 0 1em), true);
+  @include ssv($key, 'header/h3', (font-size:1.17em, margin:1em 0 1em), true);
+  @include ssv($key, 'header/h4', (font-size:1em, margin:1em 0 1em), true);      // 1.33rem
+  @include ssv($key, 'header/h5', (font-size:0.83em, margin:1em 0 1em), true);   // 1.67rem
+  @include ssv($key, 'header/h6', (font-size:0.67em, margin:1em 0 1em), true);   // 2.33rem
+
+  @if mixin-exists(w-hook-typography-override) { @include w-hook-typography-override(); }
+}
+
+
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-typography-core {
+  h1, h2, h3, h4, h5, h6 {
+    //font-family: $w-font-sans;    // removed because this is overlapping the rules in base/_reset.scss
+    font-weight: 600;
+  }
+
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-size: cv('header/h#{$i}/font-size');
+      margin: cv('header/h#{$i}/margin');
+    }
+  }
+
+  ul, ol {
+    padding-left: 1rem;
+  }
+
+  .w-bold {
+    font-weight: bold;
+  }
+
+  .w-normal {
+    font-weight: normal;
+  }
+}
+
+@mixin w-typography-styles {}
+
+@mixin w-typography-classes {
+  @include w-typography-core;
+  @include w-typography-styles;
+}
+
+
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-typography-init;
+@include w-typography-classes;

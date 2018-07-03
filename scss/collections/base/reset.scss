@@ -1,0 +1,109 @@
+//=========================================================
+//
+//  @package Wicle Collection
+//  @module base/reset
+//
+//=========================================================
+
+@import "../../wdk";
+
+// shortcut function: valid only in this file
+@function cv($path:null) {  @return gsv('w-reset', $path);  }
+
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-reset-init {
+  @if mixin-exists(w-hook-reset-init) { @include w-hook-reset-init(); }
+
+  //--- globals variables
+  $w-reset-generate-classes: true !default !global; // enable class generation
+
+  //-- local variables
+  $key: 'w-reset';
+
+  @include ssv($key, fg, $w-color-text-black, true);
+  @include ssv($key, 'link/fg', $w-color-theme-link, true);
+  @include ssv($key, 'link/hover/fg', $w-color-theme-link-hover, true);
+
+  @include ssv($key, 'list/margin-left', 1rem, true);
+
+  @if mixin-exists(w-hook-reset-override) { @include w-hook-reset-override(); }
+}
+
+
+//-----------------------------------------------
+//  mixin's
+//-----------------------------------------------
+@mixin w-reset-core {
+  html {
+    font-size: $w-font-size;
+    line-height: $w-line-height;
+  }
+
+  body {
+    word-wrap: break-word;
+    color: cv(fg);
+  }
+
+  //--- link
+  a {
+    background-color: transparent;
+    text-decoration: none;
+
+    &:hover, &:focus {
+      text-decoration: none; // underline;
+      outline: 0;
+    }
+  }
+
+  //--- headers/titles
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $w-font-sans;
+    font-weight: 600;
+  }
+
+  body, select, input, textarea {
+    color: $w-color-text-black;
+    font-family: $w-font-sans; // set base font here, to apply evenly
+  }
+
+  //-- code block
+  pre {
+    display: block;
+    font-family: $w-font-mono;
+    overflow: auto;
+    padding: 1rem;    // 0.rem
+    margin: 0.5rem 0;
+    background-color: #f3f6fa;
+    border: solid 1px #dce6f0;
+    border-radius: 3px;
+  }
+}
+
+@mixin w-reset-styles {
+  a {
+    color: cv(link/fg);
+    &:hover, &:focus {
+      color: cv('link/hover/fg');
+      //color: smart-scale(invert($fg), 25%);
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    //color: cv(fg);
+  }
+}
+
+@mixin w-reset-classes {
+  @include w-reset-core;
+  @include w-reset-styles;
+}
+
+
+//-----------------------------------------------
+//  module init
+//-----------------------------------------------
+@include w-reset-init;
+@include w-reset-classes;
