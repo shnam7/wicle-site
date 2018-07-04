@@ -17,33 +17,22 @@
 //---------------------------------------------------------
 
 //--- wicle init hooks: called before default variables are set
-@mixin w-hook-navbar-init() {
-  //$w-navbar-generate-classes: false !global;
-}
-
-@mixin w-hook-nav-init() {
-  //.w-navbar .w-nav.wo-horizontal {
-  //  &>li>a {
-  //    color: $w-color-text-white;
-  //  }
-  //  &>li:hover>a {
-  //    color: $w-color-orange;
-  //  }
-  //}
-
-  //$key: 'w-nav';
-  //@include ssv($key, 'item-wrapper/fg', $w-color-shalimar);
-}
 
 @mixin w-hook-layout-default-init() {
   //$key: 'w-layout-default';
   //@include ssv($key, 'page/font-family', $w-font-fira-sans, true);
 }
 
-@mixin w-hook-button-init() {
+@mixin w-hook-navbar-init() {
 }
 
-@mixin w-hook-navbar-init() {
+@mixin w-hook-nav-init() {
+  //$key: 'w-nav';
+  //@include ssv($key, 'item-wrapper/fg', $w-color-shalimar);
+}
+
+
+@mixin w-hook-button-init() {
 }
 
 

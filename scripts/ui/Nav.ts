@@ -120,9 +120,16 @@ class Nav {
       .find('ul').addClass('w-nav-child') // set parent/child classes, add parent marker
       .parent().addClass('w-nav-parent');
 
-    $nav.filter(':not(.wo-icon)').find('.w-nav-parent')
+    // $nav.filter(':not(.wo-icon)').find('.w-nav-parent')
+    $nav.find('.w-nav-parent')
       .children('.w-nav-item-wrapper').each((idx, el) => {
       let $el = $(el);
+      // Do not add parent-marker if wo-icon is set for the item
+      if ($el.hasClass('wo-icon')) return;
+
+      // Do not add top-level parent marker if wo-icon is set
+      if ($el.parent().parent().hasClass('wo-icon')) return;
+
       if ($el.children('.w-nav-parent-marker').length === 0)
         $el.append('<span class="w-nav-parent-marker">');
     });
