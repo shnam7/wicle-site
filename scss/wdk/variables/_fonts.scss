@@ -6,7 +6,12 @@
 //=========================================================
 
 //--- Google web fonts
-// Usage: <link href="https://fonts.googleapis.com/css?family=Fira+Sans|Lato|Open+Sans" rel="stylesheet">
-$w-font-fira-sans:              'Fira Sans', sans-serif;
-$w-font-open-sans:              'Open Sans', sans-serif;
-$w-font-lato:                   'Lato', sans-serif;
+// Usage: Single, Multi
+//<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+//<link href="https://fonts.googleapis.com/css?family=Fira+Sans|Lato|Open+Sans" rel="stylesheet">
+
+$w-font-roboto:                 'Roboto',$w-font-sans-fallback !default;
+$w-font-fira-sans:              'Fira Sans',$w-font-sans-fallback !default;
+$w-font-open-sans:              'Open Sans',$w-font-sans-fallback !default;
+$w-font-lato:                   'Lato',$w-font-sans-fallback !default;
+$w-font-noto-sans:              'Noto Sans',$w-font-sans-fallback !default;

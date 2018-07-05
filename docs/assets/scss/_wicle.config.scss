@@ -14,24 +14,18 @@
 
 
 //---------------------------------------------------------
-// config wicle collection
+//  Config wicle collection
+//  * init hooks: called before default variables are set
 //---------------------------------------------------------
+@mixin w-hook-reset-init() {
+}
 
-//--- wicle init hooks: called before default variables are set
 @mixin w-hook-navbar-init() {
-  //$w-navbar-generate-classes: false !global;
+  $key: 'w-navbar';
+  @include ssv($key, 'brand/font-family', $w-font-sans-fallback, true);
 }
 
 @mixin w-hook-nav-init() {
-  //.w-navbar .w-nav.wo-horizontal {
-  //  &>li>a {
-  //    color: $w-color-text-white;
-  //  }
-  //  &>li:hover>a {
-  //    color: $w-color-orange;
-  //  }
-  //}
-
   //$key: 'w-nav';
   //@include ssv($key, 'item-wrapper/fg', $w-color-shalimar);
 }
@@ -39,18 +33,5 @@
 
 @mixin w-hook-layout-default-init() {
   $key: 'w-layout-default';
-  @include ssv($key, 'page/font-family', $w-font-fira-sans, true);
-  //@include ssv($key, 'page/font-family', $w-font-lato, true);
-  //@include ssv($key, 'page/font-family', $w-font-open-sans, true);
-}
-
-@mixin w-hook-button-init() {
-}
-
-@mixin w-hook-navbar-init() {
-}
-
-//---  Wickle override hooks: called after default variables are set
-@mixin w-hook-nav-override() {
-
+  @include ssv($key, 'page/font-family', $w-font-roboto, true);
 }

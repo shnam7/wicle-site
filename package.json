@@ -42,7 +42,7 @@
     "gulp-build-manager": "github:shnam7/gulp-build-manager#dev",
     "gulp-clean-css": "^3.9.4",
     "gulp-sass": "^4.0.1",
-    "gulp-typescript": "^5.0.0-alpha.2",
+    "gulp-typescript": "^5.0.0-alpha.3",
     "gulp-uglify-es": "^1.0.4",
     "lost": "^8.3.0",
     "stylelint": "^9.3.0",
