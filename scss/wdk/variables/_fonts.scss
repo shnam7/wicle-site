@@ -6,12 +6,30 @@
 //=========================================================
 
 //--- Google web fonts
-// Usage: Single, Multi
-//<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-//<link href="https://fonts.googleapis.com/css?family=Fira+Sans|Lato|Open+Sans" rel="stylesheet">
+// Usage
+// <link href="https://fonts.googleapis.com/css?family=Roboto|Fira+Sans" rel="stylesheet">
+// @import url("//fonts.googleapis.com/css?family=Roboto|Fira+Sans")
+// @import url($w-font-roboto-url);
+//
+// Note: It's recommended to use <link> rather than @import for better performance using parallel file loading
+//
 
 $w-font-roboto:                 'Roboto',$w-font-sans-fallback !default;
+$w-font-roboto-url:             "//fonts.googleapis.com/css?family=Roboto" !default;
+
 $w-font-fira-sans:              'Fira Sans',$w-font-sans-fallback !default;
+$w-font-fira-sans-url:          "//fonts.googleapis.com/css?family=Fira+Sans" !default;
+
 $w-font-open-sans:              'Open Sans',$w-font-sans-fallback !default;
+$w-font-open-sans-url:          "//fonts.googleapis.com/css?family=Open+Sans" !default;
+
 $w-font-lato:                   'Lato',$w-font-sans-fallback !default;
+$w-font-lato-url:               "//fonts.googleapis.com/css?family=Lato" !default;
+
 $w-font-noto-sans:              'Noto Sans',$w-font-sans-fallback !default;
+$w-font-noto-sans-url:          "//fonts.googleapis.com/css?family=Noto+Sans" !default
+
+
+//--- Online Webfonts: https://www.onlinewebfonts.com/
+$w-font-helvetica-neue-lt-pro:      'Helvetica+Neue+LT+Pro';
+$w-font-helvetica-neue-lt-pro-url:  "//db.onlinewebfonts.com/c/b9c4b6f31f1d4c4c9755b89abb981506?family=Helvetica+Neue+LT+Pro" !default;

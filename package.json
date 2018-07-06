@@ -8,6 +8,7 @@
     "!**/*.map"
   ],
   "main": "index.js",
+  "typings": "dist/js/wicle",
   "scripts": {
     "wicle:build": "gulp wicle:build",
     "wicle:clean": "gulp wicle:clean",
@@ -17,7 +18,7 @@
     "clean-all": "gulp @clean",
     "watch": "gulp @watch",
     "prepare": "npm run clean-all && npm run wicle:build",
-    "prepare-to-commit": "npm run clean-all && npm run build-all && npm run wicle:clean",
+    "prepare-to-commit": "npm run clean-all && npm run build-all",
     "npm-dry-run": "npm publish --dry-run"
   },
   "repository": {
