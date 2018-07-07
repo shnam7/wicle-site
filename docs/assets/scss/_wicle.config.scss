@@ -18,11 +18,12 @@
 //  * init hooks: called before default variables are set
 //---------------------------------------------------------
 @mixin w-hook-reset-init() {
+  $key: 'w-reset';
 }
 
 @mixin w-hook-navbar-init() {
   $key: 'w-navbar';
-  @include ssv($key, 'brand/font-family', $w-font-sans-fallback, true);
+  @include ssv($key, 'brand/font-family', $w-font-sans, true);
 }
 
 @mixin w-hook-nav-init() {
@@ -33,5 +34,8 @@
 
 @mixin w-hook-layout-default-init() {
   $key: 'w-layout-default';
-  @include ssv($key, 'page/font-family', $w-font-roboto, true);
+  //@include ssv($key, 'page/font-family', $w-font-roboto, true);
+  //@include ssv($key, 'page/code/font-family', $w-font-roboto-mono, true);
+  //@include ssv($key, 'page/code/font-size', 1rem, true);
+  //@include ssv($key, 'page/code/bg', #f3f6fa, true);
 }

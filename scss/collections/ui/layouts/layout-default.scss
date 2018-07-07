@@ -48,6 +48,10 @@ $w-layout-default-generate-classes: true !default; // enable class generation
   @include ssv($key, 'page/padding', 1rem, true);
   @include ssv($key, 'page/font-family', null, true);
   @include ssv($key, 'page/font-size', 1.15rem, true);
+  @include ssv($key, 'page/pre/font-family', null, true);
+  @include ssv($key, 'page/pre/font-size', null, true);
+  @include ssv($key, 'page/pre/padding', null, true);
+  @include ssv($key, 'page/pre/bg', null, true);
 
   //--- sidebar: sidebar size defined first and then content size determined
   @include ssv($key, 'sidebar/width', 20rem, true);
@@ -145,8 +149,12 @@ $w-layout-default-generate-classes: true !default; // enable class generation
       }
     }
     pre, code {
-      font-family: $w-font-mono;
-      font-size: 14px;
+      font-family: cv('page/pre/font-family');
+      font-size: cv('page/pre/font-size');
+    }
+    code {
+      background: cv('page/pre/bg');
+      padding: cv('page/pre/padding');
     }
     @include w-clearfix();
   }

@@ -5,7 +5,6 @@
 //@import "themes/friench-rose";
 @import "wicle.config";
 @import "wicle";
-@import "collections/vendor/pygments/pygments-manni";
 
 #l-banner {
   margin:0;
@@ -47,6 +46,12 @@
     &:visited {
       text-decoration: none;
     }
+  }
+}
+
+#l-page {
+  code {
+    background: #f3f6fa;
   }
 }
 
