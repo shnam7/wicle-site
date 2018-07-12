@@ -115,25 +115,31 @@ $w-layout-default-generate-classes: true !default; // enable class generation
   #l-banner {
   }
 
-  #l-page {
+  #l-page-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #l-page, .w-page {
     font-size: cv(page/font-size);
     font-family: cv(page/font-family);
     max-width: cv('page/width');
     margin: 0 auto;
     padding: cv('page/padding');
-    .content {
+    .w-content {
       box-sizing: border-box;
       width: 100%;
       padding: 0;
     }
-    .sidebar {
+    .w-sidebar {
       box-sizing: border-box;
       width: 100%;
       padding: 0;
     }
     &:not(.wo-single) {
       @include w-mq(cv('site/breakpoint')) {
-        .content {
+        .w-content {
           float: left;
           width: cv('content/width');
           padding: cv('content/padding');
@@ -141,7 +147,7 @@ $w-layout-default-generate-classes: true !default; // enable class generation
             float: left;
           }
         }
-        .sidebar {
+        .w-sidebar {
           float: left;
           width: cv('sidebar/width');
           padding: cv('sidebar/padding');

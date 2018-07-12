@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Panel
-script: demo/panel
+class: demo-panel
 ---
 
 # Panel

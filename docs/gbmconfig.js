@@ -45,7 +45,10 @@ const docs = {
     builder: 'GTypeScriptBuilder',
     src: upath.join(srcRoot, 'scripts/**/*.ts'),
     dest: upath.join(basePath, 'js'),
-    copy: [{src: ['dist/js/wicle.min.js'], dest: upath.join(basePath, 'js')}],
+    copy: [{
+      src: ['dist/js/wicle.min.js', upath.join(srcRoot, "scripts/**/*.js")],
+      dest: upath.join(basePath, 'js')
+    }],
     flushStream: true,
     buildOptions: {
       minifyOnly:true,
@@ -57,7 +60,12 @@ const docs = {
       // return promise to be sure copy operation is done before the task finishes
       return gbm.utils.exec('echo', ['>>', upath.join(basePath, '.js-triggered')])
     },
-    watch: {watchedPlus: 'dist/js/wicle.min.js'}, // propagate changes in wicle to docs
+    watch: {
+      watchedPlus: [
+        'dist/js/wicle.min.js',  // propagate changes in wicle to docs
+        upath.join(srcRoot, "scripts/**/*.js")
+      ]
+    },
     clean: [upath.join(basePath, 'js'), upath.join(basePath, '.js-triggered')]
   },
 

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Divider
+class: demo-divider
 style: demo/divider
-script: demo/divider
 ---
 
 # Divider

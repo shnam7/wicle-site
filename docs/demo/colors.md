@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Colors
+class: demo-colors
 style: demo/colors
-script: demo/colors
 ---
 # Color collections
 
