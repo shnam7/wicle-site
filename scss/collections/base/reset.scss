@@ -50,6 +50,16 @@
     color: cv(fg);
   }
 
+  // paragraph
+  p {
+    word-break: keep-all;
+    margin: 0;
+    padding-bottom: 1rem;
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
   //--- link
   a {
     background-color: transparent;
