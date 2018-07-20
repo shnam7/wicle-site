@@ -2,17 +2,18 @@
 //  Wicle Docs
 //
 
-//@import "themes/friench-rose";
-@import "wicle.config";
+//@import "themes/harley-davison-orange";
 @import "wicle";
 
 #l-banner {
   margin:0;
-  border-top: 1px solid $w-color-text-white;
+  border-top: 1px solid darken($w-color-theme, 25%);
   padding: 2rem 1rem;
   color: gray(90%);
   text-align: center;
-  background-color: shade($w-color-theme, 25%); // smart-scale($w-color-theme, -5%);
+
+  @include w-pattern(shade($w-color-theme, 25%));
+  //background-color: shade($w-color-theme, 25%); // smart-scale($w-color-theme, -5%);
 
   .title {
     font-size: 2rem;
@@ -51,7 +52,7 @@
 
 #l-page {
   code {
-    background: #f3f6fa;
+    background: $w-color-code-block-bright;
   }
 }
 

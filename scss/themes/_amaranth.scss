@@ -1,0 +1,13 @@
+//=========================================================
+//
+//  Wicle Usage Example
+//
+//=========================================================
+
+@import "../wdk/constants";
+
+//--- wdk hooks: this should come before importing wdk
+@mixin wdk-hook-variables-init() {
+  $w-color-theme:             $w-color-amaranth !global;
+  $w-color-theme-link-hover:  $w-color-persimmon !global;
+}

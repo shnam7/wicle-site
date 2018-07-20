@@ -1,7 +1,7 @@
-#### Version {{site.version}}
-
-## [Contents]({{site.baseurl}}/)
+## Contents
 {:class="title"}
+
+*Version {{site.version}}*
 
 ---
 

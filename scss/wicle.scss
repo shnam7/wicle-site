@@ -3,6 +3,10 @@
 //  @package Wicle
 //  @module Main package, Theme: default
 //
+//  @notes To change the theme, import one of theme files
+//        from theme/ directory or custom config file
+//        before importing this file.
+//
 //=========================================================
 
 @import "wdk";
@@ -27,7 +31,3 @@
 @import "collections/ui/components/search";
 @import "collections/ui/components/image";
 @import "collections/ui/components/pagination";
-
-//-- vendor (optional: not included by default)
-//@import "collections/vendor/prettyprint/prettyprint-github-v2";
-//@import "collections/vendor/pygments/pygments-manni";

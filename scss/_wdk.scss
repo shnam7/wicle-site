@@ -1,6 +1,6 @@
 //=========================================================
 //
-//  @package Wicle utilities
+//  @package Wicle WDK
 //
 //  @author Robin Soo-hyuk Nam, (http://windron.com)
 //  @date Aug 15, 2016
@@ -8,6 +8,7 @@
 //=========================================================
 
 //--- variables
+@import "wdk/constants";
 @import "wdk/variables";
 
 //--- functions
@@ -22,8 +23,9 @@
 @import "wdk/functions/svg";
 
 //--- mixins
-@import "wdk/mixins/util";
+@import "wdk/mixins/utils";
 @import "wdk/mixins/align";
+@import "wdk/mixins/patterns";
 
 //--- modules
 @import "wdk/modules/mq";

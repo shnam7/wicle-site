@@ -128,4 +128,5 @@ style: demo/colors
 ##### $w-color-pelorous:              #17A2B8 !default;
 ##### $w-color-orange:                #FFA500 !default;
 ##### $w-color-dark-red:              #A30000 !default;
+##### $w-color-alice-blue:            #F3F6FA !default;
 </div>

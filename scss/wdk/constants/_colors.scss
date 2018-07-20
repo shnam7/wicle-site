@@ -1,9 +1,10 @@
 //=========================================================
 //
-//  @package Wicle
-//  @module variables/color
+//  @package Wicle WDK
+//  @module variables/colors
 //
 //  @description Color collection
+//  @notes Color names are from http://www.htmlcsscolor.com
 //
 //=========================================================
 
@@ -103,6 +104,7 @@ $w-color-light-slate-gray:      #868E96 !default;
 $w-color-chateau-green:         #28A745 !default;
 $w-color-orange:                #FFA500 !default;
 $w-color-dark-red:              #A30000 !default;
+$w-color-alice-blue:            #F3F6FA !default;
 
 // text colors
 $w-color-text-white:            $w-color-whisper !default;
@@ -110,6 +112,7 @@ $w-color-text-black:            $w-color-charcoal !default; // recommended for t
 $w-color-text-blue:             $w-color-lochmara !default;
 $w-color-text-red:              $w-color-medium-carmine !default;
 $w-color-text-orange:           $w-color-orange !default;
+$w-color-code-block-bright:     #f3f6fa !default;
 
 //--- color scheme
 $w-color-primary:               $w-color-lochmara !default;

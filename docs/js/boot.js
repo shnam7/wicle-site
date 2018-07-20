@@ -1,5 +1,8 @@
+// server baseURL: shnam7.github.io/wicle
+baseUrl = (window.location.hostname === 'localhost') ? '/js' : '/wicle/js';
+
 SystemJS.config({
-  baseURL: '/js',
+  baseURL: baseUrl
 });
 
 SystemJS.import("wicle.min.js").then(()=>{

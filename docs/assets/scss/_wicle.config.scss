@@ -4,7 +4,7 @@
 //
 //=========================================================
 
-@import "wdk/variables";
+@import "wdk/constants";
 
 //--- wdk hooks: this should come before importing wdk
 @mixin wdk-hook-variables-init() {
@@ -23,7 +23,7 @@
 
 @mixin w-hook-navbar-init() {
   $key: 'w-navbar';
-  @include ssv($key, 'brand/font-family', $w-font-sans, true);
+  //@include ssv($key, 'brand/font-family', $w-font-sans, true);
 }
 
 @mixin w-hook-nav-init() {
