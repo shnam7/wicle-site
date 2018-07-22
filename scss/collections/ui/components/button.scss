@@ -77,13 +77,14 @@
     $hover: opacify($bg, 0.1);
   }
 
-  &, &:link {
+  &, a {
     color: $fg;
-    background: $bg;
-    border-color: $line;
-    &:hover {
-      background: $hover;
-    }
+  }
+
+  background: $bg;
+  border-color: $line;
+  &:hover {
+    background: $hover;
   }
 }
 
@@ -110,8 +111,7 @@
 }
 
 @mixin w-button-classes {
-  .w-button,
-  a.w-button {
+  .w-button {
     @include w-button-core;
     @include w-button-options;
     @include w-button-styles($w-color-text-white);

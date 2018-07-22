@@ -5,6 +5,8 @@
 //
 //=========================================================
 
+@import "../constants/fonts";
+
 //--- wicle options
 $w-wicle-mode:                  'scss' !default;
 $w-wicle-postcss:               false !default;
@@ -21,8 +23,8 @@ $w-grid-gutter-width:           1rem !default;  // 20px
 //--- typography
 $w-font-size:                   14px !default;
 $w-font-size-mobile:            15px !default;
-$w-font-sans:                   Arial,Helvetica,Verdana,sans-serif !default;
-$w-font-serif:                  Georgia,Times,Times New Roman,serif !default;
+$w-font-sans:                   $w-font-sans-default !default;
+$w-font-serif:                  $w-font-serif-default !default;
 $w-font-mono:                   Roboto Mono,Consolas,Courier,monospace;
 
 $w-line-height:                 1.5 !default;

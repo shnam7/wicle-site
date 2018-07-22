@@ -3,6 +3,7 @@
 //
 
 //@import "themes/harley-davison-orange";
+@import "wicle.config";
 @import "wicle";
 
 #l-banner {
@@ -53,6 +54,12 @@
 #l-page {
   code {
     background: $w-color-code-block-bright;
+  }
+}
+
+.w-sidebar {
+  a:hover {
+    color: $w-color-theme-link-hover;
   }
 }
 

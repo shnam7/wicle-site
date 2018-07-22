@@ -5,6 +5,9 @@ title: Buttons
 
 # Buttons
 
+<p class="link-more w-button wo-alpha wo-compact"><a href="#" class="more-link">더 보기&nbsp;<i class="fa fa-angle-double-right"></i></a></p>
+
+
 ### Anchors
 <div>
 <a href="#" class="w-button">Default</a>

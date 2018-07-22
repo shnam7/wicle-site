@@ -16,6 +16,9 @@
 // Note: It's recommended to use <link> rather than @import for better performance using parallel file loading
 //
 
+$w-font-sans-default:             Arial,Helvetica,Verdana,sans-serif !default;
+$w-font-serif-default:            Georgia,Times,Times New Roman,serif !default;
+
 $w-font-roboto:                   'Roboto',sans-serif !default;
 $w-font-roboto-url:               '//fonts.googleapis.com/css?family=Roboto' !default;
 
@@ -33,6 +36,9 @@ $w-font-noto-sans-url:            '//fonts.googleapis.com/css?family=Noto+Sans' 
 
 $w-font-noto-sans-kr:             'Noto Sans KR',sans-serif !default;
 $w-font-noto-sans-kr-url:         '//fonts.googleapis.com/css?family=Noto+Sans+KR' !default
+
+$w-font-source-sans-pro:          'Nanum Gothic Coding',monospace !default;
+$w-font-source-sans-pro-uri:      '//fonts.googleapis.com/css?family=Source+Sans+Pro' !default;
 
 $w-font-roboto-mono:              'Roboto mono',monospace !default;
 $w-font-roboto-url:               '//fonts.googleapis.com/css?family=Roboto+Mono' !default;

@@ -56,7 +56,7 @@
   @include ssv($key, 'link/hover/bg', null, true);
 
   //--- brand
-  @include ssv($key, 'brand/font-family', $w-font-sans, true);
+  @include ssv($key, 'brand/font-family', $w-font-sans-default, true);
   @include ssv($key, 'brand/font-size', 1.25rem, true);
   @include ssv($key, 'brand/font-weight', 600, true);
   @include ssv($key, 'brand/fg', gray(90%), true);

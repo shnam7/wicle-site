@@ -52,6 +52,9 @@ $w-layout-default-generate-classes: true !default; // enable class generation
   @include ssv($key, 'page/pre/font-size', null, true);
   @include ssv($key, 'page/pre/padding', null, true);
   @include ssv($key, 'page/pre/bg', null, true);
+  //@include ssv($key, 'page/link/fg', $w-color-theme-link, true);
+  //@include ssv($key, 'page/link/hover/fg', $w-color-theme-link-hover, true);
+
 
   //--- sidebar: sidebar size defined first and then content size determined
   @include ssv($key, 'sidebar/width', 20rem, true);
@@ -197,6 +200,15 @@ $w-layout-default-generate-classes: true !default; // enable class generation
       background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
     }
   }
+  //.w-content {
+  //  a {
+  //    color: cv(link/fg);
+  //    &:hover, &:focus {
+  //      color: cv('link/hover/fg');
+  //      //color: smart-scale(invert($fg), 25%);
+  //    }
+  //  }
+  //}
   #l-footer {
     color: cv(footer/fg);
     background-color: cv(footer/bg);

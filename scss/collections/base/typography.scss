@@ -32,8 +32,10 @@
   //-- local variables
   $key: 'w-typography';
 
+  // Note: browser default font size for h2 is 1.5em, but korean font looks ugly
+  //      for some characters. So, change the size to 1.45em
   @include ssv($key, 'header/h1', (font-size:2em, margin:0.67em 0 1em), true);
-  @include ssv($key, 'header/h2', (font-size:1.5em, margin:0.83em 0 1em), true);
+  @include ssv($key, 'header/h2', (font-size:1.45em, margin:0.83em 0 1em), true);
   @include ssv($key, 'header/h3', (font-size:1.17em, margin:1em 0 1em), true);
   @include ssv($key, 'header/h4', (font-size:1em, margin:1em 0 1em), true);      // 1.33rem
   @include ssv($key, 'header/h5', (font-size:0.83em, margin:1em 0 1em), true);   // 1.67rem

@@ -24,8 +24,6 @@
   $key: 'w-reset';
 
   @include ssv($key, fg, $w-color-text-black, true);
-  @include ssv($key, 'link/fg', $w-color-theme-link, true);
-  @include ssv($key, 'link/hover/fg', $w-color-theme-link-hover, true);
   @include ssv($key, 'list/margin-left', 1rem, true);
   @include ssv($key, 'pre/margin', 0.5rem 0, true);
   @include ssv($key, 'pre/padding', 0.5rem 1rem, true);
@@ -100,9 +98,9 @@
 
 @mixin w-reset-styles {
   a {
-    color: cv(link/fg);
+    color: $w-color-text-black;
     &:hover, &:focus {
-      color: cv('link/hover/fg');
+      //color: cv('link/hover/fg');
       //color: smart-scale(invert($fg), 25%);
     }
   }
