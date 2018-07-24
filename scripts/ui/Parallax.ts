@@ -1,3 +1,9 @@
+/**
+ *  Parallax
+ */
+
+let $ = jQuery;    // create local variable $ to avoid jquery name conflict
+
 export class Container {
   private content: HTMLElement;
   private surface: Surface[];

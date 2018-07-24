@@ -37,8 +37,8 @@
   },
   "homepage": "https://github.com/shnam7/wicle#readme",
   "devDependencies": {
-    "@types/jquery": "^3.3.4",
-    "browser-sync": "^2.24.5",
+    "@types/jquery": "^3.3.5",
+    "browser-sync": "^2.24.6",
     "gulp": "^4.0.0",
     "gulp-build-manager": "^3.1.0",
     "gulp-clean-css": "^3.9.4",

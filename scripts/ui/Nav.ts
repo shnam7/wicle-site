@@ -8,6 +8,8 @@
 import {Options} from "../core/types";
 import {MQChangeEventData} from "../core/MediaQuery";
 
+let $ = jQuery;    // create local variable $ to avoid jquery name conflict
+
 export type MQEventHandler = (nav:Nav, event:CustomEvent<MQChangeEventData>)=>void;
 
 export interface NavOptions {

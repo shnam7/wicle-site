@@ -5,6 +5,8 @@
 import {Options} from "./types";
 import {getViewporSize} from "../utils/utils";
 
+let $ = jQuery;    // create local variable $ to avoid jquery name conflict
+
 export type MQState = string;
 export type MQBreakPoints = { [name: string]: number; }
 export interface MQChangeEventData {
