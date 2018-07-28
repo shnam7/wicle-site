@@ -67,7 +67,7 @@
   @include ssv($key, 'toggle/hover/fg', white, true);
 
   //--- optional dropdown trailer
-  @include ssv($key, 'trailer/padding', 0.5rem 1rem, true);
+  @include ssv($key, 'trailer/padding', 0.75rem 1rem, true);
   @include ssv($key, 'trailer/separator', 1px solid gray(70%), true);
 
   @if mixin-exists(w-hook-navbar-override) { @include w-hook-navbar-override(); }
@@ -166,6 +166,7 @@
 
 @mixin w-navbar-trailer-core {
   position: absolute;
+  box-sizing: border-box;
   width: 100%;
   z-index: 0;
   margin: 0 auto;
