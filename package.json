@@ -1,6 +1,6 @@
 {
   "name": "wicle",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Component library for Web development.",
   "files": [
     "dist",
@@ -37,20 +37,20 @@
   },
   "homepage": "https://github.com/shnam7/wicle#readme",
   "devDependencies": {
-    "@types/jquery": "^3.3.10",
-    "browser-sync": "^2.24.7",
+    "@types/jquery": "^3.3.27",
+    "browser-sync": "^2.26.3",
     "gulp": "^4.0.0",
-    "gulp-build-manager": "^3.1.0",
-    "gulp-clean-css": "^3.10.0",
-    "gulp-sass": "^4.0.1",
-    "gulp-typescript": "^5.0.0-alpha.3",
+    "gulp-build-manager": "^3.1.1",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-typescript": "^5.0.0",
     "gulp-uglify-es": "^1.0.4",
     "lost": "^8.3.0",
-    "stylelint": "^9.5.0",
+    "stylelint": "^9.9.0",
     "stylelint-config-recommended": "^2.1.0",
     "systemjs-plugin-css": "^0.1.37",
-    "tslint": "^5.11.0",
-    "tslint-eslint-rules-recommended": "^1.1.0",
-    "typescript": "^3.0.3"
+    "tslint": "^5.12.0",
+    "tslint-eslint-rules-recommended": "^1.2.0",
+    "typescript": "^3.2.2"
   }
 }

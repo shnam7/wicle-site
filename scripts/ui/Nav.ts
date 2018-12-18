@@ -46,7 +46,7 @@ class Nav {
   protected classes: string;
 
   // reset out-of-viewport status on window resize
-  protected flipHandler = function (e: JQuery.Event) {
+  protected flipHandler = function (e: JQuery.TriggeredEvent) {
     $('.w-nav').find('[aria-flip]').removeAttr('aria-flip');
   };
 
@@ -71,7 +71,7 @@ class Nav {
   };
 
   // accordion click event handler
-  protected accordionClickEventHandler = (e: JQuery.Event) => {
+  protected accordionClickEventHandler = (e: JQuery.TriggeredEvent) => {
     e.stopPropagation();
     e.preventDefault();
 

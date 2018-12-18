@@ -1,4 +1,3 @@
-/// <reference types="jquery" />
 declare module "core/types" {
     export type Options = {
         [key: string]: any;
@@ -92,9 +91,9 @@ declare module "ui/Nav" {
         protected options: Options;
         protected element: Element;
         protected classes: string;
-        protected flipHandler: (e: JQuery.Event<EventTarget, null>) => void;
+        protected flipHandler: (e: JQuery.TriggeredEvent<any, any, any, any>) => void;
         protected mqChangeHandler: (e: CustomEvent<MQChangeEventData>) => void;
-        protected accordionClickEventHandler: (e: JQuery.Event<EventTarget, null>) => void;
+        protected accordionClickEventHandler: (e: JQuery.TriggeredEvent<any, any, any, any>) => void;
         constructor(el: Element, options?: Options);
         create(): void;
         destroy(): void;
@@ -157,4 +156,3 @@ declare interface String {
         [prop: string]: any;
     };
 }
-//# sourceMappingURL=wicle.d.ts.map
