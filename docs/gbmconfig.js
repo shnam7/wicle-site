@@ -116,7 +116,9 @@ const docs = {
 
   get all() {
     return [this.build, this.clean]
-  }
+  },
+
+  destRoot
 };
 
 module.exports = docs;

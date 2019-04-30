@@ -24,7 +24,7 @@ const wicle = {
     moduleOptions: {
       sass: {includePaths: ['scss']},
       stylelint: {
-        "extends": "./.stylelintrc",
+        "extends": upath.resolve(basePath, ".stylelintrc"),
         "rules": {
           // "no-empty-source": null
         }

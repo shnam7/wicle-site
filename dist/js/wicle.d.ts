@@ -1,3 +1,4 @@
+/// <reference types="jquery" />
 declare module "core/types" {
     export type Options = {
         [key: string]: any;
