@@ -99,15 +99,15 @@
 @mixin w-reset-styles {
   a {
     color: $w-color-text-black;
-    &:hover, &:focus {
+    // &:hover, &:focus {
       //color: cv('link/hover/fg');
       //color: smart-scale(invert($fg), 25%);
-    }
+    // }
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  // h1, h2, h3, h4, h5, h6 {
     //color: cv(fg);
-  }
+  // }
 }
 
 @mixin w-reset-classes {
