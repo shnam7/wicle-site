@@ -1,3 +1,11 @@
+{%- comment -%}
+  Generate <ul></ul> style menu structure
+  @param {Menu} $nav - Hierarchical menu structure to be converted to html
+  
+  @usage
+    include nav.html nav=<menu list>
+{%- endcomment -%}
+
 {% if include.nav.size > 0 %}
 <ul class="{{include.cls}}">
   {% for item in include.nav %}

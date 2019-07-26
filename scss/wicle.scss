@@ -9,25 +9,37 @@
 //
 //=========================================================
 
+@import "wicle.config";
 @import "wdk";
 
+//--- theme
+@import "wicle/themes/default";
+
 //--- base
-@import "collections/base/reset";
-@import "collections/base/typography";
+@import "wicle/base/reset";
+@import "wicle/base/typography";
 
-//--- utils
-@import "collections/utils/align";
-@import "collections/utils/visibility";
+//--- layouts
+@import "wicle/layout/default";
 
-//--- ui layouts
-@import "collections/ui/layouts/layout-default";
+//--- Components
+@import "wicle/components/pattern";
+@import "wicle/components/nav";
+@import "wicle/components/navbar";
+@import "wicle/components/button";
+@import "wicle/components/divider";
+@import "wicle/components/panel";
+@import "wicle/components/search";
+@import "wicle/components/image";
+@import "wicle/components/pagination";
 
-//--- ui components
-@import "collections/ui/components/navbar";
-@import "collections/ui/components/nav";
-@import "collections/ui/components/button";
-@import "collections/ui/components/divider";
-@import "collections/ui/components/panel";
-@import "collections/ui/components/search";
-@import "collections/ui/components/image";
-@import "collections/ui/components/pagination";
+
+//-----------------------------------------------
+//  Generate Optional Classes - Add to your scss file if necessary
+//-----------------------------------------------
+
+// Button color scheme
+// @include w-button-modifier-color-scheme();
+
+// Panel coloe scheme
+// @include w-panel-modifier-color-scheme();

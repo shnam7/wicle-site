@@ -2,19 +2,23 @@
 //  Wicle Docs
 //
 
-//@import "themes/harley-davison-orange";
-@import "wicle.config";
+@import "site.config";
 @import "wicle";
+
+//--- Wicle Optional Features
+@include w-button-modifier-color-scheme();
+@include w-panel-modifier-color-scheme();
+
 
 #l-banner {
   margin:0;
-  border-top: 1px solid darken($w-color-theme, 25%);
+  border-top: 1px solid darken($w-theme-color, 25%);
   padding: 2rem 1rem;
   color: gray(90%);
   text-align: center;
 
-  @include w-pattern(shade($w-color-theme, 25%));
-  //background-color: shade($w-color-theme, 25%); // smart-scale($w-color-theme, -5%);
+  @include w-pattern(shade($w-theme-color, 25%));
+  //background-color: shade($w-theme-color, 25%); // smart-scale($w-theme-color, -5%);
 
   .title {
     font-size: 2rem;
@@ -51,20 +55,22 @@
   }
 }
 
-#l-page {
+// override code hiligher style
+.l-page {
   code {
     background: $w-color-code-block-bright;
   }
+  padding-bottom: 3rem;
 }
 
-.w-sidebar {
+.l-sidebar {
   a:hover {
-    color: $w-color-theme-link-hover;
+    color: $w-theme-color-link-hover;
   }
 }
 
-#l-footer {
-  //background-color: darken($w-color-theme, 25%);
+.l-site-footer {
+  //background-color: darken($w-theme-color, 25%);
   background-color: rgba(#000, 0.85);
   .logo-text {
     color: rgba(yellow, 0.75);

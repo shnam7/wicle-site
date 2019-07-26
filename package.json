@@ -4,6 +4,7 @@
   "description": "Component library for Web development.",
   "files": [
     "dist",
+    "scripts",
     "scss",
     "!**/*.map"
   ],
@@ -36,9 +37,13 @@
     "url": "https://github.com/shnam7/wicle/issues"
   },
   "homepage": "https://github.com/shnam7/wicle#readme",
+  "dependencies": {
+    "sass-wdk": "github:shnam7/sass-wdk"
+  },
   "devDependencies": {
     "@types/jquery": "^3.3.30",
     "browser-sync": "^2.26.7",
+    "cssnano": "^4.1.10",
     "gulp": "^4.0.2",
     "gulp-build-manager": "^3.1.2",
     "gulp-clean-css": "^4.2.0",
@@ -46,6 +51,7 @@
     "gulp-typescript": "^5.0.1",
     "gulp-uglify-es": "^1.0.4",
     "lost": "^8.3.1",
+    "postcss-combine-duplicated-selectors": "^8.0.2",
     "stylelint": "^10.1.0",
     "stylelint-config-recommended": "^2.2.0",
     "systemjs-plugin-css": "^0.1.37",

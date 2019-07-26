@@ -21,7 +21,7 @@ declare interface String {
  * @param charList is the list of characters to trim
  * @returns {string} trimmed string
  */
-String.prototype.trimLeft = function (charList?: string) {
+String.prototype.trimLeft = function (charList?: string): string {
   if (charList === undefined) charList = '\\s';
   return this.replace(new RegExp("^[" + charList + "]+"), "").toString();
 };
@@ -32,7 +32,7 @@ String.prototype.trimLeft = function (charList?: string) {
  * @param charList is the list of characters to trim
  * @returns {string} trimmed string
  */
-String.prototype.trimRight = function (charList?: string) {
+String.prototype.trimRight = function (charList?: string): string {
   if (charList === undefined) charList = '\\s';
   return this.replace(new RegExp("[" + charList + "]+$"), "").toString();
 };
@@ -43,7 +43,7 @@ String.prototype.trimRight = function (charList?: string) {
  * @param charList is the list of characters to trim
  * @returns {string} trimmed string
  */
-String.prototype.trimBoth = function (charList?: string) {
+String.prototype.trimBoth = function (charList?: string): string {
   return this.trimLeft(charList).trimRight(charList);
 };
 
@@ -53,7 +53,7 @@ String.prototype.trimBoth = function (charList?: string) {
  * @param charList is the list of characters to trim
  * @returns {string} trimmed string
  */
-String.prototype.trimAll = function (charList?: string) {
+String.prototype.trimAll = function (charList?: string): string {
   if (charList === undefined) charList = '\\s';
   return this.replace(new RegExp("[" + charList + "]+", 'g'), "");
 };

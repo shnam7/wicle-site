@@ -56,15 +56,15 @@ class Nav {
     let prevWidth = e.detail.prevWidth;
     let breakPoint = this.options.breakPoint;
     if (this.classes.indexOf('wo-responsive') < 0) return;
-    console.debug('mqChanged:', e.detail);
+    // console.debug('mqChanged:', e.detail);
 
     if (width >= breakPoint && prevWidth < breakPoint) {
-      console.log('state=', e.detail.state, 'chanjge to normal');
+      // console.log('state=', e.detail.state, 'chanjge to normal');
       if (this.options.mqChangeToNormal) this.options.mqChangeToNormal(this, e);
       // $(this.element).attr('class', this.classes);
     }
     if (width < breakPoint && prevWidth >= breakPoint) {
-      console.log('state=', e.detail.state, 'change to mobile');
+      // console.log('state=', e.detail.state, 'change to mobile');
       if (this.options.mqChangeToMobile) this.options.mqChangeToMobile(this, e);
       // $(this.element).attr('class', 'wz-nav w-nav wo-accordion').show();
     }

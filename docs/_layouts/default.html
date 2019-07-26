@@ -3,16 +3,16 @@
   {% include head.html %}
 </head>
 <body class="{{page.body_class}}">
-<div id="l-site-container">
-  <div id="l-header">{% include header.html %}</div>
+<div class="l-site">
+  <header class="l-site-header">{% include header.html %}</header>
   {% if page.frontpage %}<div id="l-banner">{% include banner.html %}</div>{% endif %}
-  <div id="l-page-container">
-    <div id=l-page class="{{page.class}}">
-      <div class="w-content">{{ content }}</div>
-      <div class="w-sidebar">{% capture toc %}{% include sidebar.md %}{% endcapture %}{{ toc | markdownify }}</div>
+  <div class="l-site-content">
+    <div class="l-page {{page.class}}">
+      <div class="l-content">{{ content }}</div>
+      <div class="l-sidebar">{% capture toc %}{% include sidebar.md %}{% endcapture %}{{ toc | markdownify }}</div>
     </div>
   </div>
-  <div id="l-footer">{% include footer.html %}</div>
+  <footer class="l-site-footer">{% include footer.html %}</footer>
 </div>
 {% include scripts.html %}
 </body>

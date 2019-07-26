@@ -1,6 +1,9 @@
 # ChangeLog
 
-## v.1.1
+## v2.0
+# Remove wdk, replacing it with sass-wdk
+
+## v1.1
 - Rename wicle directory to collections to avoid name confusion
 - Add themes directory and improve theming and customization process
 - Add vendor to collections as optional styles (not included by default)

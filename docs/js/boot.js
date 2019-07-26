@@ -10,7 +10,7 @@ SystemJS.import("wicle.min.js").then(()=>{
     .then((module)=>{
       SystemJS.import('docs');
 
-      let page = document.getElementById('l-page');
+      let page = document.getElementsByClassName('l-page')[0];
       if (page.classList.contains('demo-colors'))
         SystemJS.import('demo/colors.min.js');
       else if (page.classList.contains('demo-divider'))

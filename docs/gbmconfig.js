@@ -23,9 +23,13 @@ const docs = {
       sourceMap: sourceMap
     },
     moduleOptions: {
-      sass: {includePaths: ['scss', 'node_modules']},
+      sass: {includePaths: ['scss', 'node_modules/sass-wdk']},
       postcss: {
-        plugins: [require('lost')()]
+        plugins: [
+          require('lost')(),
+          require('cssnano')(), // this includes require('postcss-discard-duplicates')() by default
+          require('postcss-combine-duplicated-selectors')(),
+        ]
       },
       sourcemaps: {
         // write: {sourceRoot: '../..'}
@@ -33,7 +37,7 @@ const docs = {
       clean: [upath.join(basePath, 'css')]
     },
     postBuild: (builder)=> {
-      // return promise to be sure copy operation is done before the task finishes
+      // return promise to make sure copy operation to be done before the task finishes
       return gbm.utils.exec('echo', ['>>', upath.join(basePath, '.scss-triggered')]);
     },
     watch: {watchedPlus: 'dist/css/wicle.min.css'}, // propagate changes in wicle to docs

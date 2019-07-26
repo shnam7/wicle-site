@@ -1,4 +1,4 @@
-@import "wdk";
+@import "../site.config";
 
 @lost gutter 1rem;
 
@@ -7,7 +7,7 @@
   lost-utility: clearfix;
   div {
     lost-column: 1/2;
-    @include w-mq(large) {
+    @include w-media(large) {
       lost-column: 1/3;
     }
 

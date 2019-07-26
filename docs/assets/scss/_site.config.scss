@@ -1,0 +1,41 @@
+//=========================================================
+//
+//  Wicle Usage Example
+//
+//=========================================================
+
+@import "wdk";    // Make WDK constants available (color/font names, etc.)
+
+//--- Global Site Variables
+
+//--- Theme Configuration
+// select one of Wicle predefined themes
+@import "wicle/themes/amaranth";
+// @import "wicle/themes/harley-davison-orange";
+// @import "wicle/themes/purple";
+// @import "wicle/themes/teal";
+
+// or define custom theme here
+// $w-theme-color:           $w-color-amaranth;
+
+
+//-----------------------------------------------
+//  Wicle custom config
+//-----------------------------------------------
+$w-font-size:           15px;
+
+//--- navbar
+// $key: 'w-navbar';
+// @include ssv($key, 'brand/font-family', $w-font-sans-default, true);
+
+//--- nav
+//$key: 'w-nav';
+//@include ssv($key, 'item-wrapper/fg', $w-color-shalimar);
+
+//--- layout
+// $key: 'w-layout';
+// @include ssv($key, 'page/font-family', $w-font-roboto, true);
+
+
+//--- Finally, include Wicle config
+@import "wicle.config";

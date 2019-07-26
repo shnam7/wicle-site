@@ -22,7 +22,7 @@ const wicle = {
       sourceMap: sourceMap
     },
     moduleOptions: {
-      sass: {includePaths: ['scss']},
+      sass: {includePaths: ['scss', 'node_modules/sass-wdk']},
       stylelint: {
         "extends": upath.resolve(basePath, ".stylelintrc"),
         "rules": {
