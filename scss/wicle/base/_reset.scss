@@ -10,15 +10,15 @@
 //  Config
 //-----------------------------------------------
 @mixin w-reset-config {
-  $key: 'w-reset';
-  
-  // core
-  @include ssv($key, fg, $w-color-text-black, true);
-  @include ssv($key, 'list/margin-left', 1rem, true);
-  @include ssv($key, 'pre/margin', 0.5rem 0, true);
-  @include ssv($key, 'pre/padding', 0.5rem 1rem, true);
-  @include ssv($key, 'pre/bg', #f3f6fa, true);
-  @include ssv($key, 'pre/border', solid 1px darken(#f3f6fa, 2%), true);
+    $key: 'w-reset';
+
+    // core
+    @include ssv($key, fg, $w-color-text-black, true);
+    @include ssv($key, 'list/margin-left', 1rem, true);
+    @include ssv($key, 'pre/margin', 0.5rem 0, true);
+    @include ssv($key, 'pre/padding', 0.5rem 1rem, true);
+    @include ssv($key, 'pre/bg', #f3f6fa, true);
+    @include ssv($key, 'pre/border', solid 1px darken(#f3f6fa, 2%), true);
 }
 
 
@@ -28,80 +28,86 @@
 @include w-reset-config();
 
 html {
-  font-size: $w-font-size;
-  line-height: $w-line-height;
+    font-size: $w-font-size;
+    line-height: $w-line-height;
 }
 
 body {
-  $key: 'w-reset';
+    $key: 'w-reset';
 
-  word-wrap: break-word;
-  color: gsv($key, fg);
+    word-wrap: break-word;
+    color: gsv($key, fg);
 }
 
 // paragraph
 p {
-  word-break: keep-all;
-  margin: 0;
-  padding-bottom: 1rem;
+    word-break: keep-all;
+    margin: 0;
+    padding-bottom: 1rem;
 
-  &:last-child {
-    padding-bottom: 0;
-  }
+    &:last-child {
+        padding-bottom: 0;
+    }
 }
 
 //--- link
 a {
-  $key: 'w-reset';
+    $key: 'w-reset';
 
-  color: gsv($key, 'a/fg');
-  background-color: transparent;
-  text-decoration: none;
+    color: gsv($key, 'a/fg');
+    background-color: transparent;
+    text-decoration: none;
 
-  &:hover,
-  &:focus {
-    text-decoration: none; // underline;
-    outline: 0;
-  }
+    &:hover,
+    &:focus {
+        text-decoration: none; // underline;
+        outline: 0;
+    }
 }
 
 //--- headers/titles
-h1, h2, h3, h4, h5, h6 {
-  $key: 'w-reset';
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    $key: 'w-reset';
 
-  font-family: $w-font-sans;
-  font-weight: 600;
-  color: gsv($key, fg);
+    font-family: $w-font-sans;
+    font-weight: 600;
+    color: gsv($key, fg);
 }
 
 body,
 select,
 input,
 textarea {
-  $key: 'w-reset';
+    $key: 'w-reset';
 
-  color: gsv($key, fg);
-  font-family: $w-font-sans; // set base font here, to apply evenly
+    color: gsv($key, fg);
+    font-family: $w-font-sans; // set base font here, to apply evenly
 }
 
 //--- code block
-pre, code {
-  $key: 'w-reset';
-  
-  font-family: $w-font-mono;
-  font-size: 1rem;
-  background: gsv($key, pre/bg); // same color for pre and code
+pre,
+code {
+    $key: 'w-reset';
+
+    font-family: $w-font-mono;
+    font-size: 1rem;
+    background: gsv($key, pre/bg); // same color for pre and code
 }
 
 pre {
-  $key: 'w-reset';
+    $key: 'w-reset';
 
-  display: block;
-  overflow: auto;
-  margin: gsv($key, pre/margin);
-  padding: gsv($key, pre/padding);
-  border: gsv($key, pre/border);
-  border-radius: 3px;
+    display: block;
+    overflow: auto;
+    margin: gsv($key, pre/margin);
+    padding: gsv($key, pre/padding);
+    border: gsv($key, pre/border);
+    border-radius: 3px;
 }
 
 //--- set box-sizing defaults to boder-box for section elements and div
@@ -113,5 +119,5 @@ article,
 aside,
 footer,
 div {
-  box-sizing: border-box;  
+    box-sizing: border-box;
 }

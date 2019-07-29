@@ -5,7 +5,7 @@
 
 ---
 
-* [Getting Started]({{site.baseurl}}/getting-started)
+* [Getting Started]({{site.baseurl}}/contents/getting-started)
 * Demo
   - [Colors]({{site.baseurl}}/demo/colors)
   - [Buttons]({{site.baseurl}}/demo/buttons)
@@ -16,3 +16,5 @@
   - [Image]({{site.baseurl}}/demo/image)
   - [Parallax]({{site.baseurl}}/demo/parallax)
   - [Pagination]({{site.baseurl}}/demo/pagination)
+  - [Offcanvas]({{site.baseurl}}/demo/offcanvas)
+  - [Media Query]({{site.baseurl}}/demo/media-query)

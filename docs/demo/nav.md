@@ -20,14 +20,14 @@ title: Nav
 {::nomarkdown}
 {% include demo/nav-ex1.html cls=cls %}
 {% include demo/nav-icons.html cls=cls %}
-{:/} 
+{:/}
 
 {% assign cls='w-nav wo-horizontal' %}
 ### Custom colored horizontal nav, class:{{cls}}
 {::nomarkdown}
 {% include demo/nav-ex1.html id='custom-menu' cls=cls %}
 {% include demo/nav-icons.html cls=cls %}
-{:/} 
+{:/}
 
 {% assign cls='w-nav wo-horizontal wo-separators' %}
 ### Horizontal nav with separators, class:{{cls}}

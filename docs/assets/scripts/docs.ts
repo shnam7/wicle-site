@@ -1,28 +1,19 @@
-///<amd-module name="docs"/>
+/**
+ * docs main script
+ */
 
-import Wicle from 'wicle';
+/// <reference path="../../../dist/js/wicle.d.ts" />
 
-Wicle.nav('.w-nav', {
-  // parentLink: true,  // enable link of parent item in accordion menu
-});
-
-// let baseUrl = SystemJS.getConfig().baseURL;
-// // let moduleName = baseUrl + "docs";
-// let moduleName = SystemJS.resolveSync("docs");
-// console.log("moduleName=", moduleName);
-//
-// console.log('A2', SystemJS.getConfig());
-// console.log('A2', SystemJS.registry);
-// console.log('A2', SystemJS.registry.has(moduleName));
-//
-// for (let entry in System.registry.entries())
-//   console.log('Entry=', entry);
+// Wicle.Nav.start('.w-nav', {
+//   // parentLink: true,  // enable link of parent item in accordion menu
+// });
 
 
-// ["demo/parallax"]
-//   .forEach((moduleName)=>{
-//     if (SystemJS.registry.get(moduleName)) {
-//       console.log('AAAAAAA', moduleName);
-//       SystemJS.import('./js/demo/' + moduleName);
-//     }
-//   });
+import { offcanvas } from 'wicle/ui/offcanvas';
+import { nav } from 'wicle/ui/nav';
+import { mqStart } from 'wicle/ui/media-query';
+
+
+offcanvas();
+nav();
+mqStart();

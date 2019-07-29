@@ -1,79 +1,41 @@
-/// <reference types="jquery" />
-declare module "core/types" {
-    export type Options = {
-        [key: string]: any;
-    };
-    export interface MediaQueryOptions {
-        resizeEventDelay?: number;
-    }
-    export interface NavOptions {
-        speed?: number;
-        showDelay?: number;
-        hideDelay?: number;
-        parentLink?: boolean;
-        singleOpen?: boolean;
-        breakPoint?: number;
-        mqChangeToMobile?: null;
-        mqChangeToNormal?: null;
-    }
-}
-declare module "utils/utils" {
-    export function getViewporSize(): {
-        width?: number;
-        height?: number;
-    };
-}
-declare module "core/MediaQuery" {
+declare module "wicle/util/view" {
     /**
-     *  Wicle MediaQuery
+     *  @package wicle *
      */
-    import { Options } from "core/types";
-    export type MQState = string;
-    export type MQBreakPoints = {
-        [name: string]: number;
-    };
-    export interface MQChangeEventData {
-        state: MQState;
-        prevState: MQState;
-        breakPoints: MQBreakPoints;
+    export function getViewporSize(): {
         width: number;
-        prevWidth: number;
-        direction: 'up' | 'down';
-    }
-    class MediaQuery {
-        static defaultOptions: Options;
-        static BreakPoints: {
-            [name: string]: MQBreakPoints;
-        };
-        protected static mqStateChangedEventName: string;
-        protected breakPoints: MQBreakPoints;
-        protected options: Options;
-        protected prevState: MQState;
-        protected prevWidth: number;
-        constructor(breakPoints?: MQBreakPoints, options?: Options);
-        init(breakPoints: MQBreakPoints, options?: Options): void;
-        setBreakPoints(breakPoints: string | MQBreakPoints): void;
-        protected startMediaChangeDetection(): void;
-        /**
-         *  Convert width to Media Query name
-         *  @param width
-         *  @returns {MQState}
-         */
-        protected mqStateOf(width: number): MQState;
-        protected getMQState(width?: number): MQState;
-    }
-    export default MediaQuery;
+        height: number;
+    };
 }
-declare module "ui/Nav" {
+declare module "wicle/ui/media-query" {
+    /**
+     * @package wicle
+     * @module MwdiaQuery
+     */
+    export interface MQOptions {
+    }
+    export interface BreakPoints {
+        [name: string]: number;
+    }
+    export const BREAKPOINTS: {
+        [name: string]: BreakPoints;
+    };
+    export interface MQState {
+        state: string;
+        width: number;
+        prevState: string;
+        prevWidth: number;
+        breakPoints: BreakPoints;
+    }
+    export function mqStart(breakPoints?: BreakPoints, options?: MQOptions): void;
+}
+declare module "wicle/ui/nav" {
     /**
      *  Wicle scripts
      *
      *  @module Nav
      *
      */
-    import { Options } from "core/types";
-    import { MQChangeEventData } from "core/MediaQuery";
-    export type MQEventHandler = (nav: Nav, event: CustomEvent<MQChangeEventData>) => void;
     export interface NavOptions {
         speed?: number;
         showDelay?: number;
@@ -81,28 +43,37 @@ declare module "ui/Nav" {
         parentLink?: boolean;
         singleOpen?: boolean;
         breakPoint?: number;
-        mqChangeToMobile?: MQEventHandler;
-        mqChangeToNormal?: MQEventHandler;
     }
-    class Nav {
-        static defaultOptions: NavOptions;
-        protected static dynamicClasses: string;
-        protected static dynamicElements: string;
-        protected static mqStateChangedEventName: string;
-        protected options: Options;
-        protected element: Element;
-        protected classes: string;
-        protected flipHandler: (e: JQuery.TriggeredEvent<any, any, any, any>) => void;
-        protected mqChangeHandler: (e: CustomEvent<MQChangeEventData>) => void;
-        protected accordionClickEventHandler: (e: JQuery.TriggeredEvent<any, any, any, any>) => void;
-        constructor(el: Element, options?: Options);
-        create(): void;
-        destroy(): void;
-        static start(selector: string, options?: Options): void;
-    }
-    export default Nav;
+    export function nav(selector?: string, options?: NavOptions): void;
 }
-declare module "ui/Parallax" {
+declare module "wicle/ui/offcanvas" {
+    /**
+     * @package wicle
+     *
+     * @usage
+     * 	<section
+     * 		class="l-site-offcanvas"		// offcanvas class name
+     * 		data-control=".wz-control"		// name of control button
+     * 		data-position="left"			// ofcanvas position: left, top, right, bottom
+     * 		data-width="200px"				// data-height for horizontal canvas
+     * 	>
+     * 		Offcanvas contents...
+     * 	</section>
+     *
+     *	<button class="w-button wz-control">Button</button>	// control button
+     */
+    export interface OffcanvasOptions {
+        closeButton: boolean;
+        closeButtonSelector: string;
+        closeOnBackgroundClick: boolean;
+    }
+    export function offcanvas(selector?: string, options?: OffcanvasOptions): void;
+}
+declare module "wicle/ui/parallax" {
+    /**
+     * @package wicle
+     *
+     */
     export class Container {
         private content;
         private surface;
@@ -128,23 +99,10 @@ declare module "ui/Parallax" {
         scroll(scrollPos: number): void;
     }
 }
-/// <amd-module name="wicle" />
-declare module "wicle" {
-    import MediaQuery from "core/MediaQuery";
-    import * as Parallax from "ui/Parallax";
-    import { Options } from "core/types";
-    const Wicle: {
-        readonly mq: MediaQuery;
-        nav: (selector: string, options?: Options) => void;
-        Parallax: typeof Parallax;
-    };
-    export default Wicle;
-}
 /**
- *  Wicle
- *
- *  @module Javascript String extension
- *
+ * @package wicle
+ * @module
+ * Javascript String extension
  */
 declare interface String {
     trimLeft(charList?: string): string;

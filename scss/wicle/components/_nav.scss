@@ -124,6 +124,16 @@
   }
   ul { display: none; }
 
+  // divider
+  .w-nav-item+.w-nav-divider {
+    margin: gsv($key, divider/spacing) 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    border-top: gsv($key, divider/style);
+    border-width: 1px 0 0 0;
+  }
+
   //--- border radius
   $radius: gsv($key, radius);
   &, li, a {
@@ -164,11 +174,11 @@
     transition: opacity 0.25s, transform 0.25s ease-in;
 
     // set submenu out-of-viewport position
-    &[aria-flip*=x] {
+    &[js-flip*=x] {
       left: auto;
       right: calc(100% - #{gsv($key, 'opt/flip/sub/x-offset')});
     }
-    &[aria-flip*=y] {
+    &[js-flip*=y] {
       top: auto;
       bottom: - gsv($key, 'opt/flip/sub/y-offset');
     }
@@ -205,11 +215,11 @@
         top: calc(100% + #{gsv($key, 'dropdown/top-level/offset')});
         left: 0;
         // set submenu out-of-viewport position
-        &[aria-flip*=x] {
+        &[js-flip*=x] {
           left: auto;
           right: - gsv($key, 'opt/flip/x-offset');
         }
-        &[aria-flip*=y] {
+        &[js-flip*=y] {
           top: auto;
           bottom: calc(100% + #{gsv($key, 'opt/flip/y-offset')});
         }
@@ -219,15 +229,6 @@
       }
     }
   }
-
-  .w-nav-divider {
-    margin: gsv($key, divider/spacing) 0;
-    height: 0;
-    font-size: 0;
-    line-height: 0;
-    border: gsv($key, divider/style);
-    border-width: 1px 0 0 0;
-  }
 }
 
 @mixin w-nav-accordion-core {
@@ -236,7 +237,7 @@
   @include w-nav-parent-marker {
     transform: rotate(90deg);
   };
-  .aria-state-active,
+  .is-active,
   .w-nav-parent-marker {
     transform: rotate(0deg);
   }
@@ -265,7 +266,7 @@
   &.wo-horizontal {
     & > li { float: left; }
     // disable marker animation for top level horizontal menu
-    & > li > .aria-state-active .w-nav-parent-marker {
+    & > li > .is-active .w-nav-parent-marker {
       transform: rotate(0deg);
     }
 

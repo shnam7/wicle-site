@@ -3,7 +3,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>{{ site.title }}{% if page.title %}{{ ' - ' | append:page.title }}{% endif %}</title>
 <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-{% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
+{% if page.tags %}
+<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
 <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="{{site.baseurl}}/favicon.ico">
 
 <!-- web fonts: Fira Sans, Lato -->
@@ -17,4 +18,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/xcode.min.css" />
 <link rel="stylesheet" href="{{site.baseurl}}/css/docs.min.css">
-{% if page.style %}<link rel="stylesheet" href="{{site.baseurl}}/css/{{page.style}}.min.css">{% endif %}
+{% if page.style %}
+<link rel="stylesheet" href="{{site.baseurl}}/css/{{page.style}}.min.css">{% endif %}

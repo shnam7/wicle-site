@@ -3,79 +3,90 @@
 //
 
 @import "site.config";
-@import "wicle";
 
-//--- Wicle Optional Features
-@include w-button-modifier-color-scheme();
-@include w-panel-modifier-color-scheme();
+.l-site-banner {
+    margin: 0;
+    border-top: 1px solid darken($w-theme-color, 25%);
+    padding: 2rem 1rem;
+    color: gray(90%);
+    text-align: center;
 
+    @include w-pattern(shade($w-theme-color, 25%));
+    //background-color: shade($w-theme-color, 25%); // smart-scale($w-theme-color, -5%);
 
-#l-banner {
-  margin:0;
-  border-top: 1px solid darken($w-theme-color, 25%);
-  padding: 2rem 1rem;
-  color: gray(90%);
-  text-align: center;
-
-  @include w-pattern(shade($w-theme-color, 25%));
-  //background-color: shade($w-theme-color, 25%); // smart-scale($w-theme-color, -5%);
-
-  .title {
-    font-size: 2rem;
-    color: $w-color-orange;
-  }
-  .description {
-    font-size: 1.2rem;
-    font-weight: normal;
-    padding:0;
-    margin-bottom:0.5rem;
-  }
-  .version {
-    margin-bottom:0.5rem;
-    padding:0.5rem;
-  }
-  .btn, .btn:visited {
-    color: #000;
-  }
-  .btn {
-    display: inline-block;
-    text-decoration: none;
-    margin-bottom: 1rem;
-    background-color: rgba($w-color-orange, 0.9);
-    border-radius: 2px; // 0.3rem;
-    transition: color 0.2s, background-color 0.2s, border-color 0.2s;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    &:hover {
-      color: $w-color-dark-red;
+    .title {
+        font-size: 2rem;
+        color: $w-color-orange;
     }
-    &:visited {
-      text-decoration: none;
+
+    .description {
+        font-size: 1.2rem;
+        font-weight: normal;
+        padding: 0;
+        margin-bottom: 0.5rem;
     }
-  }
+
+    .version {
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .btn,
+    .btn:visited {
+        color: #000;
+    }
+
+    .btn {
+        display: inline-block;
+        text-decoration: none;
+        margin-bottom: 1rem;
+        background-color: rgba($w-color-orange, 0.9);
+        border-radius: 2px; // 0.3rem;
+        transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+
+        &:hover {
+            color: $w-color-dark-red;
+        }
+
+        &:visited {
+            text-decoration: none;
+        }
+    }
 }
 
 // override code hiligher style
 .l-page {
-  code {
-    background: $w-color-code-block-bright;
-  }
-  padding-bottom: 3rem;
+    code {
+        background: $w-color-code-block-bright;
+    }
+
+    padding-bottom: 3rem;
 }
 
 .l-sidebar {
-  a:hover {
-    color: $w-theme-color-link-hover;
-  }
+    a:hover {
+        color: $w-theme-color-link-hover;
+    }
 }
 
 .l-site-footer {
-  //background-color: darken($w-theme-color, 25%);
-  background-color: rgba(#000, 0.85);
-  .logo-text {
-    color: rgba(yellow, 0.75);
-  }
-  a {
-    color: rgba(lightgreen, 0.75);
-  }
+    //background-color: darken($w-theme-color, 25%);
+    background-color: rgba(#000, 0.85);
+
+    .logo-text {
+        color: rgba(yellow, 0.75);
+    }
+
+    a {
+        color: rgba(lightgreen, 0.75);
+    }
+}
+
+.l-site-offcanvas {
+    h1 {
+        color: $w-color-text-white;
+        text-align: center;
+    }
 }

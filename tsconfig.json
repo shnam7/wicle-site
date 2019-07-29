@@ -1,13 +1,13 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "system",
-    "outFile": "wicle.js",
-    "declaration": true,
-    "noImplicitAny": true,
-    "noEmitOnError": true,
-    "pretty": true,
-    "lib" : ["dom", "es6", "dom.iterable", "scripthost"]
-  },
-  "exclude": ["dist", "docs", "node_modules", "_trash"]
+    "compilerOptions": {
+        "target": "es5",
+        "module": "system",
+        "declaration": true,
+        "noImplicitAny": true,
+        "noEmitOnError": true,
+        "pretty": true,
+        "rootDir": "./scripts", // required to have mdoule names to start from directory 'wicle...'
+        "lib": ["dom", "es6", "dom.iterable", "scripthost"]
+    },
+    "exclude": ["dist", "docs", "node_modules", "__trash"]
 }

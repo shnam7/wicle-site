@@ -1,18 +1,17 @@
 /**
- *  Wicle
- *
- *  @module Javascript String extension
- *
+ * @package wicle
+ * @module
+ * Javascript String extension
  */
 
 declare interface String {
-  trimLeft(charList?: string): string;
-  trimRight(charList?: string): string;
-  trimBoth (charList?: string): string;
-  trimAll(charList?: string): string;
-  startsWith(charList?: string): boolean;
-  endsWith(charList?: string): boolean;
-  parseOptions(separator?: string): { [prop: string]: any };
+    trimLeft(charList?: string): string;
+    trimRight(charList?: string): string;
+    trimBoth(charList?: string): string;
+    trimAll(charList?: string): string;
+    startsWith(charList?: string): boolean;
+    endsWith(charList?: string): boolean;
+    parseOptions(separator?: string): { [prop: string]: any };
 }
 
 
@@ -22,8 +21,8 @@ declare interface String {
  * @returns {string} trimmed string
  */
 String.prototype.trimLeft = function (charList?: string): string {
-  if (charList === undefined) charList = '\\s';
-  return this.replace(new RegExp("^[" + charList + "]+"), "").toString();
+    if (charList === undefined) charList = '\\s';
+    return this.replace(new RegExp("^[" + charList + "]+"), "").toString();
 };
 
 
@@ -33,8 +32,8 @@ String.prototype.trimLeft = function (charList?: string): string {
  * @returns {string} trimmed string
  */
 String.prototype.trimRight = function (charList?: string): string {
-  if (charList === undefined) charList = '\\s';
-  return this.replace(new RegExp("[" + charList + "]+$"), "").toString();
+    if (charList === undefined) charList = '\\s';
+    return this.replace(new RegExp("[" + charList + "]+$"), "").toString();
 };
 
 
@@ -44,7 +43,7 @@ String.prototype.trimRight = function (charList?: string): string {
  * @returns {string} trimmed string
  */
 String.prototype.trimBoth = function (charList?: string): string {
-  return this.trimLeft(charList).trimRight(charList);
+    return this.trimLeft(charList).trimRight(charList);
 };
 
 
@@ -54,38 +53,38 @@ String.prototype.trimBoth = function (charList?: string): string {
  * @returns {string} trimmed string
  */
 String.prototype.trimAll = function (charList?: string): string {
-  if (charList === undefined) charList = '\\s';
-  return this.replace(new RegExp("[" + charList + "]+", 'g'), "");
+    if (charList === undefined) charList = '\\s';
+    return this.replace(new RegExp("[" + charList + "]+", 'g'), "");
 };
 
 
-String.prototype.startsWith = function(str:string) {
-  return this.slice(0, str.length) == str;
+String.prototype.startsWith = function (str: string) {
+    return this.slice(0, str.length) == str;
 };
 
 
-String.prototype.endsWith = function(str:string) {
-  return this.slice(-str.length) == str;
+String.prototype.endsWith = function (str: string) {
+    return this.slice(-str.length) == str;
 };
 
 
 String.prototype.parseOptions = function (separator: string = ";") {
-  let str = this.trimBoth('{}' + separator).trim();
-  let opts: { [prop: string]: any } = {};
-  str.split(separator).forEach((item: string) => {
-    let pos = item.indexOf(':');
-    let key = item.substring(0, pos).trim();
-    let val = item.substring(pos + 1).trim();
-    let toValue = function (val: string) {
-      if (!val) return null;
-      if (val === 'true') return true;
-      if (val === 'false') return false;
-      let num = Number(val);
-      return isNaN(num) ? val.trimBoth('\'"') : num;
-    };
-    opts[key] = (val.startsWith('{')) ? val.parseOptions(',') : toValue(val);
-  });
-  return opts;
+    let str = this.trimBoth('{}' + separator).trim();
+    let opts: { [prop: string]: any } = {};
+    str.split(separator).forEach((item: string) => {
+        let pos = item.indexOf(':');
+        let key = item.substring(0, pos).trim();
+        let val = item.substring(pos + 1).trim();
+        let toValue = function (val: string) {
+            if (!val) return null;
+            if (val === 'true') return true;
+            if (val === 'false') return false;
+            let num = Number(val);
+            return isNaN(num) ? val.trimBoth('\'"') : num;
+        };
+        opts[key] = (val.startsWith('{')) ? val.parseOptions(',') : toValue(val);
+    });
+    return opts;
 };
 
 // /*****

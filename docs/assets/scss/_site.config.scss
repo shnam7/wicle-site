@@ -4,7 +4,7 @@
 //
 //=========================================================
 
-@import "wdk";    // Make WDK constants available (color/font names, etc.)
+@import "wdk"; // Make WDK constants available (color/font names, etc.)
 
 //--- Global Site Variables
 
@@ -22,20 +22,33 @@
 //-----------------------------------------------
 //  Wicle custom config
 //-----------------------------------------------
-$w-font-size:           15px;
+$w-font-size: 15px;
 
-//--- navbar
-// $key: 'w-navbar';
-// @include ssv($key, 'brand/font-family', $w-font-sans-default, true);
+@mixin wicle-custom-config {
+    //--- navbar
+    // $key: 'w-navbar';
+    // @include ssv($key, 'brand/font-family', $w-font-sans-default, true);
 
-//--- nav
-//$key: 'w-nav';
-//@include ssv($key, 'item-wrapper/fg', $w-color-shalimar);
+    //--- nav
+    //$key: 'w-nav';
+    //@include ssv($key, 'item-wrapper/fg', $w-color-shalimar);
 
-//--- layout
-// $key: 'w-layout';
-// @include ssv($key, 'page/font-family', $w-font-roboto, true);
+    //--- layout
+    // $key: 'w-layout';
+    // @include ssv($key, 'page/font-family', $w-font-roboto, true);
+}
+@include wicle-custom-config();
 
 
-//--- Finally, include Wicle config
+//--- include Wicle config
 @import "wicle.config";
+
+
+//-----------------------------------------------
+//  Wicle modules
+//-----------------------------------------------
+@import "wicle";
+
+//--- Wicle Optional Features
+@include w-button-modifier-color-scheme();
+@include w-panel-modifier-color-scheme();

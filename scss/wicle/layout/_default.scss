@@ -4,11 +4,9 @@
 //  @module layouts/two-column
 //
 //  @description Default layout Structure
-//  l-site
-//  l-site-header
-//    l-site-navigation
-//    l-site-banner
-//  l-site-content-parallax
+//  l-site (site container)
+//  l-site-header (includes navination, etc.)
+//  l-site-banner
 //  1-site-content
 //    l-page
 //      l-content
@@ -25,6 +23,7 @@
 @include w-layout-site-config;
 @include w-layout-site;
 @include w-layout-site-header;
+@include w-layout-site-banner;
 @include w-layout-site-content;
 @include w-layout-site-footer;
 @include w-layout-site-offcanvas;

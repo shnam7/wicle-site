@@ -12,7 +12,7 @@
 //--- layout
 $w-z-index:                     1000 !default;
 $w-site-max-width:              null !default; // 1220px !default; null means no limit
-$w-site-page-width:             1220px !default;  // 960px !default;
+$w-page-max-width:             1220px !default;  // 960px !default;
 
 
 //--- grid
@@ -38,6 +38,12 @@ $w-border-radius:               3px !default;
 //  Generate Optional Classes - Add to your scss file if necessary
 //-----------------------------------------------
 
-//--- visibility classes (see sass-wdk _visibility.scss for details)
+//--- sass-wdk: visibility classes (see sass-wdk _visibility.scss for details)
 // @include w-visibility-generate-classes; // generate all classes
 // @include w-visibility-generate-classes((show, hide), (medium, large)); // generate selective classes
+
+//--- wicle: theme colors for button and panel
+// @include w-button-modifier-color-scheme(primary);
+// @include w-panel-modifier-color-scheme((secondary, info));
+// @include w-button-modifier-color-scheme();
+// @include w-panel-modifier-color-scheme();
