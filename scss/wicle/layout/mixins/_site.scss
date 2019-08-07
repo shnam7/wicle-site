@@ -39,7 +39,6 @@
 
     // site-offcanvas
     @include ssv($key, 'offcanvas/bg', $w-color-text-black, true);
-    @include ssv($key, 'offcanvas/transition', 0.5s, true);
     @include ssv($key, 'offcanvas/z-index', gsv($key, 'z-index') + 99999, true);
     @include ssv($key, 'offcanvas/close-button/offset', 0.5rem, true);
     @include ssv($key, 'offcanvas/close-button/font-size', 1.35rem, true);
@@ -136,7 +135,6 @@
         position: fixed;
         z-index: gsv($key, 'z-index');
         padding: 2rem 0 0 0;
-        transition: gsv($key, 'transition');
         overflow-x: hidden;
 
         // close-button

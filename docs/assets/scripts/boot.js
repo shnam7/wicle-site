@@ -27,6 +27,8 @@ System.import(baseUrl + 'wicle.min.js').then(() => {
                 System.import(baseUrl + 'demo/panel.min.js')
             else if (page.classList.contains('demo-parallax'))
                 System.import(baseUrl + 'demo/parallax.min.js')
+            else if (page.classList.contains('demo-offcanvas'))
+                System.import(baseUrl + 'demo/offcanvas.min.js')
             else if (page.classList.contains('demo-media-query'))
                 System.import(baseUrl + 'demo/media-query.min.js')
         });
