@@ -32,7 +32,7 @@ interface OffcanvasData {
 
 export function offcanvas(selector?: string, options?: OffcanvasOptions) {
     if (!selector) selector = '.l-site-offcanvas';
-    let opts: OffcanvasOptions = $.extend({}, {
+    let opts: OffcanvasOptions = Object.assign({}, {
         closeButton: true,
         closeButtonSelector: '.offcanvas-close-button',
         closeOnBackgroundClick: true,
@@ -55,7 +55,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
 
         // init
         $canvas.on('offcanvas:init', (e, defaultData: OffcanvasData) => {
-            let data = $.extend({}, defaultData, $canvas.data());
+            let data = Object.assign({}, defaultData, $canvas.data());
             // console.log('init:data=', data, $canvas);
 
             // init canvas panel

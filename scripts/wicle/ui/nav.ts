@@ -25,7 +25,7 @@ const dynamicElements = 'w-nav-parent-marker,w-nav-accordion-click-area';
 
 export function nav(selector?: string, options?: NavOptions) {
     if (!selector) selector = '.w-nav';
-    options = $.extend({}, {
+    options = Object.assign({}, {
         speed: 200,
         showDelay: 0,
         hideDelay: 0,

@@ -87,7 +87,7 @@ function mqStateOf(width: number, breakPoints: BreakPoints): string {
 // start media query change detection service
 export function mqStart(breakPoints?: BreakPoints, options?: MQOptions) {
     if (!breakPoints) breakPoints = BREAKPOINTS.foundation;
-    options = $.extend({}, {}, options);
+    options = Object.assign({}, {}, options);
     const $window = $(window);
     let mqState: MQState;
 
