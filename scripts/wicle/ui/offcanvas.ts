@@ -108,7 +108,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
             if (data.mode == 'push') {
                 let side = (data.position == 'left' || data.position == 'right') ? 'left' : 'top';
                 let offset = (data.position == 'left' || data.position == 'top') ? size : -size;
-                jQuery('body').stop().animate({ ['margin-' + side]: offset }, data.duration);
+                jQuery('html').stop().animate({ ['margin-' + side]: offset }, data.duration);
             }
             $canvas.stop().animate({ [data.position]: 0 }, data.duration, () => {
                 data.isOpen = true;
@@ -131,7 +131,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
 
             if (data.mode == 'push') {
                 let side = (data.position == 'left' || data.position == 'right') ? 'left' : 'top';
-                jQuery('body').stop().animate({ ['margin-' + side]: 0 }, data.duration);
+                jQuery('html').stop().animate({ ['margin-' + side]: 0 }, data.duration);
             }
             $canvas.stop().animate({ [data.position]: -size }, data.duration, () => {
                 data.isOpen = false;
@@ -156,7 +156,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
     });
 
     // set offcanvas close handler including background(.l-site) click
-    if (opts.closeOnBackgroundClick) jQuery('body').on('click', (e) => {
+    if (opts.closeOnBackgroundClick) jQuery('html').on('click', (e) => {
         jQuery(selector).trigger('offcanvas:close');  // close on background click
     });
 }
