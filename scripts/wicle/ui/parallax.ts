@@ -24,13 +24,13 @@ export class Container {
         this.perspective = perspective;
         this.lastPerspective = 1;           // perspective of lowest surface
 
-        $(scrollableContent).on('scroll', (event: JQuery.Event) => {
+        jQuery(scrollableContent).on('scroll', (event: JQuery.Event) => {
             this.onContainerScroll(event);
         });
     }
 
     private onContainerScroll(e: JQuery.Event): void {
-        let currentScrollPos = $(this.content).scrollTop();
+        let currentScrollPos = jQuery(this.content).scrollTop();
         for (let surface of this.surface)
             surface.scroll(-currentScrollPos);
     }
@@ -55,14 +55,14 @@ export class Surface {
     constructor(surfaceContents: HTMLElement, public perspective: number = 0) {
         this.content = surfaceContents;
 
-        $(surfaceContents).css({
+        jQuery(surfaceContents).css({
             position: 'fixed',
             transform: 'translate3d(0, 0, 0)'
         });
     }
 
     public scroll(scrollPos: number) {
-        $(this.content).css({
+        jQuery(this.content).css({
             transform: `translate3d(0, ${scrollPos * this.perspective}px, 0)`
         });
     }

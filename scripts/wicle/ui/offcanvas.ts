@@ -38,8 +38,8 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
         closeOnBackgroundClick: true,
     }, options);
 
-    $(selector).each((index: number, item: HTMLElement) => {
-        let $canvas = $(item);
+    jQuery(selector).each((index: number, item: HTMLElement) => {
+        let $canvas = jQuery(item);
         let defaultCanvasData: OffcanvasData = {
             control: null,
             position: 'left',
@@ -76,7 +76,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
             $canvas.on('click', (e) => { return false; })
 
             // set offcanvas control button handler
-            if (data.control) $(data.control).on('click', (e) => {
+            if (data.control) jQuery(data.control).on('click', (e) => {
                 $canvas.trigger('offcanvas:toggle');
                 e.preventDefault();   // this prevent screen repositioning triggered by <a> tag
                 return false;
@@ -85,7 +85,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
             // add offcanvas-close-button
             if (opts.closeButton) $canvas.prepend("<div class='offcanvas-close-button'></div>")
                 .find(opts.closeButtonSelector).on('click', (e) => {
-                    $(data.control).trigger('click');
+                    jQuery(data.control).trigger('click');
                     e.preventDefault();
                     return false;
                 })
@@ -108,7 +108,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
             if (data.mode == 'push') {
                 let side = (data.position == 'left' || data.position == 'right') ? 'left' : 'top';
                 let offset = (data.position == 'left' || data.position == 'top') ? size : -size;
-                $('body').stop().animate({ ['margin-' + side]: offset }, data.duration);
+                jQuery('body').stop().animate({ ['margin-' + side]: offset }, data.duration);
             }
             $canvas.stop().animate({ [data.position]: 0 }, data.duration, () => {
                 data.isOpen = true;
@@ -131,7 +131,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
 
             if (data.mode == 'push') {
                 let side = (data.position == 'left' || data.position == 'right') ? 'left' : 'top';
-                $('body').stop().animate({ ['margin-' + side]: 0 }, data.duration);
+                jQuery('body').stop().animate({ ['margin-' + side]: 0 }, data.duration);
             }
             $canvas.stop().animate({ [data.position]: -size }, data.duration, () => {
                 data.isOpen = false;
@@ -156,7 +156,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
     });
 
     // set offcanvas close handler including background(.l-site) click
-    if (opts.closeOnBackgroundClick) $('body').on('click', (e) => {
-        $(selector).trigger('offcanvas:close');  // close on background click
+    if (opts.closeOnBackgroundClick) jQuery('body').on('click', (e) => {
+        jQuery(selector).trigger('offcanvas:close');  // close on background click
     });
 }

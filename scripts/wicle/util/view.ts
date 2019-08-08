@@ -16,7 +16,7 @@ export function getViewporSize(): { width: number, height: number } {
 
 // get element offset and outer size
 // getElementPosize(element) {
-//     let $element = $(element), ret={}, tmpCSS=null, $tmpEl=null;
+//     let $element = jQuery(element), ret={}, tmpCSS=null, $tmpEl=null;
 //     if (!$element.is(":visible")) {
 //         tmpCSS = {
 //             position: $element.css("position"),

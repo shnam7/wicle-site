@@ -88,7 +88,7 @@ function mqStateOf(width: number, breakPoints: BreakPoints): string {
 export function mqStart(breakPoints?: BreakPoints, options?: MQOptions) {
     if (!breakPoints) breakPoints = BREAKPOINTS.foundation;
     options = Object.assign({}, {}, options);
-    const $window = $(window);
+    const $window = jQuery(window);
     let mqState: MQState;
 
     // init

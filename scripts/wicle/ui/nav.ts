@@ -34,12 +34,12 @@ export function nav(selector?: string, options?: NavOptions) {
         breakPoint: 640,
     }, options);
 
-    $(selector).each((index: number, element: HTMLElement) => {
-        let $nav = $(element);
+    jQuery(selector).each((index: number, element: HTMLElement) => {
+        let $nav = jQuery(element);
         // let classes;
 
         function flipHandler(e: JQuery.TriggeredEvent) {
-            $('.w-nav').find('[js-flip]').removeAttr('js-flip');
+            jQuery('.w-nav').find('[js-flip]').removeAttr('js-flip');
         }
 
         //--- Event handlers ----------------------------------------
@@ -61,7 +61,7 @@ export function nav(selector?: string, options?: NavOptions) {
             // $nav.filter(':not(.wo-icon)').find('.w-nav-parent')
             $nav.find('.w-nav-parent')
                 .children('.w-nav-item-wrapper').each((idx, el) => {
-                    let $el = $(el);
+                    let $el = jQuery(el);
                     // Do not add parent-marker if wo-icon is set for the item
                     if ($el.hasClass('wo-icon')) return;
 
@@ -74,7 +74,7 @@ export function nav(selector?: string, options?: NavOptions) {
 
             // check divider items: item text only with '-' or unicode dashes or spaces
             $nav.find('.w-nav-item').each((index, el) => {
-                let $el = $(el);
+                let $el = jQuery(el);
                 // if (!/[^\-\u2014\u2013\s]/.test($el.text())) $el.addClass('w-nav-divider');
                 // text should starts with one or more dashes
                 if (/^[\-\u2014\u2013]+/.test($el.text())) $el.addClass('w-nav-divider');
@@ -87,7 +87,7 @@ export function nav(selector?: string, options?: NavOptions) {
             // check out-of-viewport status
             $dropdown.find('.w-nav-parent')
                 .off('mouseenter').on('mouseenter', (e) => {
-                    let $sub = $(e.currentTarget).children('.w-nav-child');
+                    let $sub = jQuery(e.currentTarget).children('.w-nav-child');
                     // check element position if it exceeds viewport
                     // ref: http://stackoverflow.com/questions/8897289/how-to-check-if-an-element-is-off-screen
                     // ref: http://stackoverflow.com/questions/1567327/using-jquery-to-get-elements-position-relative-to-viewport
@@ -104,9 +104,9 @@ export function nav(selector?: string, options?: NavOptions) {
             let $accordion = $nav.filter('.wo-accordion');
             // add accordion click area to avoid link activation
             $accordion.find('.w-nav-item-wrapper').each((idx, el) => {
-                let $el = $(el);
+                let $el = jQuery(el);
                 if ($el.children('.w-nav-accordion-click-area').length === 0)
-                    $el.after($('<span class="w-nav-accordion-click-area"></span>'));
+                    $el.after(jQuery('<span class="w-nav-accordion-click-area"></span>'));
             });
 
             // check manually activated items
@@ -116,7 +116,7 @@ export function nav(selector?: string, options?: NavOptions) {
             $accordion.find('.w-nav-item-wrapper,.w-nav-accordion-click-area')
                 .off('click').on('click', (e, data) => {
                     let opts = options;
-                    let $target = $(e.target);
+                    let $target = jQuery(e.target);
                     let href = $target.attr('href');
 
                     // set target to w-nav-parent
@@ -142,7 +142,7 @@ export function nav(selector?: string, options?: NavOptions) {
                     return false;
                 });
 
-            $(window).off('resize', flipHandler).on('resize', flipHandler);
+            jQuery(window).off('resize', flipHandler).on('resize', flipHandler);
         });
 
         $nav.on('nav:clean', (e, data) => {
@@ -153,7 +153,7 @@ export function nav(selector?: string, options?: NavOptions) {
             $nav.find(dynamicClasses).removeClass(dynamicClasses);
 
             // remove event handlers
-            $(window).off('resize', flipHandler);
+            jQuery(window).off('resize', flipHandler);
             // window.removeEventListener(Nav.mqStateChangedEventName, this.mqChangeHandler);
             $nav.filter('.wo-accordion').find('.w-nav-parent,.w-nav-accordion-click-area').off('click');
         });
