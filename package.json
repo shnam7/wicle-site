@@ -1,62 +1,62 @@
 {
-  "name": "wicle",
-  "version": "2.0.0-dev",
-  "description": "Component library for Web development.",
-  "files": [
-    "dist",
-    "scripts",
-    "scss",
-    "!**/*.map"
-  ],
-  "main": "index.js",
-  "typings": "dist/js/wicle",
-  "scripts": {
-    "wicle:build": "gulp wicle:build",
-    "wicle:clean": "gulp wicle:clean",
-    "docs:build": "gulp docs:build",
-    "docs:clean": "gulp docs:clean",
-    "build-all": "gulp @build",
-    "clean-all": "gulp @clean",
-    "watch": "gulp @watch",
-    "prepare": "npm run clean-all && npm run wicle:build",
-    "prepare-to-commit": "npm run clean-all && npm run build-all",
-    "npm-dry-run": "npm publish --dry-run"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/shnam7/wicle"
-  },
-  "keywords": [
-    "scss",
-    "utility",
-    "web",
-    "ui"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/shnam7/wicle/issues"
-  },
-  "homepage": "https://github.com/shnam7/wicle#readme",
-  "dependencies": {
-    "sass-wdk": "github:shnam7/sass-wdk#dev"
-  },
-  "devDependencies": {
-    "@types/jquery": "^3.3.31",
-    "browser-sync": "^2.26.7",
-    "cssnano": "^4.1.10",
-    "gulp": "^4.0.2",
-    "gulp-build-manager": "github:shnam7/gulp-build-manager#dev",
-    "gulp-clean-css": "^4.2.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-typescript": "^5.0.1",
-    "gulp-uglify-es": "^1.0.4",
-    "lost": "^8.3.1",
-    "postcss-combine-duplicated-selectors": "^8.0.2",
-    "stylelint": "^10.1.0",
-    "stylelint-config-recommended": "^2.2.0",
-    "systemjs-plugin-css": "^0.1.37",
-    "tslint": "^5.18.0",
-    "tslint-eslint-rules-recommended": "^1.2.2",
-    "typescript": "^3.5.3"
-  }
+    "name": "wicle",
+    "version": "2.0.0-dev",
+    "description": "Component library for Web development.",
+    "files": [
+        "dist",
+        "scripts",
+        "scss",
+        "!**/*.map"
+    ],
+    "main": "index.js",
+    "typings": "dist/js/wicle",
+    "scripts": {
+        "wicle:build": "gulp wicle:build",
+        "wicle:clean": "gulp wicle:clean",
+        "docs:build": "gulp docs:build",
+        "docs:clean": "gulp docs:clean",
+        "build-all": "gulp @build",
+        "clean-all": "gulp @clean",
+        "watch": "gulp @watch",
+        "prepare": "npm run clean-all && npm run wicle:build",
+        "prepare-to-commit": "npm run clean-all && npm run build-all",
+        "npm-dry-run": "npm publish --dry-run"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/shnam7/wicle"
+    },
+    "keywords": [
+        "scss",
+        "utility",
+        "web",
+        "ui"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/shnam7/wicle/issues"
+    },
+    "homepage": "https://github.com/shnam7/wicle#readme",
+    "dependencies": {
+        "sass-wdk": "github:shnam7/sass-wdk#dev"
+    },
+    "devDependencies": {
+        "@types/jquery": "^3.3.31",
+        "browser-sync": "^2.26.7",
+        "cssnano": "^4.1.10",
+        "gulp": "^4.0.2",
+        "gulp-build-manager": "github:shnam7/gulp-build-manager#dev",
+        "gulp-clean-css": "^4.2.0",
+        "gulp-sass": "^4.0.2",
+        "gulp-typescript": "^5.0.1",
+        "gulp-uglify-es": "^1.0.4",
+        "lost": "^8.3.1",
+        "postcss-combine-duplicated-selectors": "^8.0.2",
+        "stylelint": "^10.1.0",
+        "stylelint-config-recommended": "^2.2.0",
+        "systemjs-plugin-css": "^0.1.37",
+        "tslint": "^5.18.0",
+        "tslint-eslint-rules-recommended": "^1.2.2",
+        "typescript": "^3.5.3"
+    }
 }

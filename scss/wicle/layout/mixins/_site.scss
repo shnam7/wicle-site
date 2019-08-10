@@ -39,7 +39,7 @@
 
     // site-offcanvas
     @include ssv($key, 'offcanvas/bg', $w-color-text-black, true);
-    @include ssv($key, 'offcanvas/z-index', gsv($key, 'z-index') + 10, true);
+    @include ssv($key, 'offcanvas/z-index', gsv($key, 'z-index') + 99999, true);    // 99999 is z-index of wordpress admin bar
     @include ssv($key, 'offcanvas/close-button/offset', 0.5rem, true);
     @include ssv($key, 'offcanvas/close-button/font-size', 1.35rem, true);
     @include ssv($key, 'offcanvas/close-button/padding', (0 0.4rem), true);
