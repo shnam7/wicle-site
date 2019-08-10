@@ -116,13 +116,13 @@ pre {
 }
 
 //--- set box-sizing defaults to boder-box for section elements and div
-// body,
-// header,
-// nav,
-// section,
-// article,
-// aside,
-// footer,
-// div {
-//     box-sizing: border-box;
-// }
+body,
+header,
+nav,
+section,
+article,
+aside,
+footer,
+div {
+    box-sizing: border-box;
+}
