@@ -14,14 +14,14 @@
 
     // site
     @include ssv($key, 'max-width', $w-site-max-width, true);
-    @include ssv($key, 'z-index', $w-z-index + 1000, true);
+    @include ssv($key, 'z-index', $w-z-index, true);
 
     // site-header
     @include ssv($key, 'header/fg', null, true);
     @include ssv($key, 'header/bg', $w-theme-color, true);
     @include ssv($key, 'header/gradient', (level:20%, direction:top));
     @include ssv($key, 'header/min-height', 3rem, true);
-    @include ssv($key, 'header/z-index', gsv($key, 'z-index')+100, true);
+    @include ssv($key, 'header/z-index', gsv($key, 'z-index')+10, true);
     //@include ssv($key, 'header/padding', 1rem 0.5rem, true);
 
     // site-banner
@@ -39,7 +39,7 @@
 
     // site-offcanvas
     @include ssv($key, 'offcanvas/bg', $w-color-text-black, true);
-    @include ssv($key, 'offcanvas/z-index', gsv($key, 'z-index') + 99999, true);
+    @include ssv($key, 'offcanvas/z-index', gsv($key, 'z-index') + 10, true);
     @include ssv($key, 'offcanvas/close-button/offset', 0.5rem, true);
     @include ssv($key, 'offcanvas/close-button/font-size', 1.35rem, true);
     @include ssv($key, 'offcanvas/close-button/padding', (0 0.4rem), true);
@@ -60,6 +60,7 @@
         margin: 0 auto;
         padding: 0;
         max-width: gsv($key, max-width);
+        overflow: hidden;   // important: this will hide off-canvas elements
         z-index: gsv($key, z-index);
     }
 }
@@ -135,7 +136,8 @@
         position: fixed;
         z-index: gsv($key, 'z-index');
         padding: 2rem 0 0 0;
-        overflow-x: hidden;
+        overflow-y: auto;
+        max-height: 100%;
 
         // close-button
         &>.offcanvas-close-button {

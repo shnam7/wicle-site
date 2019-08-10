@@ -21,14 +21,16 @@ export interface OffcanvasOptions {
 }
 
 interface OffcanvasData {
-    control: string;
-    position: string;		// left, tight, top, bottom
-    width: string,
-    height: string,
-    mode: string,
-    duration: number,
-    isOpen: boolean;
+    control: string;        // selector for open/close control
+    position: string;	    // location of the canvas: left, top, right, bottom
+    width: string,          // default width of vertical canvas
+    height: string,         // default height of horizontal canvas
+    transition: string,     // animation type. overlay(default) or push
+    duration: number,       // animation duration
+    pusher: string;         // selector for element to be pushed on open
+    isOpen: boolean;        // open/close state
 }
+
 
 export function offcanvas(selector?: string, options?: OffcanvasOptions) {
     if (!selector) selector = '.l-site-offcanvas';
@@ -43,13 +45,43 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
         let defaultCanvasData: OffcanvasData = {
             control: null,
             position: 'left',
-            width: '320px',		// default width of vertical canvas
-            height: '320px',	// default height of horizontal canvas
-            mode: 'push',       // animation mode. overlay(default) or push
-            duration: 500,      // animation duration
+            width: '320px',
+            height: '320px',
+            transition: 'push',
+            duration: 500,
+            pusher: '.l-site',
             isOpen: false
         };
 
+        function hideCSS(data: OffcanvasData) {
+            let pos = data.position;
+            if (pos === 'left' || pos == 'right') return {
+                width: `${data.width}`,
+                height: '100%',
+                top: 0,
+                left: (pos == 'left') ? 0 : 'auto',
+                right: (pos == 'left') ? 'auto' : 0,
+                transform: (pos == 'left') ? 'translate3d(-100%, 0, 0)' : 'translate3d(100%, 0, 0)'
+            }
+            else if (pos === 'top' || pos == 'bottom') return {
+                width: `100%`,
+                height: `${data.height}`,
+                left: 0,
+                top: (pos == 'top') ? 0 : 'auto',
+                bottom: (pos == 'top') ? 'auto' : 0,
+                transform: (pos == 'top') ? 'translate3d(0, -100%, 0)' : 'translate3d(0, 100%, 0)'
+            }
+        }
+
+        function pushCSS(data: OffcanvasData) {
+            if (data.transition != 'push') return undefined;
+
+            let pos = data.position;
+            if (pos == 'left') return { transform: 'translate3d(' + data.width + ',0,0)' };
+            if (pos == 'right') return { transform: 'translate3d(-' + data.width + ',0,0)' };
+            if (pos == 'top') return { transform: 'translate3d(0,' + data.height + ',0)' };
+            if (pos == 'bottom') return { transform: 'translate3d(0,-' + data.height + ',0)' };
+        }
 
         //--- Event handlers ----------------------------------------
 
@@ -58,19 +90,17 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
             let data = Object.assign({}, defaultData, $canvas.data());
             // console.log('init:data=', data, $canvas);
 
-            // init canvas panel
-            let pos = data.position;
-            if (pos === 'left' || pos == 'right') {
-                $canvas.css(pos, '-' + data.width);		// hide canvas
-                $canvas.css({ width: `${data.width}`, height: '100%', top: 0 })
-            }
-            else if (pos === 'top' || pos == 'bottom') {
-                $canvas.css(pos, '-' + data.height);	// hide canvas
-                $canvas.css({ height: `${data.height}`, width: '100%', left: 0 });
-            } else {
-                console.warn(`[offcanvas:init] Unknown data-position value: ${pos}.`)
-            }
-            $canvas.css('display', 'block');
+            $canvas
+                .css(hideCSS(data))
+                .css({ transition: 'transform ' + data.duration / 1000 + 's', });
+            setTimeout(() => { $canvas.css({ display: 'block' }); }, 0);
+
+            // set animation timing for pusher
+            if (data.transition == 'push') jQuery(data.pusher).css({
+                'overflow-x': 'hidden',
+                transition: data.duration / 1000 + 's',
+                transform: 'translate3d(0,0,0)',
+            });
 
             // disable click on canvas panel
             $canvas.on('click', (e) => { return false; })
@@ -96,56 +126,39 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
 
         // open
         $canvas.on('offcanvas:open', (e) => {
-            let data = $canvas.data();
+            let data = $canvas.data() as OffcanvasData;
             // console.log('open:data=', data);
             if (data.isOpen) return;
 
             $canvas.trigger('offcanvas:opening', [data]);
+            $canvas.css({ transform: 'translate3d(0, 0, 0)' });
+            jQuery(data.pusher).css(pushCSS(data));
 
-            let size = (data.position == 'left' || data.position == 'right')
-                ? $canvas.outerWidth() : $canvas.outerHeight();
-
-            if (data.mode == 'push') {
-                let side = (data.position == 'left' || data.position == 'right') ? 'left' : 'top';
-                let offset = (data.position == 'left' || data.position == 'top') ? size : -size;
-                jQuery('html').stop().animate({ ['margin-' + side]: offset }, data.duration);
-            }
-            $canvas.stop().animate({ [data.position]: 0 }, data.duration, () => {
-                data.isOpen = true;
-                $canvas.trigger('offcanvas:opend', [data]);
-            });
-
+            data.isOpen = true;
             $canvas.data(data);
+            $canvas.trigger('offcanvas:opend', [data]);
             return false;
         });
 
         // close
         $canvas.on('offcanvas:close', (e) => {
-            let data = $canvas.data();
-            // console.log('close:data=', data);
+            let data = $canvas.data() as OffcanvasData;
             if (!data.isOpen) return;
+            // console.log('close:data=', data);
 
             $canvas.trigger('offcanvas:closing', [data]);
-            let size = (data.position === 'left' || data.position === 'right')
-                ? $canvas.outerWidth() : $canvas.outerHeight();
+            jQuery(data.pusher).css({transform: 'translate3d(0,0,0)'});
+            $canvas.css(hideCSS(data));
 
-            if (data.mode == 'push') {
-                let side = (data.position == 'left' || data.position == 'right') ? 'left' : 'top';
-                jQuery('html').stop().animate({ ['margin-' + side]: 0 }, data.duration);
-            }
-            $canvas.stop().animate({ [data.position]: -size }, data.duration, () => {
-                data.isOpen = false;
-                $canvas.trigger('offcanvas:closed', [data]);
-            });
+            data.isOpen = false;
             $canvas.data(data);
+            $canvas.trigger('offcanvas:closed', [data]);
             return false;
         });
 
         // toggle
         $canvas.on('offcanvas:toggle', (e) => {
             let data = $canvas.data();
-            // console.log('open:data=', data);
-
             // console.log('toggle:data=', data, 'offcanvas:' + (data.isOpen ? 'close' : 'open'));
             $canvas.trigger('offcanvas:' + (data.isOpen ? 'close' : 'open'), [data])
             return false;
