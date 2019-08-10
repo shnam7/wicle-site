@@ -35,6 +35,13 @@
 html {
     font-size: $w-font-size;
     line-height: $w-line-height;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 body {
@@ -92,6 +99,7 @@ textarea {
 
     color: gsv($key, fg);
     font-family: $w-font-sans; // set base font here, to apply evenly
+    box-sizing: border-box;
 }
 
 //--- code block
@@ -116,13 +124,13 @@ pre {
 }
 
 //--- set box-sizing defaults to boder-box for section elements and div
-body,
-header,
-nav,
-section,
-article,
-aside,
-footer,
-div {
-    box-sizing: border-box;
-}
+// body,
+// header,
+// nav,
+// section,
+// article,
+// aside,
+// footer,
+// div {
+//     box-sizing: border-box;
+// }
