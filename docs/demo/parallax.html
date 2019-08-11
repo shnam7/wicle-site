@@ -6,9 +6,17 @@ style: demo/parallax
 ---
 <h1>Parallax example</h1>
 
+<p>Parallax Container Perspective Value: 0.7</p>
+<p>First surface inside the parallax container moves in normal speed.</p>
+<p>Second surface moves in 70% of the first</p>
+<p>Third surface moves in 70% of the second, etc.</p>
+
 {% for i in (1..5) %}
 <div id="surface{{i}}" class="surface">
     {% for j in (1..5) %}
+    {% if j == 5 %}
+    <button class='w-button wo-primary'>Surface#{{i}}</button>
+    {% endif %}
     <div id="box{{i}}-{{j}}" class="box"></div>
     {% endfor %}
 </div>

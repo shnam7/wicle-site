@@ -25,7 +25,7 @@ interface OffcanvasData {
     position: string;	    // location of the canvas: left, top, right, bottom
     width: string,          // default width of vertical canvas
     height: string,         // default height of horizontal canvas
-    transition: string,     // animation type. overlay(default) or push
+    mode: string,           // animation mode. overlay(default) or push
     duration: number,       // animation duration
     pusher: string;         // selector for element to be pushed on open
     isOpen: boolean;        // open/close state
@@ -47,7 +47,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
             position: 'left',
             width: '320px',
             height: '320px',
-            transition: 'push',
+            mode: 'push',
             duration: 500,
             pusher: '.l-site',
             isOpen: false
@@ -74,7 +74,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
         }
 
         function pushCSS(data: OffcanvasData) {
-            if (data.transition != 'push') return undefined;
+            if (data.mode != 'push') return undefined;
 
             let pos = data.position;
             if (pos == 'left') return { transform: 'translate3d(' + data.width + ',0,0)' };
@@ -96,10 +96,9 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
             setTimeout(() => { $canvas.css({ display: 'block' }); }, 0);
 
             // set animation timing for pusher
-            if (data.transition == 'push') jQuery(data.pusher).css({
+            if (data.mode == 'push') jQuery(data.pusher).css({
                 'overflow-x': 'hidden',
-                transition: data.duration / 1000 + 's',
-                transform: 'translate3d(0,0,0)',
+                transition: data.duration / 1000 + 's'
             });
 
             // disable click on canvas panel
@@ -132,7 +131,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
 
             $canvas.trigger('offcanvas:opening', [data]);
             $canvas.css({ transform: 'translate3d(0, 0, 0)' });
-            jQuery(data.pusher).css(pushCSS(data));
+            if (data.mode == 'push') jQuery(data.pusher).css(pushCSS(data));
 
             data.isOpen = true;
             $canvas.data(data);
@@ -147,7 +146,9 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
             // console.log('close:data=', data);
 
             $canvas.trigger('offcanvas:closing', [data]);
-            jQuery(data.pusher).css({transform: 'translate3d(0,0,0)'});
+            // transform MUST be 'none' not 'translate3d(0,0,0)'.
+            // Or, 'fixed' property of the cheldren will not work, making Parallax not to work
+            if (data.mode == 'push') jQuery(data.pusher).css({ transform: 'none' });
             $canvas.css(hideCSS(data));
 
             data.isOpen = false;

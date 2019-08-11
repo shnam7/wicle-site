@@ -73,6 +73,13 @@ declare module "wicle/ui/parallax" {
     /**
      * @package wicle
      *
+     * Example:
+     * Container = [Surface1, Surface2, ...], perspective=0.5
+     * Surface1 scrolls normally, Surface2 scrolls 50%, Surface scrolls 25%, ...
+     *
+     * Note: If parent node has 'transform' property, 'fixed' property of Surface object does not work.
+     *       In this case, Surface will move by the parent, and move again by the scroll handler,
+     *          which will make all the surfaces move faster than window
      */
     export class Container {
         private content;
@@ -95,6 +102,12 @@ declare module "wicle/ui/parallax" {
     export class Surface {
         perspective: number;
         private content;
+        /**
+         *  Create a Surface for a Palallax
+         *
+         *  @param surfaceContents
+         *  @param perspective Scaling factor of the scrollPos
+         */
         constructor(surfaceContents: HTMLElement, perspective?: number);
         scroll(scrollPos: number): void;
     }

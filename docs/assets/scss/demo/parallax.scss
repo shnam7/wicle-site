@@ -22,12 +22,17 @@ $box-per-surface:   10;
 
 @for $i from 1 through $surface-count {
     #surface#{$i} {
+        $reduction: unquote(($i*5) + '%');
+        width: calc(100% - #{$reduction});
+
         margin-top: $surface-spacing * $i;
-        z-index: -$i;
+        z-index: -100 + $i;
 
         .box {
+            margin-left: 100px;
             width: 100%;
             height: $box-height;
+            float: left;
 
             &:not(:first-child) {
                 margin-top: $box-height / 2;
