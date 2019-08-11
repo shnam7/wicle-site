@@ -3,6 +3,7 @@
 <head>{% include head.html %}</head>
 
 <body class="{{page.body_class}}">
+    <div class="l-site-background" id='surface-shadow'></div>
     <div class="l-site">
         <header class="l-site-header">{% include header.html %}</header>
         {% if page.frontpage %}<div class="l-site-banner">{% include banner.html %}</div>{% endif %}
@@ -14,6 +15,7 @@
         </div>
         <footer class="l-site-footer">{% include footer.html %}</footer>
     </div> <!-- l-site  -->
+    <div class="l-site-overlay"></div>
 
     <!-- Multi Offcanvas panels for Offcanvas demo -->
     <section class="l-site-offcanvas" data-control='.wz-control-left' data-position='left' data-width='200px'>{% include offcanvas.html %}</section>

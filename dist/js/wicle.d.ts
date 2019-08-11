@@ -106,9 +106,10 @@ declare module "wicle/ui/parallax" {
          *  Create a Surface for a Palallax
          *
          *  @param surfaceContents
-         *  @param perspective Scaling factor of the scrollPos
+         *  @param perspective Initial perspective of the surface.
+         *  @param cssPosition CSS position property: Should be absolute or fixed
          */
-        constructor(surfaceContents: HTMLElement, perspective?: number);
+        constructor(surfaceContents: HTMLElement, perspective?: number, cssPosition?: string);
         scroll(scrollPos: number): void;
     }
 }

@@ -2,6 +2,7 @@
 layout: default
 title: Home
 frontpage: true
+body_class: 'front-page'
 ---
 
 # Introduction

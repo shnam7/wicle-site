@@ -9,10 +9,10 @@
 
 @import "wdk/constants";
 
+
 //--- layout
-$w-z-index:                     1000 !default;
 $w-site-max-width:              null !default; // 1220px !default; null means no limit
-$w-page-max-width:             1220px !default;  // 960px !default;
+$w-page-max-width:              1220px !default;  // 960px !default;
 
 
 //--- grid

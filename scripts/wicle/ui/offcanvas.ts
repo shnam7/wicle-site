@@ -98,7 +98,7 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
             // set animation timing for pusher
             if (data.mode == 'push') jQuery(data.pusher).css({
                 'overflow-x': 'hidden',
-                transition: data.duration / 1000 + 's'
+                transition: 'transform ' + data.duration / 1000 + 's'
             });
 
             // disable click on canvas panel

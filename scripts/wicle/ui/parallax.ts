@@ -63,14 +63,15 @@ export class Surface {
      *  Create a Surface for a Palallax
      *
      *  @param surfaceContents
-     *  @param perspective Scaling factor of the scrollPos
+     *  @param perspective Initial perspective of the surface.
+     *  @param cssPosition CSS position property: Should be absolute or fixed
      */
-    constructor(surfaceContents: HTMLElement, public perspective: number = 0) {
+    constructor(surfaceContents: HTMLElement, public perspective: number = 0, cssPosition: string = 'fixed') {
         this.content = surfaceContents;
 
         jQuery(surfaceContents).css({
-            position: 'fixed',
-            transform: 'translate3d(0, 0, 0)'
+            position: cssPosition,
+            transform: 'none'
         });
     }
 

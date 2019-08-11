@@ -4,15 +4,29 @@
 
 @import "site.config";
 
+$banner-height: 350px;
+$header-height: gsv('w-navbar/height');
+
+.l-site-background {
+    position: absolute;
+    top: 0;
+    height: $banner-height + px($header-height);
+    @include w-pattern(shade($w-theme-color, 25%));
+}
+
+.l-site-content {
+    background: white;
+    min-height: 1024px;
+}
+
 .l-site-banner {
-    margin: 0;
-    border-top: 1px solid darken($w-theme-color, 25%);
+    display: none;
+    height: $banner-height;
+
     padding: 2rem 1rem;
     color: gray(90%);
     text-align: center;
 
-    @include w-pattern(shade($w-theme-color, 25%));
-    //background-color: shade($w-theme-color, 25%); // smart-scale($w-theme-color, -5%);
 
     .title {
         font-size: 2rem;
@@ -55,6 +69,11 @@
         }
     }
 }
+
+.front-page .l-site-banner {
+    display: block;
+}
+
 
 // override code hiligher style
 .l-page {

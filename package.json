@@ -37,9 +37,7 @@
         "url": "https://github.com/shnam7/wicle/issues"
     },
     "homepage": "https://github.com/shnam7/wicle#readme",
-    "dependencies": {
-        "sass-wdk": "github:shnam7/sass-wdk#dev"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@types/jquery": "^3.3.31",
         "browser-sync": "^2.26.7",

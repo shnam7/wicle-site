@@ -13,7 +13,7 @@ style: demo/colors
 ##### $w-color-success(chateau-green):      #28A745; // $w-color-chateau-green
 ##### $w-color-info(java):                  #15949D; // $w-color-java
 ##### $w-color-info(pelorous):              #17A2B8; // $w-color-pelorous
-##### $w-color-warning(pumpkin):            #F87217; // $w-color-pumpkin
+##### $w-color-warning(orange):             #FFA500; // $w-color-orange
 ##### $w-color-danger(mandy):               #DA424D; // $w-color-mandy
 </div>
 

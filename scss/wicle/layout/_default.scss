@@ -4,7 +4,8 @@
 //  @module layouts/two-column
 //
 //  @description Default layout Structure
-//  l-site (site container)
+//  l-site-background
+//  l-site
 //    l-site-header (includes navination, etc.)
 //    l-site-banner
 //    1-site-content
@@ -12,6 +13,7 @@
 //        l-content
 //       l-sidebar (modifiers: left, right)
 //    l-site-footer
+//  l-site-overlay
 //  l-site-offcanvas
 //
 //=========================================================
@@ -21,11 +23,13 @@
 
 //--- site layout
 @include w-layout-site-config;
+@include w-layout-site-background;
 @include w-layout-site;
 @include w-layout-site-header;
 @include w-layout-site-banner;
 @include w-layout-site-content;
 @include w-layout-site-footer;
+@include w-layout-site-overlay;
 @include w-layout-site-offcanvas;
 
 //--- page layout
