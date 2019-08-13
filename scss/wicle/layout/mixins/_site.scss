@@ -13,11 +13,10 @@
     $key: 'w-layout/site';
 
     // site-shadow
-    @include ssv($key, 'shadow/z-index', $z-index-shadow1, true);
+    @include ssv($key, 'background/z-index', null, true);
 
     // site
     @include ssv($key, 'max-width', $w-site-max-width, true);
-    // @include ssv($key, 'z-index', $z-layer-site, true);
 
     // site-header
     @include ssv($key, 'header/fg', null, true);
@@ -25,8 +24,6 @@
     @include ssv($key, 'header/gradient', (level:20%, direction:top));
     @include ssv($key, 'header/min-height', 3rem, true);
     @include ssv($key, 'header/z-index', 10, true);
-    // @include ssv($key, 'header/z-index', gsv($key, 'z-index')+10, true);
-    //@include ssv($key, 'header/padding', 1rem 0.5rem, true);
 
     // site-banner
     @include ssv($key, 'banner/min-height', 25rem, true);
@@ -46,7 +43,7 @@
 
     // site-offcanvas
     @include ssv($key, 'offcanvas/bg', $w-color-text-black, true);
-    @include ssv($key, 'offcanvas/z-index', $z-index-level2, true);
+    @include ssv($key, 'offcanvas/z-index', gsv($key, 'overlay/z-index') + 10, true);
     @include ssv($key, 'offcanvas/close-button/offset', 0.5rem, true);
     @include ssv($key, 'offcanvas/close-button/font-size', 1.35rem, true);
     @include ssv($key, 'offcanvas/close-button/padding', (0 0.4rem), true);
@@ -60,13 +57,13 @@
 //  Mixins
 //-----------------------------------------------
 @mixin w-layout-site-background {
-    $key: 'w-layout/site/shadow';
+    $key: 'w-layout/site/background';
 
     .l-site-background {
         position: absolute;
         top: 0;
         width: 100%;
-        z-index: gsv($key, 'z-index');
+        z-index: gsv($key, 'z-index');  // default value is null
     }
 }
 
@@ -79,7 +76,6 @@
         padding: 0;
         max-width: gsv($key, max-width);
         overflow: hidden; // important: this will hide off-canvas elements
-        // z-index: gsv($key, z-index);
     }
 }
 
@@ -173,7 +169,6 @@
         // close-button
         &>.offcanvas-close-button {
             position: absolute;
-            // z-index: gsv($key, 'z-index');
             top: gsv($key, 'close-button/offset');
             right: gsv($key, 'close-button/offset');
             cursor: pointer;
