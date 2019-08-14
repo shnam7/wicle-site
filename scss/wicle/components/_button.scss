@@ -19,14 +19,16 @@
     @include ssv($key, 'margin', 0, true);
     @include ssv($key, 'padding', 0.25rem 1rem, true);
     @include ssv($key, 'line-height', 1.5, true);
-    @include ssv($key, 'border', (1px solid $w-theme-color), true);
+    @include ssv($key, 'border', 'none', true);
     @include ssv($key, 'radius', $w-border-radius, true);
-    @include ssv($key, 'transition', all 0.15s ease-in-out, true);
+    @include ssv($key, 'transition', (all 0.15s), true);
+    @include ssv($key, 'gradient', (level:20%, direction:bottom), true);
 
     // modifier: compact
     @include ssv($key, 'compact/font-size', 90%, true);
     @include ssv($key, 'compact/line-height', 1.75, true);
     @include ssv($key, 'compact/padding', 0 0.75rem, true);
+    @include ssv($key, 'alpha', 0.75, true);
 }
 
 
@@ -37,6 +39,7 @@
     $key: 'w-button';
 
     display: inline-block; // this is required to vertical margin overlapping
+    position: relative;
     box-sizing: border-box;
     white-space: nowrap;
     text-transform: none;
@@ -44,12 +47,13 @@
     text-align: center; // align the text for the cases width is set
     text-decoration: none;
 
-    margin: gsv($key, margin);
-    padding: gsv($key, padding);
+    margin: gsv($key, 'margin');
+    padding: gsv($key, 'padding');
     line-height: gsv($key, line-height);
-    border: gsv($key, border);
-    border-radius: gsv($key, radius);
-    transition: gsv($key, transition);
+
+    border: gsv($key, 'border');
+    border-radius: gsv($key, 'radius');
+    transition: gsv($key, 'transition');
 
     &:not(:disabled) {
         cursor: pointer;
@@ -71,14 +75,19 @@
 }
 
 @mixin w-button-styles($color, $alpha:false) {
+    $key: 'w-button';
+
     $fg: yiq-color($color);
     $bg: $color;
+    $gr: gsv($key, 'gradient');
     $line-color: transparentize($color, 0.7);
     $hover: darken($bg, 10%);
 
+    border-color: $line-color;
+
     @if $alpha {
-        $fg: $color;
-        $bg: transparentize($fg, 0.95);
+        $fg: darken(saturate($color, 15%), 15%);
+        $bg: transparentize($fg, gsv($key, 'alpha'));
         $hover: opacify($bg, 0.1);
     }
 
@@ -87,11 +96,41 @@
         color: $fg;
     }
 
-    background: $bg;
-    border-color: $line-color;
+    background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
 
-    &:hover {
-        background: $hover;
+    @if $gr {
+        // create a background layer with :after property for gradient animation
+        // this is a workaround for gradient not supporting transition
+        // this background layer will reveal on hover
+        z-index: 1;
+
+        &:after {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: gsv($key, radius);
+            background: gradient($hover, gcv($gr, level), gcv($gr, direction));
+            transition: gsv($key, transition);
+            z-index: -1;    // set layer below the button
+            opacity: 0;
+        }
+
+        &:hover {
+            &:after {
+                opacity: 1;
+            }
+        }
+
+    }
+
+    @else {
+        // background: $bg;
+        &:hover {
+            background: $hover;
+        }
     }
 }
 

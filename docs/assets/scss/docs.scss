@@ -44,30 +44,6 @@ $header-height: gsv('w-navbar/height');
         margin-bottom: 0.5rem;
         padding: 0.5rem;
     }
-
-    .btn,
-    .btn:visited {
-        color: #000;
-    }
-
-    .btn {
-        display: inline-block;
-        text-decoration: none;
-        margin-bottom: 1rem;
-        background-color: rgba($w-color-orange, 0.9);
-        border-radius: 2px; // 0.3rem;
-        transition: color 0.2s, background-color 0.2s, border-color 0.2s;
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-
-        &:hover {
-            color: $w-color-dark-red;
-        }
-
-        &:visited {
-            text-decoration: none;
-        }
-    }
 }
 
 .front-page .l-site-banner {

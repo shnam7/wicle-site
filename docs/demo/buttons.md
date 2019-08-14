@@ -5,10 +5,7 @@ title: Buttons
 
 # Buttons
 
-<p class="link-more w-button wo-alpha wo-compact"><a href="#" class="more-link">더 보기&nbsp;<i class="fa fa-angle-double-right"></i></a></p>
-
-
-### Anchors
+### Anchors (\<a class='w-button'>...</a>)
 <div>
 <a href="#" class="w-button">Default</a>
 <a href="#" class="w-button wo-primary">Primary</a>
@@ -20,7 +17,7 @@ title: Buttons
 </div>
 
 
-### Alpha options
+### Alpha options (class='w=button wo-alpha')
 <div>
 <a href="#" class="w-button wo-alpha">Default</a>
 <a href="#" class="w-button wo-primary wo-alpha">Primary</a>
@@ -31,7 +28,7 @@ title: Buttons
 <a href="#" class="w-button wo-danger wo-alpha">Danger</a>
 </div>
 
-### Button tags
+### Button tags (\<button class='w-button'>...</button>)
 <div>
 <a href="#"><button class="w-button">Primary</button></a>
 <a href="#"><button class="w-button wo-primary">Primary</button></a>

@@ -13,9 +13,14 @@
     $key: 'w-panel';
 
     // core
-    @include ssv($key, 'padding', 0.75rem 1rem, true);
-    @include ssv($key, 'border', 1px solid gray(85%), true);
+    @include ssv($key, 'padding', 1rem, true);
+    @include ssv($key, 'border', none, true);
     @include ssv($key, 'radius', $w-border-radius, true);
+    @include ssv($key, 'gradient', (level:20%, direction:bottom), true);
+
+    // modifiers
+    @include ssv($key, 'gradient', (level:20%, direction:bottom), true);
+    @include ssv($key, 'alpha', 0.75, true);
 }
 
 
@@ -33,16 +38,19 @@
 }
 
 @mixin w-panel-styles($bg, $alpha:false) {
+    $key: 'w-panel';
+
     $fg: yiq-color($bg);
     $line: smart-scale($bg, 20%);
+    $gr: gsv($key, 'gradient');
 
     @if $alpha {
         $fg: $w-color-text-black;
-        $bg: transparentize($bg, 0.95);
+        $bg: transparentize($bg, gsv($key, 'alpha'));
     }
 
     color: $fg;
-    background: $bg;
+    background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
     border-color: transparentize($line, 0.7);
 }
 

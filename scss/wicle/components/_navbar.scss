@@ -34,8 +34,8 @@
     @include ssv($key, 'height', 3.5rem, true);
     @include ssv($key, 'padding', 0 1.5rem, true);
     @include ssv($key, 'fg', null, true);
-    @include ssv($key, 'bg', null, true);
-    @include ssv($key, 'gradient', (level:20%, direction:top), true);
+    @include ssv($key, 'bg', $w-theme-color, true);
+    @include ssv($key, 'gradient', (level:20%, direction:bottom), true);
     @include ssv($key, 'radius', $w-border-radius, true);
     @include ssv($key, 'item-spacing', 0.25rem, true);
     @include ssv($key, 'breakpoint', 'large', true);
@@ -158,14 +158,13 @@
 @mixin w-navbar-default-styles {
     $key: 'w-navbar';
 
-    $fg: gsv($key, fg);
-    $bg: gsv($key, bg);
+    $fg: gsv($key, 'fg');
+    $bg: gsv($key, 'bg');
     $gr: gsv($key, gradient);
     color: if($fg, $fg, if($bg, yiq-color($bg), false));
 
-    //TODO: gradient
     @if $bg {
-        background: if($gr, gradient($bg, gsv($key, $gr, level), gsv($key, $gr, direction)), $bg);
+        background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
     }
 
     a {
