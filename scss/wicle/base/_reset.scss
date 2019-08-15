@@ -17,7 +17,7 @@
     $key: 'w-reset';
 
     // core
-    @include ssv($key, fg, $w-color-text-black, true);
+    @include ssv($key, 'a/fg', $w-color-text-black, true);
     @include ssv($key, 'list/margin-left', 1rem, true);
     @include ssv($key, 'pre/margin', 0.5rem 0, true);
     @include ssv($key, 'pre/padding', 0.5rem 1rem, true);
