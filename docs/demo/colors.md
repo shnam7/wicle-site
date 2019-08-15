@@ -12,7 +12,6 @@ style: demo/colors
 ##### $w-color-primary(navy-blue):          #0074BD; // $w-color-lochmara
 ##### $w-color-secondary(raven):            #696F7A; // $w-color-raven
 ##### $w-color-success(chateau-green):      #28A745; // $w-color-chateau-green
-##### $w-color-info(java):                  #15949D; // $w-color-java
 ##### $w-color-info(pelorous):              #17A2B8; // $w-color-pelorous
 ##### $w-color-warning(amber):              #FFBF00; // $w-color-orange
 ##### $w-color-danger(amaranth):            #DA314B; // $w-color-mandy
