@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Search
+body_class: demo-search
 ---
 
 # Search

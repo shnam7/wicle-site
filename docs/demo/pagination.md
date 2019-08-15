@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Pagination
+body_class: demo-pagnation
 body_class: demo-parallax
 ---
 

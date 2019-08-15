@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Panel
+body_class: demo-panel
 class: demo-panel
 ---
 

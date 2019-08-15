@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Divider
+body_class: demo-divider
 class: demo-divider
 style: demo/divider
 ---

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Offcanvas
+body_class: demo-offcanvas
 class: demo-offcanvas
 ---
 

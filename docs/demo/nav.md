@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Nav
+body_class: demo-nav
 ---
 
 # Nav

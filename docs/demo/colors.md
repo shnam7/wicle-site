@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Colors
+body_class: demo-colors
 class: demo-colors
 style: demo/colors
 ---

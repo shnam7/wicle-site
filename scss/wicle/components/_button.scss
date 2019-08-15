@@ -4,7 +4,13 @@
 //  @module   ui/components/button
 //
 //  @usage
-//    <div class="w-button wo-compact"></div>
+//    <div class="w-button wo-compact..."></div>
+//  @options
+//    - wo-compact
+//    - wo-outline
+//    - disabled
+//    - color scheme
+//      wo-primary, wo-secondary, wo-success, wo-info, wp-warning, wo-danger
 //
 //=========================================================
 
@@ -19,16 +25,18 @@
     @include ssv($key, 'margin', 0, true);
     @include ssv($key, 'padding', 0.25rem 1rem, true);
     @include ssv($key, 'line-height', 1.5, true);
-    @include ssv($key, 'border', 'none', true);
     @include ssv($key, 'radius', $w-border-radius, true);
     @include ssv($key, 'transition', (all 0.15s), true);
-    @include ssv($key, 'gradient', (level:20%, direction:bottom), true);
+    @include ssv($key, 'alpha', 0.75, true);
+    // @include ssv($key, 'gradient', (level:20%, direction:bottom), true);
 
     // modifier: compact
     @include ssv($key, 'compact/font-size', 90%, true);
     @include ssv($key, 'compact/line-height', 1.75, true);
     @include ssv($key, 'compact/padding', 0 0.75rem, true);
-    @include ssv($key, 'alpha', 0.75, true);
+
+    // outline
+    @include ssv($key, 'outline/alpha', 0.5, true);
 }
 
 
@@ -51,7 +59,7 @@
     padding: gsv($key, 'padding');
     line-height: gsv($key, line-height);
 
-    border: gsv($key, 'border');
+    border: 1px solid transparent; //gsv($key, 'border');
     outline: none;
     border-radius: gsv($key, 'radius');
     transition: gsv($key, 'transition');
@@ -67,6 +75,31 @@
     &:focus {
         outline: none;
     }
+
+    //--- Settings for gradient
+    // Create a background layer with :after property for gradient animation.
+    // This is a workaround for gradient not supporting transition
+    // This background layer will reveal on mouse hover
+    @if gsv($key, 'gradient') {
+        z-index: 1;
+
+        &:after {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: gsv($key, radius);
+            transition: gsv($key, transition);
+            z-index: -1; // set layer below the button
+            opacity: 0;
+        }
+
+        &:hover:after {
+            opacity: 1;
+        }
+    }
 }
 
 @mixin w-button-modifiers-compact {
@@ -76,6 +109,18 @@
         font-size: gsv($key, 'compact/font-size');
         padding: gsv($key, 'compact/padding');
         line-height: gsv($key, 'compact/line-height');
+    }
+}
+
+@mixin w-button-modifiers-outline() {
+    $key: 'w-button';
+
+    &.wo-outline {
+        background: transparent;
+
+        &:after {
+            display: none;
+        }
     }
 }
 
@@ -89,6 +134,39 @@
     }
 }
 
+@mixin w-button-gradient($bg:null, $gr: (level:20%, direction:bottom)) {
+    $key: 'w-button';
+    $hover: darken($bg, 10%);
+
+    z-index: 1;
+
+    @if $bg {
+        background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
+        background-clip: padding-box; // remove dummy borders for gradients
+    }
+
+    @debug aaa;
+    &:after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: gsv($key, radius);
+        transition: gsv($key, transition);
+        z-index: -1; // set layer below the button
+        opacity: 0;
+    }
+
+    &:hover:after {
+        @if $bg {
+            background: gradient($hover, gcv($gr, level), gcv($gr, direction));
+        }
+
+        opacity: 1;
+    }
+}
 
 @mixin w-button-styles($color, $alpha:false) {
     $key: 'w-button';
@@ -96,17 +174,14 @@
     $fg: yiq-color($color);
     $bg: $color;
     $gr: gsv($key, 'gradient');
-    $line-color: transparentize($color, 0.7);
     $hover: darken($bg, 10%);
-
-    border-color: $line-color;
 
     @if $alpha {
         $fg: darken(saturate($color, 15%), 15%);
         $bg: transparentize($fg, gsv($key, 'alpha'));
         $hover: opacify($bg, 0.1);
 
-        @if (saturation($fg) <= 50%) {
+        @if (saturation($fg) <=50%) {
             $fg: invert($fg, 50%);
         }
     }
@@ -117,29 +192,11 @@
     }
 
     background: if($gr, gradient($bg, gcv($gr, level), gcv($gr, direction)), $bg);
+    background-clip: padding-box; // remove dummy borders for gradients
 
     @if $gr {
-        // create a background layer with :after property for gradient animation
-        // this is a workaround for gradient not supporting transition
-        // this background layer will reveal on hover
-        z-index: 1;
-
         &:after {
-            position: absolute;
-            content: '';
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: gsv($key, radius);
             background: gradient($hover, gcv($gr, level), gcv($gr, direction));
-            transition: gsv($key, transition);
-            z-index: -1; // set layer below the button
-            opacity: 0;
-        }
-
-        &:hover:after {
-            opacity: 1;
         }
     }
 
@@ -150,11 +207,14 @@
     }
 }
 
+
 //
 //  Generate Button styles for color selections
 //  @param {Map} [$color-scheme=null] - Set of $color-schemes. If null, $w-color-scheme is used
 //
 @mixin w-button-modifier-color-scheme($color-scheme:null) {
+    $key: 'w-button';
+
     .w-button {
         $color-scheme: if($color-scheme, $color-scheme, $w-color-scheme);
 
@@ -162,7 +222,18 @@
             $name: nth($scheme, 1);
             $color: nth($scheme, 2);
 
-            &.wo-#{$name} {
+            // outline option
+            &.wo-outline.wo-#{$name} {
+                color: $color;
+                border: 1px solid transparentize($color, gsv($key, 'outline/alpha'));
+
+                &:hover {
+                    color: yiq-color($color);
+                    background: $color;
+                }
+            }
+
+            &:not(.wo-outline).wo-#{$name} {
                 @include w-button-styles($color);
 
                 // alpha mode (semi transparent)
@@ -175,12 +246,25 @@
 }
 
 @mixin w-button-default-styles {
+    $key: 'w-button';
     $default-color: gray(90%);
 
     @include w-button-styles($default-color);
 
     &.wo-alpha {
         @include w-button-styles($default-color, true);
+    }
+
+    &.wo-outline {
+        $fg: yiq-color($default-color);
+        border: 1px solid transparentize($fg, gsv($key, 'outline/alpha'));
+        color: $fg;
+
+        &:hover {
+            $fg: if(saturation($fg) <=50%, invert($fg, 50%), $fg);
+            color: $fg;
+            background: $default-color;
+        }
     }
 }
 
@@ -193,6 +277,7 @@
 .w-button {
     @include w-button-core();
     @include w-button-modifiers-compact();
+    @include w-button-modifiers-outline();
     @include w-button-modifiers-disabled();
     @include w-button-default-styles();
 }

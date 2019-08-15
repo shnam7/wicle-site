@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Media Query
+body_class: demo-media-query
 class: demo-media-query
 ---
 

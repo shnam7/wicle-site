@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Image
+body_class: demo-image
 ---
 
 # Image
