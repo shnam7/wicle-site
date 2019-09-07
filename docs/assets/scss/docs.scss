@@ -4,6 +4,19 @@
 
 @import "site.config";
 
+//-----------------------------------------------
+//  Wicle modules
+//-----------------------------------------------
+@import "wicle";
+
+//--- Wicle Optional Features
+@include w-button-modifier-color-scheme();
+@include w-panel-modifier-color-scheme();
+
+
+//-----------------------------------------------
+//  styles
+//-----------------------------------------------
 $banner-height: 350px;
 $header-height: gsv('w-navbar/height');
 

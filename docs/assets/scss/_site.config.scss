@@ -42,13 +42,3 @@ $w-font-size: 15px;
 
 //--- include Wicle config
 @import "wicle.config";
-
-
-//-----------------------------------------------
-//  Wicle modules
-//-----------------------------------------------
-@import "wicle";
-
-//--- Wicle Optional Features
-@include w-button-modifier-color-scheme();
-@include w-panel-modifier-color-scheme();
