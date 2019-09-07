@@ -145,7 +145,6 @@
         background-clip: padding-box; // remove dummy borders for gradients
     }
 
-    @debug aaa;
     &:after {
         position: absolute;
         content: '';

@@ -1,0 +1,22 @@
+@import "../site.config";
+
+.demo-fonts {
+    p {
+        margin: 0;
+        padding: 0;
+
+        $scale-list: (5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5);
+        @each $scale in $scale-list {
+            &[data-font-scale="#{$scale}"] {
+                font-size: font-scale($scale);
+            }
+        }
+
+        $scale-names: (xxxl, xxl, xl, lg, md, sm, xs, xxs);
+        @each $name in $scale-names {
+            &[data-font-scale="#{$name}"] {
+                font-size: var(--text-#{$name});
+            }
+        }
+    }
+}
