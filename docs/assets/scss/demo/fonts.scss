@@ -1,6 +1,16 @@
 @import "../site.config";
 
 .demo-fonts {
+    //--- type scales
+    --demo-text-xxs:     #{$w-text-xxs};
+    --demo-text-xs:      #{$w-text-xs};
+    --demo-text-sm:      #{$w-text-sm};
+    --demo-text-md:      #{$w-text-md};
+    --demo-text-lg:      #{$w-text-lg};
+    --demo-text-xl:      #{$w-text-xl};
+    --demo-text-xxl:     #{$w-text-xxl};
+    --demo-text-xxxl:    #{$w-text-xxl};
+
     p {
         margin: 0;
         padding: 0;
@@ -15,7 +25,7 @@
         $scale-names: (xxxl, xxl, xl, lg, md, sm, xs, xxs);
         @each $name in $scale-names {
             &[data-font-scale="#{$name}"] {
-                font-size: var(--text-#{$name});
+                font-size: var(--demo-text-#{$name});
             }
         }
     }

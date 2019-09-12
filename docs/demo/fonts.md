@@ -8,7 +8,7 @@ style: demo/fonts
 # Font Scaling
 
 {::nomarkdown}
-<div class="w-divider"></div>
+<div class="w-divider wo-thin"></div>
 {:/}
 ### Font scaling using font-scale()
 
@@ -24,6 +24,7 @@ style: demo/fonts
 <p data-font-scale=-3>Font Scale = -3</p>
 <p data-font-scale=-4>Font Scale = -4</p>
 <p data-font-scale=-5>Font Scale = -5</p>
+<div class="w-divider"></div>
 {:/}
 
 ### Font scaling using font size names

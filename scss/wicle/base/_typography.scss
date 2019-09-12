@@ -18,22 +18,22 @@
 //-----------------------------------------------
 //  Config
 //-----------------------------------------------
-:root {
-    // body font size
-    --text-base-size: 1em;
-    --text-scaler: 1.25; // scale up unit
-    --text-down-scaler: 0.9; // scale down unit
+// :root {
+//     // body font size
+//     --text-base-size: 1em;
+//     --text-scaler: 1.25; // scale up unit
+//     --text-down-scaler: 0.9; // scale down unit
 
-    //--- type scales
-    --text-xxs:     calc(var(--text-base-size) * var(--text-down-scaler) * var(--text-down-scaler) * var(--text-down-scaler));
-    --text-xs:      calc(var(--text-xxs) / var(--text-down-scaler));
-    --text-sm:      calc(var(--text-xs) / var(--text-down-scaler));
-    --text-md:      calc(var(--text-base-size) * var(--text-scaler));
-    --text-lg:      calc(var(--text-md) * var(--text-scaler));
-    --text-xl:      calc(var(--text-lg) * var(--text-scaler));
-    --text-xxl:     calc(var(--text-xl) * var(--text-scaler));
-    --text-xxxl:    calc(var(--text-xxl) * var(--text-scaler));
-}
+//     //--- type scales
+//     --text-xxs:     calc(var(--text-base-size) * var(--text-down-scaler) * var(--text-down-scaler) * var(--text-down-scaler));
+//     --text-xs:      calc(var(--text-xxs) / var(--text-down-scaler));
+//     --text-sm:      calc(var(--text-xs) / var(--text-down-scaler));
+//     --text-md:      calc(var(--text-base-size) * var(--text-scaler));
+//     --text-lg:      calc(var(--text-md) * var(--text-scaler));
+//     --text-xl:      calc(var(--text-lg) * var(--text-scaler));
+//     --text-xxl:     calc(var(--text-xl) * var(--text-scaler));
+//     --text-xxxl:    calc(var(--text-xxl) * var(--text-scaler));
+// }
 
 
 //-----------------------------------------------
