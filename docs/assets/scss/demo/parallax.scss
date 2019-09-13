@@ -3,9 +3,9 @@
 $surface-count: 5;
 $box-height: 150px;
 $surface-spacing: $box-height * 0.5;
-$box-per-surface: 10;
 
-.l-page {
+
+.l-content {
     min-height: 2000px;
 }
 
@@ -13,7 +13,7 @@ $box-per-surface: 10;
     position: absolute;
     top: 25%;
     left: 0;
-    width: 100%;
+    width: calc(100% - var(--sidebar-width));
 }
 
 .box {

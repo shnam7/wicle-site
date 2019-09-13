@@ -8,6 +8,8 @@ class: demo-media-query
 # Media Query
 
 ## Media Query change detection
+Resize browser window to see media query changes:
+
 {::nomarkdown}
 <div class="w-panel">
     <div><span>state: </span><span class='js-mqstat-state'></span></div>

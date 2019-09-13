@@ -20,6 +20,13 @@
 $banner-height: 350px;
 $header-height: gsv('w-navbar/height');
 
+:root {
+    --sidebar-width: 0rem;      // rem required for use in calc()
+    @include w-media(large) {
+        --sidebar-width: #{gsv('w-layout/page', 'sidebar/width')};
+    }
+}
+
 .l-site-background {
     position: absolute;
     top: 0;

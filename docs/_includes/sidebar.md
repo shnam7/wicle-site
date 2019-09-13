@@ -8,7 +8,7 @@
 * [Getting Started]({{site.baseurl}}/contents/getting-started)
 * Demo
   - [Colors]({{site.baseurl}}/demo/colors)
-  - [Fonts]({{site.baseurl}}/demo/fonts)
+  - [Typography]({{site.baseurl}}/demo/typography)
   - [Buttons]({{site.baseurl}}/demo/buttons)
   - [Nav]({{site.baseurl}}/demo/nav)
   - [Divider]({{site.baseurl}}/demo/divider)
