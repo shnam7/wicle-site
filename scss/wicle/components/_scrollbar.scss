@@ -16,10 +16,10 @@
     @include ssv($key, 'width', 14px, true);
     @include ssv($key, 'height', 14px, true);
     @include ssv($key, 'thumb/border-radius', 5px, true);
-    @include ssv($key, 'thumb/bg', gray(23.5%), true);
-    @include ssv($key, 'thumb/hover/bg', gray(35%), true);
+    @include ssv($key, 'thumb/bg', gray(85%), true);            // dark mode: 23.5%
+    @include ssv($key, 'thumb/hover/bg', gray(70%), true);      // dark mode: 35%
     @include ssv($key, 'thumb/transition', (color .2s ease), true);
-    @include ssv($key, 'track/bg',gray(20%), true);
+    @include ssv($key, 'track/bg',gray(95%), true);             // dark mode: 20%
 }
 
 
