@@ -37,7 +37,7 @@
     //--- core
     @include ssv($key, 'fg', gray(60%), true);
     @include ssv($key, 'bg', white, true);
-    @include ssv($key, 'font', normal 1rem $w-font-sans, true);
+    @include ssv($key, 'font', normal 1rem $w-font-text, true);
     @include ssv($key, 'line-height', 2, true);
     @include ssv($key, 'max-width', 12em, true);
     @include ssv($key, 'radius', $w-border-radius, true);

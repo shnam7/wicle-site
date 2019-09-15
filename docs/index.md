@@ -48,7 +48,7 @@ $w-page-max-width:      1220px;
 @mixin wicle-custom-config {
     //--- navbar
     $key: 'w-navbar';
-    @include ssv($key, 'brand/font-family', $w-font-sans-default, true);
+    @include ssv($key, 'brand/font-family', $w-font-montserrat, true);
 
     //--- layout
     $key: 'w-layout';

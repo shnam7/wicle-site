@@ -28,7 +28,7 @@
 
   // nav (ul: top level)
   @include ssv($key, 'z-index', $z-index-level1, true);
-  @include ssv($key, 'font-family', $w-font-sans, true);
+  @include ssv($key, 'font-family', $w-font-text, true);
   @include ssv($key, 'font-weight', normal, true);
   @include ssv($key, 'font-size', 1rem, true);
   @include ssv($key, 'padding', 0, true);
@@ -146,7 +146,7 @@
 @mixin w-nav-parent-marker {
   .w-nav-parent-marker {
     float: right;
-    font-family: $w-font-sans;
+    font-family: $w-font-text;
     margin-left: 0.5rem; // $parent-marker-margin;
     transition: transform 0.5s ease-in-out;
     &:before {
