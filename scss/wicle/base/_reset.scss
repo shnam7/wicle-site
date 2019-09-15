@@ -60,6 +60,7 @@ p {
     word-break: keep-all;
     margin: 0;
     padding-bottom: 1rem;
+    overflow: auto;     // for long string without spaces
 
     &:last-child {
         padding-bottom: 0;
