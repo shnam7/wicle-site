@@ -18,6 +18,7 @@
     @include ssv($key, 'thumb/border-radius', 5px, true);
     @include ssv($key, 'thumb/bg', gray(85%), true);            // dark mode: 23.5%
     @include ssv($key, 'thumb/hover/bg', gray(70%), true);      // dark mode: 35%
+    @include ssv($key, 'thumb/active/bg', gray(45%), true);
     @include ssv($key, 'thumb/transition', (color .2s ease), true);
     @include ssv($key, 'track/bg',gray(95%), true);             // dark mode: 20%
 }
@@ -43,6 +44,9 @@
             transition: gsv($key, 'thumb/transition');
             &:hover {
                 background: gsv($key, 'thumb/hover/bg');
+            }
+            &:active {
+                background: gsv($key, 'thumb/active/bg');
             }
         }
 
