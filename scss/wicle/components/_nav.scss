@@ -83,9 +83,9 @@
   @include ssv($key, 'opt/invert/separator/style', 1px solid rgba($w-color-text-white, 0.35), true);
 
   @include ssv($key, 'opt/flip/x-offset', 1rem, true); // x offset for 1st level popup
-  @include ssv($key, 'opt/flip/y-offset', 0, true); // y offset for 1st level popup
+  @include ssv($key, 'opt/flip/y-offset', 0px, true); // y offset for 1st level popup
   @include ssv($key, 'opt/flip/sub/x-offset', 3px, true); // x offset for 2nd+ level popup
-  @include ssv($key, 'opt/flip/sub/y-offset', 0, true); // y offset for 2nd+ level popup
+  @include ssv($key, 'opt/flip/sub/y-offset', 0px, true); // y offset for 2nd+ level popup
 }
 
 

@@ -43,14 +43,22 @@
     $key: 'w-typography';
 
     // core
-    @include ssv($key, 'header/h1', (font-size:2em, margin:0.67em 0 1em), true);
-    //  Browser default font size for h2 is 1.5em, but korean font looks ugly for some characters.
-    //  So, change the size to 1.45em
-    @include ssv($key, 'header/h2', (font-size:1.45em, margin:0.83em 0 1em), true);
-    @include ssv($key, 'header/h3', (font-size:1.17em, margin:1em 0 1em), true);
+    // @include ssv($key, 'header/h1', (font-size:2em, margin:0.67em 0 1em), true);
+    // //  Browser default font size for h2 is 1.5em, but korean font looks ugly for some characters.
+    // //  So, change the size to 1.45em
+    // @include ssv($key, 'header/h2', (font-size:1.45em, margin:0.83em 0 1em), true);
+    // @include ssv($key, 'header/h3', (font-size:1.17em, margin:1em 0 1em), true);
+    // @include ssv($key, 'header/h4', (font-size:1em, margin:1em 0 1em), true); // 1.33em
+    // @include ssv($key, 'header/h5', (font-size:0.83em, margin:1em 0 1em), true); // 1.67em
+    // @include ssv($key, 'header/h6', (font-size:0.67em, margin:1em 0 1em), true); // 2.33em
+
+    // top and bottom margins can be different, which is intentional
+    @include ssv($key, 'header/h1', (font-size:$w-text-xl, margin:0.67em 0 1em), true);
+    @include ssv($key, 'header/h2', (font-size:$w-text-lg, margin:0.83em 0 1em), true);
+    @include ssv($key, 'header/h3', (font-size:$w-text-md, margin:1em 0 1em), true);
     @include ssv($key, 'header/h4', (font-size:1em, margin:1em 0 1em), true); // 1.33em
-    @include ssv($key, 'header/h5', (font-size:0.83em, margin:1em 0 1em), true); // 1.67em
-    @include ssv($key, 'header/h6', (font-size:0.67em, margin:1em 0 1em), true); // 2.33em
+    @include ssv($key, 'header/h5', (font-size:$w-text-sm, margin:1em 0 1em), true); // 1.67em
+    @include ssv($key, 'header/h6', (font-size:$w-text-xs, margin:1em 0 1em), true); // 2.33em
 }
 
 

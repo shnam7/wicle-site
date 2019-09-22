@@ -1,19 +1,3 @@
-/**
- * @package wicle
- * @module
- * Javascript String extension
- */
-declare interface String {
-    trimLeft(charList?: string): string;
-    trimRight(charList?: string): string;
-    trimBoth(charList?: string): string;
-    trimAll(charList?: string): string;
-    startsWith(charList?: string): boolean;
-    endsWith(charList?: string): boolean;
-    parseOptions(separator?: string): {
-        [prop: string]: any;
-    };
-}
 declare module "wicle/util/view" {
     /**
      *  @package wicle *
@@ -128,4 +112,20 @@ declare module "wicle/ui/parallax" {
         constructor(surfaceContents: HTMLElement, perspective?: number, cssPosition?: string);
         scroll(scrollPos: number): void;
     }
+}
+/**
+ * @package wicle
+ * @module
+ * Javascript String extension
+ */
+declare interface String {
+    trimLeft(charList?: string): string;
+    trimRight(charList?: string): string;
+    trimBoth(charList?: string): string;
+    trimAll(charList?: string): string;
+    startsWith(charList?: string): boolean;
+    endsWith(charList?: string): boolean;
+    parseOptions(separator?: string): {
+        [prop: string]: any;
+    };
 }

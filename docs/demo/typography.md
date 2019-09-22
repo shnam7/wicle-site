@@ -38,4 +38,15 @@ style: demo/fonts
 <p data-font-scale=sm>Font Scale = sm</p>
 <p data-font-scale=xs>Font Scale = xs</p>
 <p data-font-scale=xxs>Font Scale = xxs</p>
+<div class="w-divider"></div>
+{:/}
+
+### Headings
+{::nomarkdown}
+<h1>Heading #1 ($w-text-xl)</h1>
+<h2>Heading #2 ($w-text-lg)</h2>
+<h3>Heading #3 ($w-text-md)</h3>
+<h4>Heading #4 (1em)</h4>
+<h5>Heading #5 ($w-text-sm)</h5>
+<h6>Heading #6 ($w-text-xs)</h6>
 {:/}
