@@ -60,7 +60,9 @@ p {
     word-break: keep-all;
     margin: 0;
     padding-bottom: 1rem;
-    overflow: auto;     // for long string without spaces
+    // overflow: auto;     // for long string without spaces
+    // --> this causes problem when image is floating inside the text.
+    // So, this should not be default setting.
 
     &:last-child {
         padding-bottom: 0;
