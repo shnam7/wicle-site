@@ -6,6 +6,7 @@
         "noImplicitAny": true,
         "noEmitOnError": true,
         "pretty": true,
+        "moduleResolution": "node", // default module resolution for amd or system module is 'classic'. so, fixt it here.
         "rootDir": "./scripts", // required to have mdoule names to start from directory 'wicle...'
         "lib": ["dom", "es6", "dom.iterable", "scripthost"]
     },
