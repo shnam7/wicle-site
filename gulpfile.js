@@ -8,8 +8,9 @@ const upath = require('upath');
 const wicle = require('./gbmconfig');
 const docs = require('./docs/gbmconfig');
 
-gbm
-    .addTrigger('@build-all', /@build$/, { sync: true })
+gbm.addProject(wicle)
+    .addProject(docs)
+    .addTrigger('@build-all', /@build$/, true)
     .addCleaner('@clean-all')
     .addWatcher('@watch-all', {
         browserSync: {
@@ -21,5 +22,5 @@ gbm
         },
         reloadOnChange: false
     })
-    .addTrigger('default', ['@clean-all', '@build-all'], { sync: true })
+    .addTrigger('default', ['@clean-all', '@build-all'], true)
     .resolve();

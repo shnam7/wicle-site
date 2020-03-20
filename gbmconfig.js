@@ -31,6 +31,7 @@ const scss = {
             }
         }
     },
+    flushStream: true
 }
 
 const scripts = {
@@ -39,15 +40,15 @@ const scripts = {
     src: upath.join(srcRoot, 'scripts/**/*.ts'),
     dest: upath.join(basePath, 'dist/js'),
     outFile: 'wicle.js',
-    flushStream: true,
     buildOptions: {
         minifyOnly: true,
         sourceMap: sourceMap,
         tsConfig: upath.join(basePath, 'tsconfig.json')
-    }
+    },
+    flushStream: true
 }
 
 module.exports = gbm.createProject({scss, scripts}, {prefix})
-    .addTrigger('@build', [scss.buildName, scripts.buildName])
+    .addTrigger('@build', /.*/)
     .addWatcher()
     .addCleaner('@clean', { clean: [destRoot]})

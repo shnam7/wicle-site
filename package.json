@@ -40,24 +40,24 @@
     "homepage": "https://github.com/shnam7/wicle#readme",
     "dependencies": {
         "npm-check-updates": "^4.0.4",
-        "sass-wdk": "github:shnam7/sass-wdk#dev"
+        "sass-wdk": "^1.1.1"
     },
     "devDependencies": {
         "@types/jquery": "^3.3.33",
         "browser-sync": "^2.26.7",
         "cssnano": "^4.1.10",
         "gulp": "^4.0.2",
-        "gulp-build-manager": "github:shnam7/gulp-build-manager#dev",
-        "gulp-clean-css": "^4.2.0",
+        "gulp-build-manager": "github:shnam7/gulp-build-manager#v4",
+        "gulp-clean-css": "^4.3.0",
         "gulp-sass": "^4.0.2",
         "gulp-typescript": "^5.0.1",
         "gulp-uglify-es": "^2.0.0",
         "lost": "^8.3.1",
         "postcss-combine-duplicated-selectors": "^8.1.0",
-        "stylelint": "^13.2.0",
+        "stylelint": "^13.2.1",
         "stylelint-config-recommended": "^3.0.0",
         "systemjs-plugin-css": "^0.1.37",
-        "tslint": "^6.0.0",
+        "tslint": "^6.1.0",
         "tslint-eslint-rules-recommended": "^1.2.2",
         "typescript": "^3.8.3"
     }

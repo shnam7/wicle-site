@@ -25,9 +25,7 @@ const scss = {
         sourceMap: sourceMap
     },
     moduleOptions: {
-        sass: {
-            includePaths: ['scss', 'node_modules/sass-wdk']
-        },
+        sass: { includePaths: ['scss', 'node_modules/sass-wdk'] },
         postcss: {
             plugins: [
                 require('lost')(),
@@ -40,10 +38,8 @@ const scss = {
         },
         clean: [upath.join(basePath, 'css')]
     },
-    postBuild: () => {
-        // return promise to make sure copy operation to be done before the task finishes
-        return gbm.utils.exec('echo', ['>' + jekyllTrigger]);
-    },
+    postBuild: rtb => rtb.exec('echo', ['>' + jekyllTrigger]),
+
     addWatch: ['dist/css/wicle.min.css'], // propagate changes in wicle to docs
     clean: [upath.join(basePath, 'css')]
 }
@@ -64,10 +60,8 @@ const scripts = {
         rtb.copy([{
             src: ['dist/js/wicle.min.js', upath.join(srcRoot, "scripts/**/*.js")],
             dest: upath.join(basePath, 'js')
-        }]);
-
-        // return promise to be sure copy operation is done before the task finishes
-        return gbm.utils.exec('echo', ['>', jekyllTrigger]);
+        }])
+        .exec('echo', ['>', jekyllTrigger]);
     },
     addWatch: [
         'dist/js/wicle.min.js', // propagate changes in wicle to docs
@@ -109,15 +103,15 @@ module.exports = gbm.createProject({scss, scripts, jekyll}, {prefix})
         buildName: '@build',
         dependencies: [gbm.parallel(scss.buildName, scripts.buildName), jekyll.buildName]
     })
-    .addWatcher('@watch', {
-        browserSync: {
-            server: upath.resolve(destRoot),
-            port: port,
-            ui: { port: port + 1 }
-            // open: false,
-            // reloadDebounce: 3000
-        },
-        reloadOnChange: false
-    })
+    // .addWatcher('@watch', {
+    //     browserSync: {
+    //         server: upath.resolve(destRoot),
+    //         port: port,
+    //         ui: { port: port + 1 }
+    //         // open: false,
+    //         // reloadDebounce: 3000
+    //     },
+    //     reloadOnChange: false
+    // })
     .addCleaner()
     .addVars({destRoot, port})

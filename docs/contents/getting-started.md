@@ -5,7 +5,7 @@ frontpage: true
 body_class: 'front-page'
 ---
 
-# Introductionaa
+# Introduction
 Wicle is a modular component library for web front-end development. It provides a collection of web components in scss and typescript modules.
 
 # Installation
