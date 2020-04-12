@@ -9,13 +9,23 @@ const srcRoot = upath.join(basePath, '_assets');
 const destRoot = upath.join(basePath, '_site');
 const prefix = projectName + ':';
 const sourceMap = true;
-const jekyllTrigger = upath.join(basePath, '.jekyll-trigger');  // flag to trigger jekyll watcher
+const jekyllTriggerCss = upath.join(basePath, '.jekyll-trigger-css');  // flag to trigger jekyll watcher
+const jekyllTriggerJs = upath.join(basePath, '.jekyll-trigger-js');  // flag to trigger jekyll watcher
 const port = 3100;
 
+const pcssPluginNames = ['lost', 'cssnano', 'postcss-combine-duplicated-selectors'];
+const wdkName = 'shnam7/sass-wdk';
 
 const scss = {
     buildName: 'scss',
     builder: 'GCSSBuilder',
+    preBuild: (rtb) => {
+        gbm.utils.npmInstall([...pcssPluginNames, wdkName]);
+        rtb.moduleOptions = {
+            sass: { includePaths: ['scss', 'node_modules/sass-wdk'] },
+            postcss: { plugins: pcssPluginNames.map(id => require(id)()) },
+        };
+    },
     src: upath.join(srcRoot, 'scss/**/*.scss'),
     dest: upath.join(basePath, 'css'),
     flushStream: true,
@@ -24,21 +34,7 @@ const scss = {
         lint: true,
         sourceMap: sourceMap
     },
-    moduleOptions: {
-        sass: { includePaths: ['scss', 'node_modules/sass-wdk'] },
-        postcss: {
-            plugins: [
-                require('lost')(),
-                require('cssnano')(), // this includes require('postcss-discard-duplicates')() by default
-                require('postcss-combine-duplicated-selectors')(),
-            ]
-        },
-        sourcemaps: {
-            // write: {sourceRoot: '../..'}
-        },
-        clean: [upath.join(basePath, 'css')]
-    },
-    postBuild: rtb => rtb.exec('echo', ['>' + jekyllTrigger]),
+    postBuild: rtb => rtb.exec('echo', ['>', jekyllTriggerCss]),
 
     addWatch: ['dist/css/wicle.min.css'], // propagate changes in wicle to docs
     clean: [upath.join(basePath, 'css')]
@@ -61,7 +57,7 @@ const scripts = {
             src: ['dist/js/wicle.min.js', upath.join(srcRoot, "scripts/**/*.js")],
             dest: upath.join(basePath, 'js')
         }])
-        .exec('echo', ['>', jekyllTrigger]);
+        .exec('echo', ['>', jekyllTriggerJs]);
     },
     addWatch: [
         'dist/js/wicle.min.js', // propagate changes in wicle to docs
@@ -86,32 +82,40 @@ const jekyll = {
         }
     },
     watch: [
-        jekyllTrigger,
+        jekyllTriggerCss, jekyllTriggerJs,
         upath.join(basePath, '**/*.{yml,html,md}'),
         `!(${upath.join(basePath, '{_site,_site/**/*}')})`,
         `!(${upath.join(basePath, '{js,js/**/*}')})`,
         `!(${upath.join(basePath, '{css,css/**/*}')})`,
         `!(${upath.join(basePath, '{.jekyll-metadata,gbmconfig.js,gulpfile.js}')})`,
     ],
-    clean: [destRoot, upath.join(basePath, '.jekyll-metadata'), jekyllTrigger],
-    reloadOnFinish: true
+    clean: [destRoot, upath.join(basePath, '.jekyll-metadata'), jekyllTriggerCss, jekyllTriggerJs]
 }
 
+const build = {
+    buildName: '@build',
+    dependencies: gbm.series(gbm.parallel(scss, scripts), jekyll)
+};
 
-module.exports = gbm.createProject({scss, scripts, jekyll}, {prefix})
-    .addBuildItem({
-        buildName: '@build',
-        dependencies: [gbm.parallel(scss.buildName, scripts.buildName), jekyll.buildName]
+
+module.exports = gbm.createProject(build, {prefix})
+    .addWatcher({
+        browserSync: {
+            server: upath.resolve(destRoot),
+            port: port,
+            ui: { port: port + 1 }
+            // open: false,
+            // reloadDebounce: 3000
+        }
     })
-    // .addWatcher('@watch', {
-    //     browserSync: {
-    //         server: upath.resolve(destRoot),
-    //         port: port,
-    //         ui: { port: port + 1 }
-    //         // open: false,
-    //         // reloadDebounce: 3000
-    //     },
-    //     reloadOnChange: false
-    // })
     .addCleaner()
-    .addVars({destRoot, port})
+    .addVars({
+        destRoot,
+        port,
+        clean: [
+            destRoot, jekyllTriggerCss, jekyllTriggerJs,
+            upath.join(basePath, '{css,js}/**/*.map'),
+            upath.join(basePath, 'gulp-build-{css,js}/**/*.map'),
+            upath.join(basePath, '.jekyll-metadata'),
+        ]
+    });

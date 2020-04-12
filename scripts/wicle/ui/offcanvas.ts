@@ -101,8 +101,12 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
                 transition: 'transform ' + data.duration / 1000 + 's'
             });
 
-            // disable click on canvas panel
-            $canvas.on('click', (e) => { return false; })
+            // https://reactjs.org/docs/accessibility.html
+            // blur event comes first before focus. So, cancel the timer if $canvas is focused
+            // This is better than click event because it works for keyboard input too
+            let timerID: number;
+            $canvas.on('blur', () => { timerID = setTimeout(()=> { $canvas.trigger('offcanvas:close')}) });
+            $canvas.on('focus', () => { clearTimeout(timerID) });
 
             // set offcanvas control button handler
             if (data.control) jQuery(data.control).on('click', (e) => {
@@ -167,10 +171,5 @@ export function offcanvas(selector?: string, options?: OffcanvasOptions) {
 
         // trigger init event
         $canvas.trigger('offcanvas:init', [defaultCanvasData]);
-    });
-
-    // set offcanvas close handler including background(.l-site) click
-    if (opts.closeOnBackgroundClick) jQuery('html').on('click', (e) => {
-        jQuery(selector).trigger('offcanvas:close');  // close on background click
     });
 }
