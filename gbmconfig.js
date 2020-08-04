@@ -12,10 +12,12 @@ const projectName = 'wicle';
 const prefix = projectName + ':';
 const sourceMap = true;
 
+// gbm.npm.enable();
+// gbm.npm.setPackageManager("pnpm");
+
 const scss = {
     buildName: 'scss',
     builder: 'GCSSBuilder',
-    preBuild: () => gbm.utils.npmInstall(['stylelint-config-recommended']),
     src: upath.join(srcRoot, 'scss/**/*.scss'),
     dest: upath.join(destRoot, 'css'),
     buildOptions: {
@@ -32,13 +34,13 @@ const scss = {
             }
         }
     },
-    flushStream: true
+    flushStream: true,
+    npmInstall: ['stylelint-config-recommended'],
 }
 
 const scripts = {
     buildName: 'scripts',
     builder: 'GTypeScriptBuilder',
-    preBuild: () => gbm.utils.npmInstall(['@types/jquery']),
     src: upath.join(srcRoot, 'scripts/**/*.ts'),
     dest: upath.join(basePath, 'dist/js'),
     outFile: 'wicle.js',
@@ -47,7 +49,8 @@ const scripts = {
         sourceMap: sourceMap,
         tsConfig: upath.join(basePath, 'tsconfig.json')
     },
-    flushStream: true
+    flushStream: true,
+    npmInstall: ['@types/jquery'],
 }
 
 const build = {

@@ -20,7 +20,6 @@ const scss = {
     buildName: 'scss',
     builder: 'GCSSBuilder',
     preBuild: (rtb) => {
-        gbm.utils.npmInstall([...pcssPluginNames, wdkName]);
         rtb.moduleOptions = {
             sass: { includePaths: ['scss', 'node_modules/sass-wdk'] },
             postcss: { plugins: pcssPluginNames.map(id => require(id)()) },
@@ -37,7 +36,8 @@ const scss = {
     postBuild: rtb => rtb.exec('echo', ['>', jekyllTriggerCss]),
 
     addWatch: ['dist/css/wicle.min.css'], // propagate changes in wicle to docs
-    clean: [upath.join(basePath, 'css')]
+    clean: [upath.join(basePath, 'css')],
+    npmInstall: [...pcssPluginNames, wdkName]
 }
 
 const scripts = {
