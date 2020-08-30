@@ -16,7 +16,7 @@ const sourceMap = true;
 // gbm.npm.setPackageManager("pnpm");
 
 const scss = {
-    buildName: 'scss',
+    name: 'scss',
     builder: 'GCSSBuilder',
     src: upath.join(srcRoot, 'scss/**/*.scss'),
     dest: upath.join(destRoot, 'css'),
@@ -35,11 +35,11 @@ const scss = {
         }
     },
     flushStream: true,
-    npmInstall: ['stylelint-config-recommended'],
+    npmInstall: ['stylelint-config-recommended']
 }
 
 const scripts = {
-    buildName: 'scripts',
+    name: 'scripts',
     builder: 'GTypeScriptBuilder',
     src: upath.join(srcRoot, 'scripts/**/*.ts'),
     dest: upath.join(basePath, 'dist/js'),
@@ -54,9 +54,9 @@ const scripts = {
 }
 
 const build = {
-    buildName: '@build',
+    name: '@build',
     triggers: gbm.parallel(scss, scripts),
     clean: [destRoot]
 }
 
-module.exports = gbm.createProject(build, {prefix}).addWatcher().addCleaner()
+module.exports = gbm.createProject(build, {prefix}).addWatcher().addCleaner();

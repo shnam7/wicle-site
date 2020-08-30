@@ -17,12 +17,12 @@ const pcssPluginNames = ['lost', 'cssnano', 'postcss-combine-duplicated-selector
 const wdkName = 'shnam7/sass-wdk';
 
 const scss = {
-    buildName: 'scss',
+    name: 'scss',
     builder: 'GCSSBuilder',
     preBuild: (rtb) => {
         rtb.moduleOptions = {
             sass: { includePaths: ['scss', 'node_modules/sass-wdk'] },
-            postcss: { plugins: pcssPluginNames.map(id => require(id)()) },
+            postcss: { plugins: pcssPluginNames.map(id => gbm.require(id)()) },
         };
     },
     src: upath.join(srcRoot, 'scss/**/*.scss'),
@@ -41,7 +41,7 @@ const scss = {
 }
 
 const scripts = {
-    buildName: 'scripts',
+    name: 'scripts',
     builder: 'GTypeScriptBuilder',
     src: upath.join(srcRoot, 'scripts/**/*.ts'),
     dest: upath.join(basePath, 'js'),
@@ -67,7 +67,7 @@ const scripts = {
 }
 
 const jekyll = {
-    buildName: 'jekyll',
+    name: 'jekyll',
     builder: 'GJekyllBuilder',
     src: upath.join(basePath, ''),
     dest: destRoot,
@@ -93,7 +93,7 @@ const jekyll = {
 }
 
 const build = {
-    buildName: '@build',
+    name: '@build',
     dependencies: gbm.series(gbm.parallel(scss, scripts), jekyll)
 };
 
