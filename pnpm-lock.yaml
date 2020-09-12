@@ -7010,6 +7010,7 @@ packages:
     peerDependencies:
       gulp: ^4.0.2
     resolution:
+      registry: 'https://registry.npmjs.org/'
       tarball: 'https://codeload.github.com/shnam7/gulp-build-manager/tar.gz/901b82ded10c1e6f56025e75b0fd3859eb7ef456'
     version: 4.1.0
 specifiers:
