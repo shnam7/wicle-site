@@ -14,7 +14,7 @@ markdown:           kramdown
 # highlighter:        none
 permalink:          pretty
 exclude:            ['_assets', 'Gemfile*', 'gbmconfig.js', 'gulpfile.js', 'tsconfig.json']
-contentsurl:        contents
+contentsurl:        wicle/contents
 
 # Module settings
 kramdown:
