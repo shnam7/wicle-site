@@ -47,7 +47,7 @@
         "browser-sync": "^2.26.12",
         "cssnano": "^4.1.10",
         "gulp": "^4.0.2",
-        "gulp-build-manager": "link:..\\gulp-build-manager",
+        "gulp-build-manager": "github:shnam7/gulp-build-manager#v4.1",
         "gulp-clean-css": "^4.3.0",
         "gulp-filter": "^6.0.0",
         "gulp-postcss": "^8.0.0",
