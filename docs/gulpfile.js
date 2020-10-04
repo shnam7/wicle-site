@@ -1,6 +1,6 @@
 //  Wicle docs
 
-const gbm = require('gulp-build-manager');
+const tron = require('gulp-tron');
 const upath = require('upath');
 
 const projectName = upath.basename(__dirname); // set template name to parent directory name
@@ -20,10 +20,10 @@ const scss = {
     name: 'scss',
     builder: 'GCSSBuilder',
     preBuild: (rtb) => {
-        rtb.moduleOptions = {
+        rtb.setModuleOptions({
             sass: { includePaths: ['scss', 'node_modules/sass-wdk'] },
-            postcss: { plugins: pcssPluginNames.map(id => gbm.require(id)()) },
-        };
+            postcss: { plugins: pcssPluginNames.map(id => tron.require(id)()) },
+        });
     },
     src: upath.join(srcRoot, 'scss/**/*.scss'),
     dest: upath.join(basePath, 'css'),
@@ -87,18 +87,18 @@ const jekyll = {
         `!(${upath.join(basePath, '{_site,_site/**/*}')})`,
         `!(${upath.join(basePath, '{js,js/**/*}')})`,
         `!(${upath.join(basePath, '{css,css/**/*}')})`,
-        `!(${upath.join(basePath, '{.jekyll-metadata,gbmconfig.js,gulpfile.js}')})`,
+        `!(${upath.join(basePath, '{.jekyll-metadata,build.config.js,gulpfile.js}')})`,
     ],
     clean: [destRoot, upath.join(basePath, '.jekyll-metadata'), jekyllTriggerCss, jekyllTriggerJs]
 }
 
 const build = {
     name: '@build',
-    dependencies: gbm.series(gbm.parallel(scss, scripts), jekyll)
+    dependencies: tron.series(tron.parallel(scss, scripts), jekyll)
 };
 
 
-module.exports = gbm.createProject(build, {prefix})
+module.exports = tron.createProject(build, {prefix})
     .addWatcher({
         browserSync: {
             server: upath.resolve(destRoot),
@@ -115,7 +115,7 @@ module.exports = gbm.createProject(build, {prefix})
         clean: [
             destRoot, jekyllTriggerCss, jekyllTriggerJs,
             upath.join(basePath, '{css,js}/**/*.map'),
-            upath.join(basePath, 'gulp-build-{css,js}/**/*.map'),
+            // upath.join(basePath, 'gulp-build-{css,js}/**/*.map'),
             upath.join(basePath, '.jekyll-metadata'),
         ]
     });

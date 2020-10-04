@@ -14,5 +14,4 @@
 - Add font.scss to wdk (optional scss variables for fonts)
 - Add SystemJS script loader with code overall code restructuring
 - Improve docs according to updated wicle features
-- Improve gulp-build-manager build scripts
 - Add favicon
