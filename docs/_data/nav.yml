@@ -2,20 +2,20 @@
   url: '#'
   sub:
     - title: Colors
-      url: 'demo/colors'
+      url: '/contents/demo/colors/'
     - title: Buttons
-      url: 'demo/buttons'
+      url: '/contents/demo/buttons'
     - title: Nav
-      url: 'demo/nav'
+      url: '/contents/demo/nav'
     - title: Divider
-      url: 'demo/divider'
+      url: '/contents/demo/divider'
     - title: Panel
-      url: 'demo/panel'
+      url: '/contents/demo/panel'
     - title: Search
-      url: 'demo/search'
+      url: '/contents/demo/search'
     - title: Image
-      url: 'demo/image'
+      url: '/contents/demo/image'
     - title: Parallax
-      url: 'demo/parallax'
+      url: '/contents/demo/parallax'
     - title: Pagination
-      url: 'demo/pagination'
+      url: '/contents/demo/pagination'

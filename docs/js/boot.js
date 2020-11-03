@@ -1,19 +1,5 @@
-// server baseURL: shnam7.github.io/wicle
-baseUrl = (window.location.hostname === 'localhost') ? '/js/' : '/wicle/js/';
-
-// importmap script
-// const im = document.createElement('script');
-// im.type = 'importmap';
-// im.textContent = JSON.stringify({
-// 	imports: {
-// 		'wicle': baseUrl + '/wicle.min.js',
-// 	}
-// });
-// document.currentScript.after(im);
-
-// System.config({
-//   baseURL: baseUrl
-// });
+// server baseURL: /wicle
+var baseUrl = '/wicle/js/';
 
 System.import(baseUrl + 'wicle.min.js').then(() => {
     System.import(baseUrl + "docs.min.js")

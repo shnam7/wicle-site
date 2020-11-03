@@ -68,18 +68,12 @@ const scripts = {
 
 const jekyll = {
     name: 'jekyll',
-    builder: 'GJekyllBuilder',
-    src: upath.join(basePath, ''),
-    dest: destRoot,
-    moduleOptions: {
-        jekyll: {
-            subcommand: 'build',
-            args: [
-                '--safe', // github runs in safe mode for security reason. Custom plugins are not supported.
-                '--baseurl http://localhost:' + port, // root folder relative to local server,
-                '--incremental'
-            ]
-        }
+    builder: {
+        command: `jekyll build -s ${basePath} -d ${destRoot}/wicle`,
+        args: [
+            '--safe',   // github runs in safe mode for security reason. Custom plugins are not supported.
+            '--incremental',
+        ]
     },
     watch: [
         jekyllTriggerCss, jekyllTriggerJs,
@@ -103,8 +97,9 @@ module.exports = tron.createProject(build, {prefix})
         browserSync: {
             server: upath.resolve(destRoot),
             port: port,
-            ui: { port: port + 1 }
-            // open: false,
+            ui: { port: port + 1 },
+            startPath: '/wicle/',
+            // open: true,
             // reloadDebounce: 3000
         }
     })
