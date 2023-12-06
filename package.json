@@ -1,4 +1,16 @@
 {
     "name": "wicle",
-    "version": "2.0.2"
+    "version": "2.0.2",
+    "description": "Component library for Web development.",
+        "scripts": {
+        "build": "gulp wicle:@build",
+        "clean": "gulp wicle:@clean",
+        "build-all": "gulp @build-all",
+        "clean-all": "gulp @clean-all",
+        "watch": "gulp wicle:@watch",
+        "watch-all": "gulp @watch-all",
+        "jekyll-server": "jekyll serve -s docs -d docs/_site/wicle --safe --incremental",
+        "prepare-to-commit": "npm run clean-all && npm run build-all && gulp @clean-to-prepare",
+        "npm-dry-run": "npm publish --dry-run"
+    }
 }

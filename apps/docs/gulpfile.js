@@ -7,7 +7,6 @@ const projectName = upath.basename(__dirname); // set template name to parent di
 const basePath = upath.relative(process.cwd(), __dirname);
 const srcRoot = upath.join(basePath, '_assets');
 const destRoot = upath.join(basePath, '_site');
-const prefix = projectName + ':';
 const sourceMap = true;
 const jekyllTriggerCss = upath.join(basePath, '.jekyll-trigger-css');  // flag to trigger jekyll watcher
 const jekyllTriggerJs = upath.join(basePath, '.jekyll-trigger-js');  // flag to trigger jekyll watcher
@@ -92,7 +91,7 @@ const build = {
 };
 
 
-module.exports = tron.createProject(build, {prefix})
+module.exports = tron.createProject(build)
     .addWatcher({
         browserSync: {
             server: upath.resolve(destRoot),
@@ -104,13 +103,13 @@ module.exports = tron.createProject(build, {prefix})
         }
     })
     .addCleaner()
-    .addVars({
-        destRoot,
-        port,
-        clean: [
-            destRoot, jekyllTriggerCss, jekyllTriggerJs,
-            upath.join(basePath, '{css,js}/**/*.map'),
-            // upath.join(basePath, 'gulp-build-{css,js}/**/*.map'),
-            upath.join(basePath, '.jekyll-metadata'),
-        ]
-    });
+    // .addVars({
+    //     destRoot,
+    //     port,
+    //     clean: [
+    //         destRoot, jekyllTriggerCss, jekyllTriggerJs,
+    //         upath.join(basePath, '{css,js}/**/*.map'),
+    //         // upath.join(basePath, 'gulp-build-{css,js}/**/*.map'),
+    //         upath.join(basePath, '.jekyll-metadata'),
+    //     ]
+    // });

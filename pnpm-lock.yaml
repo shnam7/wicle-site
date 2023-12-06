@@ -8,6 +8,82 @@ importers:
 
   .: {}
 
+  apps/docs:
+    dependencies:
+      sass-wdk:
+        specifier: ^1.1.2
+        version: 1.1.2
+      wicle:
+        specifier: workspace:*
+        version: link:../../packages/wicle
+    devDependencies:
+      '@types/jquery':
+        specifier: ^3.5.29
+        version: 3.5.29
+      autoprefixer:
+        specifier: ^10.4.16
+        version: 10.4.16(postcss@8.4.32)
+      browser-sync:
+        specifier: ^2.29.3
+        version: 2.29.3
+      cssnano:
+        specifier: ^6.0.1
+        version: 6.0.1(postcss@8.4.32)
+      gulp:
+        specifier: ^4.0.2
+        version: 4.0.2
+      gulp-clean-css:
+        specifier: ^4.3.0
+        version: 4.3.0
+      gulp-filter:
+        specifier: ^9.0.1
+        version: 9.0.1(gulp@4.0.2)
+      gulp-postcss:
+        specifier: ^9.0.1
+        version: 9.0.1(postcss@8.4.32)
+      gulp-rename:
+        specifier: ^2.0.0
+        version: 2.0.0
+      gulp-sass:
+        specifier: ^5.1.0
+        version: 5.1.0
+      gulp-sourcemaps:
+        specifier: ^3.0.0
+        version: 3.0.0
+      gulp-terser:
+        specifier: ^2.1.0
+        version: 2.1.0
+      gulp-tron:
+        specifier: ^1.0.0-alpha.3
+        version: 1.0.0-alpha.3(gulp@4.0.2)
+      gulp-typescript:
+        specifier: ^6.0.0-alpha.1
+        version: 6.0.0-alpha.1(typescript@5.3.2)
+      lost:
+        specifier: ^9.0.2
+        version: 9.0.2(postcss@8.4.32)
+      postcss:
+        specifier: ^8.4.32
+        version: 8.4.32
+      postcss-combine-duplicated-selectors:
+        specifier: ^10.0.3
+        version: 10.0.3(postcss@8.4.32)
+      postcss-reporter:
+        specifier: ^7.0.5
+        version: 7.0.5(postcss@8.4.32)
+      stream-to-promise:
+        specifier: ^3.0.0
+        version: 3.0.0
+      stylelint:
+        specifier: ^15.11.0
+        version: 15.11.0(typescript@5.3.2)
+      stylelint-config-recommended:
+        specifier: ^13.0.0
+        version: 13.0.0(stylelint@15.11.0)
+      typescript:
+        specifier: ^5.3.2
+        version: 5.3.2
+
   packages/wicle:
     dependencies:
       sass-wdk:

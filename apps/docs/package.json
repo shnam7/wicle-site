@@ -1,7 +1,7 @@
 {
-    "name": "wicle",
+    "name": "docs",
     "version": "2.0.2",
-    "description": "Component library for Web development.",
+    "description": "Documantipn for Component library for Web development.",
     "files": [
         "dist",
         "scripts",
@@ -13,9 +13,8 @@
     "scripts": {
         "build": "gulp @build",
         "clean": "gulp @clean",
-        "watch": "gulp @watch",
         "jekyll-server": "jekyll serve -s docs -d docs/_site/wicle --safe --incremental",
-        "prepare-to-commit": "npm run clean-all && npm run build-all && gulp @clean-to-prepare",
+        "prepare-to-commit": "npm run clean && npm run build && gulp @clean-to-prepare",
         "npm-dry-run": "npm publish --dry-run"
     },
     "repository": {
@@ -34,7 +33,8 @@
     },
     "homepage": "https://github.com/shnam7/wicle#readme",
     "dependencies": {
-        "sass-wdk": "^1.1.2"
+        "sass-wdk": "^1.1.2",
+        "wicle": "workspace:*"
     },
     "devDependencies": {
         "@types/jquery": "^3.5.29",

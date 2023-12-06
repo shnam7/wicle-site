@@ -12,7 +12,7 @@ const basePath = upath.relative(process.cwd(), __dirname);
 const srcRoot = basePath;
 const destRoot = 'dist';
 const projectName = 'wicle';
-const prefix = projectName + ':';
+// const prefix = projectName + ':';
 const sourceMap = true;
 
 const scss = {
@@ -59,15 +59,17 @@ const build = {
     clean: [destRoot]
 }
 
-const wicle = tron.createProject(build, {prefix}).addWatcher().addCleaner();
-const docs = require('./docs/gulpfile.js');
+// const wicle =
+tron.createProject(build)
+    .addWatcher()
+    .addCleaner();
 
 //--- main build
-tron.createProject({
-    buildAll: { name: '@build-all', triggers: [wicle.getBuildNames(/@build$/), docs.getBuildNames(/@build/)] },
-    cleanAll: { name: '@clean-all', triggers: tron.getBuildNames(/@clean$/) },
-    cleanToPrepare: { name: '@clean-to-prepare', builder: rtb => rtb.clean(docs.vars.clean) },
-    watchAll: {
-        name: '@watch-all',
-        dependencies: tron.parallel(tron.getBuildNames(/watch$/))
-    }});
+// tron.createProject({
+//     buildAll: { name: '@build-all', triggers: wicle.getBuildNames(/@build$/)},
+//     cleanAll: { name: '@clean-all', triggers: tron.getBuildNames(/@clean$/) },
+//     cleanToPrepare: { name: '@clean-to-prepare', builder: rtb => rtb.clean(docs.vars.clean) },
+//     watchAll: {
+//         name: '@watch-all',
+//         dependencies: tron.parallel(tron.getBuildNames(/watch$/))
+//     }});
