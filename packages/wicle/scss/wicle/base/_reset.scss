@@ -9,6 +9,9 @@
 //
 //=========================================================
 
+@use 'wdk/reg';
+@use 'wdk/color';
+@use 'wdk/font';
 
 //-----------------------------------------------
 //  Config
@@ -17,12 +20,12 @@
     $key: 'w-reset';
 
     // core
-    @include ssv($key, 'a/fg', $w-color-text-black, true);
-    @include ssv($key, 'list/margin-left', 1rem, true);
-    @include ssv($key, 'pre/margin', 0.5rem 0, true);
-    @include ssv($key, 'pre/padding', 0.5rem 1rem, true);
-    @include ssv($key, 'pre/bg', #f3f6fa, true);
-    @include ssv($key, 'pre/border', solid 1px darken(#f3f6fa, 2%), true);
+    @include reg.ssv($key, 'a/fg', color.$text-black, true);
+    @include reg.ssv($key, 'list/margin-left', 1rem, true);
+    @include reg.ssv($key, 'pre/margin', 0.5rem 0, true);
+    @include reg.ssv($key, 'pre/padding', 0.5rem 1rem, true);
+    @include reg.ssv($key, 'pre/bg', #f3f6fa, true);
+    @include reg.ssv($key, 'pre/border', solid 1px darken(#f3f6fa, 2%), true);
 }
 
 
@@ -37,8 +40,8 @@
 @include w-reset-config();
 
 html {
-    font-size: $w-font-size;
-    line-height: $w-line-height;
+    font-size: font.$size-base;
+    line-height: font.$line-height;
     box-sizing: border-box;
 }
 
@@ -52,7 +55,7 @@ body {
     $key: 'w-reset';
 
     word-wrap: break-word;
-    color: gsv($key, fg);
+    color: reg.gsv($key, fg);
 }
 
 // paragraph
@@ -73,7 +76,7 @@ p {
 a {
     $key: 'w-reset';
 
-    color: gsv($key, 'a/fg');
+    color: reg.gsv($key, 'a/fg');
     // background-color: transparent;
     text-decoration: none;
 
@@ -93,9 +96,9 @@ h5,
 h6 {
     $key: 'w-reset';
 
-    font-family: $w-font-heading;
+    font-family: font.$heading;
     font-weight: 600;
-    color: gsv($key, fg);
+    color: reg.gsv($key, fg);
 }
 
 body,
@@ -104,8 +107,8 @@ input,
 textarea {
     $key: 'w-reset';
 
-    color: gsv($key, fg);
-    font-family: $w-font-text; // set base font here, to apply evenly
+    color: reg.gsv($key, fg);
+    font-family: font.$text; // set base font here, to apply evenly
     box-sizing: border-box;
 }
 
@@ -114,10 +117,10 @@ pre,
 code {
     $key: 'w-reset';
 
-    font-family: $w-font-code;
-    font-size: $w-text-sm;
-    line-height: $w-line-height * $w-font-down-scaler;
-    background: gsv($key, 'pre/bg'); // same color for pre and code
+    font-family: font.$code;
+    font-size: font.$size-sm;
+    line-height: font.$line-height * font.$down-scaler;
+    background: reg.gsv($key, 'pre/bg'); // same color for pre and code
 }
 
 pre {
@@ -125,8 +128,8 @@ pre {
 
     display: block;
     overflow: auto;
-    margin: gsv($key, 'pre/margin');
-    padding: gsv($key, 'pre/padding');
-    border: gsv($key, 'pre/border');
+    margin: reg.gsv($key, 'pre/margin');
+    padding: reg.gsv($key, 'pre/padding');
+    border: reg.gsv($key, 'pre/border');
     border-radius: 3px;
 }

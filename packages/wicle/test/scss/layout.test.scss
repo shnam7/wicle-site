@@ -1,0 +1,10 @@
+@use 'true' as *;
+@import 'wicle/layout/mixins/page';
+@import 'wicle/layout/mixins/site';
+@import 'wicle/layout/default';
+
+@include describe('wicle/layout test') {
+    @include it('Can use layout/mixins/page.') { }
+    @include it('Can use layout/mixins/site.') { }
+    @include it('Can use layout/default.') { }
+}

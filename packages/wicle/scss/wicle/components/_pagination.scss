@@ -5,6 +5,9 @@
 //
 //=========================================================
 
+@use 'wdk/reg';
+@use 'wdk/color';
+@use 'wdk/ui';
 
 //-----------------------------------------------
 //  Config
@@ -13,12 +16,12 @@
     $key: 'w-pagination';
 
     // core
-    @include ssv($key, 'breakpoint', medium, true);
-    @include ssv($key, 'padding', 0.25rem 0.85rem, true);
+    @include reg.ssv($key, 'breakpoint', medium, true);
+    @include reg.ssv($key, 'padding', 0.25rem 0.85rem, true);
 
     // default styles
-    @include ssv($key, 'theme-color', darken($w-theme-color, 5%), true); // pagination theme color
-    @include ssv($key, 'current-color', darken($w-color-harley-davidson-orange, 5%), true); // current page color
+    @include reg.ssv($key, 'theme-color', color.scale(reg.gsv('theme', 'color/fg'), $lightness: -5%), true); // pagination theme color
+    @include reg.ssv($key, 'current-color', color.scale(color.$harley-davidson-orange, $lightness: -5%), true); // current page color
 }
 
 //-----------------------------------------------
@@ -37,7 +40,7 @@
             font-weight: 800;
             vertical-align: middle;
             transition: all 0.2s ease-in-out;
-            padding: gsv($key, padding);
+            padding: reg.gsv($key, padding);
             border-radius: 2px;
 
             $arrow-scale: 1.5;
@@ -83,9 +86,9 @@
                 }
             }
 
-            @include w-media(gsv($key, breakpoint)) {
+            @include ui.media(reg.gsv($key, breakpoint)) {
                 display: inline-block;
-                padding: gsv($key, padding-wide);
+                padding: reg.gsv($key, padding-wide);
 
                 &.current {
                     &:before {
@@ -100,7 +103,7 @@
             }
         }
 
-        @include w-clearfix;
+        @include ui.clearfix;
     }
 }
 
@@ -109,7 +112,7 @@
 
     .page-links {
         .page-numbers {
-            @include w-media(gsv($key, breakpoint)) {
+            @include ui.media(reg.gsv($key, breakpoint)) {
                 padding: 0.5rem 0.8rem;
                 border-radius: 50%;
 
@@ -140,7 +143,7 @@
         .page-numbers {
             color: $color-theme;
 
-            @include w-media(gsv($key, breakpoint)) {
+            @include ui.media(reg.gsv($key, breakpoint)) {
                 border: 1px solid rgba($color-theme, 0.35);
 
                 &:hover {
@@ -170,7 +173,7 @@
 @mixin w-pagination-default-styles {
     $key: 'w-pagination';
 
-    @include w-pagination-styles(gsv($key, theme-color), gsv($key, current-color));
+    @include w-pagination-styles(reg.gsv($key, theme-color), reg.gsv($key, current-color));
 }
 
 //-----------------------------------------------

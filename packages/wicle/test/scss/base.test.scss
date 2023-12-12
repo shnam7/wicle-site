@@ -1,0 +1,8 @@
+@use 'true' as *;
+@import 'wicle/base/reset';
+@import 'wicle/base/_typography';
+
+@include describe('wicle/base test') {
+    @include it('Can use base/reset.') { }
+    @include it('Can use base/typography.') { }
+}

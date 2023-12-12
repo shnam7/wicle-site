@@ -5,6 +5,7 @@
 //
 //=========================================================
 
+@use 'wdk/reg';
 
 //-----------------------------------------------
 //  Config
@@ -13,14 +14,14 @@
     $key: 'w-scrollbar';
 
     // scrollbar
-    @include ssv($key, 'width', 14px, true);
-    @include ssv($key, 'height', 14px, true);
-    @include ssv($key, 'thumb/border-radius', 5px, true);
-    @include ssv($key, 'thumb/bg', gray(85%), true);            // dark mode: 23.5%
-    @include ssv($key, 'thumb/hover/bg', gray(70%), true);      // dark mode: 35%
-    @include ssv($key, 'thumb/active/bg', gray(45%), true);
-    @include ssv($key, 'thumb/transition', (color .2s ease), true);
-    @include ssv($key, 'track/bg',gray(95%), true);             // dark mode: 20%
+    @include reg.ssv($key, 'width', 14px, true);
+    @include reg.ssv($key, 'height', 14px, true);
+    @include reg.ssv($key, 'thumb/border-radius', 5px, true);
+    @include reg.ssv($key, 'thumb/bg', gray(85%), true);            // dark mode: 23.5%
+    @include reg.ssv($key, 'thumb/hover/bg', gray(70%), true);      // dark mode: 35%
+    @include reg.ssv($key, 'thumb/active/bg', gray(45%), true);
+    @include reg.ssv($key, 'thumb/transition', (color .2s ease), true);
+    @include reg.ssv($key, 'track/bg',gray(95%), true);             // dark mode: 20%
 }
 
 
@@ -33,25 +34,25 @@
     body {
         ::-webkit-scrollbar {
             -webkit-appearance: none;
-            width: gsv($key, 'width');
-            height: gsv($key, 'height');
+            width: reg.gsv($key, 'width');
+            height: reg.gsv($key, 'height');
         }
 
         ::-webkit-scrollbar-thumb {
             cursor: pointer;
-            border-radius: gsv($key, 'thumb/border-radius');
-            background: gsv($key, 'thumb/bg');
-            transition: gsv($key, 'thumb/transition');
+            border-radius: reg.gsv($key, 'thumb/border-radius');
+            background: reg.gsv($key, 'thumb/bg');
+            transition: reg.gsv($key, 'thumb/transition');
             &:hover {
-                background: gsv($key, 'thumb/hover/bg');
+                background: reg.gsv($key, 'thumb/hover/bg');
             }
             &:active {
-                background: gsv($key, 'thumb/active/bg');
+                background: reg.gsv($key, 'thumb/active/bg');
             }
         }
 
         ::-webkit-scrollbar-track {
-            background: gsv($key, 'track/bg');
+            background: reg.gsv($key, 'track/bg');
             border-radius: 0;
         }
     }

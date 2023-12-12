@@ -1,0 +1,11 @@
+{
+    "extends": ["//"],
+    "pipeline": {
+        "build": {
+            "dependsOn": ["sass"]
+        },
+        "sass": {
+            "dependsOn": []
+        }
+    }
+}

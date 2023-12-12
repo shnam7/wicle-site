@@ -1,10 +1,12 @@
 .idea
 .vscode
 .trash
-node_modules
-/__*
 *.map
+.turbo/
+node_modules/
+coverage/
+dist/
+/__*
 /docs/_site/
 /docs/.*-triggered
 /docs/.jekyll-metadata
-.turbo

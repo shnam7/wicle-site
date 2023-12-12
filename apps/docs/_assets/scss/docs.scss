@@ -18,11 +18,11 @@
 //  styles
 //-----------------------------------------------
 $banner-height: 350px;
-$header-height: gsv('w-navbar/height');
+$header-height: reg.gsv('w-navbar/height');
 
 :root {
     --sidebar-width: 0rem;      // rem required for use in calc()
-    @include w-media(large) {
+    @include ui.media(large) {
         --sidebar-width: #{gsv('w-layout/page', 'sidebar/width')};
     }
 }
@@ -31,7 +31,7 @@ $header-height: gsv('w-navbar/height');
     position: absolute;
     top: 0;
     height: $banner-height + px($header-height);
-    @include w-pattern(shade($w-theme-color, 25%));
+    @include w-pattern(shade(config.$theme-color, 25%));
 }
 
 .l-site-content {
@@ -82,12 +82,12 @@ $header-height: gsv('w-navbar/height');
 
 .l-sidebar {
     a:hover {
-        color: $w-theme-color-link-hover;
+        color: config.$theme-color-link-hover;
     }
 }
 
 .l-site-footer {
-    //background-color: darken($w-theme-color, 25%);
+    //background-color: darken(config.$theme-color, 25%);
     background-color: rgba(#000, 0.85);
 
     .logo-text {

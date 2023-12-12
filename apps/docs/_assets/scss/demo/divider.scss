@@ -1,11 +1,11 @@
 @import "../site.config";
 
 .demo-divider-panel {
-    font-family: $w-font-roboto;
+    font-family: font.$roboto;
 
     padding: 0.5rem 1rem;
     border: 1px solid gray(80%);
-    border-radius: $w-border-radius;
+    border-radius: config.$border-radius;
 
     &.dark {
         color: $w-color-text-white;

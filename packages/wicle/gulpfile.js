@@ -2,18 +2,18 @@
  * Gulpfile for Wicle
  */
 
-const tron = require('gulp-tron');
-const upath = require('upath');
+const tron = require('gulp-tron')
+const upath = require('upath')
 
-tron.setPackageManager({name:"pnpm"});
+tron.setPackageManager({ name: 'pnpm' })
 
 //--- Wicle build configuration
-const basePath = upath.relative(process.cwd(), __dirname);
-const srcRoot = basePath;
-const destRoot = 'dist';
-const projectName = 'wicle';
+const basePath = upath.relative(process.cwd(), __dirname)
+const srcRoot = basePath
+const destRoot = 'dist'
+const projectName = 'wicle'
 // const prefix = projectName + ':';
-const sourceMap = true;
+const sourceMap = true
 
 const scss = {
     name: 'scss',
@@ -23,19 +23,19 @@ const scss = {
     buildOptions: {
         lint: true,
         minifyOnly: true,
-        sourceMap: sourceMap
+        sourceMap: sourceMap,
     },
     moduleOptions: {
         sass: { includePaths: ['scss', 'node_modules/sass-wdk'] },
         stylelint: {
-            "extends": upath.resolve(basePath, ".stylelintrc"),
-            "rules": {
+            extends: upath.resolve(basePath, '.stylelintrc'),
+            rules: {
                 // "no-empty-source": null
-            }
-        }
+            },
+        },
     },
     flushStream: true,
-    npmInstall: ['stylelint-config-recommended']
+    npmInstall: ['stylelint-config-recommended'],
 }
 
 const scripts = {
@@ -47,7 +47,7 @@ const scripts = {
     buildOptions: {
         minifyOnly: true,
         sourceMap: sourceMap,
-        tsConfig: upath.join(basePath, 'tsconfig.json')
+        tsConfig: upath.join(basePath, 'tsconfig.json'),
     },
     flushStream: true,
     npmInstall: ['@types/jquery'],
@@ -56,13 +56,11 @@ const scripts = {
 const build = {
     name: '@build',
     triggers: tron.parallel(scss, scripts),
-    clean: [destRoot]
+    clean: [destRoot],
 }
 
 // const wicle =
-tron.createProject(build)
-    .addWatcher()
-    .addCleaner();
+tron.createProject(build).addWatcher().addCleaner()
 
 //--- main build
 // tron.createProject({

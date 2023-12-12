@@ -2,15 +2,59 @@
     "name": "wicle",
     "version": "2.0.2",
     "description": "Component library for Web development.",
-        "scripts": {
-        "build": "gulp wicle:@build",
-        "clean": "gulp wicle:@clean",
+    "scripts": {
+        "build": "turbo run build",
+        "clean": "turbo run clean",
+        "wicle:build": "gulp wicle:@build",
+        "wicle:clean": "gulp wicle:@clean",
+        "docs:build": "gulp docs:@build",
+        "docs:clean": "gulp docs:@clean",
         "build-all": "gulp @build-all",
         "clean-all": "gulp @clean-all",
         "watch": "gulp wicle:@watch",
         "watch-all": "gulp @watch-all",
-        "jekyll-server": "jekyll serve -s docs -d docs/_site/wicle --safe --incremental",
         "prepare-to-commit": "npm run clean-all && npm run build-all && gulp @clean-to-prepare",
         "npm-dry-run": "npm publish --dry-run"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/shnam7/wicle"
+    },
+    "keywords": [
+        "scss",
+        "utility",
+        "web",
+        "ui"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/shnam7/wicle/issues"
+    },
+    "homepage": "https://github.com/shnam7/wicle#readme",
+    "dependencies": {
+        "sass-wdk": "file://../sass-wdk"
+    },
+    "devDependencies": {
+        "@types/jquery": "^3.5.29",
+        "autoprefixer": "^10.4.17",
+        "browser-sync": "^3.0.2",
+        "cssnano": "^6.0.3",
+        "gulp": "^4.0.2",
+        "gulp-clean-css": "^4.3.0",
+        "gulp-filter": "^9.0.1",
+        "gulp-postcss": "^10.0.0",
+        "gulp-rename": "^2.0.0",
+        "gulp-sass": "^5.1.0",
+        "gulp-sourcemaps": "^3.0.0",
+        "gulp-terser": "^2.1.0",
+        "gulp-typescript": "^6.0.0-alpha.1",
+        "lost": "^9.0.2",
+        "postcss": "^8.4.35",
+        "postcss-combine-duplicated-selectors": "^10.0.3",
+        "postcss-reporter": "^7.1.0",
+        "stream-to-promise": "^3.0.0",
+        "stylelint": "^16.2.1",
+        "stylelint-config-recommended": "^14.0.0",
+        "typescript": "^5.3.3"
     }
 }

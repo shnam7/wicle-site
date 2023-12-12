@@ -7,6 +7,8 @@
 //  <
 //=========================================================
 
+@use 'wdk/reg';
+@use 'wdk/ui';
 
 //-----------------------------------------------
 //  Config
@@ -15,21 +17,21 @@
     $key: 'w-layout/page'; // DO NOT use $key as global variable
 
     // page
-    @include ssv($key, 'max-width', $w-page-max-width, true);
-    @include ssv($key, 'min-height', 30rem, true);
-    @include ssv($key, 'padding', 1rem, true);
-    @include ssv($key, 'font-family', null, true);
-    @include ssv($key, 'font-size', 1.15rem, true);
-    @include ssv($key, 'breakpoint', 'large', true);
+    @include reg.ssv($key, 'max-width', 1220px, true);
+    @include reg.ssv($key, 'min-height', 30rem, true);
+    @include reg.ssv($key, 'padding', 1rem, true);
+    @include reg.ssv($key, 'font-family', null, true);
+    @include reg.ssv($key, 'font-size', 1.15rem, true);
+    @include reg.ssv($key, 'breakpoint', 'large', true);
 
     // sidebar: sidebar size defined first and then content size determined
-    @include ssv($key, 'sidebar/width', 20rem, true);
-    @include ssv($key, 'sidebar/spacing', 3rem, true);
-    @include ssv($key, 'sidebar/padding', 0 0 0 gsv($key, 'sidebar/spacing')/2, true);
+    @include reg.ssv($key, 'sidebar/width', 20rem, true);
+    @include reg.ssv($key, 'sidebar/spacing', 3rem, true);
+    @include reg.ssv($key, 'sidebar/padding', 0 0 0 calc(reg.gsv($key, 'sidebar/spacing')/2), true);
 
     // contents
-    @include ssv($key, 'content/width', calc(100% - #{gsv($key, 'sidebar/width')}), true);
-    @include ssv($key, 'content/padding', 0 gsv($key, 'sidebar/spacing')/2 0 0, true);
+    @include reg.ssv($key, 'content/width', calc(100% - #{gsv($key, 'sidebar/width')}), true);
+    @include reg.ssv($key, 'content/padding', 0 calc(reg.gsv($key, 'sidebar/spacing')/2) 0 0, true);
 }
 
 
@@ -40,13 +42,13 @@
     $key: 'w-layout/page';
 
     .l-page {
-        font-size: gsv($key, 'font-size');
-        font-family: gsv($key, 'font-family');
-        max-width: gsv($key, 'max-width');
-        min-height: gsv($key, 'min-height');
+        font-size: reg.gsv($key, 'font-size');
+        font-family: reg.gsv($key, 'font-family');
+        max-width: reg.gsv($key, 'max-width');
+        min-height: reg.gsv($key, 'min-height');
         margin: 0 auto;
-        padding: gsv($key, 'padding');
-        @include w-clearfix();
+        padding: reg.gsv($key, 'padding');
+        @include ui.clearfix();
     }
 }
 
@@ -59,15 +61,15 @@
         padding: 0; // no padding because it is set by l-page
     }
 
-    $breakpoint: gsv($key, 'breakpoint');
+    $breakpoint: reg.gsv($key, 'breakpoint');
 
     @if $breakpoint {
-        @include w-media(gsv($key, 'breakpoint')) {
+        @include ui.media(reg.gsv($key, 'breakpoint')) {
             .l-page:not(.wo-single) {
                 .l-content {
                     float: left;
-                    width: gsv($key, 'content/width');
-                    padding: gsv($key, 'content/padding');
+                    width: reg.gsv($key, 'content/width');
+                    padding: reg.gsv($key, 'content/padding');
 
                     &.wo-right {
                         float: right;
@@ -89,15 +91,15 @@
     }
 
     // On bigger screens, sidebar comes on left or right of content
-    $breakpoint: gsv($key, 'breakpoint');
+    $breakpoint: reg.gsv($key, 'breakpoint');
 
     @if $breakpoint {
-        @include w-media($breakpoint) {
+        @include ui.media($breakpoint) {
             .l-page:not(.wo-single) {
                 .l-sidebar {
                     float: left;
-                    width: gsv($key, 'sidebar/width');
-                    padding: gsv($key, 'sidebar/padding');
+                    width: reg.gsv($key, 'sidebar/width');
+                    padding: reg.gsv($key, 'sidebar/padding');
                 }
             }
         }

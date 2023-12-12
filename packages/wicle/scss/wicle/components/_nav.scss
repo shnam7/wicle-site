@@ -19,6 +19,12 @@
 //
 //=========================================================================
 
+@use 'wdk/reg';
+@use 'wdk/color';
+@use 'wdk/font';
+@use 'wdk/ui';
+@use 'wdk/ui/z-index';
+@use 'wdk/util';
 
 //-----------------------------------------------
 //  Config
@@ -27,65 +33,65 @@
   $key: 'w-nav';
 
   // nav (ul: top level)
-  @include ssv($key, 'z-index', $z-index-level1, true);
-  @include ssv($key, 'font-family', $w-font-text, true);
-  @include ssv($key, 'font-weight', normal, true);
-  @include ssv($key, 'font-size', 1rem, true);
-  @include ssv($key, 'padding', 0, true);
-  @include ssv($key, 'border', null, true);
-  @include ssv($key, 'radius', $w-border-radius, true);
-  @include ssv($key, 'fg', $w-color-text-black, true);
-  @include ssv($key, 'bg', tint($w-theme-color, 98%), true);
+  @include reg.ssv($key, 'z-index', z-index.$level1, true);
+  @include reg.ssv($key, 'font-family', font.$text, true);
+  @include reg.ssv($key, 'font-weight', normal, true);
+  @include reg.ssv($key, 'font-size', 1rem, true);
+  @include reg.ssv($key, 'padding', 0, true);
+  @include reg.ssv($key, 'border', null, true);
+  @include reg.ssv($key, 'radius', reg.gsv('site', 'border-radius'), true);
+  @include reg.ssv($key, 'fg', color.$text-black, true);
+  @include reg.ssv($key, 'bg', color.tint(reg.gsv('theme', 'color/fg'), 98%), true);
 
   // item (li)
-  @include ssv($key, 'item/padding', 0, true);
+  @include reg.ssv($key, 'item/padding', 0, true);
 
   // text (li > a)
-  @include ssv($key, 'item-wrapper/margin', 0, true);
-  @include ssv($key, 'item-wrapper/padding', 0.35rem 0.5rem, true);
-  @include ssv($key, 'item-wrapper/line-height', 1.5, true);
-  @include ssv($key, 'item-wrapper/fg', gsv($key, fg), true);
-  @include ssv($key, 'item-wrapper/bg', null, true);
-  @include ssv($key, 'item-wrapper/hover/fg', white, true);
-  @include ssv($key, 'item-wrapper/hover/bg', rgba($w-theme-color, 0.90), true);
+  @include reg.ssv($key, 'item-wrapper/margin', 0, true);
+  @include reg.ssv($key, 'item-wrapper/padding', 0.35rem 0.5rem, true);
+  @include reg.ssv($key, 'item-wrapper/line-height', 1.5, true);
+  @include reg.ssv($key, 'item-wrapper/fg', reg.gsv($key, fg), true);
+  @include reg.ssv($key, 'item-wrapper/bg', null, true);
+  @include reg.ssv($key, 'item-wrapper/hover/fg', white, true);
+  @include reg.ssv($key, 'item-wrapper/hover/bg', rgba(reg.gsv('theme', 'color/fg'), 0.90), true);
 
   // nav icon options
-  @include ssv($key, 'icon/font-size', 1.25rem, true);
-  @include ssv($key, 'icon/font-weight', null, true);
-  @include ssv($key, 'icon/padding', 0.1rem, true);
+  @include reg.ssv($key, 'icon/font-size', 1.25rem, true);
+  @include reg.ssv($key, 'icon/font-weight', null, true);
+  @include reg.ssv($key, 'icon/padding', 0.1rem, true);
 
   // separator for top level horizontal menu
-  @include ssv($key, 'separator/height', 1.2rem, true);
-  @include ssv($key, 'separator/spacing', 3px, true);
-  @include ssv($key, 'separator/style', 1px solid rgba($w-color-text-black, 0.5), true);
+  @include reg.ssv($key, 'separator/height', 1.2rem, true);
+  @include reg.ssv($key, 'separator/spacing', 3px, true);
+  @include reg.ssv($key, 'separator/style', 1px solid rgba(color.$text-black, 0.5), true);
 
   // divider for dropdown
-  @include ssv($key, 'divider/spacing', 5px, true);
-  @include ssv($key, 'divider/style', 1px solid $w-theme-color-line, true); // color #ddd = gray(86.5%)
+  @include reg.ssv($key, 'divider/spacing', 5px, true);
+  @include reg.ssv($key, 'divider/style', 1px solid reg.gsv('theme', 'color/line'), true); // color #ddd = gray(86.5%)
 
   // dropdown
-  @include ssv($key, 'dropdown/z-index', $z-index-level2, true);
-  @include ssv($key, 'dropdown/padding', 0.5rem 0, true);
-  @include ssv($key, 'dropdown/min-width', 12rem, true);
-  @include ssv($key, 'dropdown/border', 1px solid $w-theme-color-line, true);
+  @include reg.ssv($key, 'dropdown/z-index', z-index.$level2, true);
+  @include reg.ssv($key, 'dropdown/padding', 0.5rem 0, true);
+  @include reg.ssv($key, 'dropdown/min-width', 12rem, true);
+  @include reg.ssv($key, 'dropdown/border', 1px solid reg.gsv('theme', 'color/line'), true);
 
-  @include ssv($key, 'dropdown/top-level/offset', 0.5rem, true);
-  @include ssv($key, 'dropdown/top-level/fg', $w-color-text-white, true);
+  @include reg.ssv($key, 'dropdown/top-level/offset', 0.5rem, true);
+  @include reg.ssv($key, 'dropdown/top-level/fg', color.$text-white, true);
 
   // accordion
-  @include ssv($key, 'accordion/padding', 0 0 0 1rem, true);
-  @include ssv($key, 'accordion/header/padding', 0.25rem 0.5rem, true);
-  @include ssv($key, 'accordion/click-area-size', 2.5rem, true);
+  @include reg.ssv($key, 'accordion/padding', 0 0 0 1rem, true);
+  @include reg.ssv($key, 'accordion/header/padding', 0.25rem 0.5rem, true);
+  @include reg.ssv($key, 'accordion/click-area-size', 2.5rem, true);
 
   // options
-  @include ssv($key, 'opt/invert/fg', gray(85%), true);
-  @include ssv($key, 'opt/invert/hover/fg', white, true);
-  @include ssv($key, 'opt/invert/separator/style', 1px solid rgba($w-color-text-white, 0.35), true);
+  @include reg.ssv($key, 'opt/invert/fg', gray(85%), true);
+  @include reg.ssv($key, 'opt/invert/hover/fg', white, true);
+  @include reg.ssv($key, 'opt/invert/separator/style', 1px solid rgba(color.$text-white, 0.35), true);
 
-  @include ssv($key, 'opt/flip/x-offset', 1rem, true); // x offset for 1st level popup
-  @include ssv($key, 'opt/flip/y-offset', 0px, true); // y offset for 1st level popup
-  @include ssv($key, 'opt/flip/sub/x-offset', 3px, true); // x offset for 2nd+ level popup
-  @include ssv($key, 'opt/flip/sub/y-offset', 0px, true); // y offset for 2nd+ level popup
+  @include reg.ssv($key, 'opt/flip/x-offset', 1rem, true); // x offset for 1st level popup
+  @include reg.ssv($key, 'opt/flip/y-offset', 0px, true); // y offset for 1st level popup
+  @include reg.ssv($key, 'opt/flip/sub/x-offset', 3px, true); // x offset for 2nd+ level popup
+  @include reg.ssv($key, 'opt/flip/sub/y-offset', 0px, true); // y offset for 2nd+ level popup
 }
 
 
@@ -102,11 +108,11 @@
   margin: 0;
   outline: 0;
 
-  z-index: gsv($key, z-index);
-  font-family: gsv($key, font-family), $w-font-serif;
-  font-size: gsv($key, font-size);
-  font-weight: gsv($key, font-weight);
-  padding: gsv($key, padding);
+  z-index: reg.gsv($key, z-index);
+  font-family: reg.gsv($key, font-family), font.$serif;
+  font-size: reg.gsv($key, font-size);
+  font-weight: reg.gsv($key, font-weight);
+  padding: reg.gsv($key, padding);
 
   li {
     margin: 0;
@@ -118,35 +124,35 @@
   a {
     display: block;
     outline: none;
-    margin: gsv($key, 'item-wrapper/margin');
+    margin: reg.gsv($key, 'item-wrapper/margin');
     text-decoration:none;
-    padding: gsv($key, item-wrapper/padding);
-    line-height: gsv($key, item-wrapper/line-height);
+    padding: reg.gsv($key, item-wrapper/padding);
+    line-height: reg.gsv($key, item-wrapper/line-height);
   }
   ul { display: none; }
 
   // divider
   .w-nav-item+.w-nav-divider {
-    margin: gsv($key, divider/spacing) 0;
+    margin: reg.gsv($key, divider/spacing) 0;
     height: 0;
     font-size: 0;
     line-height: 0;
-    border-top: gsv($key, divider/style);
+    border-top: reg.gsv($key, divider/style);
     border-width: 1px 0 0 0;
   }
 
   //--- border radius
-  $radius: gsv($key, radius);
+  $radius: reg.gsv($key, radius);
   &, li, a {
     border-radius: $radius;
   }
-  @include w-clearfix();
+  @include ui.clearfix();
 }
 
 @mixin w-nav-parent-marker {
   .w-nav-parent-marker {
     float: right;
-    font-family: $w-font-text;
+    font-family: font.$text;
     margin-left: 0.5rem; // $parent-marker-margin;
     transition: transform 0.5s ease-in-out;
     &:before {
@@ -167,8 +173,8 @@
 
   ul {
     display: block;
-    // z-index: gsv($key, z-index) + 1000;
-    z-index: gsv($key, 'dropdown/z-index');
+    // z-index: reg.gsv($key, z-index) + 1000;
+    z-index: reg.gsv($key, 'dropdown/z-index');
     position: absolute;
     transform: scaleY(0);  // hide submenu
     opacity: 0;
@@ -182,7 +188,7 @@
     }
     &[js-flip*=y] {
       top: auto;
-      bottom: - gsv($key, 'opt/flip/sub/y-offset');
+      bottom: - reg.gsv($key, 'opt/flip/sub/y-offset');
     }
 
     // delay for hover-off to prevent submenu from disappearing too soon when mouse is out from li
@@ -190,15 +196,15 @@
     top: 0;
     left: 100%;
     margin: 0;
-    padding: gsv($key, 'dropdown/padding');
+    padding: reg.gsv($key, 'dropdown/padding');
     list-style: none;
     &>li {
       clear: both;
-      min-width: gsv($key, dropdown/min-width);
+      min-width: reg.gsv($key, dropdown/min-width);
     }
-    background: gsv($key, bg);
-    border: gsv($key, dropdown/border);
-    border-radius: gsv($key, radius);
+    background: reg.gsv($key, bg);
+    border: reg.gsv($key, dropdown/border);
+    border-radius: reg.gsv($key, radius);
   }
 
   li:hover>ul {
@@ -219,7 +225,7 @@
         // set submenu out-of-viewport position
         &[js-flip*=x] {
           left: auto;
-          right: - gsv($key, 'opt/flip/x-offset');
+          right: - reg.gsv($key, 'opt/flip/x-offset');
         }
         &[js-flip*=y] {
           top: auto;
@@ -247,7 +253,7 @@
   display: block;
   ul {
     list-style: none;
-    padding: gsv($key, 'accordion/padding');
+    padding: reg.gsv($key, 'accordion/padding');
   }
 
   .w-nav-accordion-click-area {
@@ -255,7 +261,7 @@
     top:0;
     right:0;
     height: 100%;
-    width: gsv($key, accordion/click-area-size);
+    width: reg.gsv($key, accordion/click-area-size);
     cursor: pointer;
   }
 }
@@ -274,9 +280,9 @@
 
     // top-level menu-item separators
     &.wo-separators {
-      $height: gsv($key, separator/height);
-      $spacing: gsv($key, separator/spacing);
-      $style: gsv($key, separator/style);
+      $height: reg.gsv($key, separator/height);
+      $spacing: reg.gsv($key, separator/spacing);
+      $style: reg.gsv($key, separator/style);
 
       &>li {
         &:before {
@@ -287,12 +293,12 @@
           width: 1px;
           height: $height;
           top: 50%;
-          left: -1px - px($spacing);
+          left: -1px - font.px($spacing);
           transform: translateY(-50%);
         }
         &:not(:first-child) {
           margin-top: 0;
-          margin-left: px($spacing) * 2;
+          margin-left: font.px($spacing) * 2;
           &:before {
             margin: 0 1px;
             border-left: $style;
@@ -307,17 +313,17 @@
       &>li.w-nav-parent {
         &:after {
           border-style: solid;
-          border-color: transparent transparent gsv($key, bg);
+          border-color: transparent transparent reg.gsv($key, bg);
           border-width: 0 6px 6px;
           content: "";
           opacity: 0;
           height: 0;
           position: absolute;
           left: 1.5rem;
-          bottom: -1px - px(gsv($key, 'dropdown/top-level/offset'));
+          bottom: -1px - px(reg.gsv($key, 'dropdown/top-level/offset'));
           width: 0;
         //   z-index: 100000;
-          z-index: $z-index-level3;
+          z-index: z-index.$level3;
           transition: opacity 0.25s, transform 0.25s ease-in;
           transition-delay: 0.25s;
         }
@@ -339,9 +345,9 @@
       }
     }
     & > li > a {
-      font-size: gsv($key, icon/font-size);
-      font-weight: gsv($key, icon/font-weight);
-      padding: gsv($key, icon/padding) auto;   // vertical padding must be preserved to sync dropdown popup position
+      font-size: reg.gsv($key, icon/font-size);
+      font-weight: reg.gsv($key, icon/font-weight);
+      padding: reg.gsv($key, icon/padding) auto;   // vertical padding must be preserved to sync dropdown popup position
     }
   }
 
@@ -358,16 +364,16 @@
 @mixin w-nav-default-styles {
   $key: 'w-nav';
 
-  background-color: gsv($key, bg);
+  background-color: reg.gsv($key, bg);
   li {
-    color: gsv($key, fg);    // default text color for menu items
+    color: reg.gsv($key, fg);    // default text color for menu items
     a {
-      color: gsv($key, item-wrapper/fg);
-      background: gsv($key, item-wrapper/bg);
+      color: reg.gsv($key, item-wrapper/fg);
+      background: reg.gsv($key, item-wrapper/bg);
     }
     &:hover > a {
-      color: gsv($key, 'item-wrapper/hover/fg');
-      background: gsv($key, 'item-wrapper/hover/bg');
+      color: reg.gsv($key, 'item-wrapper/hover/fg');
+      background: reg.gsv($key, 'item-wrapper/hover/bg');
     }
   }
 
@@ -380,7 +386,7 @@
     &>li:hover {
       background: transparent;
       &>.w-nav-item-wrapper {
-        color: gsv($key, 'item-wrapper/hover/fg');
+        color: reg.gsv($key, 'item-wrapper/hover/fg');
       }
     }
   }
@@ -390,29 +396,29 @@
     &.wo-invert {   // invert top-level only for dropdown
       &>li {
         &>a {
-          color: gsv($key, 'opt/invert/fg');
+          color: reg.gsv($key, 'opt/invert/fg');
         }
         &:hover>a {
-          color: gsv($key, 'opt/invert/hover/fg');
+          color: reg.gsv($key, 'opt/invert/hover/fg');
         }
       }
     }
   }
   &.wo-accordion.wo-invert {    // invert all levels for accordion
     li {
-      color: gsv($key, 'opt/invert/fg');
+      color: reg.gsv($key, 'opt/invert/fg');
       &>a {
-        color: gsv($key, 'opt/invert/fg');
+        color: reg.gsv($key, 'opt/invert/fg');
       }
       &:hover>a {
-        color: gsv($key, 'opt/invert/hover/fg');
+        color: reg.gsv($key, 'opt/invert/hover/fg');
       }
     }
   }
 
   &.wo-separators {
     &>li:not(:first-child):before {
-      border-left: gsv($key, 'opt/invert/separator/style');
+      border-left: reg.gsv($key, 'opt/invert/separator/style');
     }
   }
 }

@@ -1,0 +1,6 @@
+@use 'true' as *;
+@import 'wicle';
+
+@include describe('wicle test') {
+    @include it('Can use wicle.') { }
+}

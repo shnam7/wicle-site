@@ -1,0 +1,24 @@
+@use 'true' as *;
+@import 'wicle/components/button';
+@import 'wicle/components/divider';
+@import 'wicle/components/image';
+@import 'wicle/components/nav';
+@import 'wicle/components/navbar';
+@import 'wicle/components/pagination';
+@import 'wicle/components/panel';
+@import 'wicle/components/pattern';
+@import 'wicle/components/scrollbar';
+@import 'wicle/components/search';
+
+@include describe('wicle/components test') {
+    @include it('Can use component/button.') { }
+    @include it('Can use component/divider.') { }
+    @include it('Can use component/image.') { }
+    @include it('Can use component/nav.') { }
+    @include it('Can use component/navbar.') { }
+    @include it('Can use component/pagination.') { }
+    @include it('Can use component/panel.') { }
+    @include it('Can use component/pattern.') { }
+    @include it('Can use component/scrollbar.') { }
+    @include it('Can use component/search.') { }
+}

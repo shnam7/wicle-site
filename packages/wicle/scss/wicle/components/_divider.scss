@@ -11,6 +11,7 @@
 //
 //=========================================================================
 
+@use 'wdk/reg';
 
 //-----------------------------------------------
 //  Config
@@ -19,17 +20,17 @@
     $key: 'w-divider';
 
     // core
-    @include ssv($key, 'style', 1px solid gray(80%), true);
-    @include ssv($key, 'spacing', 1.5rem, true);
-    @include ssv($key, 'text/fg', null, true);
-    @include ssv($key, 'text/bg', white, true);
+    @include reg.ssv($key, 'style', 1px solid gray(80%), true);
+    @include reg.ssv($key, 'spacing', 1.5rem, true);
+    @include reg.ssv($key, 'text/fg', null, true);
+    @include reg.ssv($key, 'text/bg', white, true);
 
     // modifiers
-    @include ssv($key, 'skinny/spacing', 0.25rem, true);
-    @include ssv($key, 'slim/spacing', 0.5rem, true);
-    @include ssv($key, 'thin/spacing', 1rem, true);
-    @include ssv($key, 'thick/spacing', 2rem, true);
-    @include ssv($key, 'fat/spacing', 3rem, true);
+    @include reg.ssv($key, 'skinny/spacing', 0.25rem, true);
+    @include reg.ssv($key, 'slim/spacing', 0.5rem, true);
+    @include reg.ssv($key, 'thin/spacing', 1rem, true);
+    @include reg.ssv($key, 'thick/spacing', 2rem, true);
+    @include reg.ssv($key, 'fat/spacing', 3rem, true);
 }
 
 
@@ -45,7 +46,7 @@
     height: auto;
     user-select: none;
     z-index: 0;
-    margin: gsv($key, spacing) 0;
+    margin: reg.gsv($key, spacing) 0;
 
     &:before {
         content: '';
@@ -54,7 +55,7 @@
         z-index: -1;
         top: 50%;
         width: 100%;
-        border-top: gsv($key, style);
+        border-top: reg.gsv($key, style);
     }
 
     // text on divider
@@ -65,7 +66,7 @@
     .w-divider-text {
         display: inline;
         padding: 0.2rem 1rem;
-        border-radius: $w-border-radius;
+        border-radius: reg.gsv('site', 'border-radius');
     }
 }
 
@@ -77,23 +78,23 @@
     }
 
     &.wo-skinny {
-        margin: gsv($key, skinny/spacing) 0;
+        margin: reg.gsv($key, skinny/spacing) 0;
     }
 
     &.wo-slim {
-        margin: gsv($key, slim/spacing) 0;
+        margin: reg.gsv($key, slim/spacing) 0;
     }
 
     &.wo-thin {
-        margin: gsv($key, thin/spacing) 0;
+        margin: reg.gsv($key, thin/spacing) 0;
     }
 
     &.wo-thick {
-        margin: gsv($key, thick/spacing) 0;
+        margin: reg.gsv($key, thick/spacing) 0;
     }
 
     &.wo-fat {
-        margin: gsv($key, fat/spacing) 0;
+        margin: reg.gsv($key, fat/spacing) 0;
     }
 
     &.wo-transparent {
@@ -108,15 +109,15 @@
 
     &>span,
     .w-divider-text {
-        color: gsv($key, text/fg);
-        background: gsv($key, text/bg);
+        color: reg.gsv($key, text/fg);
+        background: reg.gsv($key, text/bg);
     }
 }
 
 @mixin w-divider-default-styles() {
     $key: 'w-divider';
 
-    @include w-divider-text-style(gsv($key, text/fg), gsv($key, text/bg));
+    @include w-divider-text-style(reg.gsv($key, text/fg), reg.gsv($key, text/bg));
 }
 
 

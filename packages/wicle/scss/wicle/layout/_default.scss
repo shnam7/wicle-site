@@ -18,22 +18,22 @@
 //
 //=========================================================
 
-@import "./mixins/site";
-@import "./mixins/page";
+@use "./mixins/site";
+@use "./mixins/page";
 
 //--- site layout
-@include w-layout-site-config;
-@include w-layout-site-background;
-@include w-layout-site;
-@include w-layout-site-header;
-@include w-layout-site-banner;
-@include w-layout-site-content;
-@include w-layout-site-footer;
-@include w-layout-site-overlay;
-@include w-layout-site-offcanvas;
+@include site.layout-config;
+@include site.layout-background;
+@include site.layout;
+@include site.layout-header;
+@include site.layout-banner;
+@include site.layout-content;
+@include site.layout-footer;
+@include site.layout-overlay;
+@include site.layout-offcanvas;
 
 //--- page layout
-@include w-layout-page-config();
-@include w-layout-page;
-@include w-layout-page-content;
-@include w-layout-page-sidebar;
+@include page.w-layout-page-config();
+@include page.w-layout-page;
+@include page.w-layout-page-content;
+@include page.w-layout-page-sidebar;

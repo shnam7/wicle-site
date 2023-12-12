@@ -9,7 +9,7 @@
     div {
         lost-column: 1/2;
 
-        @include w-media(large) {
+        @include ui.media(large) {
             lost-column: 1/3;
         }
 
