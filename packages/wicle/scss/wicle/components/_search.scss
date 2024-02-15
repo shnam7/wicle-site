@@ -26,7 +26,6 @@
 //
 //=========================================================================
 
-
 @use 'wdk/reg';
 @use 'wdk/color';
 @use 'wdk/font';
@@ -89,12 +88,12 @@
     }
 
     // input box
-    &>input[type=search] {
+    & > input[type='search'] {
         font: $font;
         box-sizing: border-box;
         margin: 0;
         width: reg.gsv($key, max-width);
-        padding-left: $icon-margin*2 + 1rem; // make space for search icon
+        padding-left: $icon-margin * 2 + 1rem; // make space for search icon
         vertical-align: middle;
         line-height: reg.gsv($key, line-height);
         border-radius: reg.gsv($key, radius);
@@ -122,7 +121,7 @@
 }
 
 @mixin w-search-styles($bg) {
-    &>input[type=search] {
+    & > input[type='search'] {
         background: $bg;
     }
 }
@@ -130,18 +129,8 @@
 @mixin w-search-modifiers {
     $key: 'w-search';
 
-    &.wo-minify {
-        &>input[type=search] {
-            width: reg.gsv($key, icon/margin) * 4; // left/right margins are 50% of icon. So total width is 4 times of the margin
-
-            &:focus {
-                width: reg.gsv($key, max-width);
-            }
-        }
-    }
-
     &.wo-iconize {
-        &>input[type=search] {
+        & > input[type='search'] {
             border-style: hidden;
             width: 1rem;
 
@@ -152,15 +141,25 @@
         }
     }
 
+    &.wo-minify {
+        & > input[type='search'] {
+            width: reg.gsv($key, icon/margin) * 4; // left/right margins are 50% of icon. So total width is 4 times of the margin
+
+            &:focus {
+                width: reg.gsv($key, max-width);
+            }
+        }
+    }
+
     &.wo-compact {
-        &>input[type=search] {
+        & > input[type='search'] {
             line-height: 1.5;
             padding-left: 1.5rem;
         }
     }
 
     &.wo-small {
-        &>input[type=search] {
+        & > input[type='search'] {
             font-size: 0.9rem;
             padding-left: 1.8rem;
         }
@@ -171,7 +170,7 @@
             left: reg.gsv($key, icon/margin) * 2;
         }
 
-        &>input[type=search] {
+        & > input[type='search'] {
             font-size: 1.3rem;
             padding-left: 3rem;
         }
@@ -182,7 +181,7 @@
             left: reg.gsv($key, icon/margin) * 2;
         }
 
-        &>input[type=search] {
+        & > input[type='search'] {
             font-size: 2rem;
             padding-left: 3.75rem;
         }
@@ -193,7 +192,7 @@
             left: reg.gsv($key, icon/margin) * 3;
         }
 
-        &>input[type=search] {
+        & > input[type='search'] {
             font-size: 3rem;
             padding-left: 5.5rem;
         }
@@ -202,7 +201,7 @@
     &.wo-expand {
         width: 100%;
 
-        &>input[type=search] {
+        & > input[type='search'] {
             width: 100%;
         }
     }
@@ -211,7 +210,6 @@
 @mixin w-search-default-styles {
     @include w-search-styles(white);
 }
-
 
 //-----------------------------------------------
 //  Elements

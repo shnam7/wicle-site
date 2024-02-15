@@ -307,6 +307,23 @@
       }
     }
 
+
+  // icon menu
+  &.wo-icon {
+    &.wo-pointer {
+      &>li.w-nav-parent {
+        &:after {
+          left: 0.5rem;
+        }
+      }
+    }
+    & > li > a {
+      font-size: reg.gsv($key, icon/font-size);
+      font-weight: reg.gsv($key, icon/font-weight);
+      padding: reg.gsv($key, icon/padding) auto;   // vertical padding must be preserved to sync dropdown popup position
+    }
+  }
+
     // top-level submenu panel pointer
     &.wo-default,
     &.wo-pointer {
@@ -332,22 +349,6 @@
           transition: opacity 0.25s linear;
         }
       }
-    }
-  }
-
-  // icon menu
-  &.wo-icon {
-    &.wo-pointer {
-      &>li.w-nav-parent {
-        &:after {
-          left: 0.5rem;
-        }
-      }
-    }
-    & > li > a {
-      font-size: reg.gsv($key, icon/font-size);
-      font-weight: reg.gsv($key, icon/font-weight);
-      padding: reg.gsv($key, icon/padding) auto;   // vertical padding must be preserved to sync dropdown popup position
     }
   }
 

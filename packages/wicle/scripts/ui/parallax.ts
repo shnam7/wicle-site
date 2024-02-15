@@ -11,10 +11,10 @@
  */
 
 export class Container {
-    private content: HTMLElement;
-    private surface: Surface[];
-    private perspective: number;
-    private lastPerspective: number;
+    private content: HTMLElement
+    private surface: Surface[]
+    private perspective: number
+    private lastPerspective: number
 
     /**
      *   Creates a Container for a Parallax
@@ -26,38 +26,41 @@ export class Container {
      *          half as much.
      */
     constructor(scrollableContent: HTMLElement, perspective: number) {
-        this.content = scrollableContent;
-        this.surface = [];
-        this.perspective = perspective;
-        this.lastPerspective = 1;           // perspective of lowest surface
+        this.content = scrollableContent
+        this.surface = []
+        this.perspective = perspective
+        this.lastPerspective = 1           // perspective of lowest surface
 
-        jQuery(scrollableContent).on('scroll', (event: JQuery.Event) => {
-            this.onContainerScroll(event);
-        });
+        scrollableContent.addEventListener('scroll', (event: Event) => {
+            this.onContainerScroll(event)
+        })
+        // jQuery(scrollableContent).on('scroll', (event: JQuery.Event) => {
+        //     this.onContainerScroll(event)
+        // })
     }
 
-    private onContainerScroll(e: JQuery.Event): void {
-        let currentScrollPos = jQuery(this.content).scrollTop();
+    private onContainerScroll(e: Event): void {
+        let currentScrollPos = this.content.scrollTop
         for (let surface of this.surface)
-            surface.scroll(-currentScrollPos);
+            surface.scroll(-currentScrollPos)
     }
 
     addSurface(surface: Surface): void {
         if (this.surface.length == 0) {     // if first surface
-            if (surface.perspective <= 0) surface.perspective = 1;
+            if (surface.perspective <= 0) surface.perspective = 1
         }
         else {
-            if (surface.perspective <= 0) surface.perspective = this.perspective;
-            surface.perspective *= this.lastPerspective;
+            if (surface.perspective <= 0) surface.perspective = this.perspective
+            surface.perspective *= this.lastPerspective
         }
-        this.lastPerspective = surface.perspective;
-        this.surface.push(surface);
+        this.lastPerspective = surface.perspective
+        this.surface.push(surface)
         // console.log(surface, 'perspective=', surface.perspective);
     }
 }
 
 export class Surface {
-    private content: HTMLElement;
+    private content: HTMLElement
 
     /**
      *  Create a Surface for a Palallax
@@ -67,17 +70,22 @@ export class Surface {
      *  @param cssPosition CSS position property: Should be absolute or fixed
      */
     constructor(surfaceContents: HTMLElement, public perspective: number = 0, cssPosition: string = 'fixed') {
-        this.content = surfaceContents;
+        this.content = surfaceContents
 
-        jQuery(surfaceContents).css({
-            position: cssPosition,
-            transform: 'none'
-        });
+        surfaceContents.style.cssText = `position: cssPosition; transform: 'none'`
+        // jQuery(surfaceContents).css({
+        //     position: cssPosition,
+        //     transform: 'none'
+        // })
     }
 
     public scroll(scrollPos: number) {
-        jQuery(this.content).css({
-            transform: `translate3d(0, ${scrollPos * this.perspective}px, 0)`
-        });
+        this.content.style.transform = `translate3d(0, ${scrollPos * this.perspective}px, 0)`
+        // jQuery(this.content).css({
+        //     transform: `translate3d(0, ${scrollPos * this.perspective}px, 0)`
+        // })
     }
 }
+
+export const Parallax = { Container, Surface }
+export default Parallax

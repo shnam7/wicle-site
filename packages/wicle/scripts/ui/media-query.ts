@@ -1,4 +1,4 @@
-import { getViewporSize } from "../util/view";
+import { getViewporSize } from '../util/view.js'
 
 /**
  * @package wicle
@@ -9,7 +9,7 @@ export interface MQOptions {
     // no options yet
 }
 
-export interface BreakPoints { [name: string]: number; }    // first entry value MUST be zeop
+export interface BreakPoints { [name: string]: number }    // first entry value MUST be zeop
 
 // predefined media query break points
 export const BREAKPOINTS: { [name: string]: BreakPoints } = {
@@ -66,35 +66,35 @@ export const BREAKPOINTS: { [name: string]: BreakPoints } = {
 }
 
 export interface MQState {
-    state: string;          // media query(breakpoint) name
-    width: number;
-    prevState: string;
-    prevWidth: number;
-    breakPoints: BreakPoints;
+    state: string          // media query(breakpoint) name
+    width: number
+    prevState: string
+    prevWidth: number
+    breakPoints: BreakPoints
 }
 
 function mqStateOf(width: number, breakPoints: BreakPoints): string {
-    let key;
+    let key
     for (key in breakPoints) {
         if (breakPoints.hasOwnProperty(key)) {
-            if (width < breakPoints[key]) return key;
+            if (width < breakPoints[key]) return key
         }
     }
-    return key; // return last key
+    return key // return last key
 }
 
 
 // start media query change detection service
 export function mqStart(breakPoints?: BreakPoints, options?: MQOptions) {
-    if (!breakPoints) breakPoints = BREAKPOINTS.foundation;
-    options = Object.assign({}, {}, options);
-    const $window = jQuery(window);
-    let mqState: MQState;
+    if (!breakPoints) breakPoints = BREAKPOINTS.foundation
+    options = Object.assign({}, {}, options)
+    const $window = jQuery(window)
+    let mqState: MQState
 
     // init
     $window.on('mq:init', (e) => {
-        let width = getViewporSize().width;
-        let state = mqStateOf(width, breakPoints);
+        let width = getViewporSize().width
+        let state = mqStateOf(width, breakPoints)
         mqState = {
             state: state,
             width: width,
@@ -102,26 +102,26 @@ export function mqStart(breakPoints?: BreakPoints, options?: MQOptions) {
             prevWidth: width,
             breakPoints: breakPoints
         }
-    });
+    })
 
     // report current mqState value
-    $window.on('mq:report', (e) => $window.trigger('mq:state', [mqState]));
+    $window.on('mq:report', (e) => $window.trigger('mq:state', [mqState]))
 
     // detect media query changes
     $window.on('resize', (e) => {
-        let width = getViewporSize().width;
-        let state = mqStateOf(width, breakPoints);
+        let width = getViewporSize().width
+        let state = mqStateOf(width, breakPoints)
         if (state != mqState.state) {
             // console.log('[window:resize]', `width=${width}, state=${state}, prevState=${mqState.prevState}`);
-            mqState.prevWidth = mqState.width;
-            mqState.prevState = mqState.state;
-            mqState.width = width;
-            mqState.state = state;
-            $window.trigger('mq:change', [mqState]);
+            mqState.prevWidth = mqState.width
+            mqState.prevState = mqState.state
+            mqState.width = width
+            mqState.state = state
+            $window.trigger('mq:change', [mqState])
         }
-    });
+    })
 
     // trigger initial events
-    $window.trigger('mq:init');
-    $window.trigger('resize');
+    $window.trigger('mq:init')
+    $window.trigger('resize')
 }

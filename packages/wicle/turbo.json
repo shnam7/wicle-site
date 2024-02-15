@@ -2,10 +2,8 @@
     "extends": ["//"],
     "pipeline": {
         "build": {
-            "dependsOn": ["sass"]
-        },
-        "sass": {
-            "dependsOn": []
+            "outputs": ["dist/**"],
+            "dependsOn": ["^build"]
         }
     }
 }

@@ -10,3 +10,5 @@ dist/
 /docs/_site/
 /docs/.*-triggered
 /docs/.jekyll-metadata
+
+/packages-tron/

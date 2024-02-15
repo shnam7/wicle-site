@@ -48,7 +48,7 @@
 
     @if $alpha {
         $fg: color.$text-black;
-        $bg: transparentize($bg, reg.gsv($key, 'alpha'));
+        $bg: color.adjust($bg, $alpha: -1 * reg.gsv($key, 'alpha'));
     }
 
     color: $fg;
@@ -73,8 +73,8 @@
         $color-scheme: if($color-scheme, $color-scheme, $w-color-scheme);
 
         @each $scheme in $color-scheme {
-            $name: nth($scheme, 1);
-            $color: nth($scheme, 2);
+            $name: list.nth($scheme, 1);
+            $color: list.nth($scheme, 2);
 
             &.wo-#{$name} {
                 @include w-panel-styles($color);

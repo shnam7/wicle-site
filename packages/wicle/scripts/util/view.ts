@@ -5,11 +5,11 @@
 // ref: https://andylangton.co.uk/blog/development/get-viewportwindow-size-width-and-height-javascript
 
 export function getViewporSize(): { width: number, height: number } {
-    let e: any = window;
-    let a: string = 'inner';
+    let e: any = window
+    let a: string = 'inner'
     if (!('innerWidth' in window)) {
-        a = 'client';
-        e = document.documentElement || document.body;
+        a = 'client'
+        e = document.documentElement || document.body
     }
     return { width: e[a + 'Width'], height: e[a + 'Height'] }
 }

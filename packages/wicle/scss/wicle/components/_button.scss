@@ -138,7 +138,7 @@
 
 @mixin w-button-gradient($bg:null, $gr: (level:20%, direction:bottom)) {
     $key: 'w-button';
-    $hover: darken($bg, 10%);
+    $hover: color.adjust($bg, $lightness: -10%);
 
     z-index: 1;
 
@@ -180,9 +180,9 @@
     @if $alpha {
         $fg: color.scale(saturate($color, 15%), $lightness: -15%);      // darken by 15%
         $bg: color.scale($fg, $alpha: reg.gsv($key, 'alpha'));               // transparentize
-        $hover: opacify($bg, 0.1);
+        $hover: color.adjust($bg, $alpha: -0.1);
 
-        @if (saturation($fg) <=50%) {
+        @if (saturation($fg) <= 50%) {
             $fg: invert($fg, 50%);
         }
     }
@@ -220,13 +220,13 @@
         $color-scheme: if($color-scheme, $color-scheme, $w-color-scheme);
 
         @each $scheme in $w-color-scheme {
-            $name: nth($scheme, 1);
-            $color: nth($scheme, 2);
+            $name: list.nth($scheme, 1);
+            $color: list.nth($scheme, 2);
 
             // outline option
             &.wo-outline.wo-#{$name} {
                 color: $color;
-                border: 1px solid transparentize($color, reg.gsv($key, 'outline/alpha'));
+                border: 1px solid color.adjust($color, $alpha: reg.gsv($key, 'outline/alpha'));
 
                 &:hover {
                     color: yiq-color($color);
@@ -262,7 +262,7 @@
         color: $fg;
 
         &:hover {
-            $fg: if(saturation($fg) <=50%, invert($fg, 50%), $fg);
+            $fg: if(color.saturation($fg) <= 50%, invert($fg, 50%), $fg);
             color: $fg;
             background: $default-color;
         }

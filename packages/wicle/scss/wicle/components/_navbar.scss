@@ -140,7 +140,7 @@
 
 @mixin w-navbar-brand($brand:null) {
     $brand: map-extend((), gcv($key, $w-conf-navbar, 'brand'), $brand);
-    $font: to-string(map-values(gcv($key, $brand, 'font')), ' ');
+    $font: to-string(map.values(gcv($key, $brand, 'font')), ' ');
     $color-fg: gcv($key, $brand, 'color/fg');
 }
 

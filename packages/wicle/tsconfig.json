@@ -1,14 +1,30 @@
 {
+    "$schema": "https://json.schemastore.org/tsconfig",
+
     "compilerOptions": {
-        "target": "es2022",
+        "target": "ESNext",
         "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "declaration": true,
-        "noImplicitAny": true,
+        "declarationMap": false,
+        "esModuleInterop": true,
+        "incremental": false,
+        "isolatedModules": true, // this causes d.ts files are not created.
+        "moduleDetection": "force",
+        "noUncheckedIndexedAccess": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
         "noEmitOnError": true,
+        "noImplicitAny": true,
+        "strict": true,
+
         "pretty": true,
-        "moduleResolution": "NodeNext", // default module resolution for amd or system module is 'classic'. so, fixt it here.
         "rootDir": "./scripts", // required to have mdoule names to start from directory 'wicle...'
-        "lib": ["dom", "es6", "dom.iterable", "scripthost"]
+        "lib": ["dom", "es6", "dom.iterable", "scripthost"],
+        // "outDir": "./dist/js",
+
     },
-    "exclude": ["dist", "docs", "node_modules", "__trash"]
+
+    // "include": ["./scripts/**/*.ts"],
+    // "exclude": ["dist", "docs", "node_modules", "__trash"]
 }

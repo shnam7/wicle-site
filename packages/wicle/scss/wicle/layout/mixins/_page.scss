@@ -27,11 +27,11 @@
     // sidebar: sidebar size defined first and then content size determined
     @include reg.ssv($key, 'sidebar/width', 20rem, true);
     @include reg.ssv($key, 'sidebar/spacing', 3rem, true);
-    @include reg.ssv($key, 'sidebar/padding', 0 0 0 calc(reg.gsv($key, 'sidebar/spacing')/2), true);
+    @include reg.ssv($key, 'sidebar/padding', 0 0 0 calc(reg.gsv($key, 'sidebar/spacing') / 2), true);
 
     // contents
     @include reg.ssv($key, 'content/width', calc(100% - #{gsv($key, 'sidebar/width')}), true);
-    @include reg.ssv($key, 'content/padding', 0 calc(reg.gsv($key, 'sidebar/spacing')/2) 0 0, true);
+    @include reg.ssv($key, 'content/padding', 0 calc(reg.gsv($key, 'sidebar/spacing') / 2) 0 0, true);
 }
 
 
