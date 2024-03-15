@@ -20,11 +20,15 @@
         "jsx": "react",
 
         "pretty": true,
+        "paths": {
+            "@": ["./src/"],
+            "wicle": ["./node_modules/wicle/dist/"]
+        },
         // "rootDir": "./scripts", // required to have mdoule names to start from directory 'wicle...'
         "lib": ["dom", "es6", "dom.iterable", "scripthost"]
         // "outDir": "./dist/js",
     }
 
-    // "include": ["./scripts/**/*.ts"],
+    // "include": ["./src/**/*.ts", "./src/**/*.d.ts"]
     // "exclude": ["dist", "docs", "node_modules", "__trash"]
 }
