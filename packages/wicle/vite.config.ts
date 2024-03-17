@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 import path from "path"
+import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 import packageJson from "./package.json"
 
@@ -24,6 +25,7 @@ const fileName = {
 const formats = Object.keys(fileName) as Array<keyof typeof fileName>
 
 export default defineConfig({
+    plugins: [react()],
     base: "./",
     build: {
         outDir: "./build/dist",
