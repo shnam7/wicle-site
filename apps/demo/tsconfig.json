@@ -9,7 +9,7 @@
         "declarationMap": false,
         "esModuleInterop": true,
         "incremental": false,
-        // "isolatedModules": true, // this causes d.ts files are not created.
+        "isolatedModules": true, // this causes d.ts files are not created.
         "moduleDetection": "force",
         "noUncheckedIndexedAccess": true,
         "resolveJsonModule": true,
@@ -19,16 +19,21 @@
         "strict": true,
         "jsx": "react",
 
-        "pretty": true,
+        // optiions for vite
+        "useDefineForClassFields": true,
+        "baseUrl": ".",
         "paths": {
-            "@": ["./src/"],
-            "wicle": ["./node_modules/wicle/dist/"]
+            "@/*": ["./src/*"],
+            "@@/*": ["./*"]
         },
-        // "rootDir": "./scripts", // required to have mdoule names to start from directory 'wicle...'
-        "lib": ["dom", "es6", "dom.iterable", "scripthost"]
-        // "outDir": "./dist/js",
-    }
+        "noEmit": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["vite/client", "node"],
 
-    // "include": ["./src/**/*.ts", "./src/**/*.d.ts"]
-    // "exclude": ["dist", "docs", "node_modules", "__trash"]
+        "pretty": true,
+        "lib": ["dom", "es6", "dom.iterable", "scripthost"]
+    }
 }

@@ -3,9 +3,9 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "turbo dev --filter=@wicle/demo --filter=wicle",
-        "build": "turbo run build",
-        "clean": "echo clean",
+        "dev": "turbo dev",
+        "build": "turbo build",
+        "clean": "turbo clean",
         "reset": "npm-run-all -s clean reset:turbo reset:node",
         "reset:turbo": "find . -type d -name .turbo -exec rm -rf {} +",
         "reset:node": "find . -type d -name node_modules -exec rm -rf {} +"
